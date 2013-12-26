@@ -1,0 +1,131 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>5.5. Rule set example &mdash; Haka runtime 0.1.20131226-1215 documentation</title>
+    
+    <link rel="stylesheet" href="../../../_static/haka.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../',
+        VERSION:     '0.1.20131226-1215',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../../_static/scripts.js"></script>
+    <link rel="top" title="Haka runtime 0.1.20131226-1215 documentation" href="../../../index.html" />
+    <link rel="up" title="5. Writing Haka scripts" href="../../user/tutorial.html" />
+    <link rel="next" title="6. Debugging" href="../../user/debug.html" />
+    <link rel="prev" title="5.4. SQLi attack detection" href="../tutorial/sqli.html" /> 
+  </head>
+  <body>
+<header id="header" role="banner">
+  <div class="home-link">
+    <div id="version" class="description">0.1.20131226-1215</div>
+    <h1 class="title"><a rel="home" title="Haka" href="http://www.haka-security.org">Haka</a></h1>
+    <h2 class="description">An open source security language</h2>
+  </div>
+</header>
+
+  <div id="navbar" class="navbar">
+    <nav id="site-navigation" class="navigation main-navigation" role="navigation">
+      <ul class="nav-menu">
+        <li class=" current">
+          <a href="../../user/userindex.html">Users</a>
+        </li>
+        <li class=" ">
+          <a href="../../ref/refindex.html" class="../../ref/refindex.html">References</a>
+        </li>
+        <li class=" ">
+          <a href="../../developer/devindex.html" class="">Developers</a>
+        </li>
+        <li>
+
+
+	<div id="searchbox" style="display: none">
+		<form class="search" action="../../../search.html" method="get">
+			<input type="hidden" name="area" value="default" />
+			<input type="hidden" name="check_keywords" value="yes" />
+			<input type="text" name="q" placeholder="Search" />
+		</form>
+	</div>
+	<script type="text/javascript">$('#searchbox').show(0);</script>
+</li>
+          <li class="right"><a href="../../user/tutorial.html" title="5. Writing Haka scripts">Top</a></li>
+          <li class="right"><a href="../tutorial/sqli.html" title="5.4. SQLi attack detection">Prev</a></li>
+          <li class="right"><a href="../../user/debug.html" title="6. Debugging">Next</a></li>
+         <li class=" right"><a href="../../../genindex.html">Index</a></li>
+         <li class=" right"><a href="../../../lua-modindex.html">Modules</a></li>
+      </ul>
+    </nav>
+  </div>
+  <div id="content" class="body">
+    <div id="contentwrapper">
+      
+  <div class="section" id="rule-set-example">
+<h1>5.5. Rule set example<a class="headerlink" href="#rule-set-example" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="introduction">
+<h2>5.5.1. Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
+<p>This tutorial introduces a set of lua script files located at <tt class="docutils literal"><span class="pre">&lt;haka_install_path&gt;/share/haka/sample/ruleset</span></tt> and which could be run using the <tt class="docutils literal"><span class="pre">hakapcap</span></tt> tool and a capture.pcap file:</p>
+<div class="highlight-console"><div class="highlight"><pre><span class="gp">$</span> <span class="nb">cd</span> &lt;haka_install_path&gt;/share/haka/sample/ruleset
+<span class="gp">$</span> hakapcap capture.pcap config.lua
+</pre></div>
+</div>
+<p>This rule set can also be used for live analysis of traffic with <tt class="docutils literal"><span class="pre">haka</span></tt> tool,
+but it&#8217;s preferable to adjust some rules or config first.</p>
+</div>
+<div class="section" id="config-lua-main-file">
+<h2>5.5.2. config.lua main file<a class="headerlink" href="#config-lua-main-file" title="Permalink to this headline">¶</a></h2>
+<p>This script is just a placeholder to include all other relevants files.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">require</span><span class="p">(</span><span class="s">&quot;functions&quot;</span><span class="p">)</span>
+
+<span class="n">require</span><span class="p">(</span><span class="s">&quot;ipv4/dissector&quot;</span><span class="p">)</span>
+<span class="n">require</span><span class="p">(</span><span class="s">&quot;ipv4/security&quot;</span><span class="p">)</span>
+<span class="n">require</span><span class="p">(</span><span class="s">&quot;ipv4/compliance&quot;</span><span class="p">)</span>
+
+<span class="n">require</span><span class="p">(</span><span class="s">&quot;tcp/dissector&quot;</span><span class="p">)</span>
+<span class="n">require</span><span class="p">(</span><span class="s">&quot;tcp/security&quot;</span><span class="p">)</span>
+<span class="n">require</span><span class="p">(</span><span class="s">&quot;tcp/rules&quot;</span><span class="p">)</span>
+
+<span class="n">require</span><span class="p">(</span><span class="s">&quot;http/dissector&quot;</span><span class="p">)</span>
+<span class="n">require</span><span class="p">(</span><span class="s">&quot;http/security&quot;</span><span class="p">)</span>
+<span class="n">require</span><span class="p">(</span><span class="s">&quot;http/compliance&quot;</span><span class="p">)</span>
+<span class="n">require</span><span class="p">(</span><span class="s">&quot;http/policy&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The <cite>functions.lua</cite> file is a placeholder to put all lua utils functions.</p>
+</div>
+<div class="section" id="protocol-directories">
+<h2>5.5.3. Protocol directories<a class="headerlink" href="#protocol-directories" title="Permalink to this headline">¶</a></h2>
+<p>A directory has been created for ipv4, tcp and http protocols.
+Each directory contains one or more lua policy files. Each one contains a mandatory <cite>dissector.lua</cite> file which handle
+the dissector parts. There is some other files to enforce protocols controls and security/rules files.
+Every file will be used as long as it&#8217;s called from the main lua file
+You can read those file as an example of how to make a ruleset made of security, filtering and compliance rules.</p>
+</div>
+</div>
+
+
+    </div>
+  </div>
+
+<div id="footer">
+  &copy; Copyright 2013, Arkoon Network Security, OpenWide and Telecom ParisTech.
+</div>
+
+  </body>
+</html>

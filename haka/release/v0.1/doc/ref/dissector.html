@@ -1,0 +1,145 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>2. Dissector &mdash; Haka runtime 0.1.20131226-1215 documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/haka.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '0.1.20131226-1215',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../_static/scripts.js"></script>
+    <link rel="top" title="Haka runtime 0.1.20131226-1215 documentation" href="../../index.html" />
+    <link rel="up" title="Welcome to Haka’s Reference Guide!" href="../ref/refindex.html" />
+    <link rel="next" title="3. Logging &amp; Alerting" href="../ref/log_alert.html" />
+    <link rel="prev" title="1. Defining rules" href="../ref/rule.html" /> 
+  </head>
+  <body>
+<header id="header" role="banner">
+  <div class="home-link">
+    <div id="version" class="description">0.1.20131226-1215</div>
+    <h1 class="title"><a rel="home" title="Haka" href="http://www.haka-security.org">Haka</a></h1>
+    <h2 class="description">An open source security language</h2>
+  </div>
+</header>
+
+  <div id="navbar" class="navbar">
+    <nav id="site-navigation" class="navigation main-navigation" role="navigation">
+      <ul class="nav-menu">
+        <li class=" ">
+          <a href="../user/userindex.html">Users</a>
+        </li>
+        <li class=" current">
+          <a href="../ref/refindex.html" class="../ref/refindex.html">References</a>
+        </li>
+        <li class=" ">
+          <a href="../developer/devindex.html" class="">Developers</a>
+        </li>
+        <li>
+
+
+	<div id="searchbox" style="display: none">
+		<form class="search" action="../../search.html" method="get">
+			<input type="hidden" name="area" value="default" />
+			<input type="hidden" name="check_keywords" value="yes" />
+			<input type="text" name="q" placeholder="Search" />
+		</form>
+	</div>
+	<script type="text/javascript">$('#searchbox').show(0);</script>
+</li>
+          <li class="right"><a href="../ref/refindex.html" title="Welcome to Haka&#8217;s Reference Guide!">Top</a></li>
+          <li class="right"><a href="../ref/rule.html" title="1. Defining rules">Prev</a></li>
+          <li class="right"><a href="../ref/log_alert.html" title="3. Logging &amp; Alerting">Next</a></li>
+         <li class=" right"><a href="../../genindex.html">Index</a></li>
+         <li class=" right"><a href="../../lua-modindex.html">Modules</a></li>
+      </ul>
+    </nav>
+  </div>
+  <div id="content" class="body">
+    <div id="contentwrapper">
+      
+  <div class="section" id="dissector">
+<h1>2. Dissector<a class="headerlink" href="#dissector" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
+<dt id="haka.dissector_data">
+<em class="property">class </em><tt class="descclassname">haka.</tt><tt class="descname">dissector_data</tt><a class="headerlink" href="#haka.dissector_data" title="Permalink to this definition">¶</a></dt>
+<dd><p>This class is used to communicate the dissector data to rules or other dissectors.</p>
+<dl class="data">
+<dt id="haka.dissector_data:dissector">
+<tt class="descname">dissector</tt><a class="headerlink" href="#haka.dissector_data:dissector" title="Permalink to this definition">¶</a></dt>
+<dd><p>Read-only current dissector name.</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="haka.dissector_data:next_dissector">
+<tt class="descname">next_dissector</tt><a class="headerlink" href="#haka.dissector_data:next_dissector" title="Permalink to this definition">¶</a></dt>
+<dd><p>Name of the next dissector to call. This value can be read-only or writable depending
+of the dissector.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="haka.dissector_data:valid">
+<tt class="descname">valid</tt><big>(</big><em>self</em><big>)</big><a class="headerlink" href="#haka.dissector_data:valid" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns <cite>false</cite> if the data are invalid and should not be processed anymore. This could
+happens if a packet is dropped.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="haka.dissector_data:drop">
+<tt class="descname">drop</tt><big>(</big><em>self</em><big>)</big><a class="headerlink" href="#haka.dissector_data:drop" title="Permalink to this definition">¶</a></dt>
+<dd><p>This is a generic function that is called to drop the packet, data or stream.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="haka.dissector_data:forge">
+<tt class="descname">forge</tt><big>(</big><em>self</em><big>)</big><a class="headerlink" href="#haka.dissector_data:forge" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the previous dissector data. This function will be called in a loop to enable for
+instance a dissector to create multiple packets. When no more data is available, the function
+should return <cite>nil</cite>.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="function">
+<dt id="haka.dissector">
+<tt class="descclassname">haka.</tt><tt class="descname">dissector</tt><big>(</big><em>d</em><big>)</big><a class="headerlink" href="#haka.dissector" title="Permalink to this definition">¶</a></dt>
+<dd><p>Declare a dissector. The table parameter <cite>d</cite> should contains the following
+fields:</p>
+<ul class="simple">
+<li><cite>name</cite>: The name of the dissector. This name should be unique.</li>
+<li><cite>dissect</cite>: A function that take one parameter. This function is the core of
+the dissector. It will be called with the previous <a class="reference internal" href="#haka.dissector_data" title="haka.dissector_data"><tt class="xref lua lua-class docutils literal"><span class="pre">dissector_data</span></tt></a>
+and should return a <a class="reference internal" href="#haka.dissector_data" title="haka.dissector_data"><tt class="xref lua lua-class docutils literal"><span class="pre">dissector_data</span></tt></a>.</li>
+</ul>
+</dd></dl>
+
+</div>
+
+
+    </div>
+  </div>
+
+<div id="footer">
+  &copy; Copyright 2013, Arkoon Network Security, OpenWide and Telecom ParisTech.
+</div>
+
+  </body>
+</html>

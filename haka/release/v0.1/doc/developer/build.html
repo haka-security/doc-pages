@@ -1,0 +1,236 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>1. Build &mdash; Haka runtime 0.1.20131226-1215 documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/haka.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '0.1.20131226-1215',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../_static/scripts.js"></script>
+    <link rel="top" title="Haka runtime 0.1.20131226-1215 documentation" href="../../index.html" />
+    <link rel="up" title="Welcome to Haka’s Developer Guide!" href="../developer/devindex.html" />
+    <link rel="next" title="2. Haka architecture" href="../developer/rulearch.html" />
+    <link rel="prev" title="Welcome to Haka’s Developer Guide!" href="../developer/devindex.html" /> 
+  </head>
+  <body>
+<header id="header" role="banner">
+  <div class="home-link">
+    <div id="version" class="description">0.1.20131226-1215</div>
+    <h1 class="title"><a rel="home" title="Haka" href="http://www.haka-security.org">Haka</a></h1>
+    <h2 class="description">An open source security language</h2>
+  </div>
+</header>
+
+  <div id="navbar" class="navbar">
+    <nav id="site-navigation" class="navigation main-navigation" role="navigation">
+      <ul class="nav-menu">
+        <li class=" ">
+          <a href="../user/userindex.html">Users</a>
+        </li>
+        <li class=" ">
+          <a href="../ref/refindex.html" class="../ref/refindex.html">References</a>
+        </li>
+        <li class=" current">
+          <a href="../developer/devindex.html" class="">Developers</a>
+        </li>
+        <li>
+
+
+	<div id="searchbox" style="display: none">
+		<form class="search" action="../../search.html" method="get">
+			<input type="hidden" name="area" value="default" />
+			<input type="hidden" name="check_keywords" value="yes" />
+			<input type="text" name="q" placeholder="Search" />
+		</form>
+	</div>
+	<script type="text/javascript">$('#searchbox').show(0);</script>
+</li>
+          <li class="right"><a href="../developer/devindex.html" title="Welcome to Haka&#8217;s Developer Guide!">Top</a></li>
+          <li class="right"><a href="../developer/devindex.html" title="Welcome to Haka&#8217;s Developer Guide!">Prev</a></li>
+          <li class="right"><a href="../developer/rulearch.html" title="2. Haka architecture">Next</a></li>
+         <li class=" right"><a href="../../genindex.html">Index</a></li>
+         <li class=" right"><a href="../../lua-modindex.html">Modules</a></li>
+      </ul>
+    </nav>
+  </div>
+  <div id="content" class="body">
+    <div id="contentwrapper">
+      
+  <div class="section" id="build">
+<h1>1. Build<a class="headerlink" href="#build" title="Permalink to this headline">¶</a></h1>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The build instructions are for Debian. It will need to be adapted to
+other platform.</p>
+</div>
+<div class="section" id="dependencies">
+<h2>1.1. Dependencies<a class="headerlink" href="#dependencies" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="required">
+<h3>1.1.1. Required<a class="headerlink" href="#required" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>Toolchain (GCC, Make, ...)</li>
+<li>cmake</li>
+<li>swig</li>
+<li>python-sphinx</li>
+<li>liblua5.1</li>
+<li>tshark</li>
+<li>check</li>
+<li>rsync</li>
+<li>libpcap-dev</li>
+<li>gawk</li>
+<li>libedit-dev</li>
+</ul>
+<p>Debian:</p>
+<div class="highlight-console"><div class="highlight"><pre><span class="gp">$</span> sudo apt-get install build-essential cmake swig python-sphinx liblua5.1 tshark check rsync libpcap-dev gawk libedit-dev
+</pre></div>
+</div>
+</div>
+<div class="section" id="optional">
+<h3>1.1.2. Optional<a class="headerlink" href="#optional" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>Cppcheck</li>
+<li>Netfilter Queue</li>
+<li>Valgrind</li>
+</ul>
+<p>Debian:</p>
+<div class="highlight-console"><div class="highlight"><pre><span class="gp">$</span> sudo apt-get install cppcheck libnetfilter-queue-dev valgrind
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="id1">
+<h2>1.2. Build<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="git">
+<h3>1.2.1. Git<a class="headerlink" href="#git" title="Permalink to this headline">¶</a></h3>
+<p>You must first clone the Git repository. Our project is hosted on GitHub:</p>
+<div class="highlight-console"><div class="highlight"><pre><span class="gp">$</span> git clone git@github.com:haka-security/haka.git
+</pre></div>
+</div>
+<p>Our development uses the branching model Git flow which describe how to
+use and name Git branches. For instance, you will find the following branches:</p>
+<ul class="simple">
+<li><tt class="docutils literal"><span class="pre">master</span></tt> branch contains the last release of Haka. This branch might be empty
+if we do not have an official version.</li>
+<li><tt class="docutils literal"><span class="pre">develop</span></tt> branch contains the current Haka unstable development.</li>
+</ul>
+<p>You should then switch to the branch you want to build. For example:</p>
+<div class="highlight-console"><div class="highlight"><pre><span class="gp">$</span> git checkout develop
+</pre></div>
+</div>
+</div>
+<div class="section" id="submodules">
+<h3>1.2.2. Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h3>
+<p>The repository uses submodules that need to be initialized and updated:</p>
+<div class="highlight-console"><div class="highlight"><pre><span class="gp">$</span> git submodule init
+<span class="gp">$</span> git submodule update
+</pre></div>
+</div>
+</div>
+<div class="section" id="configure">
+<h3>1.2.3. Configure<a class="headerlink" href="#configure" title="Permalink to this headline">¶</a></h3>
+<p>It is mandatory to create a separate directory to store
+all the files generated during the build using cmake.</p>
+<div class="highlight-console"><div class="highlight"><pre><span class="gp">$</span> mkdir make
+<span class="gp">$</span> <span class="nb">cd </span>make
+<span class="gp">$</span> cmake .. &lt;options&gt;
+</pre></div>
+</div>
+<div class="section" id="options">
+<h4>Options<a class="headerlink" href="#options" title="Permalink to this headline">¶</a></h4>
+<p>To add an option to cmake, add <tt class="docutils literal"><span class="pre">-DOPTION=VALUE</span></tt> to the command line option when calling cmake.
+The configuration with cmake supports the following options:</p>
+<dl class="option">
+<dt>
+<tt class="descname">BUILD=[Debug|Memcheck|Release|RelWithDebInfo|MinSizeRel]</tt></dt>
+<dd><p>Select the build type to be compiled (default: <em>Release</em>)</p>
+</dd></dl>
+
+<dl class="option">
+<dt>
+<tt class="descname">LUA=[lua51|luajit]</tt></dt>
+<dd><p>Choose the Lua version to use (default: <em>luajit</em>)</p>
+</dd></dl>
+
+<dl class="option">
+<dt>
+<tt class="descname">PREFIX=PATH</tt></dt>
+<dd><p>Installation prefix (default: <em>/</em>)</p>
+</dd></dl>
+
+</div>
+</div>
+<div class="section" id="compile">
+<h3>1.2.4. Compile<a class="headerlink" href="#compile" title="Permalink to this headline">¶</a></h3>
+<p>Use make like usual to compile:</p>
+<div class="highlight-console"><div class="highlight"><pre><span class="gp">$</span> make clean
+<span class="gp">$</span> make
+</pre></div>
+</div>
+</div>
+<div class="section" id="install">
+<h3>1.2.5. Install<a class="headerlink" href="#install" title="Permalink to this headline">¶</a></h3>
+<p>To install haka, you have the following options:</p>
+<div class="highlight-console"><div class="highlight"><pre><span class="gp">$</span> make install
+<span class="gp">$</span> make localinstall
+</pre></div>
+</div>
+<p>Using <tt class="docutils literal"><span class="pre">localinstall</span></tt> allow to install haka locally under the folder <tt class="docutils literal"><span class="pre">out</span></tt>. To use
+this version, you will have to set a few environment variables by sourcing the generated
+file <tt class="docutils literal"><span class="pre">env.sh</span></tt>:</p>
+<div class="highlight-console"><div class="highlight"><pre><span class="gp">$</span> . env.sh
+</pre></div>
+</div>
+</div>
+<div class="section" id="documentation">
+<h3>1.2.6. Documentation<a class="headerlink" href="#documentation" title="Permalink to this headline">¶</a></h3>
+<p>Run <tt class="docutils literal"><span class="pre">make</span> <span class="pre">doc</span></tt> to generate documentation in <cite>html</cite>. The documentation is then available
+in <cite>doc</cite> inside your build folder.</p>
+</div>
+<div class="section" id="tests">
+<h3>1.2.7. Tests<a class="headerlink" href="#tests" title="Permalink to this headline">¶</a></h3>
+<p>Run <tt class="docutils literal"><span class="pre">make</span> <span class="pre">tests</span></tt> to play all tests.</p>
+<p>You can also pass some arguments to ctest by using the variable <tt class="docutils literal"><span class="pre">CTEST_ARGS</span></tt>.</p>
+<div class="highlight-console"><div class="highlight"><pre><span class="gp">$</span> make tests <span class="nv">CTEST_ARGS</span><span class="o">=</span><span class="s2">&quot;-V&quot;</span>
+</pre></div>
+</div>
+<p>This command will install locally the project and run the tests in the folder. If you need
+to run the tests manually using the command ctest, you can prepare the environment with the
+command <tt class="docutils literal"><span class="pre">make</span> <span class="pre">pre-tests</span></tt>.</p>
+</div>
+<div class="section" id="packaging">
+<h3>1.2.8. Packaging<a class="headerlink" href="#packaging" title="Permalink to this headline">¶</a></h3>
+<p>Run <tt class="docutils literal"><span class="pre">make</span> <span class="pre">package</span></tt> to build a .deb installable package.</p>
+</div>
+</div>
+</div>
+
+
+    </div>
+  </div>
+
+<div id="footer">
+  &copy; Copyright 2013, Arkoon Network Security, OpenWide and Telecom ParisTech.
+</div>
+
+  </body>
+</html>

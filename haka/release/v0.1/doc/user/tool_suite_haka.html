@@ -1,0 +1,291 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>4.1. haka &mdash; Haka runtime 0.1.20131226-1215 documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/haka.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '0.1.20131226-1215',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../_static/scripts.js"></script>
+    <link rel="top" title="Haka runtime 0.1.20131226-1215 documentation" href="../../index.html" />
+    <link rel="up" title="4. Haka tool suite" href="../user/tool_suite.html" />
+    <link rel="next" title="Netfilter queue packet/nfqueue" href="../../modules/packet/nfqueue/doc/module.html" />
+    <link rel="prev" title="4. Haka tool suite" href="../user/tool_suite.html" /> 
+  </head>
+  <body>
+<header id="header" role="banner">
+  <div class="home-link">
+    <div id="version" class="description">0.1.20131226-1215</div>
+    <h1 class="title"><a rel="home" title="Haka" href="http://www.haka-security.org">Haka</a></h1>
+    <h2 class="description">An open source security language</h2>
+  </div>
+</header>
+
+  <div id="navbar" class="navbar">
+    <nav id="site-navigation" class="navigation main-navigation" role="navigation">
+      <ul class="nav-menu">
+        <li class=" current">
+          <a href="../user/userindex.html">Users</a>
+        </li>
+        <li class=" ">
+          <a href="../ref/refindex.html" class="../ref/refindex.html">References</a>
+        </li>
+        <li class=" ">
+          <a href="../developer/devindex.html" class="">Developers</a>
+        </li>
+        <li>
+
+
+	<div id="searchbox" style="display: none">
+		<form class="search" action="../../search.html" method="get">
+			<input type="hidden" name="area" value="default" />
+			<input type="hidden" name="check_keywords" value="yes" />
+			<input type="text" name="q" placeholder="Search" />
+		</form>
+	</div>
+	<script type="text/javascript">$('#searchbox').show(0);</script>
+</li>
+          <li class="right"><a href="../user/tool_suite.html" title="4. Haka tool suite">Top</a></li>
+          <li class="right"><a href="../user/tool_suite.html" title="4. Haka tool suite">Prev</a></li>
+          <li class="right"><a href="../../modules/packet/nfqueue/doc/module.html" title="Netfilter queue <cite>packet/nfqueue</cite>">Next</a></li>
+         <li class=" right"><a href="../../genindex.html">Index</a></li>
+         <li class=" right"><a href="../../lua-modindex.html">Modules</a></li>
+      </ul>
+    </nav>
+  </div>
+  <div id="content" class="body">
+    <div id="contentwrapper">
+      
+  <div class="section" id="haka">
+<h1>4.1. haka<a class="headerlink" href="#haka" title="Permalink to this headline">¶</a></h1>
+<p><tt class="docutils literal"><span class="pre">haka</span></tt> is the main program of the collection. It allows to capture packets using either pcap
+or nfqueue and to filter/alter them according to the specified lua policy file.</p>
+<p><tt class="docutils literal"><span class="pre">haka</span></tt> is usually launched as a daemon to monitor packets in the background, but it can
+also be launched from the command line to debug lua scripts.</p>
+<div class="section" id="options">
+<h2>4.1.1. Options<a class="headerlink" href="#options" title="Permalink to this headline">¶</a></h2>
+<p><tt class="docutils literal"><span class="pre">haka</span></tt> takes the following options:</p>
+<dl class="option">
+<dt id="cmdoption-haka-h">
+<tt class="descname">-h</tt><tt class="descclassname"></tt><tt class="descclassname">, </tt><tt class="descname">--help</tt><tt class="descclassname"></tt><a class="headerlink" href="#cmdoption-haka-h" title="Permalink to this definition">¶</a></dt>
+<dd><p>Display usage and options information.</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-haka--version">
+<tt class="descname">--version</tt><tt class="descclassname"></tt><a class="headerlink" href="#cmdoption-haka--version" title="Permalink to this definition">¶</a></dt>
+<dd><p>Display version information.</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-haka-d">
+<tt class="descname">-d</tt><tt class="descclassname"></tt><tt class="descclassname">, </tt><tt class="descname">--debug</tt><tt class="descclassname"></tt><a class="headerlink" href="#cmdoption-haka-d" title="Permalink to this definition">¶</a></dt>
+<dd><p>Display debug output.</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-haka--no-daemon">
+<tt class="descname">--no-daemon</tt><tt class="descclassname"></tt><a class="headerlink" href="#cmdoption-haka--no-daemon" title="Permalink to this definition">¶</a></dt>
+<dd><p>Do not run <cite>haka</cite> as daemon, do not detach from the command line.</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-haka-c">
+<tt class="descname">-c</tt><tt class="descclassname"></tt><tt class="descclassname">, </tt><tt class="descname">--config</tt><tt class="descclassname"></tt><a class="headerlink" href="#cmdoption-haka-c" title="Permalink to this definition">¶</a></dt>
+<dd><p>Read setup configuration from given file.</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-haka--lua-debug">
+<tt class="descname">--lua-debug</tt><tt class="descclassname"></tt><a class="headerlink" href="#cmdoption-haka--lua-debug" title="Permalink to this definition">¶</a></dt>
+<dd><p>Start <cite>haka</cite> and immediately attach the Lua debugger.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="configuration-file">
+<h2>4.1.2. Configuration file<a class="headerlink" href="#configuration-file" title="Permalink to this headline">¶</a></h2>
+<p>The configuration file is divided into three main sections <strong>general</strong>, <strong>packet</strong>, <strong>alert</strong> and <strong>log</strong></p>
+<div class="section" id="general-directives">
+<h3>General directives<a class="headerlink" href="#general-directives" title="Permalink to this headline">¶</a></h3>
+<dl class="describe">
+<dt>
+<tt class="descname">configuration</tt></dt>
+<dd><p>Set the Lua policy file.</p>
+</dd></dl>
+
+<dl class="describe">
+<dt>
+<tt class="descname">thread</tt></dt>
+<dd><p>Set the number of threads to use. By default, haka will use as many threads as cpu-cores</p>
+</dd></dl>
+
+<dl class="describe">
+<dt>
+<tt class="descname">pass-through=[yes|no]</tt></dt>
+<dd><p>Activate pass-through mode. <cite>haka</cite> will only monitor traffic and will not allow blocking
+or modification of packets. The overall performence of <cite>haka</cite> will be greatly improved</p>
+</dd></dl>
+
+</div>
+<div class="section" id="packet-directives">
+<h3>Packet directives<a class="headerlink" href="#packet-directives" title="Permalink to this headline">¶</a></h3>
+<dl class="describe">
+<dt>
+<tt class="descname">module</tt></dt>
+<dd><p>Set the packet capture module to use.</p>
+<div class="admonition-see-also admonition seealso">
+<p class="first admonition-title">See also</p>
+<p class="last"><a class="reference internal" href="#packet-module-section"><em>Packet capture modules</em></a> contains a list of all available modules and
+their options</p>
+</div>
+</dd></dl>
+
+</div>
+<div class="section" id="alert-directives">
+<h3>Alert directives<a class="headerlink" href="#alert-directives" title="Permalink to this headline">¶</a></h3>
+<dl class="describe">
+<dt>
+<tt class="descname">module</tt></dt>
+<dd><p>Set the alert module to use.</p>
+<div class="admonition-see-also admonition seealso">
+<p class="first admonition-title">See also</p>
+<p class="last"><a class="reference internal" href="#alert-module-section"><em>Alert modules</em></a> contains the list of all available modules and
+their options</p>
+</div>
+</dd></dl>
+
+</div>
+<div class="section" id="log-directives">
+<h3>Log directives<a class="headerlink" href="#log-directives" title="Permalink to this headline">¶</a></h3>
+<dl class="describe">
+<dt>
+<tt class="descname">module</tt></dt>
+<dd><p>Set the logging module to use.</p>
+<div class="admonition-see-also admonition seealso">
+<p class="first admonition-title">See also</p>
+<p class="last"><a class="reference internal" href="#log-module-section"><em>Logging modules</em></a> contains the list of all available modules and
+their options</p>
+</div>
+</dd></dl>
+
+</div>
+<div class="section" id="example">
+<h3>Example<a class="headerlink" href="#example" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-python"><div class="highlight"><pre><span class="p">[</span><span class="n">general</span><span class="p">]</span>
+<span class="c"># Select the haka script detailing the filtering rules</span>
+<span class="n">configuration</span> <span class="o">=</span> <span class="s">&quot;gettingstarted.lua&quot;</span>
+
+<span class="p">[</span><span class="n">packet</span><span class="p">]</span>
+<span class="c"># Select the capture method, nfqueue or pcap</span>
+<span class="n">module</span> <span class="o">=</span> <span class="s">&quot;packet/nfqueue&quot;</span>
+
+<span class="c"># Select the interfaces to listen to</span>
+<span class="n">interfaces</span> <span class="o">=</span> <span class="s">&quot;eth0&quot;</span>
+
+<span class="p">[</span><span class="n">log</span><span class="p">]</span>
+<span class="c"># Select the log module</span>
+<span class="n">module</span> <span class="o">=</span> <span class="s">&quot;log/syslog&quot;</span>
+
+<span class="p">[</span><span class="n">alert</span><span class="p">]</span>
+<span class="c"># Select the alert module</span>
+<span class="n">module</span> <span class="o">=</span> <span class="s">&quot;alert/syslog&quot;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="modules">
+<h2>4.1.3. Modules<a class="headerlink" href="#modules" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="packet-capture-modules">
+<span id="packet-module-section"></span><h3>Packet capture modules<a class="headerlink" href="#packet-capture-modules" title="Permalink to this headline">¶</a></h3>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../modules/packet/nfqueue/doc/module.html">Netfilter queue <cite>packet/nfqueue</cite></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../modules/packet/pcap/doc/module.html">Pcap  <cite>packet/pcap</cite></a></li>
+</ul>
+</div>
+</div>
+<div class="section" id="alert-modules">
+<span id="alert-module-section"></span><h3>Alert modules<a class="headerlink" href="#alert-modules" title="Permalink to this headline">¶</a></h3>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../modules/alert/syslog/doc/module.html">Syslog alert <cite>alert/syslog</cite></a></li>
+</ul>
+</div>
+</div>
+<div class="section" id="logging-modules">
+<span id="log-module-section"></span><h3>Logging modules<a class="headerlink" href="#logging-modules" title="Permalink to this headline">¶</a></h3>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../modules/log/syslog/doc/module.html">Syslog logging <cite>log/syslog</cite></a></li>
+</ul>
+</div>
+</div>
+</div>
+<div class="section" id="service">
+<h2>4.1.4. Service<a class="headerlink" href="#service" title="Permalink to this headline">¶</a></h2>
+<p>On debian, <tt class="docutils literal"><span class="pre">haka</span></tt> is installed as a system service by the .deb package.
+Unless otherwise specified using the <cite>-c</cite> command line option, <tt class="docutils literal"><span class="pre">haka</span></tt> will
+load the default configuration file <tt class="docutils literal"><span class="pre">&lt;haka_install_path&gt;/etc/haka/haka.conf</span></tt>.</p>
+<ul>
+<li><p class="first">Starting haka service</p>
+<blockquote>
+<div><div class="highlight-console"><div class="highlight"><pre><span class="gp">$</span> sudo service haka start
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+<li><p class="first">Stopping haka service</p>
+<blockquote>
+<div><div class="highlight-console"><div class="highlight"><pre><span class="gp">$</span> sudo service haka stop
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+<li><p class="first">Restarting haka service</p>
+<blockquote>
+<div><div class="highlight-console"><div class="highlight"><pre><span class="gp">$</span> sudo service haka restart
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+<li><p class="first">Getting status of haka service</p>
+<blockquote>
+<div><div class="highlight-console"><div class="highlight"><pre><span class="gp">$</span> sudo service haka status
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+</ul>
+</div>
+</div>
+
+
+    </div>
+  </div>
+
+<div id="footer">
+  &copy; Copyright 2013, Arkoon Network Security, OpenWide and Telecom ParisTech.
+</div>
+
+  </body>
+</html>

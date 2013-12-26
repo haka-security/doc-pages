@@ -1,0 +1,133 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>2. Haka architecture &mdash; Haka runtime 0.1.20131226-1215 documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/haka.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '0.1.20131226-1215',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../_static/scripts.js"></script>
+    <link rel="top" title="Haka runtime 0.1.20131226-1215 documentation" href="../../index.html" />
+    <link rel="up" title="Welcome to Haka’s Developer Guide!" href="../developer/devindex.html" />
+    <link rel="next" title="3. C API" href="../developer/c.html" />
+    <link rel="prev" title="1. Build" href="../developer/build.html" /> 
+  </head>
+  <body>
+<header id="header" role="banner">
+  <div class="home-link">
+    <div id="version" class="description">0.1.20131226-1215</div>
+    <h1 class="title"><a rel="home" title="Haka" href="http://www.haka-security.org">Haka</a></h1>
+    <h2 class="description">An open source security language</h2>
+  </div>
+</header>
+
+  <div id="navbar" class="navbar">
+    <nav id="site-navigation" class="navigation main-navigation" role="navigation">
+      <ul class="nav-menu">
+        <li class=" ">
+          <a href="../user/userindex.html">Users</a>
+        </li>
+        <li class=" ">
+          <a href="../ref/refindex.html" class="../ref/refindex.html">References</a>
+        </li>
+        <li class=" current">
+          <a href="../developer/devindex.html" class="">Developers</a>
+        </li>
+        <li>
+
+
+	<div id="searchbox" style="display: none">
+		<form class="search" action="../../search.html" method="get">
+			<input type="hidden" name="area" value="default" />
+			<input type="hidden" name="check_keywords" value="yes" />
+			<input type="text" name="q" placeholder="Search" />
+		</form>
+	</div>
+	<script type="text/javascript">$('#searchbox').show(0);</script>
+</li>
+          <li class="right"><a href="../developer/devindex.html" title="Welcome to Haka&#8217;s Developer Guide!">Top</a></li>
+          <li class="right"><a href="../developer/build.html" title="1. Build">Prev</a></li>
+          <li class="right"><a href="../developer/c.html" title="3. C API">Next</a></li>
+         <li class=" right"><a href="../../genindex.html">Index</a></li>
+         <li class=" right"><a href="../../lua-modindex.html">Modules</a></li>
+      </ul>
+    </nav>
+  </div>
+  <div id="content" class="body">
+    <div id="contentwrapper">
+      
+  <div class="section" id="haka-architecture">
+<h1>2. Haka architecture<a class="headerlink" href="#haka-architecture" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="dissectors">
+<h2>2.1. Dissectors<a class="headerlink" href="#dissectors" title="Permalink to this headline">¶</a></h2>
+<p>The configuration will define a list of dissector. Each dissector is described by:</p>
+<ul class="simple">
+<li>Name: unique dissector name</li>
+<li>Dissect function: dissector main function</li>
+</ul>
+<img alt="../../_images/dissector.png" src="../../_images/dissector.png" />
+<div class="admonition-see-also admonition seealso">
+<p class="first admonition-title">See also</p>
+<p class="last"><a class="reference internal" href="../ref/dissector.html#haka.dissector" title="haka.dissector"><tt class="xref lua lua-func docutils literal"><span class="pre">haka.dissector()</span></tt></a>.</p>
+</div>
+<p>The dissector will give access to any fields in read/write mode. For
+example, once an IP packet is dissected, all fields are accessible
+by their name : IP.dst, IP.df flags, and so on.</p>
+</div>
+<div class="section" id="rules">
+<h2>2.2. Rules<a class="headerlink" href="#rules" title="Permalink to this headline">¶</a></h2>
+<p>Along with the dissector, the configuration can define rules to apply. Those rules are
+assigned to some <cite>hooks</cite>. A rule need the following fields:</p>
+<ul class="simple">
+<li>A <tt class="xref lua lua-data docutils literal"><span class="pre">hooks</span></tt> member that contains a array of hook string name.
+It will be used to install the rule on them.</li>
+<li>A <tt class="xref lua lua-func docutils literal"><span class="pre">rule.eval()</span></tt> function that is called to evaluate the rule.</li>
+<li>All fields defined from the dissector can be used from the rule</li>
+</ul>
+</div>
+<div class="section" id="rule-hooks">
+<h2>2.3. Rule hooks<a class="headerlink" href="#rule-hooks" title="Permalink to this headline">¶</a></h2>
+<p>The hooks are the points where the user can install rules. When the system will reach a hook
+point, all the rules installed on it will be called. The order of the rule execution matches
+the declaration order.</p>
+<p>A given dissector automatically defines two hooks:</p>
+<ul class="simple">
+<li><cite>dissector_name</cite>-up: For instance, for the dissector <cite>ipv4</cite>, this hook is named <cite>ipv4-up</cite>.</li>
+<li><cite>dissector_name</cite>-down</li>
+</ul>
+<img alt="../../_images/dissector-hook.png" src="../../_images/dissector-hook.png" />
+<p>It is also possible for a dissector to define custom hooks that matches some specific conditions. It
+is then responsible for calling the rules when needed.</p>
+</div>
+</div>
+
+
+    </div>
+  </div>
+
+<div id="footer">
+  &copy; Copyright 2013, Arkoon Network Security, OpenWide and Telecom ParisTech.
+</div>
+
+  </body>
+</html>

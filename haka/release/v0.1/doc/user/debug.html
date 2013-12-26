@@ -1,0 +1,121 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>6. Debugging &mdash; Haka runtime 0.1.20131226-1215 documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/haka.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '0.1.20131226-1215',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../_static/scripts.js"></script>
+    <link rel="top" title="Haka runtime 0.1.20131226-1215 documentation" href="../../index.html" />
+    <link rel="up" title="Welcome to Haka’s User Guide!" href="../user/userindex.html" />
+    <link rel="next" title="Welcome to Haka’s Reference Guide!" href="../ref/refindex.html" />
+    <link rel="prev" title="5.5. Rule set example" href="../user/tutorial/ruleset.html" /> 
+  </head>
+  <body>
+<header id="header" role="banner">
+  <div class="home-link">
+    <div id="version" class="description">0.1.20131226-1215</div>
+    <h1 class="title"><a rel="home" title="Haka" href="http://www.haka-security.org">Haka</a></h1>
+    <h2 class="description">An open source security language</h2>
+  </div>
+</header>
+
+  <div id="navbar" class="navbar">
+    <nav id="site-navigation" class="navigation main-navigation" role="navigation">
+      <ul class="nav-menu">
+        <li class=" current">
+          <a href="../user/userindex.html">Users</a>
+        </li>
+        <li class=" ">
+          <a href="../ref/refindex.html" class="../ref/refindex.html">References</a>
+        </li>
+        <li class=" ">
+          <a href="../developer/devindex.html" class="">Developers</a>
+        </li>
+        <li>
+
+
+	<div id="searchbox" style="display: none">
+		<form class="search" action="../../search.html" method="get">
+			<input type="hidden" name="area" value="default" />
+			<input type="hidden" name="check_keywords" value="yes" />
+			<input type="text" name="q" placeholder="Search" />
+		</form>
+	</div>
+	<script type="text/javascript">$('#searchbox').show(0);</script>
+</li>
+          <li class="right"><a href="../user/userindex.html" title="Welcome to Haka&#8217;s User Guide!">Top</a></li>
+          <li class="right"><a href="../user/tutorial/ruleset.html" title="5.5. Rule set example">Prev</a></li>
+          <li class="right"><a href="../ref/refindex.html" title="Welcome to Haka&#8217;s Reference Guide!">Next</a></li>
+         <li class=" right"><a href="../../genindex.html">Index</a></li>
+         <li class=" right"><a href="../../lua-modindex.html">Modules</a></li>
+      </ul>
+    </nav>
+  </div>
+  <div id="content" class="body">
+    <div id="contentwrapper">
+      
+  <div class="section" id="debugging">
+<h1>6. Debugging<a class="headerlink" href="#debugging" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="interactive-rule">
+<h2>6.1. Interactive rule<a class="headerlink" href="#interactive-rule" title="Permalink to this headline">¶</a></h2>
+<p>Haka provides a way to write rule interactively using Lua. To do this, you can use a
+predefined function <tt class="docutils literal"><span class="pre">haka.interactive_rule</span></tt>.</p>
+<p>For instance:</p>
+<div class="highlight-lua"><div class="highlight"><pre><span class="n">haka</span><span class="p">.</span><span class="n">rule</span><span class="p">{</span>
+    <span class="n">hooks</span> <span class="o">=</span> <span class="p">{</span> <span class="s1">&#39;</span><span class="s">ipv4-up&#39;</span> <span class="p">},</span>
+    <span class="n">eval</span> <span class="o">=</span> <span class="n">haka</span><span class="p">.</span><span class="n">interactive_rule</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>As a result, every time this rule will be evaluated, a prompt will allow to enter commands. The
+current dissector data are available in the variable <tt class="docutils literal"><span class="pre">input</span></tt>. You can use the <cite>TAB</cite> key to get
+completion. This can be very useful to discover the available functions and fields.</p>
+<p>When you are done, you can let Haka continue its execution by hitting CTRL-D.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">As the edition will add a lot of delay, it is best to use the interactive rule on pcap files.
+Otherwise, you can run into problems with tcp for instance.</p>
+</div>
+</div>
+<div class="section" id="debugger">
+<h2>6.2. Debugger<a class="headerlink" href="#debugger" title="Permalink to this headline">¶</a></h2>
+<p>If you need to inspect an existing configuration, you can use the debugger. You need to activate
+the debugger first. This can be done by starting Haka with the option <tt class="docutils literal"><span class="pre">--luadebug</span></tt>.</p>
+<p>This line will start the debugger and break immediately. A prompt will allow you to inspect variables,
+up-values, expressions... You can also set breakpoints and execute your code line by line. To get the
+list of all available commands, simply type <tt class="docutils literal"><span class="pre">help</span></tt>.</p>
+</div>
+</div>
+
+
+    </div>
+  </div>
+
+<div id="footer">
+  &copy; Copyright 2013, Arkoon Network Security, OpenWide and Telecom ParisTech.
+</div>
+
+  </body>
+</html>

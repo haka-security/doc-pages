@@ -1,0 +1,180 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>3. Getting started &mdash; Haka runtime 0.1.20131226-1215 documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/haka.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '0.1.20131226-1215',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../_static/scripts.js"></script>
+    <link rel="top" title="Haka runtime 0.1.20131226-1215 documentation" href="../../index.html" />
+    <link rel="up" title="Welcome to Haka’s User Guide!" href="../user/userindex.html" />
+    <link rel="next" title="4. Haka tool suite" href="../user/tool_suite.html" />
+    <link rel="prev" title="2. Installation" href="../user/install.html" /> 
+  </head>
+  <body>
+<header id="header" role="banner">
+  <div class="home-link">
+    <div id="version" class="description">0.1.20131226-1215</div>
+    <h1 class="title"><a rel="home" title="Haka" href="http://www.haka-security.org">Haka</a></h1>
+    <h2 class="description">An open source security language</h2>
+  </div>
+</header>
+
+  <div id="navbar" class="navbar">
+    <nav id="site-navigation" class="navigation main-navigation" role="navigation">
+      <ul class="nav-menu">
+        <li class=" current">
+          <a href="../user/userindex.html">Users</a>
+        </li>
+        <li class=" ">
+          <a href="../ref/refindex.html" class="../ref/refindex.html">References</a>
+        </li>
+        <li class=" ">
+          <a href="../developer/devindex.html" class="">Developers</a>
+        </li>
+        <li>
+
+
+	<div id="searchbox" style="display: none">
+		<form class="search" action="../../search.html" method="get">
+			<input type="hidden" name="area" value="default" />
+			<input type="hidden" name="check_keywords" value="yes" />
+			<input type="text" name="q" placeholder="Search" />
+		</form>
+	</div>
+	<script type="text/javascript">$('#searchbox').show(0);</script>
+</li>
+          <li class="right"><a href="../user/userindex.html" title="Welcome to Haka&#8217;s User Guide!">Top</a></li>
+          <li class="right"><a href="../user/install.html" title="2. Installation">Prev</a></li>
+          <li class="right"><a href="../user/tool_suite.html" title="4. Haka tool suite">Next</a></li>
+         <li class=" right"><a href="../../genindex.html">Index</a></li>
+         <li class=" right"><a href="../../lua-modindex.html">Modules</a></li>
+      </ul>
+    </nav>
+  </div>
+  <div id="content" class="body">
+    <div id="contentwrapper">
+      
+  <div class="section" id="getting-started">
+<h1>3. Getting started<a class="headerlink" href="#getting-started" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="running-haka">
+<h2>3.1. Running Haka<a class="headerlink" href="#running-haka" title="Permalink to this headline">¶</a></h2>
+<p><tt class="docutils literal"><span class="pre">haka</span></tt> is primarily intended to be used as a daemon. This daemon will usually use a configuration file
+given on the command line using the <cite>-c</cite> command line option.</p>
+<p>The following command will launch haka from the command line using an example configuration file:</p>
+<div class="highlight-console"><div class="highlight"><pre><span class="gp">$</span> <span class="nb">cd</span> &lt;haka_install_path&gt;/share/haka/sample/doc/gettingstarted
+<span class="gp">$</span> sudo haka -c gettingstarted.conf
+</pre></div>
+</div>
+</div>
+<div class="section" id="sample-configuration">
+<h2>3.2. Sample configuration<a class="headerlink" href="#sample-configuration" title="Permalink to this headline">¶</a></h2>
+<p>The content of the file <tt class="docutils literal"><span class="pre">gettingstarted.conf</span></tt> is detailed below :</p>
+<div class="highlight-ini"><div class="highlight"><pre><span class="k">[general]</span>
+<span class="c"># Select the haka script detailing the filtering rules</span>
+<span class="na">configuration</span> <span class="o">=</span> <span class="s">&quot;gettingstarted.lua&quot;</span>
+
+<span class="k">[packet]</span>
+<span class="c"># Select the capture method, nfqueue or pcap</span>
+<span class="na">module</span> <span class="o">=</span> <span class="s">&quot;packet/nfqueue&quot;</span>
+
+<span class="c"># Select the interfaces to listen to</span>
+<span class="na">interfaces</span> <span class="o">=</span> <span class="s">&quot;eth0&quot;</span>
+
+<span class="k">[log]</span>
+<span class="c"># Select the log module</span>
+<span class="na">module</span> <span class="o">=</span> <span class="s">&quot;log/syslog&quot;</span>
+
+<span class="k">[alert]</span>
+<span class="c"># Select the alert module</span>
+<span class="na">module</span> <span class="o">=</span> <span class="s">&quot;alert/syslog&quot;</span>
+</pre></div>
+</div>
+<p>This configuration file instructs <tt class="docutils literal"><span class="pre">haka</span></tt> to capture packets from interface eth0 using nfqueue and to filter them based on the lua policy script <tt class="docutils literal"><span class="pre">gettingstarted.lua</span></tt></p>
+</div>
+<div class="section" id="lua-language">
+<h2>3.3. Lua language<a class="headerlink" href="#lua-language" title="Permalink to this headline">¶</a></h2>
+<p>Haka uses the language Lua to define its policy files. It is a simple scripted language. If you are not familiar
+with it, you might find helpful to check the language manual and examples. You should find many informations on
+various website, but a good starting point is the official Lua page at <a class="reference external" href="http://www.lua.org/">http://www.lua.org/</a>.</p>
+</div>
+<div class="section" id="first-lua-policy-file">
+<h2>3.4. First Lua policy file<a class="headerlink" href="#first-lua-policy-file" title="Permalink to this headline">¶</a></h2>
+<p>The content of the file <tt class="docutils literal"><span class="pre">gettingstarted.lua</span></tt> is detailed below :</p>
+<div class="highlight-lua"><div class="highlight"><pre><span class="c1">-- load the IPV4 disector to be able to read the fields of ipv4 packets</span>
+<span class="kd">local</span> <span class="n">ipv4</span> <span class="o">=</span> <span class="nb">require</span><span class="p">(</span><span class="s2">&quot;</span><span class="s">protocol/ipv4&quot;</span><span class="p">)</span>
+
+<span class="c1">-- load the tcp disector, this is needed to be able to track connections</span>
+<span class="nb">require</span><span class="p">(</span><span class="s2">&quot;</span><span class="s">protocol/tcp&quot;</span><span class="p">)</span>
+
+<span class="c1">-- rule to check packet for bad TCP checksums and reject them</span>
+<span class="n">haka</span><span class="p">.</span><span class="n">rule</span><span class="p">{</span>
+    <span class="n">hooks</span> <span class="o">=</span> <span class="p">{</span> <span class="s2">&quot;</span><span class="s">tcp-up&quot;</span> <span class="p">},</span> <span class="c1">-- hook on tcp packets, before any sub-protocol is parsed.</span>
+    <span class="n">eval</span> <span class="o">=</span> <span class="k">function</span> <span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">pkt</span><span class="p">)</span>
+        <span class="c1">-- check for bad IP checksum</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">pkt</span><span class="p">:</span><span class="n">verify_checksum</span><span class="p">()</span> <span class="k">then</span>
+            <span class="c1">-- raise an alert</span>
+            <span class="n">haka</span><span class="p">.</span><span class="n">alert</span><span class="p">{</span>
+                <span class="n">description</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="s">Bad TCP checksum&quot;</span><span class="p">,</span>
+            <span class="p">}</span>
+            <span class="c1">-- and drop the packet</span>
+            <span class="n">pkt</span><span class="p">:</span><span class="n">drop</span><span class="p">()</span>
+            <span class="c1">-- alternatively, set the correct checksum</span>
+            <span class="cm">--[[</span>
+<span class="cm">            pkt:compute_checksum()</span>
+<span class="cm">            --]]</span>
+        <span class="k">end</span>
+    <span class="k">end</span>
+<span class="p">}</span>
+
+<span class="c1">-- rule to add a log entry on HTTP connections to a web server</span>
+<span class="n">haka</span><span class="p">.</span><span class="n">rule</span><span class="p">{</span>
+    <span class="n">hooks</span> <span class="o">=</span> <span class="p">{</span> <span class="s2">&quot;</span><span class="s">tcp-connection-new&quot;</span> <span class="p">},</span> <span class="c1">--hook on new TCP connections.</span>
+    <span class="n">eval</span> <span class="o">=</span> <span class="k">function</span> <span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">pkt</span><span class="p">)</span>
+        <span class="kd">local</span> <span class="n">tcp</span> <span class="o">=</span> <span class="n">pkt</span><span class="p">.</span><span class="n">tcp</span> <span class="c1">-- the packet, viewed as a TCP packed</span>
+        <span class="k">if</span> <span class="n">tcp</span><span class="p">.</span><span class="n">ip</span><span class="p">.</span><span class="n">dst</span> <span class="o">==</span> <span class="n">ipv4</span><span class="p">.</span><span class="n">addr</span><span class="p">(</span><span class="s2">&quot;</span><span class="s">192.168.20.1&quot;</span><span class="p">)</span> <span class="ow">and</span> <span class="n">tcp</span><span class="p">.</span><span class="n">dstport</span> <span class="o">==</span> <span class="mi">80</span> <span class="k">then</span>
+            <span class="n">haka</span><span class="p">.</span><span class="n">log</span><span class="p">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;</span><span class="s">filter&quot;</span><span class="p">,</span><span class="s2">&quot;</span><span class="s">Traffic on HTTP port from %s&quot;</span><span class="p">,</span> <span class="n">tcp</span><span class="p">.</span><span class="n">ip</span><span class="p">.</span><span class="n">src</span><span class="p">)</span>
+        <span class="k">end</span>
+    <span class="k">end</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="going-further">
+<h2>3.5. Going further<a class="headerlink" href="#going-further" title="Permalink to this headline">¶</a></h2>
+<p>Other documented examples are available to illustrate all features of Haka. Those samples are installed in
+<tt class="docutils literal"><span class="pre">&lt;haka_install_path&gt;/share/haka/sample</span></tt> and the corresponding documentation can be found at <a class="reference internal" href="../user/tutorial.html"><em>Writing Haka scripts</em></a>.</p>
+</div>
+</div>
+
+
+    </div>
+  </div>
+
+<div id="footer">
+  &copy; Copyright 2013, Arkoon Network Security, OpenWide and Telecom ParisTech.
+</div>
+
+  </body>
+</html>

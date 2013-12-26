@@ -1,0 +1,209 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>5.1. Hellopacket &mdash; Haka runtime 0.1.20131226-1215 documentation</title>
+    
+    <link rel="stylesheet" href="../../../_static/haka.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../',
+        VERSION:     '0.1.20131226-1215',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../../_static/scripts.js"></script>
+    <link rel="top" title="Haka runtime 0.1.20131226-1215 documentation" href="../../../index.html" />
+    <link rel="up" title="5. Writing Haka scripts" href="../../user/tutorial.html" />
+    <link rel="next" title="5.2. Filter" href="../tutorial/filter.html" />
+    <link rel="prev" title="5. Writing Haka scripts" href="../../user/tutorial.html" /> 
+  </head>
+  <body>
+<header id="header" role="banner">
+  <div class="home-link">
+    <div id="version" class="description">0.1.20131226-1215</div>
+    <h1 class="title"><a rel="home" title="Haka" href="http://www.haka-security.org">Haka</a></h1>
+    <h2 class="description">An open source security language</h2>
+  </div>
+</header>
+
+  <div id="navbar" class="navbar">
+    <nav id="site-navigation" class="navigation main-navigation" role="navigation">
+      <ul class="nav-menu">
+        <li class=" current">
+          <a href="../../user/userindex.html">Users</a>
+        </li>
+        <li class=" ">
+          <a href="../../ref/refindex.html" class="../../ref/refindex.html">References</a>
+        </li>
+        <li class=" ">
+          <a href="../../developer/devindex.html" class="">Developers</a>
+        </li>
+        <li>
+
+
+	<div id="searchbox" style="display: none">
+		<form class="search" action="../../../search.html" method="get">
+			<input type="hidden" name="area" value="default" />
+			<input type="hidden" name="check_keywords" value="yes" />
+			<input type="text" name="q" placeholder="Search" />
+		</form>
+	</div>
+	<script type="text/javascript">$('#searchbox').show(0);</script>
+</li>
+          <li class="right"><a href="../../user/tutorial.html" title="5. Writing Haka scripts">Top</a></li>
+          <li class="right"><a href="../../user/tutorial.html" title="5. Writing Haka scripts">Prev</a></li>
+          <li class="right"><a href="../tutorial/filter.html" title="5.2. Filter">Next</a></li>
+         <li class=" right"><a href="../../../genindex.html">Index</a></li>
+         <li class=" right"><a href="../../../lua-modindex.html">Modules</a></li>
+      </ul>
+    </nav>
+  </div>
+  <div id="content" class="body">
+    <div id="contentwrapper">
+      
+  <div class="section" id="hellopacket">
+<h1>5.1. Hellopacket<a class="headerlink" href="#hellopacket" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="introduction">
+<h2>5.1.1. Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
+<p>Every language needs a &#8220;helloworld&#8221;.
+Haka, being as much a language as a network tool, needs its own helloworld, called
+&#8220;hellopacket&#8221;.</p>
+<p>This &#8220;hellopacket&#8221; reads a pcap file and print a couple of tcp/ip fields of each packet in the file.</p>
+</div>
+<div class="section" id="how-to">
+<h2>5.1.2. How-to<a class="headerlink" href="#how-to" title="Permalink to this headline">¶</a></h2>
+<p>Launch <tt class="docutils literal"><span class="pre">hakapcap</span></tt> with a pcap file and a lua script file as arguments.</p>
+<div class="highlight-console"><div class="highlight"><pre><span class="gp">$</span> <span class="nb">cd</span> &lt;haka_install_path&gt;/share/haka/sample/hellopacket
+<span class="gp">$</span> hakapcap hellopacket.pcap hellopacket.lua
+</pre></div>
+</div>
+<p>Hakapcap will first dump infos about registered dissectors and
+rules and then process the pcap file, outputing information on each packet (packet source
+and destination, connection establishment, etc.):</p>
+<pre class="ansi-block literal-block">
+<span class="ansi-bold">info</span>  <span class="ansi-cyan">core:</span> load module 'packet/pcap.ho'
+    Pcap Module, Arkoon Network Security
+<span class="ansi-bold">info</span>  <span class="ansi-cyan">core:</span> loading rule file 'hellopacket.lua'
+<span class="ansi-bold">info</span>  <span class="ansi-cyan">core:</span> initializing thread 0
+<span class="ansi-bold">info</span>  <span class="ansi-cyan">pcap:</span> openning file 'hellopacket.pcap'
+<span class="ansi-bold">info</span>  <span class="ansi-cyan">core:</span> registering new dissector: 'ipv4'
+<span class="ansi-bold">info</span>  <span class="ansi-cyan">core:</span> registering new dissector: 'tcp'
+<span class="ansi-bold">info</span>  <span class="ansi-cyan">core:</span> registering new dissector: 'tcp-connection'
+<span class="ansi-bold">info</span>  <span class="ansi-cyan">core:</span> 1 rule(s) on hook 'ipv4-up'
+<span class="ansi-bold">info</span>  <span class="ansi-cyan">core:</span> 1 rule(s) on hook 'tcp-connection-new'
+<span class="ansi-bold">info</span>  <span class="ansi-cyan">core:</span> 2 rule(s) registered
+
+<span class="ansi-bold">info</span>  <span class="ansi-cyan">core:</span> starting single threaded processing
+
+<span class="ansi-bold">info</span>  <span class="ansi-cyan">Hello:</span> packet from 192.168.10.1 to 192.168.10.99
+<span class="ansi-bold">info</span>  <span class="ansi-cyan">Hello:</span> TCP connection from 192.168.10.1:47161 to 192.168.10.99:3000
+<span class="ansi-bold">info</span>  <span class="ansi-cyan">Hello:</span> packet from 192.168.10.99 to 192.168.10.1
+<span class="ansi-bold">info</span>  <span class="ansi-cyan">Hello:</span> packet from 192.168.10.1 to 192.168.10.99
+<span class="ansi-bold">info</span>  <span class="ansi-cyan">Hello:</span> packet from 192.168.10.1 to 192.168.10.99
+<span class="ansi-bold">info</span>  <span class="ansi-cyan">Hello:</span> packet from 192.168.10.99 to 192.168.10.1
+<span class="ansi-bold">info</span>  <span class="ansi-cyan">Hello:</span> packet from 192.168.10.1 to 192.168.10.99
+<span class="ansi-bold">info</span>  <span class="ansi-cyan">Hello:</span> packet from 192.168.10.99 to 192.168.10.1
+<span class="ansi-bold">info</span>  <span class="ansi-cyan">Hello:</span> packet from 192.168.10.1 to 192.168.10.99
+<span class="ansi-bold">info</span>  <span class="ansi-cyan">core:</span>  unload module 'Pcap Module'
+
+</pre>
+<p>Each new connection and each packet is properly logged. The pcap file is a standard format that
+can be opened by various network tools, including wireshark.</p>
+<p>Below is the content of the <tt class="docutils literal"><span class="pre">hellopacket.lua</span></tt> file:</p>
+<div class="highlight-lua"><div class="highlight"><pre><span class="c1">------------------------------------</span>
+<span class="c1">-- This is an example lua file for the hellopacket tutorial</span>
+<span class="c1">--</span>
+<span class="c1">-- Use this file with hakapcap tool:</span>
+<span class="c1">--</span>
+<span class="c1">-- hakapcap hellopacket.pcap hellopacket.lua</span>
+<span class="c1">--</span>
+<span class="c1">------------------------------------</span>
+
+<span class="c1">------------------------------------</span>
+<span class="c1">-- Loading dissectors</span>
+<span class="c1">------------------------------------</span>
+<span class="c1">-- Each dissector provides hooks to intercept and modify packets.</span>
+<span class="c1">-- We need ipv4 to intercept incoming packets</span>
+<span class="c1">-- We need tcp to intercept new connectiosn</span>
+<span class="nb">require</span><span class="p">(</span><span class="s1">&#39;</span><span class="s">protocol/ipv4&#39;</span><span class="p">)</span>
+<span class="nb">require</span><span class="p">(</span><span class="s1">&#39;</span><span class="s">protocol/tcp&#39;</span><span class="p">)</span>
+
+<span class="c1">------------------------------------</span>
+<span class="c1">-- Log all incoming packets, reporting the source and destination IP address</span>
+<span class="c1">------------------------------------</span>
+<span class="n">haka</span><span class="p">.</span><span class="n">rule</span><span class="p">{</span>
+    <span class="c1">-- Intercept all ipv4 packet before they are passed to tcp</span>
+    <span class="n">hooks</span> <span class="o">=</span> <span class="p">{</span> <span class="s1">&#39;</span><span class="s">ipv4-up&#39;</span> <span class="p">},</span>
+
+    <span class="c1">-- Function to call on all packets.</span>
+    <span class="c1">--     self : the dissector object that handles the packet (here, ipv4 dissector)</span>
+    <span class="c1">--     pkt : the packet that we are intercepting</span>
+    <span class="n">eval</span> <span class="o">=</span> <span class="k">function</span> <span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">pkt</span><span class="p">)</span>
+        <span class="c1">-- All fields are accessible through accessors</span>
+        <span class="c1">-- See the Haka documentation for a complete list.</span>
+        <span class="n">haka</span><span class="p">.</span><span class="n">log</span><span class="p">(</span><span class="s2">&quot;</span><span class="s">Hello&quot;</span><span class="p">,</span> <span class="s2">&quot;</span><span class="s">packet from %s to %s&quot;</span><span class="p">,</span> <span class="n">pkt</span><span class="p">.</span><span class="n">src</span><span class="p">,</span> <span class="n">pkt</span><span class="p">.</span><span class="n">dst</span><span class="p">)</span>
+    <span class="k">end</span>
+<span class="p">}</span>
+
+<span class="c1">------------------------------------</span>
+<span class="c1">-- Log all new connection, logging address and port of source and destination</span>
+<span class="c1">------------------------------------</span>
+<span class="n">haka</span><span class="p">.</span><span class="n">rule</span><span class="p">{</span>
+    <span class="c1">-- Intercept connection establishement, detected by the TCP dissector</span>
+    <span class="n">hooks</span> <span class="o">=</span> <span class="p">{</span> <span class="s1">&#39;</span><span class="s">tcp-connection-new&#39;</span> <span class="p">},</span>
+    <span class="n">eval</span> <span class="o">=</span> <span class="k">function</span> <span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">pkt</span><span class="p">)</span>
+        <span class="c1">-- Fields from previous layer are accessible too</span>
+        <span class="n">haka</span><span class="p">.</span><span class="n">log</span><span class="p">(</span><span class="s2">&quot;</span><span class="s">Hello&quot;</span><span class="p">,</span> <span class="s2">&quot;</span><span class="s">TCP connection from %s:%d to %s:%d&quot;</span><span class="p">,</span> <span class="n">pkt</span><span class="p">.</span><span class="n">tcp</span><span class="p">.</span><span class="n">ip</span><span class="p">.</span><span class="n">src</span><span class="p">,</span>
+            <span class="n">pkt</span><span class="p">.</span><span class="n">tcp</span><span class="p">.</span><span class="n">srcport</span><span class="p">,</span> <span class="n">pkt</span><span class="p">.</span><span class="n">tcp</span><span class="p">.</span><span class="n">ip</span><span class="p">.</span><span class="n">dst</span><span class="p">,</span> <span class="n">pkt</span><span class="p">.</span><span class="n">tcp</span><span class="p">.</span><span class="n">dstport</span><span class="p">)</span>
+
+        <span class="c1">-- Raise a simple alert for testing purpose</span>
+        <span class="n">haka</span><span class="p">.</span><span class="n">alert</span><span class="p">{</span>
+            <span class="n">description</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="s">A simple alert&quot;</span><span class="p">,</span>
+            <span class="n">severity</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="s">low&quot;</span>
+        <span class="p">}</span>
+    <span class="k">end</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="going-further">
+<h2>5.1.3. Going further<a class="headerlink" href="#going-further" title="Permalink to this headline">¶</a></h2>
+<p>All fields can be accessed, read and modified. The fields
+are  named similarly to wireshark. For example, you can get the IP <cite>version</cite>, <cite>ttl</cite>
+or <cite>proto</cite> simply by using <tt class="docutils literal"><span class="pre">pkt.version</span></tt>, <tt class="docutils literal"><span class="pre">pkt.ttl</span></tt> or <tt class="docutils literal"><span class="pre">pkt.proto</span></tt>.</p>
+<div class="admonition-see-also admonition seealso">
+<p class="first admonition-title">See also</p>
+<p class="last"><a class="reference internal" href="../../../modules/protocol/ipv4/doc/lua.html#module-ipv4" title="ipv4"><tt class="xref lua lua-mod docutils literal"><span class="pre">ipv4</span></tt></a> for a list of all ipv4 accessors.</p>
+</div>
+<div class="admonition-see-also admonition seealso">
+<p class="first admonition-title">See also</p>
+<p class="last"><a class="reference internal" href="../../../modules/protocol/tcp/doc/lua.html#module-tcp" title="tcp"><tt class="xref lua lua-mod docutils literal"><span class="pre">tcp</span></tt></a> for a list of all tcp accessors.</p>
+</div>
+</div>
+</div>
+
+
+    </div>
+  </div>
+
+<div id="footer">
+  &copy; Copyright 2013, Arkoon Network Security, OpenWide and Telecom ParisTech.
+</div>
+
+  </body>
+</html>

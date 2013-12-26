@@ -1,0 +1,148 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>4.3. hakapcap &mdash; Haka runtime 0.1.20131226-1215 documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/haka.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '0.1.20131226-1215',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../_static/scripts.js"></script>
+    <link rel="top" title="Haka runtime 0.1.20131226-1215 documentation" href="../../index.html" />
+    <link rel="up" title="4. Haka tool suite" href="../user/tool_suite.html" />
+    <link rel="next" title="5. Writing Haka scripts" href="../user/tutorial.html" />
+    <link rel="prev" title="4.2. hakactl" href="../user/tool_suite_hakactl.html" /> 
+  </head>
+  <body>
+<header id="header" role="banner">
+  <div class="home-link">
+    <div id="version" class="description">0.1.20131226-1215</div>
+    <h1 class="title"><a rel="home" title="Haka" href="http://www.haka-security.org">Haka</a></h1>
+    <h2 class="description">An open source security language</h2>
+  </div>
+</header>
+
+  <div id="navbar" class="navbar">
+    <nav id="site-navigation" class="navigation main-navigation" role="navigation">
+      <ul class="nav-menu">
+        <li class=" current">
+          <a href="../user/userindex.html">Users</a>
+        </li>
+        <li class=" ">
+          <a href="../ref/refindex.html" class="../ref/refindex.html">References</a>
+        </li>
+        <li class=" ">
+          <a href="../developer/devindex.html" class="">Developers</a>
+        </li>
+        <li>
+
+
+	<div id="searchbox" style="display: none">
+		<form class="search" action="../../search.html" method="get">
+			<input type="hidden" name="area" value="default" />
+			<input type="hidden" name="check_keywords" value="yes" />
+			<input type="text" name="q" placeholder="Search" />
+		</form>
+	</div>
+	<script type="text/javascript">$('#searchbox').show(0);</script>
+</li>
+          <li class="right"><a href="../user/tool_suite.html" title="4. Haka tool suite">Top</a></li>
+          <li class="right"><a href="../user/tool_suite_hakactl.html" title="4.2. hakactl">Prev</a></li>
+          <li class="right"><a href="../user/tutorial.html" title="5. Writing Haka scripts">Next</a></li>
+         <li class=" right"><a href="../../genindex.html">Index</a></li>
+         <li class=" right"><a href="../../lua-modindex.html">Modules</a></li>
+      </ul>
+    </nav>
+  </div>
+  <div id="content" class="body">
+    <div id="contentwrapper">
+      
+  <div class="section" id="hakapcap">
+<h1>4.3. hakapcap<a class="headerlink" href="#hakapcap" title="Permalink to this headline">¶</a></h1>
+<p><tt class="docutils literal"><span class="pre">hakapcap</span></tt> is a tool to quickly apply a lua policy file to a pcap file and see the resulting decisions.
+on pcap capture files.</p>
+<div class="highlight-console"><div class="highlight"><pre><span class="gp">$</span> hakatool <span class="o">[</span>options<span class="o">]</span> &lt;pcapfile&gt; &lt;luafile&gt;
+</pre></div>
+</div>
+<div class="section" id="options">
+<h2>4.3.1. Options<a class="headerlink" href="#options" title="Permalink to this headline">¶</a></h2>
+<dl class="option">
+<dt id="cmdoption-hakapcap-h">
+<tt class="descname">-h</tt><tt class="descclassname"></tt><tt class="descclassname">, </tt><tt class="descname">--help</tt><tt class="descclassname"></tt><a class="headerlink" href="#cmdoption-hakapcap-h" title="Permalink to this definition">¶</a></dt>
+<dd><p>Display usage and options information.</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-hakapcap--version">
+<tt class="descname">--version</tt><tt class="descclassname"></tt><a class="headerlink" href="#cmdoption-hakapcap--version" title="Permalink to this definition">¶</a></dt>
+<dd><p>Display version information.</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-hakapcap-d">
+<tt class="descname">-d</tt><tt class="descclassname"></tt><tt class="descclassname">, </tt><tt class="descname">--debug</tt><tt class="descclassname"></tt><a class="headerlink" href="#cmdoption-hakapcap-d" title="Permalink to this definition">¶</a></dt>
+<dd><p>Display debug output.</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-hakapcap--pass-through">
+<tt class="descname">--pass-through</tt><tt class="descclassname"></tt><a class="headerlink" href="#cmdoption-hakapcap--pass-through" title="Permalink to this definition">¶</a></dt>
+<dd><p>Run in pass-through mode (probe mode).</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-hakapcap-o">
+<tt class="descname">-o</tt><tt class="descclassname"> &lt;output&gt;</tt><a class="headerlink" href="#cmdoption-hakapcap-o" title="Permalink to this definition">¶</a></dt>
+<dd><p>Save unfiltered packets.</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-hakapcap--luadebug">
+<tt class="descname">--luadebug</tt><tt class="descclassname"></tt><a class="headerlink" href="#cmdoption-hakapcap--luadebug" title="Permalink to this definition">¶</a></dt>
+<dd><p>Start <cite>hakapcap</cite> and automatically attach the Lua debugger.</p>
+</dd></dl>
+
+<dl class="option">
+<dt>
+<tt class="descname">pcapfile</tt></dt>
+<dd><p>A pcap file containing the packets to filter</p>
+</dd></dl>
+
+<dl class="option">
+<dt>
+<tt class="descname">luafile</tt></dt>
+<dd><p>A lua script containing the filtering rules to apply to the pcap file</p>
+</dd></dl>
+
+</div>
+</div>
+
+
+    </div>
+  </div>
+
+<div id="footer">
+  &copy; Copyright 2013, Arkoon Network Security, OpenWide and Telecom ParisTech.
+</div>
+
+  </body>
+</html>

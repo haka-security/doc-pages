@@ -1,0 +1,161 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>3.5. Packet &mdash; Haka runtime 0.1.20131226-1215 documentation</title>
+    
+    <link rel="stylesheet" href="../../../_static/haka.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../',
+        VERSION:     '0.1.20131226-1215',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../../_static/scripts.js"></script>
+    <link rel="top" title="Haka runtime 0.1.20131226-1215 documentation" href="../../../index.html" />
+    <link rel="up" title="3. C API" href="../../developer/c.html" />
+    <link rel="next" title="3.6. Modules" href="../c/module.html" />
+    <link rel="prev" title="3.4. Log &amp; Alert" href="../c/log_alert.html" /> 
+  </head>
+  <body>
+<header id="header" role="banner">
+  <div class="home-link">
+    <div id="version" class="description">0.1.20131226-1215</div>
+    <h1 class="title"><a rel="home" title="Haka" href="http://www.haka-security.org">Haka</a></h1>
+    <h2 class="description">An open source security language</h2>
+  </div>
+</header>
+
+  <div id="navbar" class="navbar">
+    <nav id="site-navigation" class="navigation main-navigation" role="navigation">
+      <ul class="nav-menu">
+        <li class=" ">
+          <a href="../../user/userindex.html">Users</a>
+        </li>
+        <li class=" ">
+          <a href="../../ref/refindex.html" class="../../ref/refindex.html">References</a>
+        </li>
+        <li class=" current">
+          <a href="../../developer/devindex.html" class="">Developers</a>
+        </li>
+        <li>
+
+
+	<div id="searchbox" style="display: none">
+		<form class="search" action="../../../search.html" method="get">
+			<input type="hidden" name="area" value="default" />
+			<input type="hidden" name="check_keywords" value="yes" />
+			<input type="text" name="q" placeholder="Search" />
+		</form>
+	</div>
+	<script type="text/javascript">$('#searchbox').show(0);</script>
+</li>
+          <li class="right"><a href="../../developer/c.html" title="3. C API">Top</a></li>
+          <li class="right"><a href="../c/log_alert.html" title="3.4. Log &amp; Alert">Prev</a></li>
+          <li class="right"><a href="../c/module.html" title="3.6. Modules">Next</a></li>
+         <li class=" right"><a href="../../../genindex.html">Index</a></li>
+         <li class=" right"><a href="../../../lua-modindex.html">Modules</a></li>
+      </ul>
+    </nav>
+  </div>
+  <div id="content" class="body">
+    <div id="contentwrapper">
+      
+  <div class="section" id="packet">
+<h1>3.5. Packet<a class="headerlink" href="#packet" title="Permalink to this headline">¶</a></h1>
+<dl class="type">
+<dt>
+struct <tt class="descname">packet</tt></dt>
+<dd><p>Opaque packet structure.</p>
+</dd></dl>
+
+<dl class="type">
+<dt id="filter_result">
+<tt class="descname">filter_result</tt><a class="headerlink" href="#filter_result" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="var">
+<dt id="FILTER_ACCEPT">
+<tt class="descname">FILTER_ACCEPT</tt><a class="headerlink" href="#FILTER_ACCEPT" title="Permalink to this definition">¶</a></dt>
+<dt id="FILTER_DROP">
+<tt class="descname">FILTER_DROP</tt><a class="headerlink" href="#FILTER_DROP" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="function">
+<dt id="packet_length">
+size_t <tt class="descname">packet_length</tt><big>(</big>struct packet<em>&nbsp;*pkt</em><big>)</big><a class="headerlink" href="#packet_length" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the length of a packet.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="packet_data">
+const <a class="reference internal" href="../c/utils.html#uint8" title="uint8">uint8</a> *<tt class="descname">packet_data</tt><big>(</big>struct packet<em>&nbsp;*pkt</em><big>)</big><a class="headerlink" href="#packet_data" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the data of a packet.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="packet_dissector">
+const char *<tt class="descname">packet_dissector</tt><big>(</big>struct packet<em>&nbsp;*pkt</em><big>)</big><a class="headerlink" href="#packet_dissector" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get packet dissector to use.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="packet_data_modifiable">
+<a class="reference internal" href="../c/utils.html#uint8" title="uint8">uint8</a> *<tt class="descname">packet_data_modifiable</tt><big>(</big>struct packet<em>&nbsp;*pkt</em><big>)</big><a class="headerlink" href="#packet_data_modifiable" title="Permalink to this definition">¶</a></dt>
+<dd><p>Make a packet modifiable.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="packet_resize">
+int <tt class="descname">packet_resize</tt><big>(</big>struct packet<em>&nbsp;*pkt</em>, size_t<em>&nbsp;size</em><big>)</big><a class="headerlink" href="#packet_resize" title="Permalink to this definition">¶</a></dt>
+<dd><p>Resize a packet.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="packet_drop">
+void <tt class="descname">packet_drop</tt><big>(</big>struct packet<em>&nbsp;*pkt</em><big>)</big><a class="headerlink" href="#packet_drop" title="Permalink to this definition">¶</a></dt>
+<dd><p>Drop a packet. The packet will be released and should not be used anymore
+after this call.</p>
+</dd></dl>
+
+<dl class="function">
+<dt>
+<tt class="descname">void packet_accept(struct packet *pkt);</tt></dt>
+<dd><p>Accept a packet. The packet will be released and should not be used anymore
+after this call.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="packet_receive">
+int <tt class="descname">packet_receive</tt><big>(</big>struct packet_module_state<em>&nbsp;*state</em>, struct packet<em>&nbsp;**pkt</em><big>)</big><a class="headerlink" href="#packet_receive" title="Permalink to this definition">¶</a></dt>
+<dd><p>Receive a packet from the capture module. This function will wait if no packet is
+available.</p>
+</dd></dl>
+
+</div>
+
+
+    </div>
+  </div>
+
+<div id="footer">
+  &copy; Copyright 2013, Arkoon Network Security, OpenWide and Telecom ParisTech.
+</div>
+
+  </body>
+</html>

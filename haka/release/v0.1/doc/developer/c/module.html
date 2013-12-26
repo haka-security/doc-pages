@@ -1,0 +1,299 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>3.6. Modules &mdash; Haka runtime 0.1.20131226-1215 documentation</title>
+    
+    <link rel="stylesheet" href="../../../_static/haka.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../',
+        VERSION:     '0.1.20131226-1215',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../../_static/scripts.js"></script>
+    <link rel="top" title="Haka runtime 0.1.20131226-1215 documentation" href="../../../index.html" />
+    <link rel="up" title="3. C API" href="../../developer/c.html" />
+    <link rel="next" title="3.7. IPv4" href="../../../modules/protocol/ipv4/doc/c.html" />
+    <link rel="prev" title="3.5. Packet" href="../c/packet.html" /> 
+  </head>
+  <body>
+<header id="header" role="banner">
+  <div class="home-link">
+    <div id="version" class="description">0.1.20131226-1215</div>
+    <h1 class="title"><a rel="home" title="Haka" href="http://www.haka-security.org">Haka</a></h1>
+    <h2 class="description">An open source security language</h2>
+  </div>
+</header>
+
+  <div id="navbar" class="navbar">
+    <nav id="site-navigation" class="navigation main-navigation" role="navigation">
+      <ul class="nav-menu">
+        <li class=" ">
+          <a href="../../user/userindex.html">Users</a>
+        </li>
+        <li class=" ">
+          <a href="../../ref/refindex.html" class="../../ref/refindex.html">References</a>
+        </li>
+        <li class=" current">
+          <a href="../../developer/devindex.html" class="">Developers</a>
+        </li>
+        <li>
+
+
+	<div id="searchbox" style="display: none">
+		<form class="search" action="../../../search.html" method="get">
+			<input type="hidden" name="area" value="default" />
+			<input type="hidden" name="check_keywords" value="yes" />
+			<input type="text" name="q" placeholder="Search" />
+		</form>
+	</div>
+	<script type="text/javascript">$('#searchbox').show(0);</script>
+</li>
+          <li class="right"><a href="../../developer/c.html" title="3. C API">Top</a></li>
+          <li class="right"><a href="../c/packet.html" title="3.5. Packet">Prev</a></li>
+          <li class="right"><a href="../../../modules/protocol/ipv4/doc/c.html" title="3.7. IPv4">Next</a></li>
+         <li class=" right"><a href="../../../genindex.html">Index</a></li>
+         <li class=" right"><a href="../../../lua-modindex.html">Modules</a></li>
+      </ul>
+    </nav>
+  </div>
+  <div id="content" class="body">
+    <div id="contentwrapper">
+      
+  <div class="section" id="modules">
+<h1>3.6. Modules<a class="headerlink" href="#modules" title="Permalink to this headline">¶</a></h1>
+<dl class="type">
+<dt id="module">
+struct <tt class="descname">module</tt><a class="headerlink" href="#module" title="Permalink to this definition">¶</a></dt>
+<dd><p>Module structure.</p>
+<dl class="type">
+<dt id="type">
+<tt class="descname">type</tt><a class="headerlink" href="#type" title="Permalink to this definition">¶</a></dt>
+<dd><p>Module type.</p>
+<dl class="var">
+<dt id="MODULE_UNKNOWN">
+<tt class="descname">MODULE_UNKNOWN</tt><a class="headerlink" href="#MODULE_UNKNOWN" title="Permalink to this definition">¶</a></dt>
+<dt id="MODULE_PACKET">
+<tt class="descname">MODULE_PACKET</tt><a class="headerlink" href="#MODULE_PACKET" title="Permalink to this definition">¶</a></dt>
+<dt id="MODULE_LOG">
+<tt class="descname">MODULE_LOG</tt><a class="headerlink" href="#MODULE_LOG" title="Permalink to this definition">¶</a></dt>
+<dt id="MODULE_EXTENSION">
+<tt class="descname">MODULE_EXTENSION</tt><a class="headerlink" href="#MODULE_EXTENSION" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="var">
+<dt id="name">
+const <a class="reference internal" href="../c/utils.html#wchar_t" title="wchar_t">wchar_t</a> *<tt class="descname">name</tt><a class="headerlink" href="#name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="var">
+<dt id="description">
+const <a class="reference internal" href="../c/utils.html#wchar_t" title="wchar_t">wchar_t</a> *<tt class="descname">description</tt><a class="headerlink" href="#description" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="var">
+<dt id="author">
+const <a class="reference internal" href="../c/utils.html#wchar_t" title="wchar_t">wchar_t</a> *<tt class="descname">author</tt><a class="headerlink" href="#author" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="init">
+int <tt class="descname">(*init)</tt><big>(</big>struct parameters<em>&nbsp;*args</em><big>)</big><a class="headerlink" href="#init" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initialize the module. This function is called by the application.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">Non zero in case of an error. In this case the module will be
+unloaded but cleanup is not going to be called.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="cleanup">
+void <tt class="descname">(*cleanup)</tt><big>(</big><big>)</big><a class="headerlink" href="#cleanup" title="Permalink to this definition">¶</a></dt>
+<dd><p>Cleanup the module. This function is called by the application when the
+module is unloaded.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="type">
+<dt id="packet_module">
+struct <tt class="descname">packet_module</tt><a class="headerlink" href="#packet_module" title="Permalink to this definition">¶</a></dt>
+<dd><p>Packet module used to interact with the low-level packets. The module
+will be used to receive packets and set a verdict on them. It also define
+an interface to access the packet fields.</p>
+<dl class="var">
+<dt>
+struct <a class="reference internal" href="#module" title="module">module</a> <tt class="descname">module</tt></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="multi_threaded">
+<a class="reference internal" href="../c/utils.html#bool" title="bool">bool</a> <tt class="descname">(*multi_threaded)</tt><big>(</big><big>)</big><a class="headerlink" href="#multi_threaded" title="Permalink to this definition">¶</a></dt>
+<dd><p>Does this module supports multi-threading.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="init_state">
+struct packet_module_state *<tt class="descname">(*init_state)</tt><big>(</big>int<em>&nbsp;thread_id</em><big>)</big><a class="headerlink" href="#init_state" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initialize the packet module state. This function will be called to create
+multiple states if the module supports multi-threading.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="cleanup_state">
+void <tt class="descname">(*cleanup_state)</tt><big>(</big>struct packet_module_state<em>&nbsp;*state</em><big>)</big><a class="headerlink" href="#cleanup_state" title="Permalink to this definition">¶</a></dt>
+<dd><p>Cleanup the packet module state.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="receive">
+int <tt class="descname">(*receive)</tt><big>(</big>struct packet_module_state<em>&nbsp;*state</em>, struct packet<em>&nbsp;**pkt</em><big>)</big><a class="headerlink" href="#receive" title="Permalink to this definition">¶</a></dt>
+<dd><p>Callback used to receive a new packet. This function should block until
+a packet is received.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">Non zero in case of error.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="verdict">
+void <tt class="descname">(*verdict)</tt><big>(</big>struct packet<em>&nbsp;*pkt</em>, <a class="reference internal" href="../c/packet.html#filter_result" title="filter_result">filter_result</a><em>&nbsp;result</em><big>)</big><a class="headerlink" href="#verdict" title="Permalink to this definition">¶</a></dt>
+<dd><p>Apply a verdict on a received packet. The module should then apply this
+verdict on the underlying packet.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>pkt</strong> &#8211; The received packet. After calling this function the packet address
+is never used again by the application but allow the module to free it if needed.</li>
+<li><strong>result</strong> &#8211; The verdict to apply to this packet.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="get_length">
+size_t <tt class="descname">(*get_length)</tt><big>(</big>struct packet<em>&nbsp;*pkt</em><big>)</big><a class="headerlink" href="#get_length" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the length of a packet.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="make_modifiable">
+<a class="reference internal" href="../c/utils.html#uint8" title="uint8">uint8</a> *<tt class="descname">(*make_modifiable)</tt><big>(</big>struct packet<em>&nbsp;*pkt</em><big>)</big><a class="headerlink" href="#make_modifiable" title="Permalink to this definition">¶</a></dt>
+<dd><p>Make the packet modifiable.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="resize">
+int <tt class="descname">(*resize)</tt><big>(</big>struct packet<em>&nbsp;*pkt</em>, size_t<em>&nbsp;size</em><big>)</big><a class="headerlink" href="#resize" title="Permalink to this definition">¶</a></dt>
+<dd><p>Resize the packet to a new size.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="get_id">
+<a class="reference internal" href="../c/utils.html#uint64" title="uint64">uint64</a> <tt class="descname">(*get_id)</tt><big>(</big>struct packet<em>&nbsp;*pkt</em><big>)</big><a class="headerlink" href="#get_id" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the id fo the packet.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="get_data">
+const <a class="reference internal" href="../c/utils.html#uint8" title="uint8">uint8</a> *<tt class="descname">(*get_data)</tt><big>(</big>struct packet<em>&nbsp;*pkt</em><big>)</big><a class="headerlink" href="#get_data" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the data of a packet.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="get_dissector">
+const char *<tt class="descname">(*get_dissector)</tt><big>(</big>struct packet<em>&nbsp;*pkt</em><big>)</big><a class="headerlink" href="#get_dissector" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the packet dissector.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="function">
+<dt id="module_load">
+struct <a class="reference internal" href="#module" title="module">module</a> *<tt class="descname">module_load</tt><big>(</big>const char<em>&nbsp;*module_name</em>, ...<big>)</big><a class="headerlink" href="#module_load" title="Permalink to this definition">¶</a></dt>
+<dd><p>Load a module given its name. It is not needed to call <cite>module_addref</cite> on the result
+as this is done before returning.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">The loaded module structure or NULL in case of an error.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="module_addref">
+void <tt class="descname">module_addref</tt><big>(</big>struct <a class="reference internal" href="#module" title="module">module</a><em>&nbsp;*module</em><big>)</big><a class="headerlink" href="#module_addref" title="Permalink to this definition">¶</a></dt>
+<dd><p>Keep the module. Must match with a call to <cite>module_release</cite>
+otherwise the module will not be able to be removed correctly
+when unused.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="module_release">
+void <tt class="descname">module_release</tt><big>(</big>struct <a class="reference internal" href="#module" title="module">module</a><em>&nbsp;*module</em><big>)</big><a class="headerlink" href="#module_release" title="Permalink to this definition">¶</a></dt>
+<dd><p>Release a module.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="module_set_path">
+void <tt class="descname">module_set_path</tt><big>(</big>const char<em>&nbsp;*path</em><big>)</big><a class="headerlink" href="#module_set_path" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the path used to load haka modules. This path must be in the form:</p>
+<div class="highlight-bash"><div class="highlight"><pre>path/to/modules/*;another/path/*
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="module_get_path">
+const char *<tt class="descname">module_get_path</tt><big>(</big><big>)</big><a class="headerlink" href="#module_get_path" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the modules path.</p>
+</dd></dl>
+
+</div>
+
+
+    </div>
+  </div>
+
+<div id="footer">
+  &copy; Copyright 2013, Arkoon Network Security, OpenWide and Telecom ParisTech.
+</div>
+
+  </body>
+</html>

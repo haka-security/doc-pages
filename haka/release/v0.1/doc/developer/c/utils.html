@@ -1,0 +1,192 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>3.1. Types &mdash; Haka runtime 0.1.20131226-1215 documentation</title>
+    
+    <link rel="stylesheet" href="../../../_static/haka.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../',
+        VERSION:     '0.1.20131226-1215',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../../_static/scripts.js"></script>
+    <link rel="top" title="Haka runtime 0.1.20131226-1215 documentation" href="../../../index.html" />
+    <link rel="up" title="3. C API" href="../../developer/c.html" />
+    <link rel="next" title="3.3. Threads" href="../c/thread.html" />
+    <link rel="prev" title="3. C API" href="../../developer/c.html" /> 
+  </head>
+  <body>
+<header id="header" role="banner">
+  <div class="home-link">
+    <div id="version" class="description">0.1.20131226-1215</div>
+    <h1 class="title"><a rel="home" title="Haka" href="http://www.haka-security.org">Haka</a></h1>
+    <h2 class="description">An open source security language</h2>
+  </div>
+</header>
+
+  <div id="navbar" class="navbar">
+    <nav id="site-navigation" class="navigation main-navigation" role="navigation">
+      <ul class="nav-menu">
+        <li class=" ">
+          <a href="../../user/userindex.html">Users</a>
+        </li>
+        <li class=" ">
+          <a href="../../ref/refindex.html" class="../../ref/refindex.html">References</a>
+        </li>
+        <li class=" current">
+          <a href="../../developer/devindex.html" class="">Developers</a>
+        </li>
+        <li>
+
+
+	<div id="searchbox" style="display: none">
+		<form class="search" action="../../../search.html" method="get">
+			<input type="hidden" name="area" value="default" />
+			<input type="hidden" name="check_keywords" value="yes" />
+			<input type="text" name="q" placeholder="Search" />
+		</form>
+	</div>
+	<script type="text/javascript">$('#searchbox').show(0);</script>
+</li>
+          <li class="right"><a href="../../developer/c.html" title="3. C API">Top</a></li>
+          <li class="right"><a href="../../developer/c.html" title="3. C API">Prev</a></li>
+          <li class="right"><a href="../c/thread.html" title="3.3. Threads">Next</a></li>
+         <li class=" right"><a href="../../../genindex.html">Index</a></li>
+         <li class=" right"><a href="../../../lua-modindex.html">Modules</a></li>
+      </ul>
+    </nav>
+  </div>
+  <div id="content" class="body">
+    <div id="contentwrapper">
+      
+  <div class="section" id="types">
+<h1>3.1. Types<a class="headerlink" href="#types" title="Permalink to this headline">¶</a></h1>
+<dl class="type">
+<dt id="wchar_t">
+<tt class="descname">wchar_t</tt><a class="headerlink" href="#wchar_t" title="Permalink to this definition">¶</a></dt>
+<dd><p>Wide chars</p>
+</dd></dl>
+
+<dl class="type">
+<dt id="bool">
+<tt class="descname">bool</tt><a class="headerlink" href="#bool" title="Permalink to this definition">¶</a></dt>
+<dd><p>Boolean. Its value can be <tt class="xref c c-data docutils literal"><span class="pre">true</span></tt> or  <tt class="xref c c-data docutils literal"><span class="pre">false</span></tt>.</p>
+</dd></dl>
+
+<dl class="type">
+<dt id="int8">
+<tt class="descname">int8</tt><a class="headerlink" href="#int8" title="Permalink to this definition">¶</a></dt>
+<dt id="int16">
+<tt class="descname">int16</tt><a class="headerlink" href="#int16" title="Permalink to this definition">¶</a></dt>
+<dt id="int32">
+<tt class="descname">int32</tt><a class="headerlink" href="#int32" title="Permalink to this definition">¶</a></dt>
+<dt id="int64">
+<tt class="descname">int64</tt><a class="headerlink" href="#int64" title="Permalink to this definition">¶</a></dt>
+<dt id="uint8">
+<tt class="descname">uint8</tt><a class="headerlink" href="#uint8" title="Permalink to this definition">¶</a></dt>
+<dt id="uint16">
+<tt class="descname">uint16</tt><a class="headerlink" href="#uint16" title="Permalink to this definition">¶</a></dt>
+<dt id="uint32">
+<tt class="descname">uint32</tt><a class="headerlink" href="#uint32" title="Permalink to this definition">¶</a></dt>
+<dt id="uint64">
+<tt class="descname">uint64</tt><a class="headerlink" href="#uint64" title="Permalink to this definition">¶</a></dt>
+<dd><p>Integer basic type.</p>
+</dd></dl>
+
+<dl class="macro">
+<dt id="SWAP">
+<tt class="descname">SWAP</tt><big>(</big><a class="reference internal" href="../c/module.html#type" title="type">type</a>, x<big>)</big><a class="headerlink" href="#SWAP" title="Permalink to this definition">¶</a></dt>
+<dt id="SWAP_TO_BE">
+<tt class="descname">SWAP_TO_BE</tt><big>(</big><a class="reference internal" href="../c/module.html#type" title="type">type</a>, x<big>)</big><a class="headerlink" href="#SWAP_TO_BE" title="Permalink to this definition">¶</a></dt>
+<dt id="SWAP_FROM_BE">
+<tt class="descname">SWAP_FROM_BE</tt><big>(</big><a class="reference internal" href="../c/module.html#type" title="type">type</a>, x<big>)</big><a class="headerlink" href="#SWAP_FROM_BE" title="Permalink to this definition">¶</a></dt>
+<dt id="SWAP_TO_LE">
+<tt class="descname">SWAP_TO_LE</tt><big>(</big><a class="reference internal" href="../c/module.html#type" title="type">type</a>, x<big>)</big><a class="headerlink" href="#SWAP_TO_LE" title="Permalink to this definition">¶</a></dt>
+<dt id="SWAP_FROM_LE">
+<tt class="descname">SWAP_FROM_LE</tt><big>(</big><a class="reference internal" href="../c/module.html#type" title="type">type</a>, x<big>)</big><a class="headerlink" href="#SWAP_FROM_LE" title="Permalink to this definition">¶</a></dt>
+<dd><p>Byte swapping utility macro. The <cite>type</cite> should be the C type of the value <cite>x</cite>
+(ie. <a class="reference internal" href="#int32" title="int32"><tt class="xref c c-type docutils literal"><span class="pre">int32</span></tt></a>, <a class="reference internal" href="#uint64" title="uint64"><tt class="xref c c-type docutils literal"><span class="pre">uint64</span></tt></a>...)</p>
+</dd></dl>
+
+<dl class="macro">
+<dt id="GET_BIT">
+<tt class="descname">GET_BIT</tt><big>(</big>v, i<big>)</big><a class="headerlink" href="#GET_BIT" title="Permalink to this definition">¶</a></dt>
+<dt id="SET_BIT">
+<tt class="descname">SET_BIT</tt><big>(</big>v, i, x<big>)</big><a class="headerlink" href="#SET_BIT" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get and sets the bit <cite>i</cite> from an integer <cite>v</cite>.</p>
+</dd></dl>
+
+<dl class="macro">
+<dt id="GET_BITS">
+<tt class="descname">GET_BITS</tt><big>(</big>v, i, j<big>)</big><a class="headerlink" href="#GET_BITS" title="Permalink to this definition">¶</a></dt>
+<dt id="SET_BITS">
+<tt class="descname">SET_BITS</tt><big>(</big>v, i, j, x<big>)</big><a class="headerlink" href="#SET_BITS" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get and sets the bits in range [<cite>i</cite> ; <cite>j</cite>] from an integer <cite>v</cite>.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="utilities">
+<h1>3.2. Utilities<a class="headerlink" href="#utilities" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="errors">
+<h2>3.2.1. Errors<a class="headerlink" href="#errors" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="error">
+void <tt class="descname">error</tt><big>(</big>const <a class="reference internal" href="#wchar_t" title="wchar_t">wchar_t</a><em>&nbsp;*error</em>, ...<big>)</big><a class="headerlink" href="#error" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set an error message to be reported to the callers. The function follows the printf API
+and can be used in multi-threaded application. The error can then be retrieved using
+<a class="reference internal" href="#clear_error" title="clear_error"><tt class="xref c c-func docutils literal"><span class="pre">clear_error()</span></tt></a> and <a class="reference internal" href="#check_error" title="check_error"><tt class="xref c c-func docutils literal"><span class="pre">check_error()</span></tt></a>.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="errno_error">
+const char *<tt class="descname">errno_error</tt><big>(</big>int<em>&nbsp;err</em><big>)</big><a class="headerlink" href="#errno_error" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert the errno value to a human readable error message.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The returned string will be erased by the next call to this function. The function
+thread-safe and can be used in multi-threaded application.</p>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="check_error">
+<a class="reference internal" href="#bool" title="bool">bool</a> <tt class="descname">check_error</tt><big>(</big><big>)</big><a class="headerlink" href="#check_error" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check if an error has occurred. This function does not clear error flag.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="clear_error">
+const <a class="reference internal" href="#wchar_t" title="wchar_t">wchar_t</a> *<tt class="descname">clear_error</tt><big>(</big><big>)</big><a class="headerlink" href="#clear_error" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the error message and clear the error state.</p>
+</dd></dl>
+
+</div>
+</div>
+
+
+    </div>
+  </div>
+
+<div id="footer">
+  &copy; Copyright 2013, Arkoon Network Security, OpenWide and Telecom ParisTech.
+</div>
+
+  </body>
+</html>

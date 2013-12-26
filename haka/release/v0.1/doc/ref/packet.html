@@ -1,0 +1,143 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>5. Packet &mdash; Haka runtime 0.1.20131226-1215 documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/haka.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '0.1.20131226-1215',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../_static/scripts.js"></script>
+    <link rel="top" title="Haka runtime 0.1.20131226-1215 documentation" href="../../index.html" />
+    <link rel="up" title="Welcome to Haka’s Reference Guide!" href="../ref/refindex.html" />
+    <link rel="next" title="6. IPv4" href="../../modules/protocol/ipv4/doc/lua.html" />
+    <link rel="prev" title="4. Misc" href="../ref/misc.html" /> 
+  </head>
+  <body>
+<header id="header" role="banner">
+  <div class="home-link">
+    <div id="version" class="description">0.1.20131226-1215</div>
+    <h1 class="title"><a rel="home" title="Haka" href="http://www.haka-security.org">Haka</a></h1>
+    <h2 class="description">An open source security language</h2>
+  </div>
+</header>
+
+  <div id="navbar" class="navbar">
+    <nav id="site-navigation" class="navigation main-navigation" role="navigation">
+      <ul class="nav-menu">
+        <li class=" ">
+          <a href="../user/userindex.html">Users</a>
+        </li>
+        <li class=" current">
+          <a href="../ref/refindex.html" class="../ref/refindex.html">References</a>
+        </li>
+        <li class=" ">
+          <a href="../developer/devindex.html" class="">Developers</a>
+        </li>
+        <li>
+
+
+	<div id="searchbox" style="display: none">
+		<form class="search" action="../../search.html" method="get">
+			<input type="hidden" name="area" value="default" />
+			<input type="hidden" name="check_keywords" value="yes" />
+			<input type="text" name="q" placeholder="Search" />
+		</form>
+	</div>
+	<script type="text/javascript">$('#searchbox').show(0);</script>
+</li>
+          <li class="right"><a href="../ref/refindex.html" title="Welcome to Haka&#8217;s Reference Guide!">Top</a></li>
+          <li class="right"><a href="../ref/misc.html" title="4. Misc">Prev</a></li>
+          <li class="right"><a href="../../modules/protocol/ipv4/doc/lua.html" title="6. IPv4">Next</a></li>
+         <li class=" right"><a href="../../genindex.html">Index</a></li>
+         <li class=" right"><a href="../../lua-modindex.html">Modules</a></li>
+      </ul>
+    </nav>
+  </div>
+  <div id="content" class="body">
+    <div id="contentwrapper">
+      
+  <div class="section" id="module-haka.packet">
+<span id="packet"></span><h1>5. Packet<a class="headerlink" href="#module-haka.packet" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
+<dt id="haka.packet.packet">
+<em class="property">class </em><tt class="descclassname">haka.packet.</tt><tt class="descname">packet</tt><a class="headerlink" href="#haka.packet.packet" title="Permalink to this definition">¶</a></dt>
+<dd><p>Object representing a packet.  The data can be accessed using the standard Lua
+operators <cite>#</cite> to get the length and <cite>[]</cite> to access the bytes.</p>
+<dl class="method">
+<dt id="haka.packet.packet:drop">
+<tt class="descname">drop</tt><big>(</big><big>)</big><a class="headerlink" href="#haka.packet.packet:drop" title="Permalink to this definition">¶</a></dt>
+<dd><p>Drop the packet.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The packet will be unusable after calling this function.</p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="haka.packet.packet:accept">
+<tt class="descname">accept</tt><big>(</big><big>)</big><a class="headerlink" href="#haka.packet.packet:accept" title="Permalink to this definition">¶</a></dt>
+<dd><p>Accept the packet.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The packet will be unusable after calling this function.</p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="haka.packet.packet:send">
+<tt class="descname">send</tt><big>(</big><big>)</big><a class="headerlink" href="#haka.packet.packet:send" title="Permalink to this definition">¶</a></dt>
+<dd><p>Send the packet.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="haka.packet.packet:resize">
+<tt class="descname">resize</tt><big>(</big><em>size</em><big>)</big><a class="headerlink" href="#haka.packet.packet:resize" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the packet length to <tt class="docutils literal"><span class="pre">size</span></tt>.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="method">
+<dt id="haka.packet.new">
+<tt class="descclassname">haka.packet.</tt><tt class="descname">new</tt><big>(</big><em>size</em><big>)</big><a class="headerlink" href="#haka.packet.new" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create new packet of size <tt class="docutils literal"><span class="pre">size</span></tt>.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="haka.packet.mode">
+<tt class="descclassname">haka.packet.</tt><tt class="descname">mode</tt><big>(</big><big>)</big><a class="headerlink" href="#haka.packet.mode" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the packet mode: passthrough mode or normal mode.</p>
+</dd></dl>
+
+</div>
+
+
+    </div>
+  </div>
+
+<div id="footer">
+  &copy; Copyright 2013, Arkoon Network Security, OpenWide and Telecom ParisTech.
+</div>
+
+  </body>
+</html>

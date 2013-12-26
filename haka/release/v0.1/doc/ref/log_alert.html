@@ -1,0 +1,209 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>3. Logging &amp; Alerting &mdash; Haka runtime 0.1.20131226-1215 documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/haka.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '0.1.20131226-1215',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../_static/scripts.js"></script>
+    <link rel="top" title="Haka runtime 0.1.20131226-1215 documentation" href="../../index.html" />
+    <link rel="up" title="Welcome to Haka’s Reference Guide!" href="../ref/refindex.html" />
+    <link rel="next" title="4. Misc" href="../ref/misc.html" />
+    <link rel="prev" title="2. Dissector" href="../ref/dissector.html" /> 
+  </head>
+  <body>
+<header id="header" role="banner">
+  <div class="home-link">
+    <div id="version" class="description">0.1.20131226-1215</div>
+    <h1 class="title"><a rel="home" title="Haka" href="http://www.haka-security.org">Haka</a></h1>
+    <h2 class="description">An open source security language</h2>
+  </div>
+</header>
+
+  <div id="navbar" class="navbar">
+    <nav id="site-navigation" class="navigation main-navigation" role="navigation">
+      <ul class="nav-menu">
+        <li class=" ">
+          <a href="../user/userindex.html">Users</a>
+        </li>
+        <li class=" current">
+          <a href="../ref/refindex.html" class="../ref/refindex.html">References</a>
+        </li>
+        <li class=" ">
+          <a href="../developer/devindex.html" class="">Developers</a>
+        </li>
+        <li>
+
+
+	<div id="searchbox" style="display: none">
+		<form class="search" action="../../search.html" method="get">
+			<input type="hidden" name="area" value="default" />
+			<input type="hidden" name="check_keywords" value="yes" />
+			<input type="text" name="q" placeholder="Search" />
+		</form>
+	</div>
+	<script type="text/javascript">$('#searchbox').show(0);</script>
+</li>
+          <li class="right"><a href="../ref/refindex.html" title="Welcome to Haka&#8217;s Reference Guide!">Top</a></li>
+          <li class="right"><a href="../ref/dissector.html" title="2. Dissector">Prev</a></li>
+          <li class="right"><a href="../ref/misc.html" title="4. Misc">Next</a></li>
+         <li class=" right"><a href="../../genindex.html">Index</a></li>
+         <li class=" right"><a href="../../lua-modindex.html">Modules</a></li>
+      </ul>
+    </nav>
+  </div>
+  <div id="content" class="body">
+    <div id="contentwrapper">
+      
+  <div class="section" id="logging-alerting">
+<h1>3. Logging &amp; Alerting<a class="headerlink" href="#logging-alerting" title="Permalink to this headline">¶</a></h1>
+<p>This section introduces the Haka logging and alerting API.</p>
+<div class="section" id="module-haka.log">
+<span id="log"></span><h2>3.1. Log<a class="headerlink" href="#module-haka.log" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="haka.log.fatal">
+<tt class="descclassname">haka.log.</tt><tt class="descname">fatal</tt><big>(</big><em>module</em>, <em>fmt</em>, <em>...</em><big>)</big><a class="headerlink" href="#haka.log.fatal" title="Permalink to this definition">¶</a></dt>
+<dt id="haka.log.error">
+<tt class="descclassname">haka.log.</tt><tt class="descname">error</tt><big>(</big><em>module</em>, <em>fmt</em>, <em>...</em><big>)</big><a class="headerlink" href="#haka.log.error" title="Permalink to this definition">¶</a></dt>
+<dt id="haka.log.warning">
+<tt class="descclassname">haka.log.</tt><tt class="descname">warning</tt><big>(</big><em>module</em>, <em>fmt</em>, <em>...</em><big>)</big><a class="headerlink" href="#haka.log.warning" title="Permalink to this definition">¶</a></dt>
+<dt id="haka.log.info">
+<tt class="descclassname">haka.log.</tt><tt class="descname">info</tt><big>(</big><em>module</em>, <em>fmt</em>, <em>...</em><big>)</big><a class="headerlink" href="#haka.log.info" title="Permalink to this definition">¶</a></dt>
+<dt id="haka.log.debug">
+<tt class="descclassname">haka.log.</tt><tt class="descname">debug</tt><big>(</big><em>module</em>, <em>fmt</em>, <em>...</em><big>)</big><a class="headerlink" href="#haka.log.debug" title="Permalink to this definition">¶</a></dt>
+<dd><p>Log a message in various levels.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="haka.log.haka.log">
+<tt class="descclassname">haka.</tt><tt class="descname">log</tt><big>(</big><em>module</em>, <em>fmt</em>, <em>...</em><big>)</big><a class="headerlink" href="#haka.log.haka.log" title="Permalink to this definition">¶</a></dt>
+<dd><p>Alias to <a class="reference internal" href="#haka.log.info" title="haka.log.info"><tt class="xref lua lua-func docutils literal"><span class="pre">haka.log.info()</span></tt></a>.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="haka.log.setlevel">
+<tt class="descclassname">haka.log.</tt><tt class="descname">setlevel</tt><big>(</big><em>level</em><big>)</big><a class="headerlink" href="#haka.log.setlevel" title="Permalink to this definition">¶</a></dt>
+<dt>
+<tt class="descclassname">haka.log.</tt><tt class="descname">setlevel</tt><big>(</big><em>module</em>, <em>level</em><big>)</big></dt>
+<dd><p>Set the logging level to display. It can be set globally and also manually for
+each module.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="module-haka.alert">
+<span id="alert"></span><h2>3.2. Alert<a class="headerlink" href="#module-haka.alert" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="haka.alert.haka.alert">
+<tt class="descclassname">haka.</tt><tt class="descname">alert</tt><big class="param_start_brace">{</big><em>param1=value1</em>, <em>param2=value2</em><span class="optional">[</span>, <em>...</em><span class="optional">]</span><big class="param_end_brace">}</big><a class="headerlink" href="#haka.alert.haka.alert" title="Permalink to this definition">¶</a></dt>
+<dd><p>Raise an alert. All parameters are optional.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>start_time</strong> &#8211; time</li>
+<li><strong>end_time</strong> &#8211; time</li>
+<li><strong>description</strong> &#8211; string</li>
+<li><strong>severity</strong> &#8211; one of <tt class="docutils literal"><span class="pre">'low'</span></tt>, <tt class="docutils literal"><span class="pre">'medium'</span></tt> or <tt class="docutils literal"><span class="pre">'high'</span></tt></li>
+<li><strong>confidence</strong> &#8211; <tt class="docutils literal"><span class="pre">'low'</span></tt>, <tt class="docutils literal"><span class="pre">'medium'</span></tt>, <tt class="docutils literal"><span class="pre">'high'</span></tt> or number</li>
+<li><strong>completion</strong> &#8211; <tt class="docutils literal"><span class="pre">'failed'</span></tt> or <tt class="docutils literal"><span class="pre">'successful'</span></tt></li>
+<li><strong>method</strong> &#8211; a table</li>
+<li><strong>method.description</strong> &#8211; string</li>
+<li><strong>method.ref</strong> &#8211; table of strings</li>
+<li><strong>sources</strong> &#8211; a table of <a class="reference internal" href="#haka.alert.address" title="haka.alert.address"><tt class="xref lua lua-func docutils literal"><span class="pre">haka.alert.address()</span></tt></a>, <a class="reference internal" href="#haka.alert.service" title="haka.alert.service"><tt class="xref lua lua-func docutils literal"><span class="pre">haka.alert.service()</span></tt></a>...</li>
+<li><strong>targets</strong> &#8211; a table of <a class="reference internal" href="#haka.alert.address" title="haka.alert.address"><tt class="xref lua lua-func docutils literal"><span class="pre">haka.alert.address()</span></tt></a>, <a class="reference internal" href="#haka.alert.service" title="haka.alert.service"><tt class="xref lua lua-func docutils literal"><span class="pre">haka.alert.service()</span></tt></a>...</li>
+<li><strong>ref</strong> &#8211; a table of alert reference</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Return an alert reference.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">Opaque object that can be used in <a class="reference internal" href="#haka.alert.update" title="haka.alert.update"><tt class="xref lua lua-func docutils literal"><span class="pre">haka.alert.update()</span></tt></a>.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="haka.alert.address">
+<tt class="descclassname">haka.alert.</tt><tt class="descname">address</tt><big>(</big><em>object1</em>, <em>object2</em><span class="optional">[</span>, <em>...</em><span class="optional">]</span><big>)</big><a class="headerlink" href="#haka.alert.address" title="Permalink to this definition">¶</a></dt>
+<dt id="haka.alert.service">
+<tt class="descclassname">haka.alert.</tt><tt class="descname">service</tt><big>(</big><em>object1</em>, <em>object2</em><span class="optional">[</span>, <em>...</em><span class="optional">]</span><big>)</big><a class="headerlink" href="#haka.alert.service" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create an object to describe a source or a target.</p>
+</dd></dl>
+
+<p>Example:</p>
+<div class="highlight-lua"><div class="highlight"><pre><span class="n">haka</span><span class="p">.</span><span class="n">alert</span><span class="p">{</span>
+    <span class="n">start_time</span> <span class="o">=</span> <span class="n">pkt</span><span class="p">.</span><span class="n">raw</span><span class="p">.</span><span class="n">timestamp</span><span class="p">,</span>
+    <span class="n">description</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="s">packet received&quot;</span><span class="p">,</span>
+    <span class="n">severity</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="s">medium&#39;</span><span class="p">,</span>
+    <span class="n">confidence</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="s">high&#39;</span><span class="p">,</span>
+    <span class="n">completion</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="s">failed&#39;</span><span class="p">,</span>
+    <span class="n">method</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="n">description</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="s">Packet sent on the network&quot;</span><span class="p">,</span>
+        <span class="n">ref</span> <span class="o">=</span> <span class="p">{</span> <span class="s2">&quot;</span><span class="s">cve:2O13-XXX&quot;</span><span class="p">,</span> <span class="s2">&quot;</span><span class="s">http://intranet/vulnid?id=115&quot;</span><span class="p">,</span> <span class="s2">&quot;</span><span class="s">cwe:809&quot;</span> <span class="p">}</span>
+    <span class="p">},</span>
+    <span class="n">sources</span> <span class="o">=</span> <span class="p">{</span> <span class="n">haka</span><span class="p">.</span><span class="n">alert</span><span class="p">.</span><span class="n">address</span><span class="p">(</span><span class="n">pkt</span><span class="p">.</span><span class="n">src</span><span class="p">,</span> <span class="s2">&quot;</span><span class="s">evil.host.fqdn&quot;</span><span class="p">)</span> <span class="p">},</span>
+    <span class="n">targets</span> <span class="o">=</span> <span class="p">{</span> <span class="n">haka</span><span class="p">.</span><span class="n">alert</span><span class="p">.</span><span class="n">address</span><span class="p">(</span><span class="n">pkt</span><span class="p">.</span><span class="n">dst</span><span class="p">),</span> <span class="n">haka</span><span class="p">.</span><span class="n">alert</span><span class="p">.</span><span class="n">service</span><span class="p">(</span><span class="s2">&quot;</span><span class="s">tcp/22&quot;</span><span class="p">,</span> <span class="s2">&quot;</span><span class="s">ssh&quot;</span><span class="p">)</span> <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<dl class="function">
+<dt id="haka.alert.update">
+<tt class="descclassname">haka.alert.</tt><tt class="descname">update</tt><big>(</big><em>my_alert, {param1=value1, param2=value2, [...]} </em><big>)</big><a class="headerlink" href="#haka.alert.update" title="Permalink to this definition">¶</a></dt>
+<dd><p>Update the alert <cite>my_alert</cite>. The parameters are the same for the alerts.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>my_alert</strong> &#8211; an alert object previously defined</li>
+<li><strong>param1,param2,...</strong> &#8211; Same names/values of alert</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<p>Example:</p>
+<div class="highlight-lua"><div class="highlight"><pre><span class="kd">local</span> <span class="n">my_alert</span> <span class="o">=</span> <span class="n">haka</span><span class="p">.</span><span class="n">alert</span><span class="p">{</span> <span class="n">severity</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="s">low&#39;</span><span class="p">,</span> <span class="n">sources</span> <span class="o">=</span> <span class="p">{</span> <span class="n">haka</span><span class="p">.</span><span class="n">alert</span><span class="p">.</span><span class="n">address</span><span class="p">(</span><span class="n">pkt</span><span class="p">.</span><span class="n">src</span><span class="p">)</span> <span class="p">}</span> <span class="p">}</span>
+<span class="n">haka</span><span class="p">.</span><span class="n">alert</span><span class="p">.</span><span class="n">update</span><span class="p">(</span><span class="n">my_alert</span><span class="p">,</span> <span class="p">{</span> <span class="n">completion</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="s">failed&#39;</span> <span class="p">}</span> <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+    </div>
+  </div>
+
+<div id="footer">
+  &copy; Copyright 2013, Arkoon Network Security, OpenWide and Telecom ParisTech.
+</div>
+
+  </body>
+</html>

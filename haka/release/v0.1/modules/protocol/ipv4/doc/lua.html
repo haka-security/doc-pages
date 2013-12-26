@@ -1,0 +1,285 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>6. IPv4 &mdash; Haka runtime 0.1.20131226-1215 documentation</title>
+    
+    <link rel="stylesheet" href="../../../../_static/haka.css" type="text/css" />
+    <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../../',
+        VERSION:     '0.1.20131226-1215',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../../../_static/scripts.js"></script>
+    <link rel="top" title="Haka runtime 0.1.20131226-1215 documentation" href="../../../../index.html" />
+    <link rel="up" title="Welcome to Haka’s Reference Guide!" href="../../../../doc/ref/refindex.html" />
+    <link rel="next" title="7. TCP" href="../../../protocol/tcp/doc/lua.html" />
+    <link rel="prev" title="5. Packet" href="../../../../doc/ref/packet.html" /> 
+  </head>
+  <body>
+<header id="header" role="banner">
+  <div class="home-link">
+    <div id="version" class="description">0.1.20131226-1215</div>
+    <h1 class="title"><a rel="home" title="Haka" href="http://www.haka-security.org">Haka</a></h1>
+    <h2 class="description">An open source security language</h2>
+  </div>
+</header>
+
+  <div id="navbar" class="navbar">
+    <nav id="site-navigation" class="navigation main-navigation" role="navigation">
+      <ul class="nav-menu">
+        <li class=" ">
+          <a href="../../../../doc/user/userindex.html">Users</a>
+        </li>
+        <li class=" current">
+          <a href="../../../../doc/ref/refindex.html" class="../../../../doc/ref/refindex.html">References</a>
+        </li>
+        <li class=" ">
+          <a href="../../../../doc/developer/devindex.html" class="">Developers</a>
+        </li>
+        <li>
+
+
+	<div id="searchbox" style="display: none">
+		<form class="search" action="../../../../search.html" method="get">
+			<input type="hidden" name="area" value="default" />
+			<input type="hidden" name="check_keywords" value="yes" />
+			<input type="text" name="q" placeholder="Search" />
+		</form>
+	</div>
+	<script type="text/javascript">$('#searchbox').show(0);</script>
+</li>
+          <li class="right"><a href="../../../../doc/ref/refindex.html" title="Welcome to Haka&#8217;s Reference Guide!">Top</a></li>
+          <li class="right"><a href="../../../../doc/ref/packet.html" title="5. Packet">Prev</a></li>
+          <li class="right"><a href="../../../protocol/tcp/doc/lua.html" title="7. TCP">Next</a></li>
+         <li class=" right"><a href="../../../../genindex.html">Index</a></li>
+         <li class=" right"><a href="../../../../lua-modindex.html">Modules</a></li>
+      </ul>
+    </nav>
+  </div>
+  <div id="content" class="body">
+    <div id="contentwrapper">
+      
+  <div class="section" id="module-ipv4">
+<span id="ipv4"></span><h1>6. IPv4<a class="headerlink" href="#module-ipv4" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="types">
+<h2>6.1. Types<a class="headerlink" href="#types" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="ipv4.addr">
+<em class="property">class </em><tt class="descclassname">ipv4.</tt><tt class="descname">addr</tt><a class="headerlink" href="#ipv4.addr" title="Permalink to this definition">¶</a></dt>
+<dd><p>Class used to represent an ipv4 address.</p>
+<dl class="method">
+<dt id="ipv4.addr:addr">
+<tt class="descname">addr</tt><big>(</big><em>str</em><big>)</big><a class="headerlink" href="#ipv4.addr:addr" title="Permalink to this definition">¶</a></dt>
+<dt>
+<tt class="descname">addr</tt><big>(</big><em>addr</em><big>)</big></dt>
+<dt>
+<tt class="descname">addr</tt><big>(</big><em>a</em>, <em>b</em>, <em>c</em>, <em>d</em><big>)</big></dt>
+<dd><p>Address constructors from string value, number or byte numbers.</p>
+<p>Examples:</p>
+<div class="highlight-lua"><div class="highlight"><pre><span class="n">ipv4</span><span class="p">.</span><span class="n">addr</span><span class="p">(</span><span class="s2">&quot;</span><span class="s">127.0.0.1&quot;</span><span class="p">)</span>
+<span class="n">ipv4</span><span class="p">.</span><span class="n">addr</span><span class="p">(</span><span class="mi">127</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="ipv4.network">
+<em class="property">class </em><tt class="descclassname">ipv4.</tt><tt class="descname">network</tt><a class="headerlink" href="#ipv4.network" title="Permalink to this definition">¶</a></dt>
+<dd><p>Class used to represent an ipv4 network address.</p>
+<dl class="method">
+<dt id="ipv4.network:network">
+<tt class="descname">network</tt><big>(</big><em>str</em><big>)</big><a class="headerlink" href="#ipv4.network:network" title="Permalink to this definition">¶</a></dt>
+<dt>
+<tt class="descname">network</tt><big>(</big><em>ipaddr</em>, <em>mask</em><big>)</big></dt>
+<dd><p>Network constructors from string value, number or byte numbers.</p>
+<p>Examples:</p>
+<div class="highlight-lua"><div class="highlight"><pre><span class="n">ipv4</span><span class="p">.</span><span class="n">network</span><span class="p">(</span><span class="s2">&quot;</span><span class="s">127.0.0.1/8&quot;</span><span class="p">)</span>
+<span class="n">ipv4</span><span class="p">.</span><span class="n">network</span><span class="p">(</span><span class="n">ipv4</span><span class="p">.</span><span class="n">addr</span><span class="p">(</span><span class="mi">127</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="mi">8</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="data">
+<dt id="ipv4.network:net">
+<tt class="descname">net</tt><a class="headerlink" href="#ipv4.network:net" title="Permalink to this definition">¶</a></dt>
+<dd><p>Network address.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">This field is read-only.</p>
+</div>
+</dd></dl>
+
+<dl class="data">
+<dt id="ipv4.network:mask">
+<tt class="descname">mask</tt><a class="headerlink" href="#ipv4.network:mask" title="Permalink to this definition">¶</a></dt>
+<dd><p>Network mask.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">This field is read-only.</p>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="functions">
+<h2>6.2. Functions<a class="headerlink" href="#functions" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="ipv4.register_proto">
+<tt class="descclassname">ipv4.</tt><tt class="descname">register_proto</tt><big>(</big><em>proto</em>, <em>name</em><big>)</big><a class="headerlink" href="#ipv4.register_proto" title="Permalink to this definition">¶</a></dt>
+<dd><p>Register the dissector to associate with the given protocol <cite>proto</cite> number.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="dissector">
+<h2>6.3. Dissector<a class="headerlink" href="#dissector" title="Permalink to this headline">¶</a></h2>
+<p>This module register the <cite>ipv4</cite> dissector.</p>
+<dl class="function">
+<dt id="ipv4.create">
+<tt class="descclassname">ipv4.</tt><tt class="descname">create</tt><big>(</big><em>raw</em><big>)</big><a class="headerlink" href="#ipv4.create" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a new IPv4 packet on top of the given raw packet.</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="ipv4.ipv4">
+<em class="property">class </em><tt class="descclassname">ipv4.</tt><tt class="descname">ipv4</tt><a class="headerlink" href="#ipv4.ipv4" title="Permalink to this definition">¶</a></dt>
+<dd><p>Dissector data for an ipv4 packet.</p>
+<div class="admonition-see-also admonition seealso">
+<p class="first admonition-title">See also</p>
+<p class="last"><a class="reference internal" href="../../../../doc/ref/dissector.html#haka.dissector_data" title="haka.dissector_data"><tt class="xref lua lua-class docutils literal"><span class="pre">haka.dissector_data</span></tt></a>.</p>
+</div>
+<dl class="data">
+<dt id="ipv4.ipv4:hdr_len">
+<tt class="descname">hdr_len</tt><a class="headerlink" href="#ipv4.ipv4:hdr_len" title="Permalink to this definition">¶</a></dt>
+<dt id="ipv4.ipv4:version">
+<tt class="descname">version</tt><a class="headerlink" href="#ipv4.ipv4:version" title="Permalink to this definition">¶</a></dt>
+<dt id="ipv4.ipv4:tos">
+<tt class="descname">tos</tt><a class="headerlink" href="#ipv4.ipv4:tos" title="Permalink to this definition">¶</a></dt>
+<dt id="ipv4.ipv4:len">
+<tt class="descname">len</tt><a class="headerlink" href="#ipv4.ipv4:len" title="Permalink to this definition">¶</a></dt>
+<dt id="ipv4.ipv4:id">
+<tt class="descname">id</tt><a class="headerlink" href="#ipv4.ipv4:id" title="Permalink to this definition">¶</a></dt>
+<dt id="ipv4.ipv4:frag_offset">
+<tt class="descname">frag_offset</tt><a class="headerlink" href="#ipv4.ipv4:frag_offset" title="Permalink to this definition">¶</a></dt>
+<dt id="ipv4.ipv4:ttl">
+<tt class="descname">ttl</tt><a class="headerlink" href="#ipv4.ipv4:ttl" title="Permalink to this definition">¶</a></dt>
+<dt id="ipv4.ipv4:proto">
+<tt class="descname">proto</tt><a class="headerlink" href="#ipv4.ipv4:proto" title="Permalink to this definition">¶</a></dt>
+<dt id="ipv4.ipv4:checksum">
+<tt class="descname">checksum</tt><a class="headerlink" href="#ipv4.ipv4:checksum" title="Permalink to this definition">¶</a></dt>
+<dd><p>IPv4 fields as numbers.</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="ipv4.ipv4:src">
+<tt class="descname">src</tt><a class="headerlink" href="#ipv4.ipv4:src" title="Permalink to this definition">¶</a></dt>
+<dt id="ipv4.ipv4:dst">
+<tt class="descname">dst</tt><a class="headerlink" href="#ipv4.ipv4:dst" title="Permalink to this definition">¶</a></dt>
+<dd><p>Source and destination as <a class="reference internal" href="#ipv4.addr" title="ipv4.addr"><tt class="xref lua lua-class docutils literal"><span class="pre">ipv4.addr</span></tt></a>.</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="ipv4.ipv4:flags">
+<tt class="descname">flags</tt><a class="headerlink" href="#ipv4.ipv4:flags" title="Permalink to this definition">¶</a></dt>
+<dd><p>IPv4 flags table.</p>
+<dl class="data">
+<dt id="ipv4.ipv4:rb">
+<tt class="descname">rb</tt><a class="headerlink" href="#ipv4.ipv4:rb" title="Permalink to this definition">¶</a></dt>
+<dt id="ipv4.ipv4:df">
+<tt class="descname">df</tt><a class="headerlink" href="#ipv4.ipv4:df" title="Permalink to this definition">¶</a></dt>
+<dt id="ipv4.ipv4:mf">
+<tt class="descname">mf</tt><a class="headerlink" href="#ipv4.ipv4:mf" title="Permalink to this definition">¶</a></dt>
+<dd><p>Individual flags as boolean.</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="ipv4.ipv4:all">
+<tt class="descname">all</tt><a class="headerlink" href="#ipv4.ipv4:all" title="Permalink to this definition">¶</a></dt>
+<dd><p>Flags value as number.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="data">
+<dt id="ipv4.ipv4:payload">
+<tt class="descname">payload</tt><a class="headerlink" href="#ipv4.ipv4:payload" title="Permalink to this definition">¶</a></dt>
+<dd><p>Payload of the packet. Class that contains the ipv4 data payload. The data can be
+accessed using the standard Lua operators <cite>#</cite> to get the length and <cite>[]</cite> to access
+the bytes.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="ipv4.ipv4:verify_checksum">
+<tt class="descname">verify_checksum</tt><big>(</big><big>)</big><a class="headerlink" href="#ipv4.ipv4:verify_checksum" title="Permalink to this definition">¶</a></dt>
+<dd><p>Verify if the checksum is correct.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="ipv4.ipv4:compute_checksum">
+<tt class="descname">compute_checksum</tt><big>(</big><big>)</big><a class="headerlink" href="#ipv4.ipv4:compute_checksum" title="Permalink to this definition">¶</a></dt>
+<dd><p>Recompute the checksum and set the resulting value in the packet.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="ipv4.ipv4:drop">
+<tt class="descname">drop</tt><big>(</big><big>)</big><a class="headerlink" href="#ipv4.ipv4:drop" title="Permalink to this definition">¶</a></dt>
+<dd><p>Drop the IPv4 packet.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="example">
+<h2>6.4. Example<a class="headerlink" href="#example" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-lua"><div class="highlight"><pre><span class="c1">------------------------------------</span>
+<span class="c1">-- IP attacks</span>
+<span class="c1">------------------------------------</span>
+
+<span class="n">haka</span><span class="p">.</span><span class="n">rule</span><span class="p">{</span>
+    <span class="n">hooks</span> <span class="o">=</span> <span class="p">{</span> <span class="s1">&#39;</span><span class="s">ipv4-up&#39;</span> <span class="p">},</span>
+    <span class="n">eval</span> <span class="o">=</span> <span class="k">function</span> <span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">pkt</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">pkt</span><span class="p">.</span><span class="n">src</span> <span class="o">==</span> <span class="n">pkt</span><span class="p">.</span><span class="n">dst</span> <span class="ow">and</span> <span class="n">pkt</span><span class="p">.</span><span class="n">src</span> <span class="o">~=</span> <span class="n">ipv4</span><span class="p">.</span><span class="n">addr</span><span class="p">(</span><span class="s2">&quot;</span><span class="s">127.0.0.1&quot;</span><span class="p">)</span> <span class="k">then</span>
+            <span class="n">haka</span><span class="p">.</span><span class="n">alert</span><span class="p">{</span>
+                <span class="n">description</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="s">Land attack detected&quot;</span><span class="p">,</span>
+                <span class="n">severity</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="s">high&#39;</span><span class="p">,</span>
+                <span class="n">confidence</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="s">medium&#39;</span><span class="p">,</span>
+                <span class="n">sources</span> <span class="o">=</span> <span class="p">{</span> <span class="n">haka</span><span class="p">.</span><span class="n">alert</span><span class="p">.</span><span class="n">address</span><span class="p">(</span><span class="n">pkt</span><span class="p">.</span><span class="n">src</span><span class="p">)</span> <span class="p">},</span>
+            <span class="p">}</span>
+            <span class="n">pkt</span><span class="p">:</span><span class="n">drop</span><span class="p">()</span>
+        <span class="k">end</span>
+    <span class="k">end</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+    </div>
+  </div>
+
+<div id="footer">
+  &copy; Copyright 2013, Arkoon Network Security, OpenWide and Telecom ParisTech.
+</div>
+
+  </body>
+</html>

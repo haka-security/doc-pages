@@ -1,0 +1,401 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>7. TCP &mdash; Haka runtime 0.1.20131226-1215 documentation</title>
+    
+    <link rel="stylesheet" href="../../../../_static/haka.css" type="text/css" />
+    <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../../',
+        VERSION:     '0.1.20131226-1215',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../../../_static/scripts.js"></script>
+    <link rel="top" title="Haka runtime 0.1.20131226-1215 documentation" href="../../../../index.html" />
+    <link rel="up" title="Welcome to Haka’s Reference Guide!" href="../../../../doc/ref/refindex.html" />
+    <link rel="next" title="8. HTTP" href="../../../protocol/http/doc/lua.html" />
+    <link rel="prev" title="6. IPv4" href="../../../protocol/ipv4/doc/lua.html" /> 
+  </head>
+  <body>
+<header id="header" role="banner">
+  <div class="home-link">
+    <div id="version" class="description">0.1.20131226-1215</div>
+    <h1 class="title"><a rel="home" title="Haka" href="http://www.haka-security.org">Haka</a></h1>
+    <h2 class="description">An open source security language</h2>
+  </div>
+</header>
+
+  <div id="navbar" class="navbar">
+    <nav id="site-navigation" class="navigation main-navigation" role="navigation">
+      <ul class="nav-menu">
+        <li class=" ">
+          <a href="../../../../doc/user/userindex.html">Users</a>
+        </li>
+        <li class=" current">
+          <a href="../../../../doc/ref/refindex.html" class="../../../../doc/ref/refindex.html">References</a>
+        </li>
+        <li class=" ">
+          <a href="../../../../doc/developer/devindex.html" class="">Developers</a>
+        </li>
+        <li>
+
+
+	<div id="searchbox" style="display: none">
+		<form class="search" action="../../../../search.html" method="get">
+			<input type="hidden" name="area" value="default" />
+			<input type="hidden" name="check_keywords" value="yes" />
+			<input type="text" name="q" placeholder="Search" />
+		</form>
+	</div>
+	<script type="text/javascript">$('#searchbox').show(0);</script>
+</li>
+          <li class="right"><a href="../../../../doc/ref/refindex.html" title="Welcome to Haka&#8217;s Reference Guide!">Top</a></li>
+          <li class="right"><a href="../../../protocol/ipv4/doc/lua.html" title="6. IPv4">Prev</a></li>
+          <li class="right"><a href="../../../protocol/http/doc/lua.html" title="8. HTTP">Next</a></li>
+         <li class=" right"><a href="../../../../genindex.html">Index</a></li>
+         <li class=" right"><a href="../../../../lua-modindex.html">Modules</a></li>
+      </ul>
+    </nav>
+  </div>
+  <div id="content" class="body">
+    <div id="contentwrapper">
+      
+  <div class="section" id="module-tcp">
+<span id="tcp"></span><h1>7. TCP<a class="headerlink" href="#module-tcp" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="types">
+<h2>7.1. Types<a class="headerlink" href="#types" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="tcp.tcp_connection">
+<em class="property">class </em><tt class="descclassname">tcp.</tt><tt class="descname">tcp_connection</tt><a class="headerlink" href="#tcp.tcp_connection" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="data">
+<dt id="tcp.tcp_connection:srcip">
+<tt class="descname">srcip</tt><a class="headerlink" href="#tcp.tcp_connection:srcip" title="Permalink to this definition">¶</a></dt>
+<dt id="tcp.tcp_connection:dstip">
+<tt class="descname">dstip</tt><a class="headerlink" href="#tcp.tcp_connection:dstip" title="Permalink to this definition">¶</a></dt>
+<dd><p>Source and destination IP addresses.</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="tcp.tcp_connection:srcport">
+<tt class="descname">srcport</tt><a class="headerlink" href="#tcp.tcp_connection:srcport" title="Permalink to this definition">¶</a></dt>
+<dt id="tcp.tcp_connection:dstport">
+<tt class="descname">dstport</tt><a class="headerlink" href="#tcp.tcp_connection:dstport" title="Permalink to this definition">¶</a></dt>
+<dd><p>Source and destination ports.</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="tcp.tcp_connection:data">
+<tt class="descname">data</tt><a class="headerlink" href="#tcp.tcp_connection:data" title="Permalink to this definition">¶</a></dt>
+<dd><p>A user field that can be used to store some data associated
+with the connection.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="tcp.tcp_stream">
+<em class="property">class </em><tt class="descclassname">tcp.</tt><tt class="descname">tcp_stream</tt><a class="headerlink" href="#tcp.tcp_stream" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="method">
+<dt id="tcp.tcp_stream:init">
+<tt class="descname">init</tt><big>(</big><em>seq</em><big>)</big><a class="headerlink" href="#tcp.tcp_stream:init" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initialize the initial sequence number of the stream.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="tcp.tcp_stream:push">
+<tt class="descname">push</tt><big>(</big><em>tcp</em><big>)</big><a class="headerlink" href="#tcp.tcp_stream:push" title="Permalink to this definition">¶</a></dt>
+<dd><p>Push a tcp packet into the stream.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="tcp.tcp_stream:pop">
+<tt class="descname">pop</tt><big>(</big><big>)</big><a class="headerlink" href="#tcp.tcp_stream:pop" title="Permalink to this definition">¶</a></dt>
+<dd><p>Pop a tcp packet out of the stream.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="tcp.tcp_stream:seq">
+<tt class="descname">seq</tt><big>(</big><em>tcp</em><big>)</big><a class="headerlink" href="#tcp.tcp_stream:seq" title="Permalink to this definition">¶</a></dt>
+<dd><p>Update the sequence number of a tcp packet.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="tcp.tcp_stream:ack">
+<tt class="descname">ack</tt><big>(</big><em>tcp</em><big>)</big><a class="headerlink" href="#tcp.tcp_stream:ack" title="Permalink to this definition">¶</a></dt>
+<dd><p>Update the ack number of a packet.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="dissectors">
+<h2>7.2. Dissectors<a class="headerlink" href="#dissectors" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id1">
+<h3>7.2.1. TCP<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<dl class="function">
+<dt id="tcp.create">
+<tt class="descclassname">tcp.</tt><tt class="descname">create</tt><big>(</big><em>ip</em><big>)</big><a class="headerlink" href="#tcp.create" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a new TCP packet on top of the given IP packet.</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="tcp.tcp">
+<em class="property">class </em><tt class="descclassname">tcp.</tt><tt class="descname">tcp</tt><a class="headerlink" href="#tcp.tcp" title="Permalink to this definition">¶</a></dt>
+<dd><p>Dissector data for a TCP packet. This dissector is state-less. It will only parse the
+packet headers.</p>
+<div class="admonition-see-also admonition seealso">
+<p class="first admonition-title">See also</p>
+<p class="last"><a class="reference internal" href="../../../../doc/ref/dissector.html#haka.dissector_data" title="haka.dissector_data"><tt class="xref lua lua-class docutils literal"><span class="pre">haka.dissector_data</span></tt></a>.</p>
+</div>
+<dl class="data">
+<dt id="tcp.tcp:srcport">
+<tt class="descname">srcport</tt><a class="headerlink" href="#tcp.tcp:srcport" title="Permalink to this definition">¶</a></dt>
+<dt id="tcp.tcp:dstport">
+<tt class="descname">dstport</tt><a class="headerlink" href="#tcp.tcp:dstport" title="Permalink to this definition">¶</a></dt>
+<dt id="tcp.tcp:seq">
+<tt class="descname">seq</tt><a class="headerlink" href="#tcp.tcp:seq" title="Permalink to this definition">¶</a></dt>
+<dt id="tcp.tcp:ack_seq">
+<tt class="descname">ack_seq</tt><a class="headerlink" href="#tcp.tcp:ack_seq" title="Permalink to this definition">¶</a></dt>
+<dt id="tcp.tcp:res">
+<tt class="descname">res</tt><a class="headerlink" href="#tcp.tcp:res" title="Permalink to this definition">¶</a></dt>
+<dt id="tcp.tcp:hdr_len">
+<tt class="descname">hdr_len</tt><a class="headerlink" href="#tcp.tcp:hdr_len" title="Permalink to this definition">¶</a></dt>
+<dt id="tcp.tcp:window_size">
+<tt class="descname">window_size</tt><a class="headerlink" href="#tcp.tcp:window_size" title="Permalink to this definition">¶</a></dt>
+<dt id="tcp.tcp:checksum">
+<tt class="descname">checksum</tt><a class="headerlink" href="#tcp.tcp:checksum" title="Permalink to this definition">¶</a></dt>
+<dt id="tcp.tcp:urgent_pointer">
+<tt class="descname">urgent_pointer</tt><a class="headerlink" href="#tcp.tcp:urgent_pointer" title="Permalink to this definition">¶</a></dt>
+<dd><p>TCP fields as numbers.</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="tcp.tcp:ip">
+<tt class="descname">ip</tt><a class="headerlink" href="#tcp.tcp:ip" title="Permalink to this definition">¶</a></dt>
+<dd><p>IPv4 packet.</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="tcp.tcp:flags">
+<tt class="descname">flags</tt><a class="headerlink" href="#tcp.tcp:flags" title="Permalink to this definition">¶</a></dt>
+<dd><p>TCP flags table.</p>
+<dl class="data">
+<dt id="tcp.tcp:fin">
+<tt class="descname">fin</tt><a class="headerlink" href="#tcp.tcp:fin" title="Permalink to this definition">¶</a></dt>
+<dt id="tcp.tcp:syn">
+<tt class="descname">syn</tt><a class="headerlink" href="#tcp.tcp:syn" title="Permalink to this definition">¶</a></dt>
+<dt id="tcp.tcp:rst">
+<tt class="descname">rst</tt><a class="headerlink" href="#tcp.tcp:rst" title="Permalink to this definition">¶</a></dt>
+<dt id="tcp.tcp:psh">
+<tt class="descname">psh</tt><a class="headerlink" href="#tcp.tcp:psh" title="Permalink to this definition">¶</a></dt>
+<dt id="tcp.tcp:ack">
+<tt class="descname">ack</tt><a class="headerlink" href="#tcp.tcp:ack" title="Permalink to this definition">¶</a></dt>
+<dt id="tcp.tcp:urg">
+<tt class="descname">urg</tt><a class="headerlink" href="#tcp.tcp:urg" title="Permalink to this definition">¶</a></dt>
+<dt id="tcp.tcp:ecn">
+<tt class="descname">ecn</tt><a class="headerlink" href="#tcp.tcp:ecn" title="Permalink to this definition">¶</a></dt>
+<dt id="tcp.tcp:cwr">
+<tt class="descname">cwr</tt><a class="headerlink" href="#tcp.tcp:cwr" title="Permalink to this definition">¶</a></dt>
+<dd><p>Individual flags as boolean.</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="tcp.tcp:all">
+<tt class="descname">all</tt><a class="headerlink" href="#tcp.tcp:all" title="Permalink to this definition">¶</a></dt>
+<dd><p>Flags value as number.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="data">
+<dt id="tcp.tcp:payload">
+<tt class="descname">payload</tt><a class="headerlink" href="#tcp.tcp:payload" title="Permalink to this definition">¶</a></dt>
+<dd><p>Payload of the packet. Class that contains the TCP data payload. The data can be
+accessed using the standard Lua operators <cite>#</cite> to get the length and <cite>[]</cite> to access
+the bytes.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="tcp.tcp:verify_checksum">
+<tt class="descname">verify_checksum</tt><big>(</big><big>)</big><a class="headerlink" href="#tcp.tcp:verify_checksum" title="Permalink to this definition">¶</a></dt>
+<dd><p>Verify if the checksum is correct.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="tcp.tcp:compute_checksum">
+<tt class="descname">compute_checksum</tt><big>(</big><big>)</big><a class="headerlink" href="#tcp.tcp:compute_checksum" title="Permalink to this definition">¶</a></dt>
+<dd><p>Recompute the checksum and set the resulting value in the packet.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="tcp.tcp:newconnection">
+<tt class="descname">newconnection</tt><big>(</big><big>)</big><a class="headerlink" href="#tcp.tcp:newconnection" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a new TCP connection from this packet.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="tcp.tcp:getconnection">
+<tt class="descname">getconnection</tt><big>(</big><big>)</big><a class="headerlink" href="#tcp.tcp:getconnection" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets the connection if any associated with this packet.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"><ul class="simple">
+<li>The TCP connection as <a class="reference internal" href="#tcp.tcp_connection" title="tcp.tcp_connection"><tt class="xref lua lua-class docutils literal"><span class="pre">tcp.tcp_connection</span></tt></a>.</li>
+<li>A boolean containing the direction of this packet in the connection.</li>
+<li>A boolean indicating if the packet is part of a dropped connection.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="tcp.tcp:drop">
+<tt class="descname">drop</tt><big>(</big><big>)</big><a class="headerlink" href="#tcp.tcp:drop" title="Permalink to this definition">¶</a></dt>
+<dd><p>Drop the TCP packet.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-tcp-connection">
+<span id="tcp-connection"></span><h3>7.2.2. TCP connection<a class="headerlink" href="#module-tcp-connection" title="Permalink to this headline">¶</a></h3>
+<dl class="class">
+<dt id="tcp-connection.connection">
+<em class="property">class </em><tt class="descclassname">tcp-connection.</tt><tt class="descname">connection</tt><a class="headerlink" href="#tcp-connection.connection" title="Permalink to this definition">¶</a></dt>
+<dd><p>State-full dissector for TCP which define one additional hook <cite>tcp-connection-new</cite> that
+is called whenever a packet will create a new TCP connection.</p>
+<div class="admonition-see-also admonition seealso">
+<p class="first admonition-title">See also</p>
+<p class="last"><a class="reference internal" href="../../../../doc/ref/dissector.html#haka.dissector_data" title="haka.dissector_data"><tt class="xref lua lua-class docutils literal"><span class="pre">haka.dissector_data</span></tt></a>.</p>
+</div>
+<dl class="data">
+<dt id="tcp-connection.connection:connection">
+<tt class="descname">connection</tt><a class="headerlink" href="#tcp-connection.connection:connection" title="Permalink to this definition">¶</a></dt>
+<dd><p>Contains the current TCP connection.</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="tcp-connection.connection:stream">
+<tt class="descname">stream</tt><a class="headerlink" href="#tcp-connection.connection:stream" title="Permalink to this definition">¶</a></dt>
+<dd><p>Contains the stream associated with the connection.</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="tcp-connection.connection:direction">
+<tt class="descname">direction</tt><a class="headerlink" href="#tcp-connection.connection:direction" title="Permalink to this definition">¶</a></dt>
+<dd><p>Contains the direction of the current packet.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="tcp-connection.connection:drop">
+<tt class="descname">drop</tt><big>(</big><big>)</big><a class="headerlink" href="#tcp-connection.connection:drop" title="Permalink to this definition">¶</a></dt>
+<dd><p>Drop the TCP connection. All future packets that belong to this connection will be
+silently dropped.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="tcp-connection.connection:reset">
+<tt class="descname">reset</tt><big>(</big><big>)</big><a class="headerlink" href="#tcp-connection.connection:reset" title="Permalink to this definition">¶</a></dt>
+<dd><p>Reset the TCP connection. A RST packet will be sent to both end and all future packet
+that belong to this connection will be silently dropped.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+<div class="section" id="example">
+<h2>7.3. Example<a class="headerlink" href="#example" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-lua"><div class="highlight"><pre><span class="c1">------------------------------------</span>
+<span class="c1">-- Firewall rules</span>
+<span class="c1">------------------------------------</span>
+
+<span class="kd">local</span> <span class="n">client_network</span> <span class="o">=</span> <span class="n">ipv4</span><span class="p">.</span><span class="n">network</span><span class="p">(</span><span class="s2">&quot;</span><span class="s">192.168.10.0/25&quot;</span><span class="p">);</span>
+<span class="kd">local</span> <span class="n">server_network</span> <span class="o">=</span> <span class="n">ipv4</span><span class="p">.</span><span class="n">network</span><span class="p">(</span><span class="s2">&quot;</span><span class="s">192.168.20.0/25&quot;</span><span class="p">);</span>
+
+<span class="kd">local</span> <span class="n">group</span> <span class="o">=</span> <span class="n">haka</span><span class="p">.</span><span class="n">rule_group</span><span class="p">{</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="s">group&quot;</span><span class="p">,</span>
+    <span class="n">init</span> <span class="o">=</span> <span class="k">function</span> <span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">pkt</span><span class="p">)</span>
+        <span class="n">haka</span><span class="p">.</span><span class="n">log</span><span class="p">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;</span><span class="s">filter&quot;</span><span class="p">,</span> <span class="s2">&quot;</span><span class="s">entering packet filtering rules : %d --&gt; %d&quot;</span><span class="p">,</span>
+            <span class="n">pkt</span><span class="p">.</span><span class="n">tcp</span><span class="p">.</span><span class="n">srcport</span><span class="p">,</span> <span class="n">pkt</span><span class="p">.</span><span class="n">tcp</span><span class="p">.</span><span class="n">dstport</span><span class="p">)</span>
+    <span class="k">end</span><span class="p">,</span>
+    <span class="n">fini</span> <span class="o">=</span> <span class="k">function</span> <span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">pkt</span><span class="p">)</span>
+        <span class="n">haka</span><span class="p">.</span><span class="n">alert</span><span class="p">{</span>
+            <span class="n">description</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="s">Packet dropped : drop by default&quot;</span><span class="p">,</span>
+            <span class="n">sources</span> <span class="o">=</span> <span class="n">haka</span><span class="p">.</span><span class="n">alert</span><span class="p">.</span><span class="n">address</span><span class="p">(</span><span class="n">pkt</span><span class="p">.</span><span class="n">tcp</span><span class="p">.</span><span class="n">ip</span><span class="p">.</span><span class="n">src</span><span class="p">,</span> <span class="n">pkt</span><span class="p">.</span><span class="n">tcp</span><span class="p">.</span><span class="n">srcport</span><span class="p">),</span>
+            <span class="n">targets</span> <span class="o">=</span> <span class="n">haka</span><span class="p">.</span><span class="n">alert</span><span class="p">.</span><span class="n">address</span><span class="p">(</span><span class="n">pkt</span><span class="p">.</span><span class="n">tcp</span><span class="p">.</span><span class="n">ip</span><span class="p">.</span><span class="n">dst</span><span class="p">,</span> <span class="n">pkt</span><span class="p">.</span><span class="n">tcp</span><span class="p">.</span><span class="n">dstport</span><span class="p">)</span>
+        <span class="p">}</span>
+        <span class="n">pkt</span><span class="p">:</span><span class="n">drop</span><span class="p">()</span>
+    <span class="k">end</span><span class="p">,</span>
+    <span class="n">continue</span> <span class="o">=</span> <span class="k">function</span> <span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">pkt</span><span class="p">,</span> <span class="n">ret</span><span class="p">)</span>
+        <span class="k">return</span> <span class="ow">not</span> <span class="n">ret</span>
+    <span class="k">end</span>
+<span class="p">}</span>
+
+
+<span class="n">group</span><span class="p">:</span><span class="n">rule</span><span class="p">{</span>
+    <span class="n">hooks</span> <span class="o">=</span> <span class="p">{</span> <span class="s1">&#39;</span><span class="s">tcp-connection-new&#39;</span> <span class="p">},</span>
+    <span class="n">eval</span> <span class="o">=</span> <span class="k">function</span> <span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">pkt</span><span class="p">)</span>
+
+        <span class="kd">local</span> <span class="n">tcp</span> <span class="o">=</span> <span class="n">pkt</span><span class="p">.</span><span class="n">tcp</span>
+
+        <span class="k">if</span> <span class="n">client_network</span><span class="p">:</span><span class="n">contains</span><span class="p">(</span><span class="n">tcp</span><span class="p">.</span><span class="n">ip</span><span class="p">.</span><span class="n">src</span><span class="p">)</span> <span class="ow">and</span>
+            <span class="n">server_network</span><span class="p">:</span><span class="n">contains</span><span class="p">(</span><span class="n">tcp</span><span class="p">.</span><span class="n">ip</span><span class="p">.</span><span class="n">dst</span><span class="p">)</span> <span class="ow">and</span>
+            <span class="n">tcp</span><span class="p">.</span><span class="n">dstport</span> <span class="o">==</span> <span class="mi">80</span> <span class="k">then</span>
+            <span class="n">haka</span><span class="p">.</span><span class="n">log</span><span class="p">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;</span><span class="s">filter&quot;</span><span class="p">,</span> <span class="s2">&quot;</span><span class="s">authorizing http traffic&quot;</span><span class="p">)</span>
+            <span class="n">pkt</span><span class="p">.</span><span class="n">next_dissector</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="s">http&quot;</span>
+            <span class="k">return</span> <span class="kc">true</span>
+        <span class="k">end</span>
+    <span class="k">end</span>
+<span class="p">}</span>
+
+<span class="n">group</span><span class="p">:</span><span class="n">rule</span><span class="p">{</span>
+    <span class="n">hooks</span> <span class="o">=</span> <span class="p">{</span> <span class="s1">&#39;</span><span class="s">tcp-connection-new&#39;</span> <span class="p">},</span>
+    <span class="n">eval</span> <span class="o">=</span> <span class="k">function</span> <span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">pkt</span><span class="p">)</span>
+
+        <span class="kd">local</span> <span class="n">tcp</span> <span class="o">=</span> <span class="n">pkt</span><span class="p">.</span><span class="n">tcp</span>
+
+        <span class="k">if</span> <span class="n">client_network</span><span class="p">:</span><span class="n">contains</span><span class="p">(</span><span class="n">tcp</span><span class="p">.</span><span class="n">ip</span><span class="p">.</span><span class="n">src</span><span class="p">)</span> <span class="ow">and</span>
+            <span class="n">server_network</span><span class="p">:</span><span class="n">contains</span><span class="p">(</span><span class="n">tcp</span><span class="p">.</span><span class="n">ip</span><span class="p">.</span><span class="n">dst</span><span class="p">)</span> <span class="ow">and</span>
+            <span class="n">tcp</span><span class="p">.</span><span class="n">dstport</span> <span class="o">==</span> <span class="mi">22</span> <span class="k">then</span>
+            <span class="n">haka</span><span class="p">.</span><span class="n">log</span><span class="p">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;</span><span class="s">filter&quot;</span><span class="p">,</span> <span class="s2">&quot;</span><span class="s">authorizing ssh traffic&quot;</span><span class="p">)</span>
+            <span class="n">haka</span><span class="p">.</span><span class="n">log</span><span class="p">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;</span><span class="s">filter&quot;</span><span class="p">,</span> <span class="s2">&quot;</span><span class="s">no available dissector for ssh&quot;</span><span class="p">)</span>
+            <span class="k">return</span> <span class="kc">true</span>
+        <span class="k">end</span>
+    <span class="k">end</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+    </div>
+  </div>
+
+<div id="footer">
+  &copy; Copyright 2013, Arkoon Network Security, OpenWide and Telecom ParisTech.
+</div>
+
+  </body>
+</html>
