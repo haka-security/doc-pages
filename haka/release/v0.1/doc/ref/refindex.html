@@ -9,7 +9,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Welcome to Haka’s Reference Guide! &mdash; Haka runtime 0.1.20131226-1215 documentation</title>
+    <title>Welcome to Haka’s Reference Guide! &mdash; Haka runtime 0.1.0 documentation</title>
     
     <link rel="stylesheet" href="../../_static/haka.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
@@ -17,7 +17,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../../',
-        VERSION:     '0.1.20131226-1215',
+        VERSION:     '0.1.0',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -27,16 +27,16 @@
     <script type="text/javascript" src="../../_static/underscore.js"></script>
     <script type="text/javascript" src="../../_static/doctools.js"></script>
     <script type="text/javascript" src="../../_static/scripts.js"></script>
-    <link rel="top" title="Haka runtime 0.1.20131226-1215 documentation" href="../../index.html" />
-    <link rel="next" title="1. Defining rules" href="../ref/rule.html" />
+    <link rel="top" title="Haka runtime 0.1.0 documentation" href="../../index.html" />
+    <link rel="next" title="1. Defining rules" href="rule.html" />
     <link rel="prev" title="6. Debugging" href="../user/debug.html" /> 
   </head>
   <body>
 <header id="header" role="banner">
   <div class="home-link">
-    <div id="version" class="description">0.1.20131226-1215</div>
+    <div id="version" class="description">Version 0.1.0</div>
     <h1 class="title"><a rel="home" title="Haka" href="http://www.haka-security.org">Haka</a></h1>
-    <h2 class="description">An open source security language</h2>
+    <h2 class="description">Software Defined Security</h2>
   </div>
 </header>
 
@@ -47,7 +47,7 @@
           <a href="../user/userindex.html">Users</a>
         </li>
         <li class="current ">
-          <a href="refindex.html" class="refindex.html">References</a>
+          <a href="#" class="#">References</a>
         </li>
         <li class=" ">
           <a href="../developer/devindex.html" class="">Developers</a>
@@ -64,9 +64,9 @@
 	</div>
 	<script type="text/javascript">$('#searchbox').show(0);</script>
 </li>
-          <li class="right"><a href="../../index.html" title="Haka runtime 0.1.20131226-1215 documentation">Top</a></li>
+          <li class="right"><a href="../../index.html" title="Haka runtime 0.1.0 documentation">Up</a></li>
           <li class="right"><a href="../user/debug.html" title="6. Debugging">Prev</a></li>
-          <li class="right"><a href="../ref/rule.html" title="1. Defining rules">Next</a></li>
+          <li class="right"><a href="rule.html" title="1. Defining rules">Next</a></li>
          <li class=" right"><a href="../../genindex.html">Index</a></li>
          <li class=" right"><a href="../../lua-modindex.html">Modules</a></li>
       </ul>
@@ -79,41 +79,42 @@
 <h1>Welcome to Haka&#8217;s Reference Guide!<a class="headerlink" href="#welcome-to-haka-s-reference-guide" title="Permalink to this headline">¶</a></h1>
 <div class="toctree-wrapper compound">
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../ref/rule.html">1. Defining rules</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../ref/rule.html#single-rule">1.1. Single rule</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../ref/rule.html#rule-group">1.2. Rule group</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rule.html">1. Defining rules</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="rule.html#single-rule">1.1. Single rule</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rule.html#rule-group">1.2. Rule group</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../ref/dissector.html">2. Dissector</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../ref/log_alert.html">3. Logging &amp; Alerting</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../ref/log_alert.html#module-haka.log">3.1. Log</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../ref/log_alert.html#module-haka.alert">3.2. Alert</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dissector.html">2. Dissector</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dissector.html#hooks">3. Hooks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="log_alert.html">4. Logging &amp; Alerting</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="log_alert.html#module-haka.log">4.1. Log</a></li>
+<li class="toctree-l2"><a class="reference internal" href="log_alert.html#module-haka.alert">4.2. Alert</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../ref/misc.html">4. Misc</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../ref/misc.html#module-haka">4.1. Threads</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../ref/misc.html#exit">4.2. Exit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="misc.html">5. Misc</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="misc.html#module-haka">5.1. Threads</a></li>
+<li class="toctree-l2"><a class="reference internal" href="misc.html#exit">5.2. Exit</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../ref/packet.html">5. Packet</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../modules/protocol/ipv4/doc/lua.html">6. IPv4</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../modules/protocol/ipv4/doc/lua.html#types">6.1. Types</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../modules/protocol/ipv4/doc/lua.html#functions">6.2. Functions</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../modules/protocol/ipv4/doc/lua.html#dissector">6.3. Dissector</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../modules/protocol/ipv4/doc/lua.html#example">6.4. Example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="packet.html">6. Packet</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../modules/protocol/ipv4/doc/lua.html">7. IPv4</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../modules/protocol/ipv4/doc/lua.html#types">7.1. Types</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../modules/protocol/ipv4/doc/lua.html#functions">7.2. Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../modules/protocol/ipv4/doc/lua.html#dissector">7.3. Dissector</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../modules/protocol/ipv4/doc/lua.html#example">7.4. Example</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../../modules/protocol/tcp/doc/lua.html">7. TCP</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../modules/protocol/tcp/doc/lua.html#types">7.1. Types</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../modules/protocol/tcp/doc/lua.html#dissectors">7.2. Dissectors</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../modules/protocol/tcp/doc/lua.html#example">7.3. Example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../modules/protocol/tcp/doc/lua.html">8. TCP</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../modules/protocol/tcp/doc/lua.html#types">8.1. Types</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../modules/protocol/tcp/doc/lua.html#dissectors">8.2. Dissectors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../modules/protocol/tcp/doc/lua.html#example">8.3. Example</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../../modules/protocol/http/doc/lua.html">8. HTTP</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../modules/protocol/http/doc/lua.html#types">8.1. Types</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../modules/protocol/http/doc/lua.html#functions">8.2. Functions</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../modules/protocol/http/doc/lua.html#module-http">8.3. Dissector</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../modules/protocol/http/doc/lua.html#example">8.4. Example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../modules/protocol/http/doc/lua.html">9. HTTP</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../modules/protocol/http/doc/lua.html#types">9.1. Types</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../modules/protocol/http/doc/lua.html#functions">9.2. Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../modules/protocol/http/doc/lua.html#module-http">9.3. Dissector</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../modules/protocol/http/doc/lua.html#example">9.4. Example</a></li>
 </ul>
 </li>
 </ul>
@@ -125,7 +126,7 @@
   </div>
 
 <div id="footer">
-  &copy; Copyright 2013, Arkoon Network Security, OpenWide and Telecom ParisTech.
+  &copy; Copyright 2014, Arkoon Network Security, OpenWide and Telecom ParisTech.
 </div>
 
   </body>

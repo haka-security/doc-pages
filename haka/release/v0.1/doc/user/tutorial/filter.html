@@ -9,7 +9,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>5.2. Filter &mdash; Haka runtime 0.1.20131226-1215 documentation</title>
+    <title>5.2. Filter &mdash; Haka runtime 0.1.0 documentation</title>
     
     <link rel="stylesheet" href="../../../_static/haka.css" type="text/css" />
     <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
@@ -17,7 +17,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../../../',
-        VERSION:     '0.1.20131226-1215',
+        VERSION:     '0.1.0',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -27,17 +27,17 @@
     <script type="text/javascript" src="../../../_static/underscore.js"></script>
     <script type="text/javascript" src="../../../_static/doctools.js"></script>
     <script type="text/javascript" src="../../../_static/scripts.js"></script>
-    <link rel="top" title="Haka runtime 0.1.20131226-1215 documentation" href="../../../index.html" />
-    <link rel="up" title="5. Writing Haka scripts" href="../../user/tutorial.html" />
-    <link rel="next" title="5.3. Statistics" href="../tutorial/stats.html" />
-    <link rel="prev" title="5.1. Hellopacket" href="../tutorial/hellopacket.html" /> 
+    <link rel="top" title="Haka runtime 0.1.0 documentation" href="../../../index.html" />
+    <link rel="up" title="5. Writing Haka scripts" href="../tutorial.html" />
+    <link rel="next" title="5.3. Statistics" href="stats.html" />
+    <link rel="prev" title="5.1. Hellopacket" href="hellopacket.html" /> 
   </head>
   <body>
 <header id="header" role="banner">
   <div class="home-link">
-    <div id="version" class="description">0.1.20131226-1215</div>
+    <div id="version" class="description">Version 0.1.0</div>
     <h1 class="title"><a rel="home" title="Haka" href="http://www.haka-security.org">Haka</a></h1>
-    <h2 class="description">An open source security language</h2>
+    <h2 class="description">Software Defined Security</h2>
   </div>
 </header>
 
@@ -45,7 +45,7 @@
     <nav id="site-navigation" class="navigation main-navigation" role="navigation">
       <ul class="nav-menu">
         <li class=" current">
-          <a href="../../user/userindex.html">Users</a>
+          <a href="../userindex.html">Users</a>
         </li>
         <li class=" ">
           <a href="../../ref/refindex.html" class="../../ref/refindex.html">References</a>
@@ -65,9 +65,9 @@
 	</div>
 	<script type="text/javascript">$('#searchbox').show(0);</script>
 </li>
-          <li class="right"><a href="../../user/tutorial.html" title="5. Writing Haka scripts">Top</a></li>
-          <li class="right"><a href="../tutorial/hellopacket.html" title="5.1. Hellopacket">Prev</a></li>
-          <li class="right"><a href="../tutorial/stats.html" title="5.3. Statistics">Next</a></li>
+          <li class="right"><a href="../tutorial.html" title="5. Writing Haka scripts">Up</a></li>
+          <li class="right"><a href="hellopacket.html" title="5.1. Hellopacket">Prev</a></li>
+          <li class="right"><a href="stats.html" title="5.3. Statistics">Next</a></li>
          <li class=" right"><a href="../../../genindex.html">Index</a></li>
          <li class=" right"><a href="../../../lua-modindex.html">Modules</a></li>
       </ul>
@@ -87,7 +87,7 @@
 <h2>5.2.2. Basic TCP/IP filtering<a class="headerlink" href="#basic-tcp-ip-filtering" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="basic-ip-filtering">
 <h3>Basic IP filtering<a class="headerlink" href="#basic-ip-filtering" title="Permalink to this headline">¶</a></h3>
-<p>The direcctory &lt;haka_install_path&gt;/share/haka/sample/filter/ contains all the example files for this section.</p>
+<p>The directory &lt;haka_install_path&gt;/share/haka/sample/filter/ contains all the example files for this section.</p>
 <p>A basic filter script on IP fields is provided as <tt class="docutils literal"><span class="pre">ipfilter.lua</span></tt>:</p>
 <div class="highlight-lua"><div class="highlight"><pre><span class="c1">------------------------------------</span>
 <span class="c1">-- Loading dissectors</span>
@@ -126,7 +126,7 @@
 <span class="gp">$</span> hakapcap ipfilter.pcap ipfilter.lua
 </pre></div>
 </div>
-<p>To create a pcap file containing all packets that were not dropped, run the following command</p>
+<p>To create a pcap file containing all packets that were not dropped, run the following command:</p>
 <div class="highlight-console"><div class="highlight"><pre><span class="gp">$</span> <span class="nb">cd</span> &lt;haka_install_path&gt;/share/haka/sample/filter/
 <span class="gp">$</span> hakapcap trace.pcap ipfilter.lua -o output.pcap
 </pre></div>
@@ -136,7 +136,7 @@ according to their IP source address.</p>
 </div>
 <div class="section" id="interactive-rule-debugging">
 <h3>Interactive rule debugging<a class="headerlink" href="#interactive-rule-debugging" title="Permalink to this headline">¶</a></h3>
-<p>Haka allows to interactively debug lua rules. A script containing a lua error is provided as <tt class="docutils literal"><span class="pre">tcpfilter.lua</span></tt></p>
+<p>Haka allows to interactively debug lua rules. A script containing a lua error is provided as <tt class="docutils literal"><span class="pre">tcpfilter.lua</span></tt>.</p>
 <p>This script will filter TCP packets, only allowing packets to/from port 80 to pass through.</p>
 <div class="highlight-lua"><div class="highlight"><pre><span class="c1">------------------------------------</span>
 <span class="c1">-- Loading dissectors</span>
@@ -173,7 +173,7 @@ according to their IP source address.</p>
 <p>When this script is run, haka will output a high number of errors, complaining that the field <tt class="docutils literal"><span class="pre">destport</span></tt> doesn&#8217;t exist. We will use haka&#8217;s debug facilities to find out precisely where the error occurs.</p>
 <div class="admonition-see-also admonition seealso">
 <p class="first admonition-title">See also</p>
-<p class="last"><a class="reference internal" href="../../user/debug.html"><em>Debugging</em></a> contains documentation on haka&#8217;s debugging facilities.</p>
+<p class="last"><a class="reference internal" href="../debug.html"><em>Debugging</em></a> contains documentation on haka&#8217;s debugging facilities.</p>
 </div>
 <p>To start haka in debugging mode, add <tt class="docutils literal"><span class="pre">--luadebug</span></tt> at the end of the command line:</p>
 <div class="highlight-console"><div class="highlight"><pre><span class="gp">$</span> <span class="nb">cd</span> &lt;haka_install_path&gt;/share/haka/sample/filter/
@@ -182,8 +182,6 @@ according to their IP source address.</p>
 </div>
 <p>When a lua error code occurs, the debugger breaks and outputs the error and a backtrace.</p>
 <pre class="ansi-block literal-block">
-<span class="ansi-green">debug</span><span class="ansi-bold">&gt;  </span>continue
-...
 <span class="ansi-green">entering debugger</span>: unknown field 'destport'
 Backtrace
 <span class="ansi-red"></span><span class="ansi-bold">=&gt;</span>0    <span class="ansi-cyan">[C]</span>: in function '<span class="ansi-magenta">(null)</span>'
@@ -243,12 +241,13 @@ Backtrace
 <div class="section" id="using-rule-groups">
 <h3>Using rule groups<a class="headerlink" href="#using-rule-groups" title="Permalink to this headline">¶</a></h3>
 <p>Haka can handle multiple rules as a group.</p>
-<p>Rule groups have three functions</p>
-<p>The <cite>init</cite> function is called before any rule from the group is applied</p>
-<p>The <cite>continue</cite> function is called between each rule of the group and can decide to stop
-processing the group at any point</p>
-<p>the <cite>fini</cite> function is called after all rules have been run. It is not called if <cite>continue</cite> has forced a cancelation mid-group.</p>
-<p>The following example uses the concept of group to implement a simple filter that only accepts connections on port 80 or port 22</p>
+<p>Rule groups have three functions:</p>
+<ul class="simple">
+<li>The <cite>init</cite> function is called before any rule from the group is applied</li>
+<li>The <cite>continue</cite> function is called between each rule of the group and can decide to stop processing the group at any point.</li>
+<li>The <cite>fini</cite> function is called after all rules have been run. It is not called if <cite>continue</cite> has forced a cancelation mid-group.</li>
+</ul>
+<p>The following example uses the concept of group to implement a simple filter that only accepts connections on port 80 or port 22.</p>
 <div class="highlight-lua"><div class="highlight"><pre><span class="c1">------------------------------------</span>
 <span class="c1">-- Loading dissectors</span>
 <span class="c1">------------------------------------</span>
@@ -330,8 +329,8 @@ processing the group at any point</p>
 examples will illustrate how to do that.</p>
 <p>When configured to use nfqueue, haka will hook itself up to the <cite>raw</cite> nfqueue table in order to
 inspect, modify, create and delete packets in real time.</p>
-<p>The rest of this tutorial assumes that the haka package is installed on a host and that that
-host has a network interface named eth0</p>
+<p>The rest of this tutorial assumes that the haka package is installed on a host which has a
+network interface named eth0.</p>
 <p>The configuration file for the daemon is given below:</p>
 <div class="highlight-ini"><div class="highlight"><pre><span class="k">[general]</span>
 <span class="c"># Select the haka configuration file to use</span>
@@ -376,7 +375,7 @@ host has a network interface named eth0</p>
 </div>
 <div class="section" id="http-filtering">
 <h3>HTTP filtering<a class="headerlink" href="#http-filtering" title="Permalink to this headline">¶</a></h3>
-<p>Haka comes with an HTTP parser. Using that module it is easy to filter packets using specific fields from HTTP headers</p>
+<p>Haka comes with an HTTP parser. Using that module it is easy to filter packets using specific fields from HTTP headers.</p>
 <div class="highlight-lua"><div class="highlight"><pre><span class="c1">------------------------------------</span>
 <span class="c1">-- Loading dissectors</span>
 <span class="c1">------------------------------------</span>
@@ -545,7 +544,7 @@ configuration file:</p>
 <span class="na">configuration</span> <span class="o">=</span> <span class="s">&quot;httpmodif.lua&quot;</span>
 </pre></div>
 </div>
-<p>And start it</p>
+<p>And start it.</p>
 <div class="highlight-console"><div class="highlight"><pre><span class="gp">#</span> <span class="nb">cd</span> &lt;haka_install_path&gt;/share/haka/sample/filter/
 <span class="gp">#</span> haka -c dameon.conf --no-daemon
 </pre></div>
@@ -559,7 +558,7 @@ configuration file:</p>
   </div>
 
 <div id="footer">
-  &copy; Copyright 2013, Arkoon Network Security, OpenWide and Telecom ParisTech.
+  &copy; Copyright 2014, Arkoon Network Security, OpenWide and Telecom ParisTech.
 </div>
 
   </body>

@@ -9,7 +9,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>1. Defining rules &mdash; Haka runtime 0.1.20131226-1215 documentation</title>
+    <title>1. Defining rules &mdash; Haka runtime 0.1.0 documentation</title>
     
     <link rel="stylesheet" href="../../_static/haka.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
@@ -17,7 +17,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../../',
-        VERSION:     '0.1.20131226-1215',
+        VERSION:     '0.1.0',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -27,17 +27,17 @@
     <script type="text/javascript" src="../../_static/underscore.js"></script>
     <script type="text/javascript" src="../../_static/doctools.js"></script>
     <script type="text/javascript" src="../../_static/scripts.js"></script>
-    <link rel="top" title="Haka runtime 0.1.20131226-1215 documentation" href="../../index.html" />
-    <link rel="up" title="Welcome to Haka’s Reference Guide!" href="../ref/refindex.html" />
-    <link rel="next" title="2. Dissector" href="../ref/dissector.html" />
-    <link rel="prev" title="Welcome to Haka’s Reference Guide!" href="../ref/refindex.html" /> 
+    <link rel="top" title="Haka runtime 0.1.0 documentation" href="../../index.html" />
+    <link rel="up" title="Welcome to Haka’s Reference Guide!" href="refindex.html" />
+    <link rel="next" title="2. Dissector" href="dissector.html" />
+    <link rel="prev" title="Welcome to Haka’s Reference Guide!" href="refindex.html" /> 
   </head>
   <body>
 <header id="header" role="banner">
   <div class="home-link">
-    <div id="version" class="description">0.1.20131226-1215</div>
+    <div id="version" class="description">Version 0.1.0</div>
     <h1 class="title"><a rel="home" title="Haka" href="http://www.haka-security.org">Haka</a></h1>
-    <h2 class="description">An open source security language</h2>
+    <h2 class="description">Software Defined Security</h2>
   </div>
 </header>
 
@@ -48,7 +48,7 @@
           <a href="../user/userindex.html">Users</a>
         </li>
         <li class=" current">
-          <a href="../ref/refindex.html" class="../ref/refindex.html">References</a>
+          <a href="refindex.html" class="refindex.html">References</a>
         </li>
         <li class=" ">
           <a href="../developer/devindex.html" class="">Developers</a>
@@ -65,9 +65,9 @@
 	</div>
 	<script type="text/javascript">$('#searchbox').show(0);</script>
 </li>
-          <li class="right"><a href="../ref/refindex.html" title="Welcome to Haka&#8217;s Reference Guide!">Top</a></li>
-          <li class="right"><a href="../ref/refindex.html" title="Welcome to Haka&#8217;s Reference Guide!">Prev</a></li>
-          <li class="right"><a href="../ref/dissector.html" title="2. Dissector">Next</a></li>
+          <li class="right"><a href="refindex.html" title="Welcome to Haka&#8217;s Reference Guide!">Up</a></li>
+          <li class="right"><a href="refindex.html" title="Welcome to Haka&#8217;s Reference Guide!">Prev</a></li>
+          <li class="right"><a href="dissector.html" title="2. Dissector">Next</a></li>
          <li class=" right"><a href="../../genindex.html">Index</a></li>
          <li class=" right"><a href="../../lua-modindex.html">Modules</a></li>
       </ul>
@@ -81,7 +81,7 @@
 <p>This section introduces how to define security rules.</p>
 <div class="section" id="single-rule">
 <h2>1.1. Single rule<a class="headerlink" href="#single-rule" title="Permalink to this headline">¶</a></h2>
-<p>As detailed herefater, a rule is made of a list of hooks
+<p>As detailed hereafter, a rule is made of a list of hooks
 and an evaluation function:</p>
 <dl class="class">
 <dt id="haka.rule">
@@ -101,7 +101,7 @@ and an evaluation function:</p>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>d</strong> (<a class="reference internal" href="../ref/dissector.html#haka.dissector_data" title="haka.dissector_data"><tt class="xref lua lua-class docutils literal"><span class="pre">dissector_data</span></tt></a>) &#8211; The dissector data.</li>
+<li><strong>d</strong> (<a class="reference internal" href="dissector.html#haka.dissector_data" title="haka.dissector_data"><tt class="xref lua lua-class docutils literal"><span class="pre">dissector_data</span></tt></a>) &#8211; The dissector data.</li>
 </ul>
 </td>
 </tr>
@@ -152,7 +152,7 @@ and an evaluation function:</p>
 </div>
 <div class="section" id="rule-group">
 <h2>1.2. Rule group<a class="headerlink" href="#rule-group" title="Permalink to this headline">¶</a></h2>
-<p>Rule group allow to customize the rule evaluation.</p>
+<p>Rule group allows customizing the rule evaluation.</p>
 <dl class="class">
 <dt id="haka.rule_group">
 <em class="property">class </em><tt class="descclassname">haka.</tt><tt class="descname">rule_group</tt><a class="headerlink" href="#haka.rule_group" title="Permalink to this definition">¶</a></dt>
@@ -166,7 +166,7 @@ and an evaluation function:</p>
 <dt id="haka.rule_group:init">
 <tt class="descname">init</tt><big>(</big><em>self</em>, <em>d</em><big>)</big><a class="headerlink" href="#haka.rule_group:init" title="Permalink to this definition">¶</a></dt>
 <dd><p>This function is called whenever a group start to be evaluated. <cite>d</cite> is the
-dissector data for the current hook (<a class="reference internal" href="../ref/dissector.html#haka.dissector_data" title="haka.dissector_data"><tt class="xref lua lua-class docutils literal"><span class="pre">dissector_data</span></tt></a>).</p>
+dissector data for the current hook (<a class="reference internal" href="dissector.html#haka.dissector_data" title="haka.dissector_data"><tt class="xref lua lua-class docutils literal"><span class="pre">dissector_data</span></tt></a>).</p>
 </dd></dl>
 
 <dl class="method">
@@ -174,7 +174,7 @@ dissector data for the current hook (<a class="reference internal" href="../ref/
 <tt class="descname">fini</tt><big>(</big><em>self</em>, <em>d</em><big>)</big><a class="headerlink" href="#haka.rule_group:fini" title="Permalink to this definition">¶</a></dt>
 <dd><p>If all the rules of the group have been evaluated, this callback is
 called at the end. <cite>d</cite> is the dissector data for the current hook
-(<a class="reference internal" href="../ref/dissector.html#haka.dissector_data" title="haka.dissector_data"><tt class="xref lua lua-class docutils literal"><span class="pre">dissector_data</span></tt></a>).</p>
+(<a class="reference internal" href="dissector.html#haka.dissector_data" title="haka.dissector_data"><tt class="xref lua lua-class docutils literal"><span class="pre">dissector_data</span></tt></a>).</p>
 </dd></dl>
 
 <dl class="method">
@@ -188,7 +188,7 @@ of the other rules should continue. If not, the other rules will be skipped.</p>
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
 <li><strong>ret</strong> &#8211; Value returned by the evaluated rule.</li>
-<li><strong>d</strong> (<a class="reference internal" href="../ref/dissector.html#haka.dissector_data" title="haka.dissector_data"><tt class="xref lua lua-class docutils literal"><span class="pre">dissector_data</span></tt></a>) &#8211; Data that where given to the evaluated rule.</li>
+<li><strong>d</strong> (<a class="reference internal" href="dissector.html#haka.dissector_data" title="haka.dissector_data"><tt class="xref lua lua-class docutils literal"><span class="pre">dissector_data</span></tt></a>) &#8211; Data that where given to the evaluated rule.</li>
 </ul>
 </td>
 </tr>
@@ -294,7 +294,7 @@ rule group. It can contains <cite>name</cite>, <cite>init</cite>, <cite>fini</ci
   </div>
 
 <div id="footer">
-  &copy; Copyright 2013, Arkoon Network Security, OpenWide and Telecom ParisTech.
+  &copy; Copyright 2014, Arkoon Network Security, OpenWide and Telecom ParisTech.
 </div>
 
   </body>

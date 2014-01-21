@@ -9,7 +9,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>3. Getting started &mdash; Haka runtime 0.1.20131226-1215 documentation</title>
+    <title>3. Getting started &mdash; Haka runtime 0.1.0 documentation</title>
     
     <link rel="stylesheet" href="../../_static/haka.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
@@ -17,7 +17,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../../',
-        VERSION:     '0.1.20131226-1215',
+        VERSION:     '0.1.0',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -27,17 +27,17 @@
     <script type="text/javascript" src="../../_static/underscore.js"></script>
     <script type="text/javascript" src="../../_static/doctools.js"></script>
     <script type="text/javascript" src="../../_static/scripts.js"></script>
-    <link rel="top" title="Haka runtime 0.1.20131226-1215 documentation" href="../../index.html" />
-    <link rel="up" title="Welcome to Haka’s User Guide!" href="../user/userindex.html" />
-    <link rel="next" title="4. Haka tool suite" href="../user/tool_suite.html" />
-    <link rel="prev" title="2. Installation" href="../user/install.html" /> 
+    <link rel="top" title="Haka runtime 0.1.0 documentation" href="../../index.html" />
+    <link rel="up" title="Welcome to Haka’s User Guide!" href="userindex.html" />
+    <link rel="next" title="4. Haka tool suite" href="tool_suite.html" />
+    <link rel="prev" title="2. Installation" href="install.html" /> 
   </head>
   <body>
 <header id="header" role="banner">
   <div class="home-link">
-    <div id="version" class="description">0.1.20131226-1215</div>
+    <div id="version" class="description">Version 0.1.0</div>
     <h1 class="title"><a rel="home" title="Haka" href="http://www.haka-security.org">Haka</a></h1>
-    <h2 class="description">An open source security language</h2>
+    <h2 class="description">Software Defined Security</h2>
   </div>
 </header>
 
@@ -45,7 +45,7 @@
     <nav id="site-navigation" class="navigation main-navigation" role="navigation">
       <ul class="nav-menu">
         <li class=" current">
-          <a href="../user/userindex.html">Users</a>
+          <a href="userindex.html">Users</a>
         </li>
         <li class=" ">
           <a href="../ref/refindex.html" class="../ref/refindex.html">References</a>
@@ -65,9 +65,9 @@
 	</div>
 	<script type="text/javascript">$('#searchbox').show(0);</script>
 </li>
-          <li class="right"><a href="../user/userindex.html" title="Welcome to Haka&#8217;s User Guide!">Top</a></li>
-          <li class="right"><a href="../user/install.html" title="2. Installation">Prev</a></li>
-          <li class="right"><a href="../user/tool_suite.html" title="4. Haka tool suite">Next</a></li>
+          <li class="right"><a href="userindex.html" title="Welcome to Haka&#8217;s User Guide!">Up</a></li>
+          <li class="right"><a href="install.html" title="2. Installation">Prev</a></li>
+          <li class="right"><a href="tool_suite.html" title="4. Haka tool suite">Next</a></li>
          <li class=" right"><a href="../../genindex.html">Index</a></li>
          <li class=" right"><a href="../../lua-modindex.html">Modules</a></li>
       </ul>
@@ -160,11 +160,12 @@ various website, but a good starting point is the official Lua page at <a class=
 <span class="p">}</span>
 </pre></div>
 </div>
+<p>This script starts by loading the required protocol dissectors - namely the ipv4 and tcp modules - then specifies two security rules. The first rule is evaluated whenever a new tcp packet is captured (hook on <tt class="docutils literal"><span class="pre">tcp-up</span></tt>). It allows to drop packets with invalid checksums. The second rule is triggered each time a new tcp connection is established (hook on <tt class="docutils literal"><span class="pre">tcp-connection-new</span></tt>). Its only purpose is to add a log entry if the packet is addressed to a specific ip address and port.</p>
 </div>
 <div class="section" id="going-further">
 <h2>3.5. Going further<a class="headerlink" href="#going-further" title="Permalink to this headline">¶</a></h2>
 <p>Other documented examples are available to illustrate all features of Haka. Those samples are installed in
-<tt class="docutils literal"><span class="pre">&lt;haka_install_path&gt;/share/haka/sample</span></tt> and the corresponding documentation can be found at <a class="reference internal" href="../user/tutorial.html"><em>Writing Haka scripts</em></a>.</p>
+<tt class="docutils literal"><span class="pre">&lt;haka_install_path&gt;/share/haka/sample</span></tt> and the corresponding documentation can be found at <a class="reference internal" href="tutorial.html"><em>Writing Haka scripts</em></a>.</p>
 </div>
 </div>
 
@@ -173,7 +174,7 @@ various website, but a good starting point is the official Lua page at <a class=
   </div>
 
 <div id="footer">
-  &copy; Copyright 2013, Arkoon Network Security, OpenWide and Telecom ParisTech.
+  &copy; Copyright 2014, Arkoon Network Security, OpenWide and Telecom ParisTech.
 </div>
 
   </body>

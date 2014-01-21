@@ -9,7 +9,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>3.6. Modules &mdash; Haka runtime 0.1.20131226-1215 documentation</title>
+    <title>3.6. Modules &mdash; Haka runtime 0.1.0 documentation</title>
     
     <link rel="stylesheet" href="../../../_static/haka.css" type="text/css" />
     <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
@@ -17,7 +17,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../../../',
-        VERSION:     '0.1.20131226-1215',
+        VERSION:     '0.1.0',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -27,17 +27,17 @@
     <script type="text/javascript" src="../../../_static/underscore.js"></script>
     <script type="text/javascript" src="../../../_static/doctools.js"></script>
     <script type="text/javascript" src="../../../_static/scripts.js"></script>
-    <link rel="top" title="Haka runtime 0.1.20131226-1215 documentation" href="../../../index.html" />
-    <link rel="up" title="3. C API" href="../../developer/c.html" />
+    <link rel="top" title="Haka runtime 0.1.0 documentation" href="../../../index.html" />
+    <link rel="up" title="3. C API" href="../c.html" />
     <link rel="next" title="3.7. IPv4" href="../../../modules/protocol/ipv4/doc/c.html" />
-    <link rel="prev" title="3.5. Packet" href="../c/packet.html" /> 
+    <link rel="prev" title="3.5. Packet" href="packet.html" /> 
   </head>
   <body>
 <header id="header" role="banner">
   <div class="home-link">
-    <div id="version" class="description">0.1.20131226-1215</div>
+    <div id="version" class="description">Version 0.1.0</div>
     <h1 class="title"><a rel="home" title="Haka" href="http://www.haka-security.org">Haka</a></h1>
-    <h2 class="description">An open source security language</h2>
+    <h2 class="description">Software Defined Security</h2>
   </div>
 </header>
 
@@ -51,7 +51,7 @@
           <a href="../../ref/refindex.html" class="../../ref/refindex.html">References</a>
         </li>
         <li class=" current">
-          <a href="../../developer/devindex.html" class="">Developers</a>
+          <a href="../devindex.html" class="">Developers</a>
         </li>
         <li>
 
@@ -65,8 +65,8 @@
 	</div>
 	<script type="text/javascript">$('#searchbox').show(0);</script>
 </li>
-          <li class="right"><a href="../../developer/c.html" title="3. C API">Top</a></li>
-          <li class="right"><a href="../c/packet.html" title="3.5. Packet">Prev</a></li>
+          <li class="right"><a href="../c.html" title="3. C API">Up</a></li>
+          <li class="right"><a href="packet.html" title="3.5. Packet">Prev</a></li>
           <li class="right"><a href="../../../modules/protocol/ipv4/doc/c.html" title="3.7. IPv4">Next</a></li>
          <li class=" right"><a href="../../../genindex.html">Index</a></li>
          <li class=" right"><a href="../../../lua-modindex.html">Modules</a></li>
@@ -101,17 +101,17 @@ struct <tt class="descname">module</tt><a class="headerlink" href="#module" titl
 
 <dl class="var">
 <dt id="name">
-const <a class="reference internal" href="../c/utils.html#wchar_t" title="wchar_t">wchar_t</a> *<tt class="descname">name</tt><a class="headerlink" href="#name" title="Permalink to this definition">¶</a></dt>
+const <a class="reference internal" href="utils.html#wchar_t" title="wchar_t">wchar_t</a> *<tt class="descname">name</tt><a class="headerlink" href="#name" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="var">
 <dt id="description">
-const <a class="reference internal" href="../c/utils.html#wchar_t" title="wchar_t">wchar_t</a> *<tt class="descname">description</tt><a class="headerlink" href="#description" title="Permalink to this definition">¶</a></dt>
+const <a class="reference internal" href="utils.html#wchar_t" title="wchar_t">wchar_t</a> *<tt class="descname">description</tt><a class="headerlink" href="#description" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="var">
 <dt id="author">
-const <a class="reference internal" href="../c/utils.html#wchar_t" title="wchar_t">wchar_t</a> *<tt class="descname">author</tt><a class="headerlink" href="#author" title="Permalink to this definition">¶</a></dt>
+const <a class="reference internal" href="utils.html#wchar_t" title="wchar_t">wchar_t</a> *<tt class="descname">author</tt><a class="headerlink" href="#author" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="function">
@@ -151,7 +151,7 @@ struct <a class="reference internal" href="#module" title="module">module</a> <t
 
 <dl class="function">
 <dt id="multi_threaded">
-<a class="reference internal" href="../c/utils.html#bool" title="bool">bool</a> <tt class="descname">(*multi_threaded)</tt><big>(</big><big>)</big><a class="headerlink" href="#multi_threaded" title="Permalink to this definition">¶</a></dt>
+<a class="reference internal" href="utils.html#bool" title="bool">bool</a> <tt class="descname">(*multi_threaded)</tt><big>(</big><big>)</big><a class="headerlink" href="#multi_threaded" title="Permalink to this definition">¶</a></dt>
 <dd><p>Does this module supports multi-threading.</p>
 </dd></dl>
 
@@ -185,7 +185,7 @@ a packet is received.</p>
 
 <dl class="function">
 <dt id="verdict">
-void <tt class="descname">(*verdict)</tt><big>(</big>struct packet<em>&nbsp;*pkt</em>, <a class="reference internal" href="../c/packet.html#filter_result" title="filter_result">filter_result</a><em>&nbsp;result</em><big>)</big><a class="headerlink" href="#verdict" title="Permalink to this definition">¶</a></dt>
+void <tt class="descname">(*verdict)</tt><big>(</big>struct packet<em>&nbsp;*pkt</em>, <a class="reference internal" href="packet.html#filter_result" title="filter_result">filter_result</a><em>&nbsp;result</em><big>)</big><a class="headerlink" href="#verdict" title="Permalink to this definition">¶</a></dt>
 <dd><p>Apply a verdict on a received packet. The module should then apply this
 verdict on the underlying packet.</p>
 <table class="docutils field-list" frame="void" rules="none">
@@ -211,7 +211,7 @@ size_t <tt class="descname">(*get_length)</tt><big>(</big>struct packet<em>&nbsp
 
 <dl class="function">
 <dt id="make_modifiable">
-<a class="reference internal" href="../c/utils.html#uint8" title="uint8">uint8</a> *<tt class="descname">(*make_modifiable)</tt><big>(</big>struct packet<em>&nbsp;*pkt</em><big>)</big><a class="headerlink" href="#make_modifiable" title="Permalink to this definition">¶</a></dt>
+<a class="reference internal" href="utils.html#uint8" title="uint8">uint8</a> *<tt class="descname">(*make_modifiable)</tt><big>(</big>struct packet<em>&nbsp;*pkt</em><big>)</big><a class="headerlink" href="#make_modifiable" title="Permalink to this definition">¶</a></dt>
 <dd><p>Make the packet modifiable.</p>
 </dd></dl>
 
@@ -223,13 +223,13 @@ int <tt class="descname">(*resize)</tt><big>(</big>struct packet<em>&nbsp;*pkt</
 
 <dl class="function">
 <dt id="get_id">
-<a class="reference internal" href="../c/utils.html#uint64" title="uint64">uint64</a> <tt class="descname">(*get_id)</tt><big>(</big>struct packet<em>&nbsp;*pkt</em><big>)</big><a class="headerlink" href="#get_id" title="Permalink to this definition">¶</a></dt>
+<a class="reference internal" href="utils.html#uint64" title="uint64">uint64</a> <tt class="descname">(*get_id)</tt><big>(</big>struct packet<em>&nbsp;*pkt</em><big>)</big><a class="headerlink" href="#get_id" title="Permalink to this definition">¶</a></dt>
 <dd><p>Get the id fo the packet.</p>
 </dd></dl>
 
 <dl class="function">
 <dt id="get_data">
-const <a class="reference internal" href="../c/utils.html#uint8" title="uint8">uint8</a> *<tt class="descname">(*get_data)</tt><big>(</big>struct packet<em>&nbsp;*pkt</em><big>)</big><a class="headerlink" href="#get_data" title="Permalink to this definition">¶</a></dt>
+const <a class="reference internal" href="utils.html#uint8" title="uint8">uint8</a> *<tt class="descname">(*get_data)</tt><big>(</big>struct packet<em>&nbsp;*pkt</em><big>)</big><a class="headerlink" href="#get_data" title="Permalink to this definition">¶</a></dt>
 <dd><p>Get the data of a packet.</p>
 </dd></dl>
 
@@ -292,7 +292,7 @@ const char *<tt class="descname">module_get_path</tt><big>(</big><big>)</big><a 
   </div>
 
 <div id="footer">
-  &copy; Copyright 2013, Arkoon Network Security, OpenWide and Telecom ParisTech.
+  &copy; Copyright 2014, Arkoon Network Security, OpenWide and Telecom ParisTech.
 </div>
 
   </body>

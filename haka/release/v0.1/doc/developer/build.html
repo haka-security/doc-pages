@@ -9,7 +9,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>1. Build &mdash; Haka runtime 0.1.20131226-1215 documentation</title>
+    <title>1. Build &mdash; Haka runtime 0.1.0 documentation</title>
     
     <link rel="stylesheet" href="../../_static/haka.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
@@ -17,7 +17,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../../',
-        VERSION:     '0.1.20131226-1215',
+        VERSION:     '0.1.0',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -27,17 +27,17 @@
     <script type="text/javascript" src="../../_static/underscore.js"></script>
     <script type="text/javascript" src="../../_static/doctools.js"></script>
     <script type="text/javascript" src="../../_static/scripts.js"></script>
-    <link rel="top" title="Haka runtime 0.1.20131226-1215 documentation" href="../../index.html" />
-    <link rel="up" title="Welcome to Haka’s Developer Guide!" href="../developer/devindex.html" />
-    <link rel="next" title="2. Haka architecture" href="../developer/rulearch.html" />
-    <link rel="prev" title="Welcome to Haka’s Developer Guide!" href="../developer/devindex.html" /> 
+    <link rel="top" title="Haka runtime 0.1.0 documentation" href="../../index.html" />
+    <link rel="up" title="Welcome to Haka’s Developer Guide!" href="devindex.html" />
+    <link rel="next" title="2. Haka architecture" href="rulearch.html" />
+    <link rel="prev" title="Welcome to Haka’s Developer Guide!" href="devindex.html" /> 
   </head>
   <body>
 <header id="header" role="banner">
   <div class="home-link">
-    <div id="version" class="description">0.1.20131226-1215</div>
+    <div id="version" class="description">Version 0.1.0</div>
     <h1 class="title"><a rel="home" title="Haka" href="http://www.haka-security.org">Haka</a></h1>
-    <h2 class="description">An open source security language</h2>
+    <h2 class="description">Software Defined Security</h2>
   </div>
 </header>
 
@@ -51,7 +51,7 @@
           <a href="../ref/refindex.html" class="../ref/refindex.html">References</a>
         </li>
         <li class=" current">
-          <a href="../developer/devindex.html" class="">Developers</a>
+          <a href="devindex.html" class="">Developers</a>
         </li>
         <li>
 
@@ -65,9 +65,9 @@
 	</div>
 	<script type="text/javascript">$('#searchbox').show(0);</script>
 </li>
-          <li class="right"><a href="../developer/devindex.html" title="Welcome to Haka&#8217;s Developer Guide!">Top</a></li>
-          <li class="right"><a href="../developer/devindex.html" title="Welcome to Haka&#8217;s Developer Guide!">Prev</a></li>
-          <li class="right"><a href="../developer/rulearch.html" title="2. Haka architecture">Next</a></li>
+          <li class="right"><a href="devindex.html" title="Welcome to Haka&#8217;s Developer Guide!">Up</a></li>
+          <li class="right"><a href="devindex.html" title="Welcome to Haka&#8217;s Developer Guide!">Prev</a></li>
+          <li class="right"><a href="rulearch.html" title="2. Haka architecture">Next</a></li>
          <li class=" right"><a href="../../genindex.html">Index</a></li>
          <li class=" right"><a href="../../lua-modindex.html">Modules</a></li>
       </ul>
@@ -78,55 +78,85 @@
       
   <div class="section" id="build">
 <h1>1. Build<a class="headerlink" href="#build" title="Permalink to this headline">¶</a></h1>
-<div class="admonition note">
-<p class="first admonition-title">Note</p>
-<p class="last">The build instructions are for Debian. It will need to be adapted to
-other platform.</p>
-</div>
 <div class="section" id="dependencies">
 <h2>1.1. Dependencies<a class="headerlink" href="#dependencies" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="required">
 <h3>1.1.1. Required<a class="headerlink" href="#required" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li>Toolchain (GCC, Make, ...)</li>
-<li>cmake</li>
+<li>cmake (&gt;= 2.8)</li>
 <li>swig</li>
-<li>python-sphinx</li>
-<li>liblua5.1</li>
+<li>sphinx (&gt;= 2)</li>
 <li>tshark</li>
 <li>check</li>
 <li>rsync</li>
-<li>libpcap-dev</li>
+<li>libpcap</li>
 <li>gawk</li>
-<li>libedit-dev</li>
+<li>libedit</li>
 </ul>
-<p>Debian:</p>
-<div class="highlight-console"><div class="highlight"><pre><span class="gp">$</span> sudo apt-get install build-essential cmake swig python-sphinx liblua5.1 tshark check rsync libpcap-dev gawk libedit-dev
-</pre></div>
-</div>
 </div>
 <div class="section" id="optional">
 <h3>1.1.2. Optional<a class="headerlink" href="#optional" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
+<li>Git</li>
 <li>Cppcheck</li>
 <li>Netfilter Queue</li>
 <li>Valgrind</li>
+<li>rpm-build</li>
 </ul>
-<p>Debian:</p>
-<div class="highlight-console"><div class="highlight"><pre><span class="gp">$</span> sudo apt-get install cppcheck libnetfilter-queue-dev valgrind
+</div>
+<div class="section" id="examples">
+<h3>1.1.3. Examples<a class="headerlink" href="#examples" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="debian-and-compatible">
+<h4>Debian (and compatible)<a class="headerlink" href="#debian-and-compatible" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-console"><div class="highlight"><pre><span class="gp">$</span> sudo apt-get install build-essential cmake swig python-sphinx tshark check
+<span class="gp">$</span> sudo apt-get install rsync libpcap-dev gawk libedit-dev
+<span class="gp">$</span> sudo apt-get install cppcheck libnetfilter-queue-dev valgrind
+</pre></div>
+</div>
+</div>
+<div class="section" id="fedora">
+<h4>Fedora<a class="headerlink" href="#fedora" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-console"><div class="highlight"><pre><span class="gp">$</span> sudo yum install gcc gcc-c++ make cmake python-sphinx wireshark check
+<span class="gp">$</span> sudo yum install check-devel rsync libpcap-devel gawk libedit-devel
+<span class="gp">$</span> sudo yum install git cppcheck libnetfilter_queue-devel rpm-build valgrind valgrind-devel
+</pre></div>
+</div>
+<p>The <em>swig</em> package in Fedora is broken and will not be usable to compile Haka.
+You will need to get a swig build from upstream.</p>
+<div class="highlight-console"><div class="highlight"><pre><span class="gp">$</span> git clone https://github.com/swig/swig.git
+<span class="gp">$</span> <span class="nb">cd </span>swig
+<span class="gp">$</span> git co rel-2.0.11
+<span class="gp">$</span> ./autogen.sh
+<span class="gp">$</span> ./configure
+<span class="gp">$</span> make
+<span class="gp">$</span> sudo make install
 </pre></div>
 </div>
 </div>
 </div>
-<div class="section" id="id1">
-<h2>1.2. Build<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="download">
+<h2>1.2. Download<a class="headerlink" href="#download" title="Permalink to this headline">¶</a></h2>
+<p>You can get the sources of Haka from a tarball or directly by cloning the Git
+repository.</p>
+<div class="section" id="from-sources-tarball">
+<h3>1.2.1. From sources tarball<a class="headerlink" href="#from-sources-tarball" title="Permalink to this headline">¶</a></h3>
+<p>First download the source tarball from the
+<a class="reference external" href="http://www.haka-security.org">Haka website</a>.</p>
+<p>Then type the following commands:</p>
+<div class="highlight-console"><div class="highlight"><pre><span class="gp">$</span> tar -xzf haka.tar.gz
+<span class="gp">$</span> <span class="nb">cd </span>haka
+</pre></div>
+</div>
+</div>
 <div class="section" id="git">
-<h3>1.2.1. Git<a class="headerlink" href="#git" title="Permalink to this headline">¶</a></h3>
+<h3>1.2.2. Git<a class="headerlink" href="#git" title="Permalink to this headline">¶</a></h3>
 <p>You must first clone the Git repository. Our project is hosted on GitHub:</p>
 <div class="highlight-console"><div class="highlight"><pre><span class="gp">$</span> git clone git@github.com:haka-security/haka.git
 </pre></div>
 </div>
-<p>Our development uses the branching model Git flow which describe how to
+<p>Our development uses the branching model Git flow which describes how to
 use and name Git branches. For instance, you will find the following branches:</p>
 <ul class="simple">
 <li><tt class="docutils literal"><span class="pre">master</span></tt> branch contains the last release of Haka. This branch might be empty
@@ -137,17 +167,20 @@ if we do not have an official version.</li>
 <div class="highlight-console"><div class="highlight"><pre><span class="gp">$</span> git checkout develop
 </pre></div>
 </div>
-</div>
 <div class="section" id="submodules">
-<h3>1.2.2. Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h3>
+<h4>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h4>
 <p>The repository uses submodules that need to be initialized and updated:</p>
 <div class="highlight-console"><div class="highlight"><pre><span class="gp">$</span> git submodule init
 <span class="gp">$</span> git submodule update
 </pre></div>
 </div>
 </div>
+</div>
+</div>
+<div class="section" id="id1">
+<h2>1.3. Build<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="configure">
-<h3>1.2.3. Configure<a class="headerlink" href="#configure" title="Permalink to this headline">¶</a></h3>
+<h3>1.3.1. Configure<a class="headerlink" href="#configure" title="Permalink to this headline">¶</a></h3>
 <p>It is mandatory to create a separate directory to store
 all the files generated during the build using cmake.</p>
 <div class="highlight-console"><div class="highlight"><pre><span class="gp">$</span> mkdir make
@@ -180,7 +213,7 @@ The configuration with cmake supports the following options:</p>
 </div>
 </div>
 <div class="section" id="compile">
-<h3>1.2.4. Compile<a class="headerlink" href="#compile" title="Permalink to this headline">¶</a></h3>
+<h3>1.3.2. Compile<a class="headerlink" href="#compile" title="Permalink to this headline">¶</a></h3>
 <p>Use make like usual to compile:</p>
 <div class="highlight-console"><div class="highlight"><pre><span class="gp">$</span> make clean
 <span class="gp">$</span> make
@@ -188,10 +221,17 @@ The configuration with cmake supports the following options:</p>
 </div>
 </div>
 <div class="section" id="install">
-<h3>1.2.5. Install<a class="headerlink" href="#install" title="Permalink to this headline">¶</a></h3>
-<p>To install haka, you have the following options:</p>
-<div class="highlight-console"><div class="highlight"><pre><span class="gp">$</span> make install
-<span class="gp">$</span> make localinstall
+<h3>1.3.3. Install<a class="headerlink" href="#install" title="Permalink to this headline">¶</a></h3>
+<p>To install Haka on your system, type this command:</p>
+<div class="highlight-console"><div class="highlight"><pre><span class="gp">$</span> sudo make install
+</pre></div>
+</div>
+<p>By default, Haka will be installed in <tt class="docutils literal"><span class="pre">/opt/haka</span></tt>. You might want to update your <tt class="docutils literal"><span class="pre">PATH</span></tt>
+environment variable to be able to easily launch the various tools from the command line.</p>
+<div class="section" id="local-install">
+<h4>Local install<a class="headerlink" href="#local-install" title="Permalink to this headline">¶</a></h4>
+<p>To install Haka locally, type this command:</p>
+<div class="highlight-console"><div class="highlight"><pre><span class="gp">$</span> make localinstall
 </pre></div>
 </div>
 <p>Using <tt class="docutils literal"><span class="pre">localinstall</span></tt> allow to install haka locally under the folder <tt class="docutils literal"><span class="pre">out</span></tt>. To use
@@ -201,13 +241,14 @@ file <tt class="docutils literal"><span class="pre">env.sh</span></tt>:</p>
 </pre></div>
 </div>
 </div>
+</div>
 <div class="section" id="documentation">
-<h3>1.2.6. Documentation<a class="headerlink" href="#documentation" title="Permalink to this headline">¶</a></h3>
+<h3>1.3.4. Documentation<a class="headerlink" href="#documentation" title="Permalink to this headline">¶</a></h3>
 <p>Run <tt class="docutils literal"><span class="pre">make</span> <span class="pre">doc</span></tt> to generate documentation in <cite>html</cite>. The documentation is then available
 in <cite>doc</cite> inside your build folder.</p>
 </div>
 <div class="section" id="tests">
-<h3>1.2.7. Tests<a class="headerlink" href="#tests" title="Permalink to this headline">¶</a></h3>
+<h3>1.3.5. Tests<a class="headerlink" href="#tests" title="Permalink to this headline">¶</a></h3>
 <p>Run <tt class="docutils literal"><span class="pre">make</span> <span class="pre">tests</span></tt> to play all tests.</p>
 <p>You can also pass some arguments to ctest by using the variable <tt class="docutils literal"><span class="pre">CTEST_ARGS</span></tt>.</p>
 <div class="highlight-console"><div class="highlight"><pre><span class="gp">$</span> make tests <span class="nv">CTEST_ARGS</span><span class="o">=</span><span class="s2">&quot;-V&quot;</span>
@@ -218,8 +259,14 @@ to run the tests manually using the command ctest, you can prepare the environme
 command <tt class="docutils literal"><span class="pre">make</span> <span class="pre">pre-tests</span></tt>.</p>
 </div>
 <div class="section" id="packaging">
-<h3>1.2.8. Packaging<a class="headerlink" href="#packaging" title="Permalink to this headline">¶</a></h3>
-<p>Run <tt class="docutils literal"><span class="pre">make</span> <span class="pre">package</span></tt> to build a .deb installable package.</p>
+<h3>1.3.6. Packaging<a class="headerlink" href="#packaging" title="Permalink to this headline">¶</a></h3>
+<p>Run <tt class="docutils literal"><span class="pre">make</span> <span class="pre">package</span></tt> to build an installable package.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">If you have some issue with the folder permission in the generated package, check your
+umask property. If you hit this problem, for instance, rpm will complains about conflicting
+directory.</p>
+</div>
 </div>
 </div>
 </div>
@@ -229,7 +276,7 @@ command <tt class="docutils literal"><span class="pre">make</span> <span class="
   </div>
 
 <div id="footer">
-  &copy; Copyright 2013, Arkoon Network Security, OpenWide and Telecom ParisTech.
+  &copy; Copyright 2014, Arkoon Network Security, OpenWide and Telecom ParisTech.
 </div>
 
   </body>

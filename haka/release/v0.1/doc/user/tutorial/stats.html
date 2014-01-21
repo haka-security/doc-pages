@@ -9,7 +9,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>5.3. Statistics &mdash; Haka runtime 0.1.20131226-1215 documentation</title>
+    <title>5.3. Statistics &mdash; Haka runtime 0.1.0 documentation</title>
     
     <link rel="stylesheet" href="../../../_static/haka.css" type="text/css" />
     <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
@@ -17,7 +17,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../../../',
-        VERSION:     '0.1.20131226-1215',
+        VERSION:     '0.1.0',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -27,17 +27,17 @@
     <script type="text/javascript" src="../../../_static/underscore.js"></script>
     <script type="text/javascript" src="../../../_static/doctools.js"></script>
     <script type="text/javascript" src="../../../_static/scripts.js"></script>
-    <link rel="top" title="Haka runtime 0.1.20131226-1215 documentation" href="../../../index.html" />
-    <link rel="up" title="5. Writing Haka scripts" href="../../user/tutorial.html" />
-    <link rel="next" title="5.4. SQLi attack detection" href="../tutorial/sqli.html" />
-    <link rel="prev" title="5.2. Filter" href="../tutorial/filter.html" /> 
+    <link rel="top" title="Haka runtime 0.1.0 documentation" href="../../../index.html" />
+    <link rel="up" title="5. Writing Haka scripts" href="../tutorial.html" />
+    <link rel="next" title="5.4. SQLi attack detection" href="sqli.html" />
+    <link rel="prev" title="5.2. Filter" href="filter.html" /> 
   </head>
   <body>
 <header id="header" role="banner">
   <div class="home-link">
-    <div id="version" class="description">0.1.20131226-1215</div>
+    <div id="version" class="description">Version 0.1.0</div>
     <h1 class="title"><a rel="home" title="Haka" href="http://www.haka-security.org">Haka</a></h1>
-    <h2 class="description">An open source security language</h2>
+    <h2 class="description">Software Defined Security</h2>
   </div>
 </header>
 
@@ -45,7 +45,7 @@
     <nav id="site-navigation" class="navigation main-navigation" role="navigation">
       <ul class="nav-menu">
         <li class=" current">
-          <a href="../../user/userindex.html">Users</a>
+          <a href="../userindex.html">Users</a>
         </li>
         <li class=" ">
           <a href="../../ref/refindex.html" class="../../ref/refindex.html">References</a>
@@ -65,9 +65,9 @@
 	</div>
 	<script type="text/javascript">$('#searchbox').show(0);</script>
 </li>
-          <li class="right"><a href="../../user/tutorial.html" title="5. Writing Haka scripts">Top</a></li>
-          <li class="right"><a href="../tutorial/filter.html" title="5.2. Filter">Prev</a></li>
-          <li class="right"><a href="../tutorial/sqli.html" title="5.4. SQLi attack detection">Next</a></li>
+          <li class="right"><a href="../tutorial.html" title="5. Writing Haka scripts">Up</a></li>
+          <li class="right"><a href="filter.html" title="5.2. Filter">Prev</a></li>
+          <li class="right"><a href="sqli.html" title="5.4. SQLi attack detection">Next</a></li>
          <li class=" right"><a href="../../../genindex.html">Index</a></li>
          <li class=" right"><a href="../../../lua-modindex.html">Modules</a></li>
       </ul>
@@ -80,7 +80,7 @@
 <h1>5.3. Statistics<a class="headerlink" href="#statistics" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="introduction">
 <h2>5.3.1. Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
-<p>This tutorial shows how tu collect trafic and make statisctics on collected data.</p>
+<p>This tutorial shows how tu collect traffic and make statistics on collected data.</p>
 </div>
 <div class="section" id="how-to">
 <h2>5.3.2. How-to<a class="headerlink" href="#how-to" title="Permalink to this headline">¶</a></h2>
@@ -91,7 +91,11 @@
 </div>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
-<p class="last">In this tutorial we use a pre-processed pcap file originated from the DARPA-99 dataset and which could be retrieved from <a class="reference external" href="http://www.ll.mit.edu/mission/communications/cyber/CSTcorpora/ideval/data/1999/training/week1/monday/outside.tcpdump.gz">http://www.ll.mit.edu/mission/communications/cyber/CSTcorpora/ideval/data/1999/training/week1/monday/outside.tcpdump.gz</a>). We filtered out all packets not belonging to a tcp connection.</p>
+<p class="last">In this tutorial we use a pre-processed pcap file originated from the
+DARPA dataset and which could be retrieved from the <a class="reference external" href="http://www.ll.mit.edu/mission/communications/cyber/CSTcorpora/ideval/data/">MIT website</a>.
+We filtered out some packets to get a reasonable size capture that
+you can download from the <a class="reference external" href="http://www.haka-security.org/">Haka website</a>
+in the <em>Resources</em> section.</p>
 </div>
 </div>
 <div class="section" id="collecting-data">
@@ -296,7 +300,7 @@ stats operations on the created table.</p>
   </div>
 
 <div id="footer">
-  &copy; Copyright 2013, Arkoon Network Security, OpenWide and Telecom ParisTech.
+  &copy; Copyright 2014, Arkoon Network Security, OpenWide and Telecom ParisTech.
 </div>
 
   </body>

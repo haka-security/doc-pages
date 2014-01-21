@@ -9,7 +9,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>3.3. Threads &mdash; Haka runtime 0.1.20131226-1215 documentation</title>
+    <title>3.3. Threads &mdash; Haka runtime 0.1.0 documentation</title>
     
     <link rel="stylesheet" href="../../../_static/haka.css" type="text/css" />
     <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
@@ -17,7 +17,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../../../',
-        VERSION:     '0.1.20131226-1215',
+        VERSION:     '0.1.0',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -27,17 +27,17 @@
     <script type="text/javascript" src="../../../_static/underscore.js"></script>
     <script type="text/javascript" src="../../../_static/doctools.js"></script>
     <script type="text/javascript" src="../../../_static/scripts.js"></script>
-    <link rel="top" title="Haka runtime 0.1.20131226-1215 documentation" href="../../../index.html" />
-    <link rel="up" title="3. C API" href="../../developer/c.html" />
-    <link rel="next" title="3.4. Log &amp; Alert" href="../c/log_alert.html" />
-    <link rel="prev" title="3.1. Types" href="../c/utils.html" /> 
+    <link rel="top" title="Haka runtime 0.1.0 documentation" href="../../../index.html" />
+    <link rel="up" title="3. C API" href="../c.html" />
+    <link rel="next" title="3.4. Log &amp; Alert" href="log_alert.html" />
+    <link rel="prev" title="3.1. Types" href="utils.html" /> 
   </head>
   <body>
 <header id="header" role="banner">
   <div class="home-link">
-    <div id="version" class="description">0.1.20131226-1215</div>
+    <div id="version" class="description">Version 0.1.0</div>
     <h1 class="title"><a rel="home" title="Haka" href="http://www.haka-security.org">Haka</a></h1>
-    <h2 class="description">An open source security language</h2>
+    <h2 class="description">Software Defined Security</h2>
   </div>
 </header>
 
@@ -51,7 +51,7 @@
           <a href="../../ref/refindex.html" class="../../ref/refindex.html">References</a>
         </li>
         <li class=" current">
-          <a href="../../developer/devindex.html" class="">Developers</a>
+          <a href="../devindex.html" class="">Developers</a>
         </li>
         <li>
 
@@ -65,9 +65,9 @@
 	</div>
 	<script type="text/javascript">$('#searchbox').show(0);</script>
 </li>
-          <li class="right"><a href="../../developer/c.html" title="3. C API">Top</a></li>
-          <li class="right"><a href="../c/utils.html" title="3.1. Types">Prev</a></li>
-          <li class="right"><a href="../c/log_alert.html" title="3.4. Log &amp; Alert">Next</a></li>
+          <li class="right"><a href="../c.html" title="3. C API">Up</a></li>
+          <li class="right"><a href="utils.html" title="3.1. Types">Prev</a></li>
+          <li class="right"><a href="log_alert.html" title="3.4. Log &amp; Alert">Next</a></li>
          <li class=" right"><a href="../../../genindex.html">Index</a></li>
          <li class=" right"><a href="../../../lua-modindex.html">Modules</a></li>
       </ul>
@@ -107,25 +107,25 @@ int <tt class="descname">thread_get_id</tt><big>(</big><big>)</big><a class="hea
 
 <dl class="function">
 <dt id="atomic_inc">
-<a class="reference internal" href="../c/utils.html#uint32" title="uint32">uint32</a> <tt class="descname">atomic_inc</tt><big>(</big><a class="reference internal" href="#atomic_t" title="atomic_t">atomic_t</a><em>&nbsp;*v</em><big>)</big><a class="headerlink" href="#atomic_inc" title="Permalink to this definition">¶</a></dt>
+<a class="reference internal" href="utils.html#uint32" title="uint32">uint32</a> <tt class="descname">atomic_inc</tt><big>(</big><a class="reference internal" href="#atomic_t" title="atomic_t">atomic_t</a><em>&nbsp;*v</em><big>)</big><a class="headerlink" href="#atomic_inc" title="Permalink to this definition">¶</a></dt>
 <dd><p>Increment a counter <cite>v</cite> and return its new value atomically.</p>
 </dd></dl>
 
 <dl class="function">
 <dt id="atomic_dec">
-<a class="reference internal" href="../c/utils.html#uint32" title="uint32">uint32</a> <tt class="descname">atomic_dec</tt><big>(</big><a class="reference internal" href="#atomic_t" title="atomic_t">atomic_t</a><em>&nbsp;*v</em><big>)</big><a class="headerlink" href="#atomic_dec" title="Permalink to this definition">¶</a></dt>
+<a class="reference internal" href="utils.html#uint32" title="uint32">uint32</a> <tt class="descname">atomic_dec</tt><big>(</big><a class="reference internal" href="#atomic_t" title="atomic_t">atomic_t</a><em>&nbsp;*v</em><big>)</big><a class="headerlink" href="#atomic_dec" title="Permalink to this definition">¶</a></dt>
 <dd><p>Decrement a counter <cite>v</cite> and return its new value atomically.</p>
 </dd></dl>
 
 <dl class="function">
 <dt id="atomic_get">
-<a class="reference internal" href="../c/utils.html#uint32" title="uint32">uint32</a> <tt class="descname">atomic_get</tt><big>(</big><a class="reference internal" href="#atomic_t" title="atomic_t">atomic_t</a><em>&nbsp;*v</em><big>)</big><a class="headerlink" href="#atomic_get" title="Permalink to this definition">¶</a></dt>
+<a class="reference internal" href="utils.html#uint32" title="uint32">uint32</a> <tt class="descname">atomic_get</tt><big>(</big><a class="reference internal" href="#atomic_t" title="atomic_t">atomic_t</a><em>&nbsp;*v</em><big>)</big><a class="headerlink" href="#atomic_get" title="Permalink to this definition">¶</a></dt>
 <dd><p>Get the current value of the atomic counter <cite>v</cite>.</p>
 </dd></dl>
 
 <dl class="function">
 <dt id="atomic_set">
-void <tt class="descname">atomic_set</tt><big>(</big><a class="reference internal" href="#atomic_t" title="atomic_t">atomic_t</a><em>&nbsp;*v</em>, <a class="reference internal" href="../c/utils.html#uint32" title="uint32">uint32</a><em>&nbsp;x</em><big>)</big><a class="headerlink" href="#atomic_set" title="Permalink to this definition">¶</a></dt>
+void <tt class="descname">atomic_set</tt><big>(</big><a class="reference internal" href="#atomic_t" title="atomic_t">atomic_t</a><em>&nbsp;*v</em>, <a class="reference internal" href="utils.html#uint32" title="uint32">uint32</a><em>&nbsp;x</em><big>)</big><a class="headerlink" href="#atomic_set" title="Permalink to this definition">¶</a></dt>
 <dd><p>Set the current value of the atomic counter <cite>v</cite> to <cite>x</cite>.</p>
 </dd></dl>
 
@@ -146,14 +146,14 @@ void <tt class="descname">atomic_set</tt><big>(</big><a class="reference interna
 
 <dl class="function">
 <dt id="mutex_init">
-<a class="reference internal" href="../c/utils.html#bool" title="bool">bool</a> <tt class="descname">mutex_init</tt><big>(</big><a class="reference internal" href="#mutex_t" title="mutex_t">mutex_t</a><em>&nbsp;*mutex</em>, <a class="reference internal" href="../c/utils.html#bool" title="bool">bool</a><em>&nbsp;recursive</em><big>)</big><a class="headerlink" href="#mutex_init" title="Permalink to this definition">¶</a></dt>
+<a class="reference internal" href="utils.html#bool" title="bool">bool</a> <tt class="descname">mutex_init</tt><big>(</big><a class="reference internal" href="#mutex_t" title="mutex_t">mutex_t</a><em>&nbsp;*mutex</em>, <a class="reference internal" href="utils.html#bool" title="bool">bool</a><em>&nbsp;recursive</em><big>)</big><a class="headerlink" href="#mutex_init" title="Permalink to this definition">¶</a></dt>
 <dd><p>Initialize a mutex <cite>mutex</cite>. With <cite>recursive</cite>, the mutex can be created
 recursive (ie. can be re-entered by the same thread).</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">True on success. Use <a class="reference internal" href="../c/utils.html#clear_error" title="clear_error"><tt class="xref c c-func docutils literal"><span class="pre">clear_error()</span></tt></a> to get details about the error.</td>
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">True on success. Use <a class="reference internal" href="utils.html#clear_error" title="clear_error"><tt class="xref c c-func docutils literal"><span class="pre">clear_error()</span></tt></a> to get details about the error.</td>
 </tr>
 </tbody>
 </table>
@@ -161,13 +161,13 @@ recursive (ie. can be re-entered by the same thread).</p>
 
 <dl class="function">
 <dt id="mutex_destroy">
-<a class="reference internal" href="../c/utils.html#bool" title="bool">bool</a> <tt class="descname">mutex_destroy</tt><big>(</big><a class="reference internal" href="#mutex_t" title="mutex_t">mutex_t</a><em>&nbsp;*mutex</em><big>)</big><a class="headerlink" href="#mutex_destroy" title="Permalink to this definition">¶</a></dt>
+<a class="reference internal" href="utils.html#bool" title="bool">bool</a> <tt class="descname">mutex_destroy</tt><big>(</big><a class="reference internal" href="#mutex_t" title="mutex_t">mutex_t</a><em>&nbsp;*mutex</em><big>)</big><a class="headerlink" href="#mutex_destroy" title="Permalink to this definition">¶</a></dt>
 <dd><p>Destroy a mutex.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">True on success. Use <a class="reference internal" href="../c/utils.html#clear_error" title="clear_error"><tt class="xref c c-func docutils literal"><span class="pre">clear_error()</span></tt></a> to get details about the error.</td>
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">True on success. Use <a class="reference internal" href="utils.html#clear_error" title="clear_error"><tt class="xref c c-func docutils literal"><span class="pre">clear_error()</span></tt></a> to get details about the error.</td>
 </tr>
 </tbody>
 </table>
@@ -175,13 +175,13 @@ recursive (ie. can be re-entered by the same thread).</p>
 
 <dl class="function">
 <dt id="mutex_lock">
-<a class="reference internal" href="../c/utils.html#bool" title="bool">bool</a> <tt class="descname">mutex_lock</tt><big>(</big><a class="reference internal" href="#mutex_t" title="mutex_t">mutex_t</a><em>&nbsp;*mutex</em><big>)</big><a class="headerlink" href="#mutex_lock" title="Permalink to this definition">¶</a></dt>
+<a class="reference internal" href="utils.html#bool" title="bool">bool</a> <tt class="descname">mutex_lock</tt><big>(</big><a class="reference internal" href="#mutex_t" title="mutex_t">mutex_t</a><em>&nbsp;*mutex</em><big>)</big><a class="headerlink" href="#mutex_lock" title="Permalink to this definition">¶</a></dt>
 <dd><p>Lock a mutex.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">True on success. Use <a class="reference internal" href="../c/utils.html#clear_error" title="clear_error"><tt class="xref c c-func docutils literal"><span class="pre">clear_error()</span></tt></a> to get details about the error.</td>
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">True on success. Use <a class="reference internal" href="utils.html#clear_error" title="clear_error"><tt class="xref c c-func docutils literal"><span class="pre">clear_error()</span></tt></a> to get details about the error.</td>
 </tr>
 </tbody>
 </table>
@@ -189,14 +189,14 @@ recursive (ie. can be re-entered by the same thread).</p>
 
 <dl class="function">
 <dt id="mutex_trylock">
-<a class="reference internal" href="../c/utils.html#bool" title="bool">bool</a> <tt class="descname">mutex_trylock</tt><big>(</big><a class="reference internal" href="#mutex_t" title="mutex_t">mutex_t</a><em>&nbsp;*mutex</em><big>)</big><a class="headerlink" href="#mutex_trylock" title="Permalink to this definition">¶</a></dt>
+<a class="reference internal" href="utils.html#bool" title="bool">bool</a> <tt class="descname">mutex_trylock</tt><big>(</big><a class="reference internal" href="#mutex_t" title="mutex_t">mutex_t</a><em>&nbsp;*mutex</em><big>)</big><a class="headerlink" href="#mutex_trylock" title="Permalink to this definition">¶</a></dt>
 <dd><p>Try to lock a mutex.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">True if successful, False if the lock could not be taken. Use <a class="reference internal" href="../c/utils.html#check_error" title="check_error"><tt class="xref c c-func docutils literal"><span class="pre">check_error()</span></tt></a>
-and <a class="reference internal" href="../c/utils.html#clear_error" title="clear_error"><tt class="xref c c-func docutils literal"><span class="pre">clear_error()</span></tt></a> to get details about the error.</td>
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">True if successful, False if the lock could not be taken. Use <a class="reference internal" href="utils.html#check_error" title="check_error"><tt class="xref c c-func docutils literal"><span class="pre">check_error()</span></tt></a>
+and <a class="reference internal" href="utils.html#clear_error" title="clear_error"><tt class="xref c c-func docutils literal"><span class="pre">clear_error()</span></tt></a> to get details about the error.</td>
 </tr>
 </tbody>
 </table>
@@ -204,13 +204,13 @@ and <a class="reference internal" href="../c/utils.html#clear_error" title="clea
 
 <dl class="function">
 <dt id="mutex_unlock">
-<a class="reference internal" href="../c/utils.html#bool" title="bool">bool</a> <tt class="descname">mutex_unlock</tt><big>(</big><a class="reference internal" href="#mutex_t" title="mutex_t">mutex_t</a><em>&nbsp;*mutex</em><big>)</big><a class="headerlink" href="#mutex_unlock" title="Permalink to this definition">¶</a></dt>
+<a class="reference internal" href="utils.html#bool" title="bool">bool</a> <tt class="descname">mutex_unlock</tt><big>(</big><a class="reference internal" href="#mutex_t" title="mutex_t">mutex_t</a><em>&nbsp;*mutex</em><big>)</big><a class="headerlink" href="#mutex_unlock" title="Permalink to this definition">¶</a></dt>
 <dd><p>Unlock a mutex.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">True on success. Use <a class="reference internal" href="../c/utils.html#clear_error" title="clear_error"><tt class="xref c c-func docutils literal"><span class="pre">clear_error()</span></tt></a> to get details about the error.</td>
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">True on success. Use <a class="reference internal" href="utils.html#clear_error" title="clear_error"><tt class="xref c c-func docutils literal"><span class="pre">clear_error()</span></tt></a> to get details about the error.</td>
 </tr>
 </tbody>
 </table>
@@ -227,13 +227,13 @@ and <a class="reference internal" href="../c/utils.html#clear_error" title="clea
 
 <dl class="function">
 <dt id="semaphore_init">
-<a class="reference internal" href="../c/utils.html#bool" title="bool">bool</a> <tt class="descname">semaphore_init</tt><big>(</big><a class="reference internal" href="#semaphore_t" title="semaphore_t">semaphore_t</a><em>&nbsp;*semaphore</em>, <a class="reference internal" href="../c/utils.html#uint32" title="uint32">uint32</a><em>&nbsp;initial</em><big>)</big><a class="headerlink" href="#semaphore_init" title="Permalink to this definition">¶</a></dt>
+<a class="reference internal" href="utils.html#bool" title="bool">bool</a> <tt class="descname">semaphore_init</tt><big>(</big><a class="reference internal" href="#semaphore_t" title="semaphore_t">semaphore_t</a><em>&nbsp;*semaphore</em>, <a class="reference internal" href="utils.html#uint32" title="uint32">uint32</a><em>&nbsp;initial</em><big>)</big><a class="headerlink" href="#semaphore_init" title="Permalink to this definition">¶</a></dt>
 <dd><p>Initialize a new semaphore with initial value of <cite>initial</cite>.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">True on success. Use <a class="reference internal" href="../c/utils.html#clear_error" title="clear_error"><tt class="xref c c-func docutils literal"><span class="pre">clear_error()</span></tt></a> to get details about the error.</td>
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">True on success. Use <a class="reference internal" href="utils.html#clear_error" title="clear_error"><tt class="xref c c-func docutils literal"><span class="pre">clear_error()</span></tt></a> to get details about the error.</td>
 </tr>
 </tbody>
 </table>
@@ -241,13 +241,13 @@ and <a class="reference internal" href="../c/utils.html#clear_error" title="clea
 
 <dl class="function">
 <dt id="semaphore_destroy">
-<a class="reference internal" href="../c/utils.html#bool" title="bool">bool</a> <tt class="descname">semaphore_destroy</tt><big>(</big><a class="reference internal" href="#semaphore_t" title="semaphore_t">semaphore_t</a><em>&nbsp;*semaphore</em><big>)</big><a class="headerlink" href="#semaphore_destroy" title="Permalink to this definition">¶</a></dt>
+<a class="reference internal" href="utils.html#bool" title="bool">bool</a> <tt class="descname">semaphore_destroy</tt><big>(</big><a class="reference internal" href="#semaphore_t" title="semaphore_t">semaphore_t</a><em>&nbsp;*semaphore</em><big>)</big><a class="headerlink" href="#semaphore_destroy" title="Permalink to this definition">¶</a></dt>
 <dd><p>Destroy a semaphore.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">True on success. Use <a class="reference internal" href="../c/utils.html#clear_error" title="clear_error"><tt class="xref c c-func docutils literal"><span class="pre">clear_error()</span></tt></a> to get details about the error.</td>
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">True on success. Use <a class="reference internal" href="utils.html#clear_error" title="clear_error"><tt class="xref c c-func docutils literal"><span class="pre">clear_error()</span></tt></a> to get details about the error.</td>
 </tr>
 </tbody>
 </table>
@@ -255,13 +255,13 @@ and <a class="reference internal" href="../c/utils.html#clear_error" title="clea
 
 <dl class="function">
 <dt id="semaphore_wait">
-<a class="reference internal" href="../c/utils.html#bool" title="bool">bool</a> <tt class="descname">semaphore_wait</tt><big>(</big><a class="reference internal" href="#semaphore_t" title="semaphore_t">semaphore_t</a><em>&nbsp;*semaphore</em><big>)</big><a class="headerlink" href="#semaphore_wait" title="Permalink to this definition">¶</a></dt>
+<a class="reference internal" href="utils.html#bool" title="bool">bool</a> <tt class="descname">semaphore_wait</tt><big>(</big><a class="reference internal" href="#semaphore_t" title="semaphore_t">semaphore_t</a><em>&nbsp;*semaphore</em><big>)</big><a class="headerlink" href="#semaphore_wait" title="Permalink to this definition">¶</a></dt>
 <dd><p>Wait on a semaphore.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">True on success. Use <a class="reference internal" href="../c/utils.html#clear_error" title="clear_error"><tt class="xref c c-func docutils literal"><span class="pre">clear_error()</span></tt></a> to get details about the error.</td>
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">True on success. Use <a class="reference internal" href="utils.html#clear_error" title="clear_error"><tt class="xref c c-func docutils literal"><span class="pre">clear_error()</span></tt></a> to get details about the error.</td>
 </tr>
 </tbody>
 </table>
@@ -269,13 +269,13 @@ and <a class="reference internal" href="../c/utils.html#clear_error" title="clea
 
 <dl class="function">
 <dt id="semaphore_post">
-<a class="reference internal" href="../c/utils.html#bool" title="bool">bool</a> <tt class="descname">semaphore_post</tt><big>(</big><a class="reference internal" href="#semaphore_t" title="semaphore_t">semaphore_t</a><em>&nbsp;*semaphore</em><big>)</big><a class="headerlink" href="#semaphore_post" title="Permalink to this definition">¶</a></dt>
+<a class="reference internal" href="utils.html#bool" title="bool">bool</a> <tt class="descname">semaphore_post</tt><big>(</big><a class="reference internal" href="#semaphore_t" title="semaphore_t">semaphore_t</a><em>&nbsp;*semaphore</em><big>)</big><a class="headerlink" href="#semaphore_post" title="Permalink to this definition">¶</a></dt>
 <dd><p>Post on a semaphore.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">True on success. Use <a class="reference internal" href="../c/utils.html#clear_error" title="clear_error"><tt class="xref c c-func docutils literal"><span class="pre">clear_error()</span></tt></a> to get details about the error.</td>
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">True on success. Use <a class="reference internal" href="utils.html#clear_error" title="clear_error"><tt class="xref c c-func docutils literal"><span class="pre">clear_error()</span></tt></a> to get details about the error.</td>
 </tr>
 </tbody>
 </table>
@@ -292,14 +292,14 @@ and <a class="reference internal" href="../c/utils.html#clear_error" title="clea
 
 <dl class="function">
 <dt id="local_storage_init">
-<a class="reference internal" href="../c/utils.html#bool" title="bool">bool</a> <tt class="descname">local_storage_init</tt><big>(</big><a class="reference internal" href="#local_storage_t" title="local_storage_t">local_storage_t</a><em>&nbsp;*key</em>, void (*destructor)(void<em>&nbsp;*)</em><big>)</big><a class="headerlink" href="#local_storage_init" title="Permalink to this definition">¶</a></dt>
+<a class="reference internal" href="utils.html#bool" title="bool">bool</a> <tt class="descname">local_storage_init</tt><big>(</big><a class="reference internal" href="#local_storage_t" title="local_storage_t">local_storage_t</a><em>&nbsp;*key</em>, void (*destructor)(void<em>&nbsp;*)</em><big>)</big><a class="headerlink" href="#local_storage_init" title="Permalink to this definition">¶</a></dt>
 <dd><p>Initialize thread local storage. The parameter <cite>destructor</cite> allows to set a cleanup
 function to call when the storage is destroyed.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">True on success. Use <a class="reference internal" href="../c/utils.html#clear_error" title="clear_error"><tt class="xref c c-func docutils literal"><span class="pre">clear_error()</span></tt></a> to get details about the error.</td>
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">True on success. Use <a class="reference internal" href="utils.html#clear_error" title="clear_error"><tt class="xref c c-func docutils literal"><span class="pre">clear_error()</span></tt></a> to get details about the error.</td>
 </tr>
 </tbody>
 </table>
@@ -307,13 +307,13 @@ function to call when the storage is destroyed.</p>
 
 <dl class="function">
 <dt id="local_storage_destroy">
-<a class="reference internal" href="../c/utils.html#bool" title="bool">bool</a> <tt class="descname">local_storage_destroy</tt><big>(</big><a class="reference internal" href="#local_storage_t" title="local_storage_t">local_storage_t</a><em>&nbsp;*key</em><big>)</big><a class="headerlink" href="#local_storage_destroy" title="Permalink to this definition">¶</a></dt>
+<a class="reference internal" href="utils.html#bool" title="bool">bool</a> <tt class="descname">local_storage_destroy</tt><big>(</big><a class="reference internal" href="#local_storage_t" title="local_storage_t">local_storage_t</a><em>&nbsp;*key</em><big>)</big><a class="headerlink" href="#local_storage_destroy" title="Permalink to this definition">¶</a></dt>
 <dd><p>Destroy a thread local storage.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">True on success. Use <a class="reference internal" href="../c/utils.html#clear_error" title="clear_error"><tt class="xref c c-func docutils literal"><span class="pre">clear_error()</span></tt></a> to get details about the error.</td>
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">True on success. Use <a class="reference internal" href="utils.html#clear_error" title="clear_error"><tt class="xref c c-func docutils literal"><span class="pre">clear_error()</span></tt></a> to get details about the error.</td>
 </tr>
 </tbody>
 </table>
@@ -335,13 +335,13 @@ void *<tt class="descname">local_storage_get</tt><big>(</big><a class="reference
 
 <dl class="function">
 <dt id="local_storage_set">
-<a class="reference internal" href="../c/utils.html#bool" title="bool">bool</a> <tt class="descname">local_storage_set</tt><big>(</big><a class="reference internal" href="#local_storage_t" title="local_storage_t">local_storage_t</a><em>&nbsp;*key</em>, const void<em>&nbsp;*value</em><big>)</big><a class="headerlink" href="#local_storage_set" title="Permalink to this definition">¶</a></dt>
+<a class="reference internal" href="utils.html#bool" title="bool">bool</a> <tt class="descname">local_storage_set</tt><big>(</big><a class="reference internal" href="#local_storage_t" title="local_storage_t">local_storage_t</a><em>&nbsp;*key</em>, const void<em>&nbsp;*value</em><big>)</big><a class="headerlink" href="#local_storage_set" title="Permalink to this definition">¶</a></dt>
 <dd><p>Set the value of the thread local storage.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">True on success. Use <a class="reference internal" href="../c/utils.html#clear_error" title="clear_error"><tt class="xref c c-func docutils literal"><span class="pre">clear_error()</span></tt></a> to get details about the error.</td>
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">True on success. Use <a class="reference internal" href="utils.html#clear_error" title="clear_error"><tt class="xref c c-func docutils literal"><span class="pre">clear_error()</span></tt></a> to get details about the error.</td>
 </tr>
 </tbody>
 </table>
@@ -355,7 +355,7 @@ void *<tt class="descname">local_storage_get</tt><big>(</big><a class="reference
   </div>
 
 <div id="footer">
-  &copy; Copyright 2013, Arkoon Network Security, OpenWide and Telecom ParisTech.
+  &copy; Copyright 2014, Arkoon Network Security, OpenWide and Telecom ParisTech.
 </div>
 
   </body>

@@ -9,7 +9,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>3.4. Log &amp; Alert &mdash; Haka runtime 0.1.20131226-1215 documentation</title>
+    <title>3.4. Log &amp; Alert &mdash; Haka runtime 0.1.0 documentation</title>
     
     <link rel="stylesheet" href="../../../_static/haka.css" type="text/css" />
     <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
@@ -17,7 +17,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../../../',
-        VERSION:     '0.1.20131226-1215',
+        VERSION:     '0.1.0',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -27,17 +27,17 @@
     <script type="text/javascript" src="../../../_static/underscore.js"></script>
     <script type="text/javascript" src="../../../_static/doctools.js"></script>
     <script type="text/javascript" src="../../../_static/scripts.js"></script>
-    <link rel="top" title="Haka runtime 0.1.20131226-1215 documentation" href="../../../index.html" />
-    <link rel="up" title="3. C API" href="../../developer/c.html" />
-    <link rel="next" title="3.5. Packet" href="../c/packet.html" />
-    <link rel="prev" title="3.3. Threads" href="../c/thread.html" /> 
+    <link rel="top" title="Haka runtime 0.1.0 documentation" href="../../../index.html" />
+    <link rel="up" title="3. C API" href="../c.html" />
+    <link rel="next" title="3.5. Packet" href="packet.html" />
+    <link rel="prev" title="3.3. Threads" href="thread.html" /> 
   </head>
   <body>
 <header id="header" role="banner">
   <div class="home-link">
-    <div id="version" class="description">0.1.20131226-1215</div>
+    <div id="version" class="description">Version 0.1.0</div>
     <h1 class="title"><a rel="home" title="Haka" href="http://www.haka-security.org">Haka</a></h1>
-    <h2 class="description">An open source security language</h2>
+    <h2 class="description">Software Defined Security</h2>
   </div>
 </header>
 
@@ -51,7 +51,7 @@
           <a href="../../ref/refindex.html" class="../../ref/refindex.html">References</a>
         </li>
         <li class=" current">
-          <a href="../../developer/devindex.html" class="">Developers</a>
+          <a href="../devindex.html" class="">Developers</a>
         </li>
         <li>
 
@@ -65,9 +65,9 @@
 	</div>
 	<script type="text/javascript">$('#searchbox').show(0);</script>
 </li>
-          <li class="right"><a href="../../developer/c.html" title="3. C API">Top</a></li>
-          <li class="right"><a href="../c/thread.html" title="3.3. Threads">Prev</a></li>
-          <li class="right"><a href="../c/packet.html" title="3.5. Packet">Next</a></li>
+          <li class="right"><a href="../c.html" title="3. C API">Up</a></li>
+          <li class="right"><a href="thread.html" title="3.3. Threads">Prev</a></li>
+          <li class="right"><a href="packet.html" title="3.5. Packet">Next</a></li>
          <li class=" right"><a href="../../../genindex.html">Index</a></li>
          <li class=" right"><a href="../../../lua-modindex.html">Modules</a></li>
       </ul>
@@ -116,26 +116,26 @@ not be freed.</td>
 
 <dl class="function">
 <dt id="message">
-void <tt class="descname">message</tt><big>(</big><a class="reference internal" href="#log_level" title="log_level">log_level</a><em>&nbsp;level</em>, const <a class="reference internal" href="../c/utils.html#wchar_t" title="wchar_t">wchar_t</a><em>&nbsp;*module</em>, const <a class="reference internal" href="../c/utils.html#wchar_t" title="wchar_t">wchar_t</a><em>&nbsp;*message</em><big>)</big><a class="headerlink" href="#message" title="Permalink to this definition">¶</a></dt>
+void <tt class="descname">message</tt><big>(</big><a class="reference internal" href="#log_level" title="log_level">log_level</a><em>&nbsp;level</em>, const <a class="reference internal" href="utils.html#wchar_t" title="wchar_t">wchar_t</a><em>&nbsp;*module</em>, const <a class="reference internal" href="utils.html#wchar_t" title="wchar_t">wchar_t</a><em>&nbsp;*message</em><big>)</big><a class="headerlink" href="#message" title="Permalink to this definition">¶</a></dt>
 <dd><p>Log a message without string formating.</p>
 </dd></dl>
 
 <dl class="function">
 <dt id="messagef">
-void <tt class="descname">messagef</tt><big>(</big><a class="reference internal" href="#log_level" title="log_level">log_level</a><em>&nbsp;level</em>, const <a class="reference internal" href="../c/utils.html#wchar_t" title="wchar_t">wchar_t</a><em>&nbsp;*module</em>, const <a class="reference internal" href="../c/utils.html#wchar_t" title="wchar_t">wchar_t</a><em>&nbsp;*fmt</em>, ...<big>)</big><a class="headerlink" href="#messagef" title="Permalink to this definition">¶</a></dt>
+void <tt class="descname">messagef</tt><big>(</big><a class="reference internal" href="#log_level" title="log_level">log_level</a><em>&nbsp;level</em>, const <a class="reference internal" href="utils.html#wchar_t" title="wchar_t">wchar_t</a><em>&nbsp;*module</em>, const <a class="reference internal" href="utils.html#wchar_t" title="wchar_t">wchar_t</a><em>&nbsp;*fmt</em>, ...<big>)</big><a class="headerlink" href="#messagef" title="Permalink to this definition">¶</a></dt>
 <dd><p>Log a message with string formating.</p>
 </dd></dl>
 
 <dl class="function">
 <dt id="setlevel">
-void <tt class="descname">setlevel</tt><big>(</big><a class="reference internal" href="#log_level" title="log_level">log_level</a><em>&nbsp;level</em>, const <a class="reference internal" href="../c/utils.html#wchar_t" title="wchar_t">wchar_t</a><em>&nbsp;*module</em><big>)</big><a class="headerlink" href="#setlevel" title="Permalink to this definition">¶</a></dt>
+void <tt class="descname">setlevel</tt><big>(</big><a class="reference internal" href="#log_level" title="log_level">log_level</a><em>&nbsp;level</em>, const <a class="reference internal" href="utils.html#wchar_t" title="wchar_t">wchar_t</a><em>&nbsp;*module</em><big>)</big><a class="headerlink" href="#setlevel" title="Permalink to this definition">¶</a></dt>
 <dd><p>Set the logging level to display for a given module name. The <cite>module</cite> parameter can be
 <cite>NULL</cite> in which case it will set the default level.</p>
 </dd></dl>
 
 <dl class="function">
 <dt id="getlevel">
-<a class="reference internal" href="#log_level" title="log_level">log_level</a> <tt class="descname">getlevel</tt><big>(</big>const <a class="reference internal" href="../c/utils.html#wchar_t" title="wchar_t">wchar_t</a><em>&nbsp;*module</em><big>)</big><a class="headerlink" href="#getlevel" title="Permalink to this definition">¶</a></dt>
+<a class="reference internal" href="#log_level" title="log_level">log_level</a> <tt class="descname">getlevel</tt><big>(</big>const <a class="reference internal" href="utils.html#wchar_t" title="wchar_t">wchar_t</a><em>&nbsp;*module</em><big>)</big><a class="headerlink" href="#getlevel" title="Permalink to this definition">¶</a></dt>
 <dd><p>Get the logging level for a given module name.</p>
 </dd></dl>
 
@@ -199,7 +199,7 @@ time_us <tt class="descname">end_time</tt><a class="headerlink" href="#alert.end
 
 <dl class="member">
 <dt id="alert.description">
-<a class="reference internal" href="../c/utils.html#wchar_t" title="wchar_t">wchar_t</a> *<tt class="descname">description</tt><a class="headerlink" href="#alert.description" title="Permalink to this definition">¶</a></dt>
+<a class="reference internal" href="utils.html#wchar_t" title="wchar_t">wchar_t</a> *<tt class="descname">description</tt><a class="headerlink" href="#alert.description" title="Permalink to this definition">¶</a></dt>
 <dd><p>Description of the alert.</p>
 </dd></dl>
 
@@ -230,13 +230,13 @@ confidence value.</p>
 
 <dl class="member">
 <dt id="alert.method_description">
-<a class="reference internal" href="../c/utils.html#wchar_t" title="wchar_t">wchar_t</a> *<tt class="descname">method_description</tt><a class="headerlink" href="#alert.method_description" title="Permalink to this definition">¶</a></dt>
+<a class="reference internal" href="utils.html#wchar_t" title="wchar_t">wchar_t</a> *<tt class="descname">method_description</tt><a class="headerlink" href="#alert.method_description" title="Permalink to this definition">¶</a></dt>
 <dd><p>Description of the method used.</p>
 </dd></dl>
 
 <dl class="member">
 <dt id="alert.method_ref">
-<a class="reference internal" href="../c/utils.html#wchar_t" title="wchar_t">wchar_t</a> **<tt class="descname">method_ref</tt><a class="headerlink" href="#alert.method_ref" title="Permalink to this definition">¶</a></dt>
+<a class="reference internal" href="utils.html#wchar_t" title="wchar_t">wchar_t</a> **<tt class="descname">method_ref</tt><a class="headerlink" href="#alert.method_ref" title="Permalink to this definition">¶</a></dt>
 <dd><p>NULL terminated list of references.</p>
 </dd></dl>
 
@@ -260,7 +260,7 @@ size_t <tt class="descname">alert_ref_count</tt><a class="headerlink" href="#ale
 
 <dl class="member">
 <dt id="alert.alert_ref">
-<a class="reference internal" href="../c/utils.html#uint64" title="uint64">uint64</a> *<tt class="descname">alert_ref</tt><a class="headerlink" href="#alert.alert_ref" title="Permalink to this definition">¶</a></dt>
+<a class="reference internal" href="utils.html#uint64" title="uint64">uint64</a> *<tt class="descname">alert_ref</tt><a class="headerlink" href="#alert.alert_ref" title="Permalink to this definition">¶</a></dt>
 <dd><p>Array of alert ids.</p>
 </dd></dl>
 
@@ -268,7 +268,7 @@ size_t <tt class="descname">alert_ref_count</tt><a class="headerlink" href="#ale
 
 <dl class="macro">
 <dt id="ALERT">
-<tt class="descname">ALERT</tt><big>(</big><a class="reference internal" href="../c/module.html#name" title="name">name</a>, nsrc, ntgt<big>)</big><a class="headerlink" href="#ALERT" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">ALERT</tt><big>(</big><a class="reference internal" href="module.html#name" title="name">name</a>, nsrc, ntgt<big>)</big><a class="headerlink" href="#ALERT" title="Permalink to this definition">¶</a></dt>
 <dd><p>Construct a static alert description.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -294,7 +294,7 @@ size_t <tt class="descname">alert_ref_count</tt><a class="headerlink" href="#ale
 
 <dl class="macro">
 <dt id="ALERT_NODE">
-<tt class="descname">ALERT_NODE</tt><big>(</big>alert, mode, index, <a class="reference internal" href="../c/module.html#type" title="type">type</a>, ...<big>)</big><a class="headerlink" href="#ALERT_NODE" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">ALERT_NODE</tt><big>(</big>alert, mode, index, <a class="reference internal" href="module.html#type" title="type">type</a>, ...<big>)</big><a class="headerlink" href="#ALERT_NODE" title="Permalink to this definition">¶</a></dt>
 <dd><p>Append an alert node.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -305,7 +305,7 @@ size_t <tt class="descname">alert_ref_count</tt><a class="headerlink" href="#ale
 <li><strong>mode</strong> &#8211; <tt class="docutils literal"><span class="pre">sources</span></tt> or <tt class="docutils literal"><span class="pre">target</span></tt>.</li>
 <li><strong>index</strong> &#8211; Index of the node.</li>
 <li><strong>type</strong> &#8211; Type of node (see <a class="reference internal" href="#alert_node_type" title="alert_node_type"><tt class="xref c c-type docutils literal"><span class="pre">alert_node_type</span></tt></a>).</li>
-<li><strong>...</strong> &#8211; List of strings (<a class="reference internal" href="../c/utils.html#wchar_t" title="wchar_t"><tt class="xref c c-type docutils literal"><span class="pre">wchar_t</span> <span class="pre">*</span></tt></a>).</li>
+<li><strong>...</strong> &#8211; List of strings (<a class="reference internal" href="utils.html#wchar_t" title="wchar_t"><tt class="xref c c-type docutils literal"><span class="pre">wchar_t</span> <span class="pre">*</span></tt></a>).</li>
 </ul>
 </td>
 </tr>
@@ -346,7 +346,7 @@ size_t <tt class="descname">alert_ref_count</tt><a class="headerlink" href="#ale
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
 <li><strong>alert</strong> &#8211; Alert name.</li>
-<li><strong>...</strong> &#8211; List of strings (<a class="reference internal" href="../c/utils.html#wchar_t" title="wchar_t"><tt class="xref c c-type docutils literal"><span class="pre">wchar_t</span> <span class="pre">*</span></tt></a>).</li>
+<li><strong>...</strong> &#8211; List of strings (<a class="reference internal" href="utils.html#wchar_t" title="wchar_t"><tt class="xref c c-type docutils literal"><span class="pre">wchar_t</span> <span class="pre">*</span></tt></a>).</li>
 </ul>
 </td>
 </tr>
@@ -356,7 +356,7 @@ size_t <tt class="descname">alert_ref_count</tt><a class="headerlink" href="#ale
 
 <dl class="function">
 <dt>
-<a class="reference internal" href="../c/utils.html#uint64" title="uint64">uint64</a> <tt class="descname">alert</tt><big>(</big>const struct alert<em>&nbsp;*alert</em><big>)</big></dt>
+<a class="reference internal" href="utils.html#uint64" title="uint64">uint64</a> <tt class="descname">alert</tt><big>(</big>const struct alert<em>&nbsp;*alert</em><big>)</big></dt>
 <dd><p>Raise a new alert.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -370,7 +370,7 @@ size_t <tt class="descname">alert_ref_count</tt><a class="headerlink" href="#ale
 
 <dl class="function">
 <dt id="alert_update">
-<a class="reference internal" href="../c/utils.html#bool" title="bool">bool</a> <tt class="descname">alert_update</tt><big>(</big><a class="reference internal" href="../c/utils.html#uint64" title="uint64">uint64</a><em>&nbsp;id</em>, const struct alert<em>&nbsp;*alert</em><big>)</big><a class="headerlink" href="#alert_update" title="Permalink to this definition">¶</a></dt>
+<a class="reference internal" href="utils.html#bool" title="bool">bool</a> <tt class="descname">alert_update</tt><big>(</big><a class="reference internal" href="utils.html#uint64" title="uint64">uint64</a><em>&nbsp;id</em>, const struct alert<em>&nbsp;*alert</em><big>)</big><a class="headerlink" href="#alert_update" title="Permalink to this definition">¶</a></dt>
 <dd><p>Update an existing alert.</p>
 </dd></dl>
 
@@ -382,7 +382,7 @@ size_t <tt class="descname">alert_ref_count</tt><a class="headerlink" href="#ale
   </div>
 
 <div id="footer">
-  &copy; Copyright 2013, Arkoon Network Security, OpenWide and Telecom ParisTech.
+  &copy; Copyright 2014, Arkoon Network Security, OpenWide and Telecom ParisTech.
 </div>
 
   </body>

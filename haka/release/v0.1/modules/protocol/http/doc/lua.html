@@ -9,7 +9,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>8. HTTP &mdash; Haka runtime 0.1.20131226-1215 documentation</title>
+    <title>9. HTTP &mdash; Haka runtime 0.1.0 documentation</title>
     
     <link rel="stylesheet" href="../../../../_static/haka.css" type="text/css" />
     <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
@@ -17,7 +17,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../../../../',
-        VERSION:     '0.1.20131226-1215',
+        VERSION:     '0.1.0',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -27,17 +27,17 @@
     <script type="text/javascript" src="../../../../_static/underscore.js"></script>
     <script type="text/javascript" src="../../../../_static/doctools.js"></script>
     <script type="text/javascript" src="../../../../_static/scripts.js"></script>
-    <link rel="top" title="Haka runtime 0.1.20131226-1215 documentation" href="../../../../index.html" />
+    <link rel="top" title="Haka runtime 0.1.0 documentation" href="../../../../index.html" />
     <link rel="up" title="Welcome to Haka’s Reference Guide!" href="../../../../doc/ref/refindex.html" />
     <link rel="next" title="Welcome to Haka’s Developer Guide!" href="../../../../doc/developer/devindex.html" />
-    <link rel="prev" title="7. TCP" href="../../../protocol/tcp/doc/lua.html" /> 
+    <link rel="prev" title="8. TCP" href="../../tcp/doc/lua.html" /> 
   </head>
   <body>
 <header id="header" role="banner">
   <div class="home-link">
-    <div id="version" class="description">0.1.20131226-1215</div>
+    <div id="version" class="description">Version 0.1.0</div>
     <h1 class="title"><a rel="home" title="Haka" href="http://www.haka-security.org">Haka</a></h1>
-    <h2 class="description">An open source security language</h2>
+    <h2 class="description">Software Defined Security</h2>
   </div>
 </header>
 
@@ -65,8 +65,8 @@
 	</div>
 	<script type="text/javascript">$('#searchbox').show(0);</script>
 </li>
-          <li class="right"><a href="../../../../doc/ref/refindex.html" title="Welcome to Haka&#8217;s Reference Guide!">Top</a></li>
-          <li class="right"><a href="../../../protocol/tcp/doc/lua.html" title="7. TCP">Prev</a></li>
+          <li class="right"><a href="../../../../doc/ref/refindex.html" title="Welcome to Haka&#8217;s Reference Guide!">Up</a></li>
+          <li class="right"><a href="../../tcp/doc/lua.html" title="8. TCP">Prev</a></li>
           <li class="right"><a href="../../../../doc/developer/devindex.html" title="Welcome to Haka&#8217;s Developer Guide!">Next</a></li>
          <li class=" right"><a href="../../../../genindex.html">Index</a></li>
          <li class=" right"><a href="../../../../lua-modindex.html">Modules</a></li>
@@ -77,9 +77,9 @@
     <div id="contentwrapper">
       
   <div class="section" id="module-http.uri">
-<span id="http"></span><h1>8. HTTP<a class="headerlink" href="#module-http.uri" title="Permalink to this headline">¶</a></h1>
+<span id="http"></span><h1>9. HTTP<a class="headerlink" href="#module-http.uri" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="types">
-<h2>8.1. Types<a class="headerlink" href="#types" title="Permalink to this headline">¶</a></h2>
+<h2>9.1. Types<a class="headerlink" href="#types" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
 <dt id="http.uri.split">
 <em class="property">class </em><tt class="descclassname">http.uri.</tt><tt class="descname">split</tt><a class="headerlink" href="#http.uri.split" title="Permalink to this definition">¶</a></dt>
@@ -200,7 +200,7 @@ decode percent-encoded octets (safe decoding), remove default port, etc.</p>
 
 </div>
 <div class="section" id="functions">
-<h2>8.2. Functions<a class="headerlink" href="#functions" title="Permalink to this headline">¶</a></h2>
+<h2>9.2. Functions<a class="headerlink" href="#functions" title="Permalink to this headline">¶</a></h2>
 <dl class="function">
 <dt id="http.uri.normalize">
 <tt class="descclassname">http.uri.</tt><tt class="descname">normalize</tt><big>(</big><em>str</em><big>)</big><a class="headerlink" href="#http.uri.normalize" title="Permalink to this definition">¶</a></dt>
@@ -213,7 +213,7 @@ decode percent-encoded octets (safe decoding), remove default port, etc.</p>
 
 </div>
 <div class="section" id="module-http">
-<span id="dissector"></span><h2>8.3. Dissector<a class="headerlink" href="#module-http" title="Permalink to this headline">¶</a></h2>
+<span id="dissector"></span><h2>9.3. Dissector<a class="headerlink" href="#module-http" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
 <dt id="http.http">
 <em class="property">class </em><tt class="descclassname">http.</tt><tt class="descname">http</tt><a class="headerlink" href="#http.http" title="Permalink to this definition">¶</a></dt>
@@ -292,7 +292,7 @@ current request.</p>
 
 </div>
 <div class="section" id="example">
-<h2>8.4. Example<a class="headerlink" href="#example" title="Permalink to this headline">¶</a></h2>
+<h2>9.4. Example<a class="headerlink" href="#example" title="Permalink to this headline">¶</a></h2>
 <div class="highlight-lua"><div class="highlight"><pre><span class="c1">------------------------------------</span>
 <span class="c1">-- HTTP Policy</span>
 <span class="c1">------------------------------------</span>
@@ -333,7 +333,7 @@ current request.</p>
   </div>
 
 <div id="footer">
-  &copy; Copyright 2013, Arkoon Network Security, OpenWide and Telecom ParisTech.
+  &copy; Copyright 2014, Arkoon Network Security, OpenWide and Telecom ParisTech.
 </div>
 
   </body>

@@ -9,7 +9,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>2. Installation &mdash; Haka runtime 0.1.20131226-1215 documentation</title>
+    <title>2. Installation &mdash; Haka runtime 0.1.0 documentation</title>
     
     <link rel="stylesheet" href="../../_static/haka.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
@@ -17,7 +17,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../../',
-        VERSION:     '0.1.20131226-1215',
+        VERSION:     '0.1.0',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -27,17 +27,17 @@
     <script type="text/javascript" src="../../_static/underscore.js"></script>
     <script type="text/javascript" src="../../_static/doctools.js"></script>
     <script type="text/javascript" src="../../_static/scripts.js"></script>
-    <link rel="top" title="Haka runtime 0.1.20131226-1215 documentation" href="../../index.html" />
-    <link rel="up" title="Welcome to Haka’s User Guide!" href="../user/userindex.html" />
-    <link rel="next" title="3. Getting started" href="../user/gettingstarted.html" />
-    <link rel="prev" title="1. What is HAKA" href="../user/intro.html" /> 
+    <link rel="top" title="Haka runtime 0.1.0 documentation" href="../../index.html" />
+    <link rel="up" title="Welcome to Haka’s User Guide!" href="userindex.html" />
+    <link rel="next" title="3. Getting started" href="gettingstarted.html" />
+    <link rel="prev" title="1. What is HAKA" href="intro.html" /> 
   </head>
   <body>
 <header id="header" role="banner">
   <div class="home-link">
-    <div id="version" class="description">0.1.20131226-1215</div>
+    <div id="version" class="description">Version 0.1.0</div>
     <h1 class="title"><a rel="home" title="Haka" href="http://www.haka-security.org">Haka</a></h1>
-    <h2 class="description">An open source security language</h2>
+    <h2 class="description">Software Defined Security</h2>
   </div>
 </header>
 
@@ -45,7 +45,7 @@
     <nav id="site-navigation" class="navigation main-navigation" role="navigation">
       <ul class="nav-menu">
         <li class=" current">
-          <a href="../user/userindex.html">Users</a>
+          <a href="userindex.html">Users</a>
         </li>
         <li class=" ">
           <a href="../ref/refindex.html" class="../ref/refindex.html">References</a>
@@ -65,9 +65,9 @@
 	</div>
 	<script type="text/javascript">$('#searchbox').show(0);</script>
 </li>
-          <li class="right"><a href="../user/userindex.html" title="Welcome to Haka&#8217;s User Guide!">Top</a></li>
-          <li class="right"><a href="../user/intro.html" title="1. What is HAKA">Prev</a></li>
-          <li class="right"><a href="../user/gettingstarted.html" title="3. Getting started">Next</a></li>
+          <li class="right"><a href="userindex.html" title="Welcome to Haka&#8217;s User Guide!">Up</a></li>
+          <li class="right"><a href="intro.html" title="1. What is HAKA">Prev</a></li>
+          <li class="right"><a href="gettingstarted.html" title="3. Getting started">Next</a></li>
          <li class=" right"><a href="../../genindex.html">Index</a></li>
          <li class=" right"><a href="../../lua-modindex.html">Modules</a></li>
       </ul>
@@ -78,53 +78,21 @@
       
   <div class="section" id="installation">
 <h1>2. Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h1>
-<div class="admonition note">
-<p class="first admonition-title">Note</p>
-<p class="last">The installation instructions are for Debian. It will need to be adapted to
-other distributions.</p>
-</div>
-<div class="section" id="install-from-package">
-<h2>2.1. Install from package<a class="headerlink" href="#install-from-package" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="download-the-package">
-<h3>2.1.1. Download the package<a class="headerlink" href="#download-the-package" title="Permalink to this headline">¶</a></h3>
-<p>First download the Debian package from the Haka website <a class="reference external" href="http://www.haka-security.org">http://www.haka-security.org</a>.</p>
+<h2>2.1. Download the package<a class="headerlink" href="#download-the-package" title="Permalink to this headline">¶</a></h2>
+<p>First, download a Debian package from the <a class="reference external" href="http://www.haka-security.org">Haka website</a> in
+the <em>Download</em> section.</p>
+<div class="admonition-see-also admonition seealso">
+<p class="first admonition-title">See also</p>
+<p class="last">If you need a package for another distribution, we will need to build it from the sources.
+See the section <a class="reference internal" href="../developer/build.html"><em>Build</em></a> for more details about this.</p>
+</div>
+</div>
+<div class="section" id="install">
+<h2>2.2. Install<a class="headerlink" href="#install" title="Permalink to this headline">¶</a></h2>
 <p>Then to install it, type the following command:</p>
 <div class="highlight-console"><div class="highlight"><pre><span class="gp">$</span> sudo dpkg -i haka.deb
 </pre></div>
-</div>
-</div>
-</div>
-<div class="section" id="install-from-source">
-<h2>2.2. Install from source<a class="headerlink" href="#install-from-source" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="pre-installation-requirements">
-<h3>2.2.1. Pre-installation requirements<a class="headerlink" href="#pre-installation-requirements" title="Permalink to this headline">¶</a></h3>
-<p>To build and install Haka you will need to install some required packages.</p>
-<p>Enter the following command to install them (this make take some time):</p>
-<div class="highlight-console"><div class="highlight"><pre><span class="gp">$</span> sudo apt-get install build-essential cmake swig python-sphinx liblua5.1 <span class="se">\</span>
-<span class="go">tshark check rsync libpcap-dev gawk libedit-dev libnetfilter-queue-dev</span>
-</pre></div>
-</div>
-</div>
-<div class="section" id="download-the-sources">
-<h3>2.2.2. Download the sources<a class="headerlink" href="#download-the-sources" title="Permalink to this headline">¶</a></h3>
-<p>First download the source tarball from the Haka website <a class="reference external" href="http://www.haka-security.org">http://www.haka-security.org</a>.</p>
-<p>Then type the following commands:</p>
-<div class="highlight-console"><div class="highlight"><pre><span class="gp">$</span> tar -xvzf haka.tar.gz
-<span class="gp">$</span> <span class="nb">cd </span>haka
-</pre></div>
-</div>
-</div>
-<div class="section" id="compile-and-install-haka">
-<h3>2.2.3. Compile and install Haka<a class="headerlink" href="#compile-and-install-haka" title="Permalink to this headline">¶</a></h3>
-<div class="highlight-console"><div class="highlight"><pre><span class="gp">$</span> mkdir make
-<span class="gp">$</span> <span class="nb">cd </span>make
-<span class="gp">$</span> cmake ..
-<span class="gp">$</span> make
-<span class="gp">$</span> sudo make install
-</pre></div>
-</div>
-<p>By default, Haka will be installed in <tt class="docutils literal"><span class="pre">/opt/haka</span></tt>. You might want to update your <tt class="docutils literal"><span class="pre">PATH</span></tt>
-environment variable to be able to easily launch the various tools from the command line.</p>
 </div>
 </div>
 </div>
@@ -134,7 +102,7 @@ environment variable to be able to easily launch the various tools from the comm
   </div>
 
 <div id="footer">
-  &copy; Copyright 2013, Arkoon Network Security, OpenWide and Telecom ParisTech.
+  &copy; Copyright 2014, Arkoon Network Security, OpenWide and Telecom ParisTech.
 </div>
 
   </body>
