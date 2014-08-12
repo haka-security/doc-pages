@@ -1,0 +1,225 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>4. Logging &mdash; Haka runtime 0.2.0 documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/haka.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/breathe.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '0.2.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../_static/js/scripts.js"></script>
+    <script type="text/javascript" src="../../_static/js/vendor/modernizr.js"></script>
+    <script type="text/javascript" src="../../_static/js/foundation/foundation.js"></script>
+    <script type="text/javascript" src="../../_static/js/foundation/foundation.topbar.js"></script>
+    <link rel="top" title="Haka runtime 0.2.0 documentation" href="../../index.html" />
+    <link rel="up" title="Welcome to Haka’s User Reference Guide!" href="refindex.html" />
+    <link rel="next" title="5. Alerting" href="alert.html" />
+    <link rel="prev" title="3. Buffers" href="vbuffer.html" /> 
+  </head>
+  <body>
+
+
+<header id="header" role="banner">
+	<div class="row">
+		<div class="medium-6 columns">
+			<h1 class="title"><a rel="home" title="Haka" href="http://www.haka-security.org">Haka</a></h1>
+			<h2 class="description">Software Defined Security</h2>
+		</div>
+		<div class="medium-6 columns">
+			<div id="version">Version 0.2.0</div>
+		</div>
+	</div>
+</header>
+
+<div class="contain-to-grid sticky">
+	
+
+<nav id="navbar" class="top-bar" data-topbar>
+	<ul class="title-area">
+		<!-- This is required for toggle-topbar to work -->
+		<li class="name"></li>
+		<li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
+	</ul>
+	<section class="top-bar-section">
+		<ul class="left">
+			<li class=" ">
+				<a href="../user/userindex.html">Users</a>
+			</li>
+			<li class=" active">
+				<a href="refindex.html" class="refindex.html">References</a>
+			</li>
+			<li class=" ">
+				<a href="../developer/devindex.html" class="">Developers</a>
+			</li>
+			<li class=" ">
+				<a href="../faq.html" class="">Faq</a>
+			</li>
+			<li class="has-form">
+
+
+	<form class="search" action="../../search.html" method="get" id="searchbox" style="display: none">
+		<input type="hidden" name="area" value="default" />
+		<input type="hidden" name="check_keywords" value="yes" />
+		<div class="row collapse">
+			<div class="medium-11 columns">
+				<input type="text" name="q" placeholder="Search" />
+			</div>
+			<div class="medium-1 columns" id="clean-search-highlight">
+			</div>
+		</div>
+	</form>
+	<script type="text/javascript">$('#searchbox').show(0);</script>
+</li>
+		</ul>
+		<ul class="right">
+				<li class="right"><a href="alert.html" title="5. Alerting">Next &rarr;</a></li>
+				<li class="right"><a href="vbuffer.html" title="3. Buffers">&larr; Prev</a></li>
+				<li class="right"><a href="refindex.html" title="Welcome to Haka&#8217;s User Reference Guide!">Up &uarr;</a></li>
+
+			<li class=" right"><a href="../../genindex.html">Index</a></li>
+			<li class=" right"><a href="../../haka-modindex.html">Modules</a></li>
+		</ul>
+	</section>
+</nav>
+</div>
+<div id="content">
+	<div class="row">
+		<ul id="breadcrumb" class="breadcrumbs medium-12 columns">
+			
+			<li><a href="refindex.html">Welcome to Haka&#8217;s User Reference Guide!</a></li>
+			
+			<li class="current"><a href="#">4. Logging</a></li>
+		</ul>
+	</div>
+	<div class="row">
+		<div class="medium-12 columns">
+			
+  <div class="section" id="logging">
+<h1>4. Logging<a class="headerlink" href="#logging" title="Permalink to this headline">¶</a></h1>
+<p>This section introduces the Haka logging API. The logs are used for various type of
+information about a running Haka.</p>
+<span class="target" id="haka-module.haka.log"></span><dl class="function">
+<dt id="haka-function.haka.log.fatal">
+<em class="property"> </em><tt class="descclassname">haka.log.</tt><tt class="descname">fatal</tt><big>(</big><em>module</em>, <em>fmt</em><span class="optional">[</span>, <em>...</em><span class="optional">]</span><big>)</big><a class="headerlink" href="#haka-function.haka.log.fatal" title="Permalink to this definition">¶</a></dt>
+<dt id="haka-function.haka.log.error">
+<em class="property"> </em><tt class="descclassname">haka.log.</tt><tt class="descname">error</tt><big>(</big><em>module</em>, <em>fmt</em><span class="optional">[</span>, <em>...</em><span class="optional">]</span><big>)</big><a class="headerlink" href="#haka-function.haka.log.error" title="Permalink to this definition">¶</a></dt>
+<dt id="haka-function.haka.log.warning">
+<em class="property"> </em><tt class="descclassname">haka.log.</tt><tt class="descname">warning</tt><big>(</big><em>module</em>, <em>fmt</em><span class="optional">[</span>, <em>...</em><span class="optional">]</span><big>)</big><a class="headerlink" href="#haka-function.haka.log.warning" title="Permalink to this definition">¶</a></dt>
+<dt id="haka-function.haka.log.info">
+<em class="property"> </em><tt class="descclassname">haka.log.</tt><tt class="descname">info</tt><big>(</big><em>module</em>, <em>fmt</em><span class="optional">[</span>, <em>...</em><span class="optional">]</span><big>)</big><a class="headerlink" href="#haka-function.haka.log.info" title="Permalink to this definition">¶</a></dt>
+<dt id="haka-function.haka.log.debug">
+<em class="property"> </em><tt class="descclassname">haka.log.</tt><tt class="descname">debug</tt><big>(</big><em>module</em>, <em>fmt</em><span class="optional">[</span>, <em>...</em><span class="optional">]</span><big>)</big><a class="headerlink" href="#haka-function.haka.log.debug" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>module</strong> (<em>string</em>) &#8211; Name of the module issuing the log.</li>
+<li><strong>fmt</strong> (<em>string</em>) &#8211; Format string.</li>
+<li><strong>...</strong> &#8211; Format arguments.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p>Log a message in corresponding level.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="haka-function.haka.log">
+<em class="property"> </em><tt class="descclassname">haka.</tt><tt class="descname">log</tt><big>(</big><em>module</em>, <em>fmt</em><span class="optional">[</span>, <em>...</em><span class="optional">]</span><big>)</big><a class="headerlink" href="#haka-function.haka.log" title="Permalink to this definition">¶</a></dt>
+<dd><p>Alias to <a class="reference internal" href="#haka-function.haka.log.info" title="haka.log.info"><tt class="xref haka haka-func docutils literal"><span class="pre">haka.log.info()</span></tt></a>.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="haka-function.haka.log.message">
+<em class="property"> </em><tt class="descclassname">haka.log.</tt><tt class="descname">message</tt><big>(</big><em>level</em>, <em>module</em>, <em>fmt</em><span class="optional">[</span>, <em>...</em><span class="optional">]</span><big>)</big><a class="headerlink" href="#haka-function.haka.log.message" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>level</strong> (<em>string</em>) &#8211; Level for the log (<tt class="docutils literal"><span class="pre">'debug'</span></tt>, <tt class="docutils literal"><span class="pre">'info'</span></tt>, <tt class="docutils literal"><span class="pre">'warning'</span></tt>, <tt class="docutils literal"><span class="pre">'error'</span></tt> or <tt class="docutils literal"><span class="pre">'fatal'</span></tt>).</li>
+<li><strong>module</strong> (<em>string</em>) &#8211; Name of the module issuing the log.</li>
+<li><strong>fmt</strong> (<em>string</em>) &#8211; Format string.</li>
+<li><strong>...</strong> &#8211; Format arguments.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p>Log a message.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="haka-function.haka.log.setlevel">
+<em class="property"> </em><tt class="descclassname">haka.log.</tt><tt class="descname">setlevel</tt><big>(</big><em>level</em><span class="optional">[</span>, <em>module</em><span class="optional">]</span><big>)</big><a class="headerlink" href="#haka-function.haka.log.setlevel" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>level</strong> (<em>string</em>) &#8211; Level for the log (<tt class="docutils literal"><span class="pre">'debug'</span></tt>, <tt class="docutils literal"><span class="pre">'info'</span></tt>, <tt class="docutils literal"><span class="pre">'warning'</span></tt>, <tt class="docutils literal"><span class="pre">'error'</span></tt> or <tt class="docutils literal"><span class="pre">'fatal'</span></tt>).</li>
+<li><strong>module</strong> (<em>string</em>) &#8211; Name of the module to modify.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p>Set the logging level to display. It can be set globally and also manually for
+each module.</p>
+</dd></dl>
+
+<div class="section" id="example">
+<h2>4.1. Example<a class="headerlink" href="#example" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-lua"><div class="highlight"><pre><span class="n">haka</span><span class="p">.</span><span class="n">log</span><span class="p">(</span><span class="s2">&quot;</span><span class="s">test&quot;</span><span class="p">,</span> <span class="s2">&quot;</span><span class="s">error in packet %s&quot;</span><span class="p">,</span> <span class="n">pkt</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+		</div>
+	</div>
+</div>
+
+
+
+<footer id="footer">
+	<div class="row" role="complementary">
+		<div class="medium-12 columns">
+			&copy; Copyright 2014, Arkoon Network Security, OpenWide and Telecom ParisTech.
+		</div>
+	</div>
+</footer>
+<script>
+	  $(document).foundation();
+</script>
+
+
+
+<script type="text/javascript" src="http://www.haka-security.org/js/track.js"></script>
+
+
+  </body>
+</html>

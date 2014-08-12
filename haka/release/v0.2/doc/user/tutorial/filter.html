@@ -1,0 +1,592 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>6.2. Filter &mdash; Haka runtime 0.2.0 documentation</title>
+    
+    <link rel="stylesheet" href="../../../_static/haka.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/breathe.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../',
+        VERSION:     '0.2.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../../_static/js/scripts.js"></script>
+    <script type="text/javascript" src="../../../_static/js/vendor/modernizr.js"></script>
+    <script type="text/javascript" src="../../../_static/js/foundation/foundation.js"></script>
+    <script type="text/javascript" src="../../../_static/js/foundation/foundation.topbar.js"></script>
+    <link rel="top" title="Haka runtime 0.2.0 documentation" href="../../../index.html" />
+    <link rel="up" title="6. Tutorials" href="../tutorial.html" />
+    <link rel="next" title="6.3. Statistics" href="stats.html" />
+    <link rel="prev" title="6.1. Hellopacket" href="hellopacket.html" /> 
+  </head>
+  <body>
+
+
+<header id="header" role="banner">
+	<div class="row">
+		<div class="medium-6 columns">
+			<h1 class="title"><a rel="home" title="Haka" href="http://www.haka-security.org">Haka</a></h1>
+			<h2 class="description">Software Defined Security</h2>
+		</div>
+		<div class="medium-6 columns">
+			<div id="version">Version 0.2.0</div>
+		</div>
+	</div>
+</header>
+
+<div class="contain-to-grid sticky">
+	
+
+<nav id="navbar" class="top-bar" data-topbar>
+	<ul class="title-area">
+		<!-- This is required for toggle-topbar to work -->
+		<li class="name"></li>
+		<li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
+	</ul>
+	<section class="top-bar-section">
+		<ul class="left">
+			<li class=" active">
+				<a href="../userindex.html">Users</a>
+			</li>
+			<li class=" ">
+				<a href="../../ref/refindex.html" class="../../ref/refindex.html">References</a>
+			</li>
+			<li class=" ">
+				<a href="../../developer/devindex.html" class="">Developers</a>
+			</li>
+			<li class=" ">
+				<a href="../../faq.html" class="">Faq</a>
+			</li>
+			<li class="has-form">
+
+
+	<form class="search" action="../../../search.html" method="get" id="searchbox" style="display: none">
+		<input type="hidden" name="area" value="default" />
+		<input type="hidden" name="check_keywords" value="yes" />
+		<div class="row collapse">
+			<div class="medium-11 columns">
+				<input type="text" name="q" placeholder="Search" />
+			</div>
+			<div class="medium-1 columns" id="clean-search-highlight">
+			</div>
+		</div>
+	</form>
+	<script type="text/javascript">$('#searchbox').show(0);</script>
+</li>
+		</ul>
+		<ul class="right">
+				<li class="right"><a href="stats.html" title="6.3. Statistics">Next &rarr;</a></li>
+				<li class="right"><a href="hellopacket.html" title="6.1. Hellopacket">&larr; Prev</a></li>
+				<li class="right"><a href="../tutorial.html" title="6. Tutorials">Up &uarr;</a></li>
+
+			<li class=" right"><a href="../../../genindex.html">Index</a></li>
+			<li class=" right"><a href="../../../haka-modindex.html">Modules</a></li>
+		</ul>
+	</section>
+</nav>
+</div>
+<div id="content">
+	<div class="row">
+		<ul id="breadcrumb" class="breadcrumbs medium-12 columns">
+			
+			<li><a href="../userindex.html">Welcome to Haka&#8217;s User Guide!</a></li>
+			
+			<li><a href="../tutorial.html">6. Tutorials</a></li>
+			
+			<li class="current"><a href="#">6.2. Filter</a></li>
+		</ul>
+	</div>
+	<div class="row">
+		<div class="medium-12 columns">
+			
+  <div class="section" id="filter">
+<h1>6.2. Filter<a class="headerlink" href="#filter" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="introduction">
+<h2>6.2.1. Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
+<p>This chapter will document how to use Haka to filter packets and streams according to their different fields.</p>
+<p>This tutorial is divided into two parts. The first part will use <tt class="docutils literal"><span class="pre">hakapcap</span></tt> and a pcap file to do some basic offline filtering. The second part will use nfqueue to alter tcp streams as they pass through Haka.</p>
+</div>
+<div class="section" id="basic-tcp-ip-filtering">
+<h2>6.2.2. Basic TCP/IP filtering<a class="headerlink" href="#basic-tcp-ip-filtering" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="basic-ip-filtering">
+<h3>Basic IP filtering<a class="headerlink" href="#basic-ip-filtering" title="Permalink to this headline">¶</a></h3>
+<p>The directory &lt;haka_install_path&gt;/share/haka/sample/filter/ contains all the example used in this tutorial.</p>
+<p>A basic filter script on IP fields is provided as <tt class="docutils literal"><span class="pre">ipfilter.lua</span></tt>:</p>
+<div class="highlight-lua"><div class="highlight"><pre><span class="c1">------------------------------------</span>
+<span class="c1">-- Loading dissectors</span>
+<span class="c1">------------------------------------</span>
+<span class="kd">local</span> <span class="n">ipv4</span> <span class="o">=</span> <span class="nb">require</span><span class="p">(</span><span class="s1">&#39;</span><span class="s">protocol/ipv4&#39;</span><span class="p">)</span>
+
+<span class="c1">-- drop all packets originating from</span>
+<span class="c1">-- blacklisted address 192.168.10.10</span>
+<span class="n">haka</span><span class="p">.</span><span class="n">rule</span><span class="p">{</span>
+    <span class="c1">-- This rule is applied on each ip incoming packet</span>
+    <span class="n">hook</span> <span class="o">=</span> <span class="n">ipv4</span><span class="p">.</span><span class="n">events</span><span class="p">.</span><span class="n">receive_packet</span><span class="p">,</span>
+    <span class="n">eval</span> <span class="o">=</span> <span class="k">function</span> <span class="p">(</span><span class="n">pkt</span><span class="p">)</span>
+        <span class="c1">-- Parse the IP address and assign it to a variable</span>
+        <span class="kd">local</span> <span class="n">bad_ip</span> <span class="o">=</span> <span class="n">ipv4</span><span class="p">.</span><span class="n">addr</span><span class="p">(</span><span class="s1">&#39;</span><span class="s">192.168.10.10&#39;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">pkt</span><span class="p">.</span><span class="n">src</span> <span class="o">==</span> <span class="n">bad_ip</span> <span class="k">then</span>
+            <span class="c1">-- Raise an alert</span>
+            <span class="n">haka</span><span class="p">.</span><span class="n">alert</span><span class="p">{</span>
+                <span class="n">description</span> <span class="o">=</span> <span class="nb">string.format</span><span class="p">(</span><span class="s2">&quot;</span><span class="s">Filtering IP %s&quot;</span><span class="p">,</span> <span class="n">bad_ip</span><span class="p">),</span>
+                <span class="n">severity</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="s">low&#39;</span>
+            <span class="p">}</span>
+            <span class="c1">-- and drop the packet</span>
+            <span class="n">pkt</span><span class="p">:</span><span class="n">drop</span><span class="p">()</span>
+        <span class="k">end</span>
+        <span class="c1">-- All other packets will be accepted</span>
+    <span class="k">end</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>This script can be ran with a pcap file provided in the sample directory.</p>
+<div class="highlight-console"><div class="highlight"><pre><span class="gp">$</span> <span class="nb">cd</span> &lt;haka_install_path&gt;/share/haka/sample/filter/
+<span class="gp">$</span> hakapcap ipfilter.lua ipfilter.pcap
+</pre></div>
+</div>
+<p>To create a pcap file containing all packets that were not dropped, run the following command:</p>
+<div class="highlight-console"><div class="highlight"><pre><span class="gp">$</span> <span class="nb">cd</span> &lt;haka_install_path&gt;/share/haka/sample/filter/
+<span class="gp">$</span> hakapcap ipfilter.lua trace.pcap -o output.pcap
+</pre></div>
+</div>
+<p>The resulting pcap file can be opened with wireshark to check that Haka correctly filtered the packets according to their IP source address.</p>
+</div>
+<div class="section" id="interactive-rule-debugging">
+<h3>Interactive rule debugging<a class="headerlink" href="#interactive-rule-debugging" title="Permalink to this headline">¶</a></h3>
+<p>Haka allows to interactively debug Haka script file. A script containing a lua error is provided as <tt class="docutils literal"><span class="pre">tcpfilter.lua</span></tt>.</p>
+<p>This script will authorize only packets from/to port 80.</p>
+<div class="highlight-lua"><div class="highlight"><pre><span class="c1">------------------------------------</span>
+<span class="c1">-- Loading dissectors</span>
+<span class="c1">------------------------------------</span>
+
+<span class="nb">require</span><span class="p">(</span><span class="s1">&#39;</span><span class="s">protocol/ipv4&#39;</span><span class="p">)</span>
+<span class="kd">local</span> <span class="n">tcp</span> <span class="o">=</span> <span class="nb">require</span><span class="p">(</span><span class="s1">&#39;</span><span class="s">protocol/tcp&#39;</span><span class="p">)</span>
+
+<span class="c1">-- Allow only packets to/from port 80</span>
+<span class="n">haka</span><span class="p">.</span><span class="n">rule</span><span class="p">{</span>
+    <span class="n">hook</span> <span class="o">=</span> <span class="n">tcp</span><span class="p">.</span><span class="n">events</span><span class="p">.</span><span class="n">receive_packet</span><span class="p">,</span>
+    <span class="n">eval</span> <span class="o">=</span> <span class="k">function</span> <span class="p">(</span><span class="n">pkt</span><span class="p">)</span>
+        <span class="c1">-- The next line will generate a lua error:</span>
+        <span class="c1">-- there is no &#39;destport&#39; field. Replace &#39;destport&#39; by &#39;dstport&#39;</span>
+        <span class="k">if</span> <span class="n">pkt</span><span class="p">.</span><span class="n">destport</span> <span class="o">==</span> <span class="mi">80</span> <span class="ow">or</span> <span class="n">pkt</span><span class="p">.</span><span class="n">srcport</span> <span class="o">==</span> <span class="mi">80</span> <span class="k">then</span>
+            <span class="n">haka</span><span class="p">.</span><span class="n">log</span><span class="p">(</span><span class="s2">&quot;</span><span class="s">Filter&quot;</span><span class="p">,</span> <span class="s2">&quot;</span><span class="s">Authorizing trafic on port 80&quot;</span><span class="p">)</span>
+        <span class="k">else</span>
+            <span class="n">haka</span><span class="p">.</span><span class="n">log</span><span class="p">(</span><span class="s2">&quot;</span><span class="s">Filter&quot;</span><span class="p">,</span> <span class="s2">&quot;</span><span class="s">Trafic not authorized on port %d&quot;</span><span class="p">,</span> <span class="n">pkt</span><span class="p">.</span><span class="n">dstport</span><span class="p">)</span>
+            <span class="n">pkt</span><span class="p">:</span><span class="n">drop</span><span class="p">()</span>
+        <span class="k">end</span>
+    <span class="k">end</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>To run this example, use the following commands:</p>
+<div class="highlight-console"><div class="highlight"><pre><span class="gp">$</span> <span class="nb">cd</span> &lt;haka_install_path&gt;/share/haka/sample/filter/
+<span class="gp">$</span> hakapcap tcfilter.lua tcpfilter.pcap
+</pre></div>
+</div>
+<p>When running this script, Haka will output a high number of errors, complaining that the field <tt class="docutils literal"><span class="pre">destport</span></tt> doesn&#8217;t exist. We will use Haka&#8217;s debug facilities to find out precisely where the error occurs.</p>
+<div class="admonition-see-also admonition seealso">
+<p class="first admonition-title">See also</p>
+<p class="last"><a class="reference internal" href="../debug.html"><em>Debugging</em></a> contains documentation on Haka&#8217;s debugging facilities.</p>
+</div>
+<p>To start Haka in debugging mode, add <tt class="docutils literal"><span class="pre">--debug-lua</span></tt> at the end of the command line:</p>
+<div class="highlight-console"><div class="highlight"><pre><span class="gp">$</span> <span class="nb">cd</span> &lt;haka_install_path&gt;/share/haka/sample/filter/
+<span class="gp">$</span> hakapcap tcpfilter.lua tcpfilter.pcap --debug-lua
+</pre></div>
+</div>
+<p>When a Lua error code occurs, the debugger breaks and outputs the error and a backtrace.</p>
+<pre class="ansi-block literal-block">
+   <span class="ansi-green">entering debugger</span>: unknown field 'destport'
+    thread: 0
+    Backtrace
+    <span class="ansi-red"></span><span class="ansi-bold">=&gt;</span>0     <span class="ansi-cyan">[C]</span>: in function '<span class="ansi-magenta">(null)</span>'
+      #1    <span class="ansi-cyan">[C]</span>: in function '<span class="ansi-magenta">(null)</span>'
+      #2    <span class="ansi-cyan">[C]</span>: in function '<span class="ansi-magenta">__index</span>'
+      #3    <span class="ansi-cyan">tcpfilter.lua:18</span>: in function '<span class="ansi-magenta">signal</span>'
+      #4    <span class="ansi-cyan">/usr/share/haka/core/events.bc:0</span>: in the main chunk
+      #5    <span class="ansi-cyan">/usr/share/haka/core/events.bc:0</span>: in the main chunk
+      #6    <span class="ansi-cyan">/usr/share/haka/core/context.bc:0</span>: in the main chunk
+      #7    <span class="ansi-cyan">[string &quot;tcp&quot;]:14</span>: in function '<span class="ansi-magenta">receive</span>'
+      #8    <span class="ansi-cyan">/usr/share/haka/core/dissector.bc:0</span>: in the main chunk
+      #9    <span class="ansi-cyan">[C]</span>: in function '<span class="ansi-magenta">xpcall</span>'
+     ...
+</pre>
+<p>The general syntax of the debugger is close to the syntax of gdb.</p>
+<p>Here we are interested in the third frame which is the one in the Lua script itself.</p>
+<p>To set the debugger to focus on that particular frame, type <tt class="docutils literal"><span class="pre">frame</span> <span class="pre">3</span></tt>. We can now use the <tt class="docutils literal"><span class="pre">list</span></tt> command to display the faulty source code:</p>
+<pre class="ansi-block literal-block">
+<span class="ansi-green">debug</span><span class="ansi-bold">&gt;  </span>list
+    <span class="ansi-yellow">  14:  </span>    hook = haka.event('tcp', 'receive_packet'),
+    <span class="ansi-yellow">  15:  </span>    eval = function (pkt)
+    <span class="ansi-yellow">  16:  </span>        -- The next line will generate a lua error:
+    <span class="ansi-yellow">  17:  </span>        -- there is no 'destport' field. replace 'destport' by 'dstport'
+    <span class="ansi-red">  18</span><span class="ansi-bold">=&gt; </span>        if pkt.destport == 80 or pkt.srcport == 80 then
+    <span class="ansi-yellow">  19:  </span>            haka.log(&quot;Filter&quot;, &quot;Authorizing trafic on port 80&quot;)
+    <span class="ansi-yellow">  20:  </span>        else
+    <span class="ansi-yellow">  21:  </span>            haka.log(&quot;Filter&quot;, &quot;Trafic not authorized on port %d&quot;, pkt.dstport)
+    <span class="ansi-yellow">  22:  </span>            pkt:drop()
+    <span class="ansi-yellow">  23:  </span>        end
+</pre>
+<p>We now see that Lua is complaining about an unknown field <tt class="docutils literal"><span class="pre">destport</span></tt> on the line testing the destination port of the packet.</p>
+<p>Packets, like all structures provided by Haka, can be printed easily using the debugger.</p>
+<p>To see the content of the packet, type <tt class="docutils literal"><span class="pre">print</span> <span class="pre">pkt</span></tt>:</p>
+<pre class="ansi-block literal-block">
+<span class="ansi-green">debug</span><span class="ansi-bold">&gt;  </span>print pkt
+      #1    <span class="ansi-cyan ansi-bold">userdata</span> tcp {
+              <span class="ansi-blue ansi-bold">ack_seq</span> : 0
+              <span class="ansi-blue ansi-bold">checksum</span> : 417
+              <span class="ansi-blue ansi-bold">dstport</span> : 80
+              <span class="ansi-blue ansi-bold">flags</span> : <span class="ansi-cyan ansi-bold">userdata</span> tcp_flags {
+                <span class="ansi-blue ansi-bold">ack</span> : <span class="ansi-magenta ansi-bold">false</span>
+                <span class="ansi-blue ansi-bold">all</span> : 2
+                <span class="ansi-blue ansi-bold">cwr</span> : <span class="ansi-magenta ansi-bold">false</span>
+                <span class="ansi-blue ansi-bold">ecn</span> : <span class="ansi-magenta ansi-bold">false</span>
+                <span class="ansi-blue ansi-bold">fin</span> : <span class="ansi-magenta ansi-bold">false</span>
+                <span class="ansi-blue ansi-bold">psh</span> : <span class="ansi-magenta ansi-bold">false</span>
+                <span class="ansi-blue ansi-bold">rst</span> : <span class="ansi-magenta ansi-bold">false</span>
+                <span class="ansi-blue ansi-bold">syn</span> : <span class="ansi-magenta ansi-bold">true</span>
+                <span class="ansi-blue ansi-bold">urg</span> : <span class="ansi-magenta ansi-bold">false</span>
+              }
+              <span class="ansi-blue ansi-bold">hdr_len</span> : 40
+              <span class="ansi-blue ansi-bold">ip</span> : <span class="ansi-cyan ansi-bold">userdata</span> ipv4 {
+                  ...
+              }
+              ...
+              <span class="ansi-blue ansi-bold">srcport</span> : 37542
+              <span class="ansi-blue ansi-bold">urgent_pointer</span> : 0
+              <span class="ansi-blue ansi-bold">window_size</span> : 14600
+            }
+</pre>
+<p>You can notice that there is no field called <tt class="docutils literal"><span class="pre">destport</span></tt>. The correct name for the field is <tt class="docutils literal"><span class="pre">dstport</span></tt>. Once this typo is corrected, the script will run properly</p>
+<p>Press CTRL-C to quit or type <tt class="docutils literal"><span class="pre">help</span></tt> to get the list of available commands.</p>
+</div>
+<div class="section" id="using-rule-groups">
+<h3>Using rule groups<a class="headerlink" href="#using-rule-groups" title="Permalink to this headline">¶</a></h3>
+<p>Haka can handle multiple rules as a group.</p>
+<p>A rule group has three functions:</p>
+<ul class="simple">
+<li>The <cite>init</cite> function is called before any rule from the group is applied</li>
+<li>The <cite>continue</cite> function is called between each rule of the group and can decide to stop processing the group at any point.</li>
+<li>The <cite>final</cite> function is called after all rules have been ran. It is not called if <cite>continue</cite> has forced a cancelation mid-group.</li>
+</ul>
+<p>The following example uses the concept of group to implement a simple filter that only accepts connections on port 80 and port 22.</p>
+<div class="highlight-lua"><div class="highlight"><pre><span class="c1">------------------------------------</span>
+<span class="c1">-- Loading dissectors</span>
+<span class="c1">------------------------------------</span>
+<span class="nb">require</span><span class="p">(</span><span class="s1">&#39;</span><span class="s">protocol/ipv4&#39;</span><span class="p">)</span>
+<span class="nb">require</span><span class="p">(</span><span class="s1">&#39;</span><span class="s">protocol/tcp&#39;</span><span class="p">)</span>
+<span class="kd">local</span> <span class="n">tcp_connection</span> <span class="o">=</span> <span class="nb">require</span><span class="p">(</span><span class="s1">&#39;</span><span class="s">protocol/tcp_connection&#39;</span><span class="p">)</span>
+
+<span class="c1">------------------------------------</span>
+<span class="c1">-- Security rule group</span>
+<span class="c1">------------------------------------</span>
+
+<span class="c1">-- Create a new group with no rules in it</span>
+<span class="c1">-- The &#39;my_group&#39; lua variable will be used</span>
+<span class="c1">-- to add rules to the group</span>
+<span class="kd">local</span> <span class="n">my_group</span> <span class="o">=</span> <span class="n">haka</span><span class="p">.</span><span class="n">rule_group</span><span class="p">{</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="s">my_group&quot;</span><span class="p">,</span>
+    <span class="n">hook</span> <span class="o">=</span> <span class="n">tcp_connection</span><span class="p">.</span><span class="n">events</span><span class="p">.</span><span class="n">new_connection</span><span class="p">,</span>
+    <span class="n">init</span> <span class="o">=</span> <span class="k">function</span> <span class="p">(</span><span class="n">flow</span><span class="p">,</span> <span class="n">pkt</span><span class="p">)</span>
+        <span class="n">haka</span><span class="p">.</span><span class="n">log</span><span class="p">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;</span><span class="s">filter&quot;</span><span class="p">,</span> <span class="s2">&quot;</span><span class="s">Entering packet filtering rules : %d --&gt; %d&quot;</span><span class="p">,</span>
+            <span class="n">pkt</span><span class="p">.</span><span class="n">srcport</span><span class="p">,</span> <span class="n">pkt</span><span class="p">.</span><span class="n">dstport</span><span class="p">)</span>
+    <span class="k">end</span><span class="p">,</span>
+
+    <span class="c1">-- rules will return a boolean</span>
+    <span class="c1">-- if the boolean is false, we continue</span>
+    <span class="c1">-- if the boolean is true, we leave the group immediately</span>
+    <span class="n">continue</span> <span class="o">=</span> <span class="k">function</span> <span class="p">(</span><span class="n">ret</span><span class="p">,</span> <span class="n">flow</span><span class="p">,</span> <span class="n">pkt</span><span class="p">)</span>
+        <span class="k">return</span> <span class="ow">not</span> <span class="n">ret</span>
+    <span class="k">end</span><span class="p">,</span>
+
+    <span class="c1">-- if we reach the final function, all rules have returned false</span>
+    <span class="c1">-- Nobody has accepted the packet =&gt; we drop it.</span>
+    <span class="n">final</span> <span class="o">=</span> <span class="k">function</span> <span class="p">(</span><span class="n">flow</span><span class="p">,</span> <span class="n">pkt</span><span class="p">)</span>
+        <span class="n">haka</span><span class="p">.</span><span class="n">alert</span><span class="p">{</span>
+            <span class="n">description</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="s">Packet dropped : drop by default&quot;</span><span class="p">,</span>
+            <span class="n">targets</span> <span class="o">=</span> <span class="p">{</span> <span class="n">haka</span><span class="p">.</span><span class="n">alert</span><span class="p">.</span><span class="n">service</span><span class="p">(</span><span class="s2">&quot;</span><span class="s">tcp&quot;</span><span class="p">,</span> <span class="n">pkt</span><span class="p">.</span><span class="n">dstport</span><span class="p">)</span> <span class="p">}</span>
+        <span class="p">}</span>
+        <span class="n">pkt</span><span class="p">:</span><span class="n">drop</span><span class="p">()</span>
+    <span class="k">end</span>
+<span class="p">}</span>
+
+<span class="c1">------------------------------------</span>
+<span class="c1">-- Security rules for my_group</span>
+<span class="c1">------------------------------------</span>
+
+<span class="n">my_group</span><span class="p">:</span><span class="n">rule</span><span class="p">{</span>
+    <span class="n">eval</span> <span class="o">=</span> <span class="k">function</span> <span class="p">(</span><span class="n">flow</span><span class="p">,</span> <span class="n">pkt</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">pkt</span><span class="p">.</span><span class="n">dstport</span> <span class="o">==</span> <span class="mi">80</span> <span class="k">then</span>
+            <span class="n">haka</span><span class="p">.</span><span class="n">log</span><span class="p">(</span><span class="s2">&quot;</span><span class="s">Filter&quot;</span><span class="p">,</span> <span class="s2">&quot;</span><span class="s">Authorizing traffic on port 80&quot;</span><span class="p">)</span>
+            <span class="k">return</span> <span class="kc">true</span>
+        <span class="k">end</span>
+    <span class="k">end</span>
+<span class="p">}</span>
+
+<span class="n">my_group</span><span class="p">:</span><span class="n">rule</span><span class="p">{</span>
+    <span class="n">eval</span> <span class="o">=</span> <span class="k">function</span> <span class="p">(</span><span class="n">flow</span><span class="p">,</span> <span class="n">pkt</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">pkt</span><span class="p">.</span><span class="n">dstport</span> <span class="o">==</span> <span class="mi">22</span> <span class="k">then</span>
+            <span class="n">haka</span><span class="p">.</span><span class="n">log</span><span class="p">(</span><span class="s2">&quot;</span><span class="s">Filter&quot;</span><span class="p">,</span> <span class="s2">&quot;</span><span class="s">Authorizing traffic on port 22&quot;</span><span class="p">)</span>
+            <span class="k">return</span> <span class="kc">true</span>
+        <span class="k">end</span>
+    <span class="k">end</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="advanced-tcp-ip-filtering">
+<h2>6.2.3. Advanced TCP/IP Filtering<a class="headerlink" href="#advanced-tcp-ip-filtering" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="filtering-with-nfqueue">
+<h3>Filtering with NFQueue<a class="headerlink" href="#filtering-with-nfqueue" title="Permalink to this headline">¶</a></h3>
+<p>All the examples so far have used <tt class="docutils literal"><span class="pre">hakapcap</span></tt> to test some recorded packets.</p>
+<p>Haka can also use nfqueue to capture packets from a live interface. The following
+examples will illustrate how to do that.</p>
+<p>When configured to use nfqueue, Haka will hook itself up to the <cite>raw</cite> nfqueue table in order to
+inspect, modify, create and delete packets in real time.</p>
+<p>The rest of this tutorial assumes that the Haka package is installed on a host which has a
+network interface named eth0.</p>
+<p>The configuration file for the daemon is given below:</p>
+<div class="highlight-ini"><div class="highlight"><pre><span class="k">[general]</span>
+<span class="c"># Select the haka configuration file to use</span>
+<span class="na">configuration</span> <span class="o">=</span> <span class="s">&quot;ipfilter.lua&quot;</span>
+
+<span class="c"># Optionally select the number of thread to use. </span>
+<span class="c">#thread = 4</span>
+
+<span class="c"># Pass-through mode</span>
+<span class="c"># If yes, haka will only inspect packet</span>
+<span class="c"># If no, it means that haka can also modify and create packet</span>
+<span class="na">pass-through</span> <span class="o">=</span> <span class="s">no</span>
+
+<span class="k">[packet]</span>
+<span class="c"># Select the capture model, nfqueue or pcap</span>
+<span class="na">module</span> <span class="o">=</span> <span class="s">&quot;packet/nfqueue&quot;</span>
+
+<span class="c"># Select the interfaces to listen to</span>
+<span class="na">interfaces</span> <span class="o">=</span> <span class="s">&quot;eth0&quot;</span>
+
+<span class="c"># Select packet dumping for nfqueue</span>
+<span class="c">#dump = yes</span>
+<span class="c">#dump_input = &quot;/tmp/input.pcap&quot;</span>
+<span class="c">#dump_output = &quot;/tmp/output.pcap&quot;</span>
+
+<span class="k">[log]</span>
+<span class="c"># Select the log module</span>
+<span class="na">module</span> <span class="o">=</span> <span class="s">&quot;log/syslog&quot;</span>
+
+<span class="k">[alert]</span>
+<span class="c"># Select the alert module</span>
+<span class="na">module</span> <span class="o">=</span> <span class="s">&quot;alert/syslog&quot;</span>
+</pre></div>
+</div>
+<p>In order to be able to capture packets, the <cite>haka</cite> daemon needs to be run as root. The <tt class="docutils literal"><span class="pre">--no-daemon</span></tt> option will prevent <cite>haka</cite> from detaching from the command line and will force <cite>haka</cite> to send its outputs to stdout instead of syslog.</p>
+<div class="highlight-console"><div class="highlight"><pre><span class="gp">#</span> <span class="nb">cd</span> &lt;haka_install_path&gt;/share/haka/sample/filter/
+<span class="gp">#</span> haka -c daemon.conf --no-daemon
+</pre></div>
+</div>
+<p>The Haka script file used here is the one from the first tutorial. This filter will discard all packets coming from <cite>192.168.10.10</cite></p>
+</div>
+<div class="section" id="http-filtering">
+<h3>HTTP filtering<a class="headerlink" href="#http-filtering" title="Permalink to this headline">¶</a></h3>
+<p>Haka comes with an HTTP parser. Using that module it is easy to filter packets using specific fields from HTTP headers.</p>
+<div class="highlight-lua"><div class="highlight"><pre><span class="c1">------------------------------------</span>
+<span class="c1">-- Loading dissectors</span>
+<span class="c1">------------------------------------</span>
+<span class="nb">require</span><span class="p">(</span><span class="s1">&#39;</span><span class="s">protocol/ipv4&#39;</span><span class="p">)</span>
+<span class="nb">require</span><span class="p">(</span><span class="s1">&#39;</span><span class="s">protocol/tcp&#39;</span><span class="p">)</span>
+<span class="kd">local</span> <span class="n">tcp_connection</span> <span class="o">=</span> <span class="nb">require</span><span class="p">(</span><span class="s1">&#39;</span><span class="s">protocol/tcp_connection&#39;</span><span class="p">)</span>
+<span class="kd">local</span> <span class="n">http</span> <span class="o">=</span> <span class="nb">require</span><span class="p">(</span><span class="s1">&#39;</span><span class="s">protocol/http&#39;</span><span class="p">)</span>
+
+<span class="c1">-- Allow only connections on port 80, close all other connections</span>
+<span class="c1">-- Forward all accepted connections to the HTTP dissector</span>
+<span class="n">haka</span><span class="p">.</span><span class="n">rule</span><span class="p">{</span>
+    <span class="n">hook</span> <span class="o">=</span> <span class="n">tcp_connection</span><span class="p">.</span><span class="n">events</span><span class="p">.</span><span class="n">new_connection</span><span class="p">,</span>
+    <span class="n">eval</span> <span class="o">=</span> <span class="k">function</span> <span class="p">(</span><span class="n">flow</span><span class="p">,</span> <span class="n">pkt</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">pkt</span><span class="p">.</span><span class="n">dstport</span> <span class="o">==</span> <span class="mi">80</span> <span class="k">then</span>
+            <span class="n">http</span><span class="p">.</span><span class="n">dissect</span><span class="p">(</span><span class="n">flow</span><span class="p">)</span>
+        <span class="k">else</span>
+            <span class="n">haka</span><span class="p">.</span><span class="n">log</span><span class="p">(</span><span class="s2">&quot;</span><span class="s">Filter&quot;</span><span class="p">,</span> <span class="s2">&quot;</span><span class="s">Dropping TCP connection: tcp dstpport=%d&quot;</span><span class="p">,</span>
+                <span class="n">pkt</span><span class="p">.</span><span class="n">dstport</span><span class="p">)</span>
+            <span class="n">pkt</span><span class="p">:</span><span class="n">reset</span><span class="p">()</span> <span class="c1">-- Send a TCP RST packet to both sides: client and server</span>
+        <span class="k">end</span>
+    <span class="k">end</span>
+<span class="p">}</span>
+
+<span class="c1">-- Allow only connections from the &#39;Mozilla&#39; user agent.</span>
+<span class="n">haka</span><span class="p">.</span><span class="n">rule</span><span class="p">{</span>
+    <span class="n">hook</span> <span class="o">=</span> <span class="n">http</span><span class="p">.</span><span class="n">events</span><span class="p">.</span><span class="n">request</span><span class="p">,</span>
+    <span class="n">eval</span> <span class="o">=</span> <span class="k">function</span> <span class="p">(</span><span class="n">http</span><span class="p">,</span> <span class="n">request</span><span class="p">)</span>
+        <span class="k">if</span> <span class="nb">string.match</span><span class="p">(</span><span class="n">request</span><span class="p">.</span><span class="n">headers</span><span class="p">[</span><span class="s1">&#39;</span><span class="s">User-Agent&#39;</span><span class="p">],</span> <span class="s1">&#39;</span><span class="s">Mozilla&#39;</span><span class="p">)</span> <span class="k">then</span>
+            <span class="n">haka</span><span class="p">.</span><span class="n">log</span><span class="p">(</span><span class="s2">&quot;</span><span class="s">Filter&quot;</span><span class="p">,</span> <span class="s2">&quot;</span><span class="s">User-Agent Mozilla detected&quot;</span><span class="p">)</span>
+        <span class="k">else</span>
+            <span class="n">haka</span><span class="p">.</span><span class="n">log</span><span class="p">(</span><span class="s2">&quot;</span><span class="s">Filter&quot;</span><span class="p">,</span> <span class="s2">&quot;</span><span class="s">Only Mozilla User-Agent authorized&quot;</span><span class="p">)</span>
+            <span class="n">http</span><span class="p">:</span><span class="n">drop</span><span class="p">()</span>
+        <span class="k">end</span>
+    <span class="k">end</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>To test this filter you will need to modify <tt class="docutils literal"><span class="pre">dameon.conf</span></tt> to tell haka to use <tt class="docutils literal"><span class="pre">httpfilter.lua</span></tt>:</p>
+<div class="highlight-ini"><div class="highlight"><pre><span class="k">[general]</span>
+<span class="c"># Select the haka configuration file to use.</span>
+<span class="na">configuration</span> <span class="o">=</span> <span class="s">&quot;httpfilter.lua&quot;</span>
+</pre></div>
+</div>
+<p>It is now possible to start the daemon using this new configuration.</p>
+<div class="highlight-console"><div class="highlight"><pre><span class="gp">#</span> <span class="nb">cd</span> &lt;haka_install_path&gt;/share/haka/sample/filter/
+<span class="gp">#</span> haka -c dameon.conf --no-daemon
+</pre></div>
+</div>
+</div>
+<div class="section" id="modifying-http-responses">
+<h3>Modifying HTTP responses<a class="headerlink" href="#modifying-http-responses" title="Permalink to this headline">¶</a></h3>
+<p>Haka can also be used to alter packet content as they pass through the system. The following example will redirect traffic based on HTTP headers. More specifically, it will detect outdated firefox versions and will redirect all traffic from these browsers to the firefox update site.</p>
+<div class="highlight-lua"><div class="highlight"><pre><span class="c1">------------------------------------</span>
+<span class="c1">-- Loading dissectors</span>
+<span class="c1">------------------------------------</span>
+<span class="nb">require</span><span class="p">(</span><span class="s1">&#39;</span><span class="s">protocol/ipv4&#39;</span><span class="p">)</span>
+<span class="nb">require</span><span class="p">(</span><span class="s1">&#39;</span><span class="s">protocol/tcp&#39;</span><span class="p">)</span>
+<span class="kd">local</span> <span class="n">http</span> <span class="o">=</span> <span class="nb">require</span><span class="p">(</span><span class="s1">&#39;</span><span class="s">protocol/http&#39;</span><span class="p">)</span>
+
+<span class="kd">local</span> <span class="n">last_firefox_version</span> <span class="o">=</span> <span class="mf">24.0</span>
+<span class="kd">local</span> <span class="n">firefox_web_site</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="s">http://www.mozilla.org&#39;</span>
+
+<span class="c1">-- Domain whitelist.</span>
+<span class="c1">-- All traffic to these domains will be unmodified</span>
+<span class="kd">local</span> <span class="n">update_domains</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;</span><span class="s">mozilla.org&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;</span><span class="s">mozilla.net&#39;</span><span class="p">,</span>
+    <span class="c1">-- You can extend this list with other domains</span>
+<span class="p">}</span>
+
+<span class="c1">-- Forward all traffic on port 80 to the HTTP dissector</span>
+<span class="n">http</span><span class="p">.</span><span class="n">install_tcp_rule</span><span class="p">(</span><span class="mi">80</span><span class="p">)</span>
+
+<span class="c1">-------------------------------------</span>
+<span class="c1">-- Rule group definition</span>
+<span class="c1">-------------------------------------</span>
+<span class="n">safe_update</span> <span class="o">=</span> <span class="n">haka</span><span class="p">.</span><span class="n">rule_group</span><span class="p">{</span>
+    <span class="n">hook</span> <span class="o">=</span> <span class="n">http</span><span class="p">.</span><span class="n">events</span><span class="p">.</span><span class="n">response</span><span class="p">,</span>
+
+    <span class="c1">-- Initialization</span>
+    <span class="n">init</span> <span class="o">=</span> <span class="k">function</span> <span class="p">(</span><span class="n">http</span><span class="p">,</span> <span class="n">response</span><span class="p">)</span>
+        <span class="kd">local</span> <span class="n">host</span> <span class="o">=</span> <span class="n">http</span><span class="p">.</span><span class="n">request</span><span class="p">.</span><span class="n">headers</span><span class="p">[</span><span class="s1">&#39;</span><span class="s">Host&#39;</span><span class="p">]</span>
+        <span class="k">if</span> <span class="n">host</span> <span class="k">then</span>
+            <span class="n">haka</span><span class="p">.</span><span class="n">log</span><span class="p">(</span><span class="s2">&quot;</span><span class="s">Filter&quot;</span><span class="p">,</span> <span class="s2">&quot;</span><span class="s">Domain requested: %s&quot;</span><span class="p">,</span> <span class="n">host</span><span class="p">)</span>
+        <span class="k">end</span>
+    <span class="k">end</span><span class="p">,</span>
+
+    <span class="c1">-- Continue is called after evaluation of each security rule.</span>
+    <span class="c1">-- The ret parameter decide whether to read next rule or skip </span>
+    <span class="c1">-- the evaluation of the other rules in the group</span>
+    <span class="n">continue</span> <span class="o">=</span> <span class="k">function</span> <span class="p">(</span><span class="n">ret</span><span class="p">)</span>
+        <span class="k">return</span> <span class="ow">not</span> <span class="n">ret</span>
+    <span class="k">end</span>
+<span class="p">}</span>
+
+<span class="c1">-- Traffic to all websites in the whitelist is unconditionally allowed</span>
+<span class="n">safe_update</span><span class="p">:</span><span class="n">rule</span><span class="p">{</span>
+    <span class="n">eval</span> <span class="o">=</span> <span class="k">function</span> <span class="p">(</span><span class="n">http</span><span class="p">,</span> <span class="n">response</span><span class="p">)</span>
+        <span class="kd">local</span> <span class="n">host</span> <span class="o">=</span> <span class="n">http</span><span class="p">.</span><span class="n">request</span><span class="p">.</span><span class="n">headers</span><span class="p">[</span><span class="s1">&#39;</span><span class="s">Host&#39;</span><span class="p">]</span> <span class="ow">or</span> <span class="s1">&#39;</span><span class="s">&#39;</span>
+        <span class="k">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">dom</span> <span class="k">in</span> <span class="nb">ipairs</span><span class="p">(</span><span class="n">update_domains</span><span class="p">)</span> <span class="k">do</span>
+            <span class="k">if</span> <span class="nb">string.find</span><span class="p">(</span><span class="n">host</span><span class="p">,</span> <span class="n">dom</span><span class="p">)</span> <span class="k">then</span>
+                <span class="n">haka</span><span class="p">.</span><span class="n">log</span><span class="p">(</span><span class="s2">&quot;</span><span class="s">Filter&quot;</span><span class="p">,</span> <span class="s2">&quot;</span><span class="s">Update domain: go for it&quot;</span><span class="p">)</span>
+                <span class="k">return</span> <span class="kc">true</span>
+            <span class="k">end</span>
+        <span class="k">end</span>
+    <span class="k">end</span>
+<span class="p">}</span>
+
+<span class="c1">-- If the User-Agent contains firefox and the version is outdated,</span>
+<span class="c1">-- then redirect the traffic to firefox_web_site</span>
+<span class="n">safe_update</span><span class="p">:</span><span class="n">rule</span><span class="p">{</span>
+    <span class="n">eval</span> <span class="o">=</span> <span class="k">function</span> <span class="p">(</span><span class="n">http</span><span class="p">,</span> <span class="n">response</span><span class="p">)</span>
+        <span class="c1">-- Uncomment the following line to see the the content of the request</span>
+        <span class="c1">-- debug.pprint(request, nil, nil, { debug.hide_underscore, debug.hide_function })</span>
+
+        <span class="kd">local</span> <span class="n">UA</span> <span class="o">=</span> <span class="n">http</span><span class="p">.</span><span class="n">request</span><span class="p">.</span><span class="n">headers</span><span class="p">[</span><span class="s2">&quot;</span><span class="s">User-Agent&quot;</span><span class="p">]</span> <span class="ow">or</span> <span class="s2">&quot;</span><span class="s">No User-Agent header&quot;</span>
+        <span class="n">haka</span><span class="p">.</span><span class="n">log</span><span class="p">(</span><span class="s2">&quot;</span><span class="s">Filter&quot;</span><span class="p">,</span> <span class="s2">&quot;</span><span class="s">UA detected: %s&quot;</span><span class="p">,</span> <span class="n">UA</span><span class="p">)</span>
+        <span class="kd">local</span> <span class="n">FF_UA</span> <span class="o">=</span> <span class="p">(</span><span class="nb">string.find</span><span class="p">(</span><span class="n">UA</span><span class="p">,</span> <span class="s2">&quot;</span><span class="s">Firefox/&quot;</span><span class="p">))</span>
+
+        <span class="k">if</span> <span class="n">FF_UA</span> <span class="k">then</span> <span class="c1">-- Firefox was detected</span>
+            <span class="kd">local</span> <span class="n">version</span> <span class="o">=</span> <span class="nb">tonumber</span><span class="p">(</span><span class="nb">string.sub</span><span class="p">(</span><span class="n">UA</span><span class="p">,</span> <span class="n">FF_UA</span><span class="o">+</span><span class="mi">8</span><span class="p">))</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">version</span> <span class="ow">or</span> <span class="n">version</span> <span class="o">&lt;</span> <span class="n">last_firefox_version</span> <span class="k">then</span>
+                <span class="n">haka</span><span class="p">.</span><span class="n">alert</span><span class="p">{</span>
+                    <span class="n">description</span><span class="o">=</span> <span class="s2">&quot;</span><span class="s">Firefox is outdated, please upgrade&quot;</span><span class="p">,</span>
+                    <span class="n">severity</span><span class="o">=</span> <span class="s1">&#39;</span><span class="s">medium&#39;</span>
+                <span class="p">}</span>
+                <span class="c1">-- redirect browser to a safe place where updates will be made</span>
+                <span class="n">response</span><span class="p">.</span><span class="n">status</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="s">307&quot;</span>
+                <span class="n">response</span><span class="p">.</span><span class="n">reason</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="s">Moved Temporarily&quot;</span>
+                <span class="n">response</span><span class="p">.</span><span class="n">headers</span><span class="p">[</span><span class="s2">&quot;</span><span class="s">Content-Length&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="s">0&quot;</span>
+                <span class="n">response</span><span class="p">.</span><span class="n">headers</span><span class="p">[</span><span class="s2">&quot;</span><span class="s">Location&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">firefox_web_site</span>
+                <span class="n">response</span><span class="p">.</span><span class="n">headers</span><span class="p">[</span><span class="s2">&quot;</span><span class="s">Server&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="s">A patchy server&quot;</span>
+                <span class="n">response</span><span class="p">.</span><span class="n">headers</span><span class="p">[</span><span class="s2">&quot;</span><span class="s">Connection&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="s">Close&quot;</span>
+                <span class="n">response</span><span class="p">.</span><span class="n">headers</span><span class="p">[</span><span class="s2">&quot;</span><span class="s">Proxy-Connection&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="s">Close&quot;</span>
+                <span class="n">debug</span><span class="p">.</span><span class="n">pprint</span><span class="p">(</span><span class="n">response</span><span class="p">,</span> <span class="kc">nil</span><span class="p">,</span> <span class="kc">nil</span><span class="p">,</span> <span class="p">{</span> <span class="n">debug</span><span class="p">.</span><span class="n">hide_underscore</span><span class="p">,</span> <span class="n">debug</span><span class="p">.</span><span class="n">hide_function</span> <span class="p">})</span>
+            <span class="k">end</span>
+        <span class="k">else</span>
+            <span class="n">haka</span><span class="p">.</span><span class="n">log</span><span class="p">(</span><span class="s2">&quot;</span><span class="s">Filter&quot;</span><span class="p">,</span> <span class="s2">&quot;</span><span class="s">Unknown or missing User-Agent&quot;</span><span class="p">)</span>
+        <span class="k">end</span>
+    <span class="k">end</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Modify the <tt class="docutils literal"><span class="pre">dameon.conf</span></tt> in order to load the <tt class="docutils literal"><span class="pre">httpmodif.lua</span></tt>
+configuration file:</p>
+<div class="highlight-ini"><div class="highlight"><pre><span class="k">[general]</span>
+<span class="c"># Select the haka configuration file to use</span>
+<span class="na">configuration</span> <span class="o">=</span> <span class="s">&quot;httpmodif.lua&quot;</span>
+</pre></div>
+</div>
+<p>And start it.</p>
+<div class="highlight-console"><div class="highlight"><pre><span class="gp">#</span> <span class="nb">cd</span> &lt;haka_install_path&gt;/share/haka/sample/filter/
+<span class="gp">#</span> haka -c dameon.conf --no-daemon
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+
+
+		</div>
+	</div>
+</div>
+
+
+
+<footer id="footer">
+	<div class="row" role="complementary">
+		<div class="medium-12 columns">
+			&copy; Copyright 2014, Arkoon Network Security, OpenWide and Telecom ParisTech.
+		</div>
+	</div>
+</footer>
+<script>
+	  $(document).foundation();
+</script>
+
+
+
+<script type="text/javascript" src="http://www.haka-security.org/js/track.js"></script>
+
+
+  </body>
+</html>

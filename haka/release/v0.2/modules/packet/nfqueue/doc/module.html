@@ -1,0 +1,259 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Netfilter queue packet/nfqueue &mdash; Haka runtime 0.2.0 documentation</title>
+    
+    <link rel="stylesheet" href="../../../../_static/haka.css" type="text/css" />
+    <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../../../_static/breathe.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../../',
+        VERSION:     '0.2.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../../../_static/js/scripts.js"></script>
+    <script type="text/javascript" src="../../../../_static/js/vendor/modernizr.js"></script>
+    <script type="text/javascript" src="../../../../_static/js/foundation/foundation.js"></script>
+    <script type="text/javascript" src="../../../../_static/js/foundation/foundation.topbar.js"></script>
+    <link rel="top" title="Haka runtime 0.2.0 documentation" href="../../../../index.html" />
+    <link rel="up" title="4.4. Modules" href="../../../../doc/user/tool_suite_modules.html" />
+    <link rel="next" title="Pcap packet/pcap" href="../../pcap/doc/module.html" />
+    <link rel="prev" title="4.4. Modules" href="../../../../doc/user/tool_suite_modules.html" /> 
+  </head>
+  <body>
+
+
+<header id="header" role="banner">
+	<div class="row">
+		<div class="medium-6 columns">
+			<h1 class="title"><a rel="home" title="Haka" href="http://www.haka-security.org">Haka</a></h1>
+			<h2 class="description">Software Defined Security</h2>
+		</div>
+		<div class="medium-6 columns">
+			<div id="version">Version 0.2.0</div>
+		</div>
+	</div>
+</header>
+
+<div class="contain-to-grid sticky">
+	
+
+<nav id="navbar" class="top-bar" data-topbar>
+	<ul class="title-area">
+		<!-- This is required for toggle-topbar to work -->
+		<li class="name"></li>
+		<li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
+	</ul>
+	<section class="top-bar-section">
+		<ul class="left">
+			<li class=" active">
+				<a href="../../../../doc/user/userindex.html">Users</a>
+			</li>
+			<li class=" ">
+				<a href="../../../../doc/ref/refindex.html" class="../../../../doc/ref/refindex.html">References</a>
+			</li>
+			<li class=" ">
+				<a href="../../../../doc/developer/devindex.html" class="">Developers</a>
+			</li>
+			<li class=" ">
+				<a href="../../../../doc/faq.html" class="">Faq</a>
+			</li>
+			<li class="has-form">
+
+
+	<form class="search" action="../../../../search.html" method="get" id="searchbox" style="display: none">
+		<input type="hidden" name="area" value="default" />
+		<input type="hidden" name="check_keywords" value="yes" />
+		<div class="row collapse">
+			<div class="medium-11 columns">
+				<input type="text" name="q" placeholder="Search" />
+			</div>
+			<div class="medium-1 columns" id="clean-search-highlight">
+			</div>
+		</div>
+	</form>
+	<script type="text/javascript">$('#searchbox').show(0);</script>
+</li>
+		</ul>
+		<ul class="right">
+				<li class="right"><a href="../../pcap/doc/module.html" title="Pcap  <cite>packet/pcap</cite>">Next &rarr;</a></li>
+				<li class="right"><a href="../../../../doc/user/tool_suite_modules.html" title="4.4. Modules">&larr; Prev</a></li>
+				<li class="right"><a href="../../../../doc/user/tool_suite_modules.html" title="4.4. Modules">Up &uarr;</a></li>
+
+			<li class=" right"><a href="../../../../genindex.html">Index</a></li>
+			<li class=" right"><a href="../../../../haka-modindex.html">Modules</a></li>
+		</ul>
+	</section>
+</nav>
+</div>
+<div id="content">
+	<div class="row">
+		<ul id="breadcrumb" class="breadcrumbs medium-12 columns">
+			
+			<li><a href="../../../../doc/user/userindex.html">Welcome to Haka&#8217;s User Guide!</a></li>
+			
+			<li><a href="../../../../doc/user/tool_suite.html">4. Haka tool suite</a></li>
+			
+			<li><a href="../../../../doc/user/tool_suite_modules.html">4.4. Modules</a></li>
+			
+			<li class="current"><a href="#">Netfilter queue <cite>packet/nfqueue</cite></a></li>
+		</ul>
+	</div>
+	<div class="row">
+		<div class="medium-12 columns">
+			
+  <div class="section" id="netfilter-queue-packet-nfqueue">
+<h1>Netfilter queue <cite>packet/nfqueue</cite><a class="headerlink" href="#netfilter-queue-packet-nfqueue" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="description">
+<h2>Description<a class="headerlink" href="#description" title="Permalink to this headline">¶</a></h2>
+<p>This module uses the <cite>netfilter queue</cite> library to capture packets from a given network interface.</p>
+<p>This module will install iptable rules in the <cite>raw</cite> table during its initialization
+.
+The table will be cleared when the application terminates.</p>
+<p>When using this module, <tt class="docutils literal"><span class="pre">haka</span></tt> needs to be run with the appropriate permissions.</p>
+</div>
+<div class="section" id="parameters">
+<h2>Parameters<a class="headerlink" href="#parameters" title="Permalink to this headline">¶</a></h2>
+<dl class="describe">
+<dt>
+<tt class="descname">interfaces</tt></dt>
+<dd><p>Comma-separated list of interfaces or the <tt class="docutils literal"><span class="pre">any</span></tt> keyword.</p>
+<p>Example :</p>
+<div class="highlight-ini"><div class="highlight"><pre><span class="c"># Capture loopback traffic</span>
+<span class="na">interfaces</span> <span class="o">=</span> <span class="s">&quot;lo&quot;</span>
+<span class="c"># Capture on interface eth1 and eth2</span>
+<span class="c"># interfaces = &quot;eth1, eth2&quot;</span>
+<span class="c"># Capture on all interfaces</span>
+<span class="c"># interfaces = &quot;any&quot;</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="describe">
+<dt>
+<tt class="descname">dump=[yes|no]</tt></dt>
+<dd><p>Enable dumping feature.</p>
+</dd></dl>
+
+<dl class="describe">
+<dt>
+<tt class="descname">dump_input=`file`</tt></dt>
+<dd><p>Save all received packets to a  pcap file.</p>
+</dd></dl>
+
+<dl class="describe">
+<dt>
+<tt class="descname">dump_output=`file`</tt></dt>
+<dd><p>Save packets that were accepted to to a pcap file.</p>
+<p>Example :</p>
+<div class="highlight-ini"><div class="highlight"><pre><span class="na">dump</span> <span class="o">=</span> <span class="s">true</span>
+<span class="na">dump_input</span> <span class="o">=</span> <span class="s">&quot;/tmp/input.pcap&quot;</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="describe">
+<dt>
+<tt class="descname">enable_iptables=[yes|no]</tt></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Default value:</th><td class="field-body">yes</td>
+</tr>
+</tbody>
+</table>
+<p>Enable the iptables rules. If set to <tt class="docutils literal"><span class="pre">no</span></tt>, the user should create
+the rules to select the traffic that should go through <tt class="docutils literal"><span class="pre">haka</span></tt>.</p>
+<div class="admonition-see-also admonition seealso">
+<p class="first admonition-title">See also</p>
+<p class="last"><a class="reference internal" href="#custom-iptables"><em>Customize iptables rules</em></a>.</p>
+</div>
+</dd></dl>
+
+</div>
+<div class="section" id="customize-iptables-rules">
+<span id="custom-iptables"></span><h2>Customize iptables rules<a class="headerlink" href="#customize-iptables-rules" title="Permalink to this headline">¶</a></h2>
+<p>By default, Haka will create iptables rules to process all traffic. However it
+is possible for the user to customize the rules by using the option
+<tt class="docutils literal"><span class="pre">enable_iptables=no</span></tt>. In this mode, Haka will only create rules in the
+targets <tt class="docutils literal"><span class="pre">HAKA-PRE</span></tt> and <tt class="docutils literal"><span class="pre">HAKA-OUT</span></tt>. It will not change any other rules in
+the table <cite>raw</cite> and will rely on the user rules to get some packets.</p>
+<div class="section" id="haka-targets">
+<h3>Haka targets<a class="headerlink" href="#haka-targets" title="Permalink to this headline">¶</a></h3>
+<p>You first need to create two custom targets named <tt class="docutils literal"><span class="pre">HAKA-PRE</span></tt> and <tt class="docutils literal"><span class="pre">HAKA-OUT</span></tt>.
+These targets will be overridden by Haka when it will be started. Any packet
+sent to this target will be processed by Haka.</p>
+<div class="highlight-console"><div class="highlight"><pre><span class="gp">#</span> iptables -t raw -N HAKA-PRE
+<span class="gp">#</span> iptables -t raw -N HAKA-OUT
+</pre></div>
+</div>
+<p>The target <tt class="docutils literal"><span class="pre">HAKA-PRE</span></tt> should be used to create rules in PREROUTING,
+<tt class="docutils literal"><span class="pre">HAKA-OUT</span></tt> should be used in OUTPUT.</p>
+</div>
+<div class="section" id="custom-rules">
+<h3>Custom rules<a class="headerlink" href="#custom-rules" title="Permalink to this headline">¶</a></h3>
+<p>It is then possible to create new rules to send some traffic to Haka. For
+instance, the following rule will send all packets:</p>
+<div class="highlight-console"><div class="highlight"><pre><span class="gp">#</span> iptables -t raw -A PREROUTING -j HAKA-PRE
+<span class="gp">#</span> iptables -t raw -A OUTPUT -j HAKA-OUT
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">This is what Haka do by default or when <tt class="docutils literal"><span class="pre">enable_iptables</span></tt> is set to
+<tt class="docutils literal"><span class="pre">yes</span></tt>.</p>
+</div>
+<p>Now to only send udp packets to Haka, you can create the following rules:</p>
+<div class="highlight-console"><div class="highlight"><pre><span class="gp">#</span> iptables -t raw -A PREROUTING -p udp -j HAKA-PRE
+<span class="gp">#</span> iptables -t raw -A OUTPUT -p udp -j HAKA-OUT
+</pre></div>
+</div>
+<p>You can imagine more complex rules using iptables features to select
+precisely which packets should by processed and which should not. It
+enables seamlessly integration of Haka with iptables.</p>
+</div>
+</div>
+</div>
+
+
+		</div>
+	</div>
+</div>
+
+
+
+<footer id="footer">
+	<div class="row" role="complementary">
+		<div class="medium-12 columns">
+			&copy; Copyright 2014, Arkoon Network Security, OpenWide and Telecom ParisTech.
+		</div>
+	</div>
+</footer>
+<script>
+	  $(document).foundation();
+</script>
+
+
+
+<script type="text/javascript" src="http://www.haka-security.org/js/track.js"></script>
+
+
+  </body>
+</html>

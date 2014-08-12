@@ -1,0 +1,505 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>6. Regular Expression &mdash; Haka runtime 0.2.0 documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/haka.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/breathe.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '0.2.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../_static/js/scripts.js"></script>
+    <script type="text/javascript" src="../../_static/js/vendor/modernizr.js"></script>
+    <script type="text/javascript" src="../../_static/js/foundation/foundation.js"></script>
+    <script type="text/javascript" src="../../_static/js/foundation/foundation.topbar.js"></script>
+    <link rel="top" title="Haka runtime 0.2.0 documentation" href="../../index.html" />
+    <link rel="up" title="Welcome to Haka’s User Reference Guide!" href="refindex.html" />
+    <link rel="next" title="7. Haka dissectors" href="hakadissector.html" />
+    <link rel="prev" title="5. Alerting" href="alert.html" /> 
+  </head>
+  <body>
+
+
+<header id="header" role="banner">
+	<div class="row">
+		<div class="medium-6 columns">
+			<h1 class="title"><a rel="home" title="Haka" href="http://www.haka-security.org">Haka</a></h1>
+			<h2 class="description">Software Defined Security</h2>
+		</div>
+		<div class="medium-6 columns">
+			<div id="version">Version 0.2.0</div>
+		</div>
+	</div>
+</header>
+
+<div class="contain-to-grid sticky">
+	
+
+<nav id="navbar" class="top-bar" data-topbar>
+	<ul class="title-area">
+		<!-- This is required for toggle-topbar to work -->
+		<li class="name"></li>
+		<li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
+	</ul>
+	<section class="top-bar-section">
+		<ul class="left">
+			<li class=" ">
+				<a href="../user/userindex.html">Users</a>
+			</li>
+			<li class=" active">
+				<a href="refindex.html" class="refindex.html">References</a>
+			</li>
+			<li class=" ">
+				<a href="../developer/devindex.html" class="">Developers</a>
+			</li>
+			<li class=" ">
+				<a href="../faq.html" class="">Faq</a>
+			</li>
+			<li class="has-form">
+
+
+	<form class="search" action="../../search.html" method="get" id="searchbox" style="display: none">
+		<input type="hidden" name="area" value="default" />
+		<input type="hidden" name="check_keywords" value="yes" />
+		<div class="row collapse">
+			<div class="medium-11 columns">
+				<input type="text" name="q" placeholder="Search" />
+			</div>
+			<div class="medium-1 columns" id="clean-search-highlight">
+			</div>
+		</div>
+	</form>
+	<script type="text/javascript">$('#searchbox').show(0);</script>
+</li>
+		</ul>
+		<ul class="right">
+				<li class="right"><a href="hakadissector.html" title="7. Haka dissectors">Next &rarr;</a></li>
+				<li class="right"><a href="alert.html" title="5. Alerting">&larr; Prev</a></li>
+				<li class="right"><a href="refindex.html" title="Welcome to Haka&#8217;s User Reference Guide!">Up &uarr;</a></li>
+
+			<li class=" right"><a href="../../genindex.html">Index</a></li>
+			<li class=" right"><a href="../../haka-modindex.html">Modules</a></li>
+		</ul>
+	</section>
+</nav>
+</div>
+<div id="content">
+	<div class="row">
+		<ul id="breadcrumb" class="breadcrumbs medium-12 columns">
+			
+			<li><a href="refindex.html">Welcome to Haka&#8217;s User Reference Guide!</a></li>
+			
+			<li class="current"><a href="#">6. Regular Expression</a></li>
+		</ul>
+	</div>
+	<div class="row">
+		<div class="medium-12 columns">
+			
+  <div class="section" id="haka-module.haka">
+<span id="regular-expression"></span><h1>6. Regular Expression<a class="headerlink" href="#haka-module.haka" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="regular-expression-format">
+<h2>6.1. Regular expression format<a class="headerlink" href="#regular-expression-format" title="Permalink to this headline">¶</a></h2>
+<p>The regular expression format depends on the regular expression module that is loaded. Any <tt class="docutils literal"><span class="pre">%</span></tt> found in
+the string will be automatically converted to a <tt class="docutils literal"><span class="pre">\</span></tt>.</p>
+<p>Examples for the pcre module:</p>
+<div class="highlight-lua"><div class="highlight"><pre><span class="s1">&#39;</span><span class="s">[%r]?%n&#39;</span>
+<span class="s1">&#39;</span><span class="s">[[:blank:]]+&#39;</span>
+<span class="s1">&#39;</span><span class="s">[0-9]+%.[0-9]+&#39;</span>
+<span class="s1">&#39;</span><span class="s">[^()&lt;&gt;@,;:%</span><span class="se">\\</span><span class="s">&quot;/%[%]?={}[:blank:]]+&#39;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="module">
+<h2>6.2. Module<a class="headerlink" href="#module" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="haka-object.regexp_module">
+<em class="property">object </em><tt class="descname">regexp_module</tt><a class="headerlink" href="#haka-object.regexp_module" title="Permalink to this definition">¶</a></dt>
+<dd><p>Regexp module implementation.</p>
+<dl class="method">
+<dt id="haka-function.&lt;regexp_module&gt;.match">
+<em class="property"> </em><tt class="descclassname">&lt;regexp_module&gt;:</tt><tt class="descname">match</tt><big>(</big><em>pattern</em>, <em>string</em>, <em>options</em><big>)</big> &rarr; match, begin, end<a class="headerlink" href="#haka-function.<regexp_module>.match" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>pattern</strong> (<em>string</em>) &#8211; Regular expression pattern.</li>
+<li><strong>string</strong> (<em>string</em>) &#8211; String against which regular expression is matched.</li>
+<li><strong>options</strong> (<a class="reference internal" href="grammar.html#haka-function.number" title="number"><em>number</em></a>) &#8211; Regular expression compilation options.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><ul class="first last simple">
+<li><strong>match</strong> (<em>string</em>) &#8211; Result of the matching.</li>
+<li><strong>begin</strong> (<a class="reference internal" href="grammar.html#haka-function.number" title="number"><em>number</em></a>) &#8211; Index in the string where the match begins.</li>
+<li><strong>end</strong> (<a class="reference internal" href="grammar.html#haka-function.number" title="number"><em>number</em></a>) &#8211; Index in the string where the match ends.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p>Match a regular expression against a given string.</p>
+</dd></dl>
+
+<dl class="method">
+<dt>
+<em class="property"> </em><tt class="descclassname">&lt;regexp_module&gt;:</tt><tt class="descname">match</tt><big>(</big><em>pattern</em>, <em>buffer</em>, <em>options</em><big>)</big> &rarr; match</dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>pattern</strong> (<em>string</em>) &#8211; Regular expression pattern.</li>
+<li><strong>buffer</strong> (<a class="reference internal" href="vbuffer.html#haka-object.vbuffer" title="vbuffer"><tt class="xref haka haka-class docutils literal"><span class="pre">vbuffer</span></tt></a>) &#8211; Buffer against which regular expression is matched.</li>
+<li><strong>options</strong> (<a class="reference internal" href="grammar.html#haka-function.number" title="number"><em>number</em></a>) &#8211; Regular expression compilation options.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><ul class="first last simple">
+<li><strong>match</strong> (<a class="reference internal" href="vbuffer.html#haka-object.vbuffer_sub" title="vbuffer_sub"><tt class="xref haka haka-class docutils literal"><span class="pre">vbuffer_sub</span></tt></a>) &#8211; Matching sub-buffer or <tt class="docutils literal"><span class="pre">nil</span></tt> if no match</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p>Match a regular expression against a given buffer.</p>
+</dd></dl>
+
+<dl class="method">
+<dt>
+<em class="property"> </em><tt class="descclassname">&lt;regexp_module&gt;:</tt><tt class="descname">match</tt><big>(</big><em>pattern</em>, <em>buffer_iterator</em>, <em>options</em>, <em>createsub</em><big>)</big> &rarr; match</dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>pattern</strong> (<em>string</em>) &#8211; Regular expression pattern.</li>
+<li><strong>buffer_iterator</strong> (<a class="reference internal" href="vbuffer.html#haka-object.vbuffer_iterator" title="vbuffer_iterator"><tt class="xref haka haka-class docutils literal"><span class="pre">vbuffer_iterator</span></tt></a>) &#8211; Buffer iterator against which the regular expression is matched.</li>
+<li><strong>options</strong> (<a class="reference internal" href="grammar.html#haka-function.number" title="number"><em>number</em></a>) &#8211; Regular expression compilation options.</li>
+<li><strong>createsub</strong> (<em>boolean</em>) &#8211; <tt class="docutils literal"><span class="pre">true</span></tt> if the function should build a sub-buffer.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><ul class="first last simple">
+<li><strong>match</strong> (<a class="reference internal" href="vbuffer.html#haka-object.vbuffer_sub" title="vbuffer_sub"><tt class="xref haka haka-class docutils literal"><span class="pre">vbuffer_sub</span></tt></a> or boolean) &#8211; If <cite>createsub</cite> is <tt class="docutils literal"><span class="pre">true</span></tt> return matching sub-buffer or <tt class="docutils literal"><span class="pre">nil</span></tt>, otherwise return a boolean</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p>Match a regular expression against a given buffer iterator.</p>
+<p><strong>Usage:</strong></p>
+<div class="highlight-lua"><div class="highlight"><pre><span class="kd">local</span> <span class="n">match</span> <span class="o">=</span> <span class="n">pcre</span><span class="p">:</span><span class="n">match</span><span class="p">(</span><span class="s2">&quot;</span><span class="s">%s+&quot;</span><span class="p">,</span> <span class="n">iter</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="kc">true</span><span class="p">)</span>
+<span class="k">if</span> <span class="n">math</span> <span class="k">then</span> <span class="nb">print</span><span class="p">(</span><span class="n">match</span><span class="p">:</span><span class="n">asstring</span><span class="p">())</span> <span class="k">end</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="haka-function.&lt;regexp_module&gt;.compile">
+<em class="property"> </em><tt class="descclassname">&lt;regexp_module&gt;:</tt><tt class="descname">compile</tt><big>(</big><em>pattern</em>, <em>options</em><big>)</big> &rarr; re<a class="headerlink" href="#haka-function.<regexp_module>.compile" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>pattern</strong> (<em>string</em>) &#8211; Regular expression pattern.</li>
+<li><strong>options</strong> (<a class="reference internal" href="grammar.html#haka-function.number" title="number"><em>number</em></a>) &#8211; Regular expression compilation options.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><ul class="first last simple">
+<li><strong>re</strong> (<a class="reference internal" href="#haka-object.regexp" title="regexp"><tt class="xref haka haka-class docutils literal"><span class="pre">regexp</span></tt></a>) &#8211; A compiled regexp object.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p>Compile a regular expression.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="haka-attribute.&lt;regexp_module&gt;.CASE_INSENSITIVE">
+<em class="property"> </em><tt class="descclassname">&lt;regexp_module&gt;.</tt><tt class="descname">CASE_INSENSITIVE</tt><a class="headerlink" href="#haka-attribute.<regexp_module>.CASE_INSENSITIVE" title="Permalink to this definition">¶</a></dt>
+<dd><p>Compilation option setting regular expression case insensitive.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="haka-attribute.&lt;regexp_module&gt;.EXTENDED">
+<em class="property"> </em><tt class="descclassname">&lt;regexp_module&gt;.</tt><tt class="descname">EXTENDED</tt><a class="headerlink" href="#haka-attribute.<regexp_module>.EXTENDED" title="Permalink to this definition">¶</a></dt>
+<dd><p>Compilation option allowing to ignore white space chars</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="compiled-regular-expression">
+<h2>6.3. Compiled regular expression<a class="headerlink" href="#compiled-regular-expression" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="haka-object.regexp">
+<em class="property">object </em><tt class="descname">regexp</tt><a class="headerlink" href="#haka-object.regexp" title="Permalink to this definition">¶</a></dt>
+<dd><p>Compiled regular expression object.</p>
+<dl class="method">
+<dt id="haka-function.&lt;regexp&gt;.match">
+<em class="property"> </em><tt class="descclassname">&lt;regexp&gt;:</tt><tt class="descname">match</tt><big>(</big><em>string</em><big>)</big> &rarr; match, begin, end<a class="headerlink" href="#haka-function.<regexp>.match" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>string</strong> (<em>string</em>) &#8211; String against which regular expression is matched.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><ul class="first last simple">
+<li><strong>match</strong> (<em>string</em>) &#8211; Result of the matching.</li>
+<li><strong>begin</strong> (<a class="reference internal" href="grammar.html#haka-function.number" title="number"><em>number</em></a>) &#8211; Index in the string where the match begins.</li>
+<li><strong>end</strong> (<a class="reference internal" href="grammar.html#haka-function.number" title="number"><em>number</em></a>) &#8211; Index in the string where the match ends.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p>Match the compiled regular expression against a given string.</p>
+</dd></dl>
+
+<dl class="method">
+<dt>
+<em class="property"> </em><tt class="descclassname">&lt;regexp&gt;:</tt><tt class="descname">match</tt><big>(</big><em>buffer</em><big>)</big> &rarr; match</dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>buffer</strong> (<a class="reference internal" href="vbuffer.html#haka-object.vbuffer" title="vbuffer"><tt class="xref haka haka-class docutils literal"><span class="pre">vbuffer</span></tt></a>) &#8211; Buffer against which the regular expression is matched.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><ul class="first last simple">
+<li><strong>match</strong> (<a class="reference internal" href="vbuffer.html#haka-object.vbuffer_sub" title="vbuffer_sub"><tt class="xref haka haka-class docutils literal"><span class="pre">vbuffer_sub</span></tt></a>) &#8211; Matching sub-buffer or <tt class="docutils literal"><span class="pre">nil</span></tt> if no match</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p>Match the compiled regular expression against a given buffer.</p>
+</dd></dl>
+
+<dl class="method">
+<dt>
+<em class="property"> </em><tt class="descclassname">&lt;regexp&gt;:</tt><tt class="descname">match</tt><big>(</big><em>buffer_iterator</em>, <em>createsub = false</em><span class="optional">[</span>, <em>readonly</em><span class="optional">]</span><big>)</big> &rarr; match</dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>buffer_iterator</strong> (<a class="reference internal" href="vbuffer.html#haka-object.vbuffer_iterator" title="vbuffer_iterator"><tt class="xref haka haka-class docutils literal"><span class="pre">vbuffer_iterator</span></tt></a>) &#8211; Buffer iterator against which the regular expression is matched.</li>
+<li><strong>createsub</strong> (<em>boolean</em>) &#8211; If <tt class="docutils literal"><span class="pre">true</span></tt> a sub buffer will be returned otherwise it is a boolean.</li>
+<li><strong>readonly</strong> (<em>boolean</em>) &#8211; Set to <tt class="docutils literal"><span class="pre">true</span></tt> if working on a read-only buffer.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><ul class="first last simple">
+<li><strong>match</strong> (<a class="reference internal" href="vbuffer.html#haka-object.vbuffer_sub" title="vbuffer_sub"><tt class="xref haka haka-class docutils literal"><span class="pre">vbuffer_sub</span></tt></a> or boolean) &#8211; If <cite>createsub</cite> is <tt class="docutils literal"><span class="pre">true</span></tt> return matching sub-buffer or <tt class="docutils literal"><span class="pre">nil</span></tt>, otherwise return a boolean</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p>Match the compiled regular expression against a given buffer iterator.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="haka-function.&lt;regexp&gt;.get_sink">
+<em class="property"> </em><tt class="descclassname">&lt;regexp&gt;:</tt><tt class="descname">get_sink</tt><big>(</big><big>)</big> &rarr; sink<a class="headerlink" href="#haka-function.<regexp>.get_sink" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"><ul class="first last simple">
+<li><strong>sink</strong> (<a class="reference internal" href="#haka-object.regexp_sink" title="regexp_sink"><tt class="xref haka haka-class docutils literal"><span class="pre">regexp_sink</span></tt></a>) &#8211; A created regexp_sink.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p>Create a regular expression context that can be used for matching the
+regular expression against chunks of data.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="regular-expression-sink">
+<h2>6.4. Regular expression sink<a class="headerlink" href="#regular-expression-sink" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="haka-object.regexp_sink">
+<em class="property">object </em><tt class="descname">regexp_sink</tt><a class="headerlink" href="#haka-object.regexp_sink" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sink that can be used to match a regular expression on data pieces by pieces.</p>
+<dl class="method">
+<dt id="haka-function.&lt;regexp_sink&gt;.feed">
+<em class="property"> </em><tt class="descclassname">&lt;regexp_sink&gt;:</tt><tt class="descname">feed</tt><big>(</big><em>string</em>, <em>eof</em><span class="optional">[</span>, <em>result</em><span class="optional">]</span><big>)</big> &rarr; match<a class="headerlink" href="#haka-function.<regexp_sink>.feed" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>string</strong> (<em>string</em>) &#8211; String against which the regular expression is matched.</li>
+<li><strong>eof</strong> (<em>boolean</em>) &#8211; <tt class="docutils literal"><span class="pre">true</span></tt> if this string is the last one.</li>
+<li><strong>result</strong> (<a class="reference internal" href="#haka-object.haka.regexp_result" title="haka.regexp_result"><tt class="xref haka haka-class docutils literal"><span class="pre">regexp_result</span></tt></a>) &#8211; Data used to store the indices of the match.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><ul class="first last simple">
+<li><strong>match</strong> (<em>boolean</em>) &#8211; Result of the matching.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p>Match the compiled regular expression across multiple strings.</p>
+</dd></dl>
+
+<dl class="method">
+<dt>
+<em class="property"> </em><tt class="descclassname">&lt;regexp_sink&gt;:</tt><tt class="descname">feed</tt><big>(</big><em>buffer</em>, <em>eof</em><big>)</big> &rarr; match, begin, end</dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>buffer</strong> (<a class="reference internal" href="vbuffer.html#haka-object.vbuffer_sub" title="vbuffer_sub"><tt class="xref haka haka-class docutils literal"><span class="pre">vbuffer_sub</span></tt></a>) &#8211; Buffer against which the regular expression is matched.</li>
+<li><strong>eof</strong> (<em>boolean</em>) &#8211; <tt class="docutils literal"><span class="pre">true</span></tt> if this string is the last one.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><ul class="first last simple">
+<li><strong>match</strong> (<em>boolean</em>) &#8211; Result of the matching.</li>
+<li><strong>begin</strong> (<a class="reference internal" href="vbuffer.html#haka-object.vbuffer_iterator" title="vbuffer_iterator"><tt class="xref haka haka-class docutils literal"><span class="pre">vbuffer_iterator</span></tt></a>) &#8211; Position of the beginning of the match or <tt class="docutils literal"><span class="pre">nil</span></tt>.</li>
+<li><strong>end</strong> (<a class="reference internal" href="vbuffer.html#haka-object.vbuffer_iterator" title="vbuffer_iterator"><tt class="xref haka haka-class docutils literal"><span class="pre">vbuffer_iterator</span></tt></a>) &#8211; Position of the end of the match or <tt class="docutils literal"><span class="pre">nil</span></tt>.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p>Match the compiled regular expression across multiple buffers. The <cite>begin</cite> and <cite>end</cite> values allow
+to track the position of the match.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="haka-function.&lt;regexp_sink&gt;.ispartial">
+<em class="property"> </em><tt class="descclassname">&lt;regexp_sink&gt;:</tt><tt class="descname">ispartial</tt><big>(</big><big>)</big> &rarr; partial<a class="headerlink" href="#haka-function.<regexp_sink>.ispartial" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"><ul class="first last simple">
+<li><strong>match</strong> (<em>boolean</em>) &#8211; State of this sink.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p>Get the sink state. If something has start matching but more data are needed
+to be sure that it is a valid match then this function will return <tt class="docutils literal"><span class="pre">true</span></tt>.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="haka-object.haka.regexp_result">
+<em class="property">object </em><tt class="descclassname">haka.</tt><tt class="descname">regexp_result</tt><a class="headerlink" href="#haka-object.haka.regexp_result" title="Permalink to this definition">¶</a></dt>
+<dd><p>A result for a string based matching.</p>
+<dl class="attribute">
+<dt id="haka-attribute.&lt;regexp_result&gt;.offset">
+<em class="property"> </em><tt class="descclassname">&lt;regexp_result&gt;.</tt><tt class="descname">offset</tt><a class="headerlink" href="#haka-attribute.<regexp_result>.offset" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">number</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="haka-attribute.&lt;regexp_result&gt;.size">
+<em class="property"> </em><tt class="descclassname">&lt;regexp_result&gt;.</tt><tt class="descname">size</tt><a class="headerlink" href="#haka-attribute.<regexp_result>.size" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">number</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="example">
+<h2>6.5. Example<a class="headerlink" href="#example" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-lua"><div class="highlight"><pre><span class="c1">-- This Source Code Form is subject to the terms of the Mozilla Public</span>
+<span class="c1">-- License, v. 2.0. If a copy of the MPL was not distributed with this</span>
+<span class="c1">-- file, You can obtain one at http://mozilla.org/MPL/2.0/.</span>
+
+<span class="kd">local</span> <span class="n">rem</span> <span class="o">=</span> <span class="nb">require</span><span class="p">(</span><span class="s1">&#39;</span><span class="s">regexp/pcre&#39;</span><span class="p">)</span>
+
+<span class="kd">local</span> <span class="n">re</span> <span class="o">=</span> <span class="n">rem</span><span class="p">.</span><span class="n">re</span><span class="p">:</span><span class="n">compile</span><span class="p">(</span><span class="s2">&quot;</span><span class="s">foo&quot;</span><span class="p">)</span>
+<span class="kd">local</span> <span class="n">sink</span> <span class="o">=</span> <span class="n">re</span><span class="p">:</span><span class="n">create_sink</span><span class="p">()</span>
+
+<span class="kd">local</span> <span class="n">ret</span> <span class="o">=</span> <span class="n">sink</span><span class="p">:</span><span class="n">feed</span><span class="p">(</span><span class="s2">&quot;</span><span class="s">some fo&quot;</span><span class="p">,</span> <span class="kc">false</span><span class="p">)</span>
+<span class="n">ret</span> <span class="o">=</span> <span class="n">sink</span><span class="p">:</span><span class="n">feed</span><span class="p">(</span><span class="s2">&quot;</span><span class="s">o over two string&quot;</span><span class="p">,</span> <span class="kc">true</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">ret</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+		</div>
+	</div>
+</div>
+
+
+
+<footer id="footer">
+	<div class="row" role="complementary">
+		<div class="medium-12 columns">
+			&copy; Copyright 2014, Arkoon Network Security, OpenWide and Telecom ParisTech.
+		</div>
+	</div>
+</footer>
+<script>
+	  $(document).foundation();
+</script>
+
+
+
+<script type="text/javascript" src="http://www.haka-security.org/js/track.js"></script>
+
+
+  </body>
+</html>

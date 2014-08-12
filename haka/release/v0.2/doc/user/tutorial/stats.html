@@ -1,0 +1,402 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>6.3. Statistics &mdash; Haka runtime 0.2.0 documentation</title>
+    
+    <link rel="stylesheet" href="../../../_static/haka.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/breathe.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../',
+        VERSION:     '0.2.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../../_static/js/scripts.js"></script>
+    <script type="text/javascript" src="../../../_static/js/vendor/modernizr.js"></script>
+    <script type="text/javascript" src="../../../_static/js/foundation/foundation.js"></script>
+    <script type="text/javascript" src="../../../_static/js/foundation/foundation.topbar.js"></script>
+    <link rel="top" title="Haka runtime 0.2.0 documentation" href="../../../index.html" />
+    <link rel="up" title="6. Tutorials" href="../tutorial.html" />
+    <link rel="next" title="6.4. SQLi attack detection" href="sqli.html" />
+    <link rel="prev" title="6.2. Filter" href="filter.html" /> 
+  </head>
+  <body>
+
+
+<header id="header" role="banner">
+	<div class="row">
+		<div class="medium-6 columns">
+			<h1 class="title"><a rel="home" title="Haka" href="http://www.haka-security.org">Haka</a></h1>
+			<h2 class="description">Software Defined Security</h2>
+		</div>
+		<div class="medium-6 columns">
+			<div id="version">Version 0.2.0</div>
+		</div>
+	</div>
+</header>
+
+<div class="contain-to-grid sticky">
+	
+
+<nav id="navbar" class="top-bar" data-topbar>
+	<ul class="title-area">
+		<!-- This is required for toggle-topbar to work -->
+		<li class="name"></li>
+		<li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
+	</ul>
+	<section class="top-bar-section">
+		<ul class="left">
+			<li class=" active">
+				<a href="../userindex.html">Users</a>
+			</li>
+			<li class=" ">
+				<a href="../../ref/refindex.html" class="../../ref/refindex.html">References</a>
+			</li>
+			<li class=" ">
+				<a href="../../developer/devindex.html" class="">Developers</a>
+			</li>
+			<li class=" ">
+				<a href="../../faq.html" class="">Faq</a>
+			</li>
+			<li class="has-form">
+
+
+	<form class="search" action="../../../search.html" method="get" id="searchbox" style="display: none">
+		<input type="hidden" name="area" value="default" />
+		<input type="hidden" name="check_keywords" value="yes" />
+		<div class="row collapse">
+			<div class="medium-11 columns">
+				<input type="text" name="q" placeholder="Search" />
+			</div>
+			<div class="medium-1 columns" id="clean-search-highlight">
+			</div>
+		</div>
+	</form>
+	<script type="text/javascript">$('#searchbox').show(0);</script>
+</li>
+		</ul>
+		<ul class="right">
+				<li class="right"><a href="sqli.html" title="6.4. SQLi attack detection">Next &rarr;</a></li>
+				<li class="right"><a href="filter.html" title="6.2. Filter">&larr; Prev</a></li>
+				<li class="right"><a href="../tutorial.html" title="6. Tutorials">Up &uarr;</a></li>
+
+			<li class=" right"><a href="../../../genindex.html">Index</a></li>
+			<li class=" right"><a href="../../../haka-modindex.html">Modules</a></li>
+		</ul>
+	</section>
+</nav>
+</div>
+<div id="content">
+	<div class="row">
+		<ul id="breadcrumb" class="breadcrumbs medium-12 columns">
+			
+			<li><a href="../userindex.html">Welcome to Haka&#8217;s User Guide!</a></li>
+			
+			<li><a href="../tutorial.html">6. Tutorials</a></li>
+			
+			<li class="current"><a href="#">6.3. Statistics</a></li>
+		</ul>
+	</div>
+	<div class="row">
+		<div class="medium-12 columns">
+			
+  <div class="section" id="statistics">
+<h1>6.3. Statistics<a class="headerlink" href="#statistics" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="introduction">
+<h2>6.3.1. Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
+<p>This tutorial shows how to collect traffic and make statistics on collected data.</p>
+</div>
+<div class="section" id="how-to">
+<h2>6.3.2. How-to<a class="headerlink" href="#how-to" title="Permalink to this headline">¶</a></h2>
+<p>This tutorial introduces two Haka script files: <tt class="docutils literal"><span class="pre">stats_on_exit</span></tt> and <tt class="docutils literal"><span class="pre">stats_interactive</span></tt> which could be ran using the <tt class="docutils literal"><span class="pre">hakapcap</span></tt> tool as follows:</p>
+<div class="highlight-console"><div class="highlight"><pre><span class="gp">$</span> <span class="nb">cd</span> &lt;haka_install_path&gt;/share/haka/sample/stats
+<span class="gp">$</span> hakapcap &lt;script_stat_file&gt; &lt;pcap_file&gt;
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">In this tutorial we use a pre-processed pcap file originated from the
+DARPA dataset and which could be retrieved from the <a class="reference external" href="http://www.ll.mit.edu/mission/communications/cyber/CSTcorpora/ideval/data/">MIT website</a>.
+We filtered out some packets to get a reasonable size capture that
+you can download from the <a class="reference external" href="http://www.haka-security.org/">Haka website</a>
+in the <em>Resources</em> section.</p>
+</div>
+</div>
+<div class="section" id="collecting-data">
+<h2>6.3.3. Collecting data<a class="headerlink" href="#collecting-data" title="Permalink to this headline">¶</a></h2>
+<p>Before making statisctics, we need first to collect data. This is the purpose of <tt class="docutils literal"><span class="pre">stats.lua</span></tt> file which starts by creating a global <cite>stats</cite> table. This table will be updated with http info whenever a new http response is received. An entry in the <cite>stats</cite> table consists of the following fields:</p>
+<ul class="simple">
+<li>ip: source ip</li>
+<li>method: http request method (<cite>get</cite>, <cite>post</cite>, etc.)</li>
+<li>host: http host</li>
+<li>resource: normalized path</li>
+<li>referer: referer header</li>
+<li>usergant: user-agent header</li>
+<li>status: response status code</li>
+</ul>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">While the security rule is evaluated whenever a http response is received,
+we still get access to http request fields and ip header fields.</p>
+</div>
+<div class="highlight-lua"><div class="highlight"><pre><span class="c1">--------------------------</span>
+<span class="c1">-- Loading dissectors</span>
+<span class="c1">--------------------------</span>
+
+<span class="nb">require</span><span class="p">(</span><span class="s1">&#39;</span><span class="s">protocol/ipv4&#39;</span><span class="p">)</span>
+<span class="nb">require</span><span class="p">(</span><span class="s1">&#39;</span><span class="s">protocol/tcp&#39;</span><span class="p">)</span>
+<span class="kd">local</span> <span class="n">http</span> <span class="o">=</span> <span class="nb">require</span><span class="p">(</span><span class="s1">&#39;</span><span class="s">protocol/http&#39;</span><span class="p">)</span>
+
+<span class="kd">local</span> <span class="n">tbl</span> <span class="o">=</span> <span class="nb">require</span><span class="p">(</span><span class="s1">&#39;</span><span class="s">stats_utils&#39;</span><span class="p">)</span>
+
+<span class="c1">-- Each entry of stats table will store info</span>
+<span class="c1">-- about http request/response (method, host,</span>
+<span class="c1">-- resource, status, etc.)</span>
+<span class="kd">local</span> <span class="n">stats</span> <span class="o">=</span> <span class="n">tbl</span><span class="p">.</span><span class="n">new</span><span class="p">()</span>
+
+<span class="c1">--------------------------</span>
+<span class="c1">-- Setting next dissector</span>
+<span class="c1">--------------------------</span>
+
+<span class="n">http</span><span class="p">.</span><span class="n">install_tcp_rule</span><span class="p">(</span><span class="mi">80</span><span class="p">)</span>
+
+<span class="c1">--------------------------</span>
+<span class="c1">-- Recording http info</span>
+<span class="c1">--------------------------</span>
+
+<span class="n">haka</span><span class="p">.</span><span class="n">rule</span><span class="p">{</span>
+    <span class="n">hook</span> <span class="o">=</span> <span class="n">http</span><span class="p">.</span><span class="n">events</span><span class="p">.</span><span class="n">response</span><span class="p">,</span>
+    <span class="n">eval</span> <span class="o">=</span> <span class="k">function</span> <span class="p">(</span><span class="n">http</span><span class="p">,</span> <span class="n">response</span><span class="p">)</span>
+        <span class="kd">local</span> <span class="n">request</span> <span class="o">=</span> <span class="n">http</span><span class="p">.</span><span class="n">request</span>
+        <span class="kd">local</span> <span class="n">split_uri</span> <span class="o">=</span> <span class="n">request</span><span class="p">.</span><span class="n">split_uri</span><span class="p">:</span><span class="n">normalize</span><span class="p">()</span>
+        <span class="kd">local</span> <span class="n">entry</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="n">entry</span><span class="p">.</span><span class="n">ip</span> <span class="o">=</span> <span class="nb">tostring</span><span class="p">(</span><span class="n">http</span><span class="p">.</span><span class="n">flow</span><span class="p">.</span><span class="n">srcip</span><span class="p">)</span>
+        <span class="n">entry</span><span class="p">.</span><span class="n">method</span> <span class="o">=</span> <span class="n">request</span><span class="p">.</span><span class="n">method</span>
+        <span class="n">entry</span><span class="p">.</span><span class="n">resource</span> <span class="o">=</span> <span class="n">split_uri</span><span class="p">.</span><span class="n">path</span> <span class="ow">or</span> <span class="s1">&#39;</span><span class="s">&#39;</span>
+        <span class="n">entry</span><span class="p">.</span><span class="n">host</span> <span class="o">=</span> <span class="n">split_uri</span><span class="p">.</span><span class="n">host</span> <span class="ow">or</span> <span class="s1">&#39;</span><span class="s">&#39;</span>
+        <span class="n">entry</span><span class="p">.</span><span class="n">useragent</span> <span class="o">=</span> <span class="n">request</span><span class="p">.</span><span class="n">headers</span><span class="p">[</span><span class="s1">&#39;</span><span class="s">User-Agent&#39;</span><span class="p">]</span> <span class="ow">or</span> <span class="s1">&#39;</span><span class="s">&#39;</span>
+        <span class="n">entry</span><span class="p">.</span><span class="n">referer</span> <span class="o">=</span> <span class="n">request</span><span class="p">.</span><span class="n">headers</span><span class="p">[</span><span class="s1">&#39;</span><span class="s">Referer&#39;</span><span class="p">]</span> <span class="ow">or</span> <span class="s1">&#39;</span><span class="s">&#39;</span>
+        <span class="n">entry</span><span class="p">.</span><span class="n">status</span> <span class="o">=</span> <span class="n">response</span><span class="p">.</span><span class="n">status</span>
+        <span class="nb">table.insert</span><span class="p">(</span><span class="n">stats</span><span class="p">,</span> <span class="n">entry</span><span class="p">)</span>
+    <span class="k">end</span>
+<span class="p">}</span>
+
+<span class="k">return</span> <span class="n">stats</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="stats-utilities">
+<h2>6.3.4. Stats utilities<a class="headerlink" href="#stats-utilities" title="Permalink to this headline">¶</a></h2>
+<p>This section introduces the stats utilities developed for this tutorial. More
+precisely, it shows how to create the global <cite>stats</cite> table and how to run basic
+stats operations on the created table.</p>
+<span class="target" id="haka-module.stats_utils"></span><dl class="function">
+<dt id="haka-function.stats_utils.new">
+<em class="property"> </em><tt class="descclassname">stats_utils.</tt><tt class="descname">new</tt><big>(</big><big>)</big> &rarr; table<a class="headerlink" href="#haka-function.stats_utils.new" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"><ul class="first last simple">
+<li><strong>table</strong> (<a class="reference internal" href="#haka-object.stats_utils.stats" title="stats_utils.stats"><tt class="xref haka haka-class docutils literal"><span class="pre">stats</span></tt></a>) &#8211; New stats table.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p>Create the stats table.</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="haka-object.stats_utils.stats">
+<em class="property">object </em><tt class="descclassname">stats_utils.</tt><tt class="descname">stats</tt><a class="headerlink" href="#haka-object.stats_utils.stats" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="method">
+<dt id="haka-function.&lt;stats&gt;.list">
+<em class="property"> </em><tt class="descclassname">&lt;stats&gt;:</tt><tt class="descname">list</tt><big>(</big><big>)</big><a class="headerlink" href="#haka-function.<stats>.list" title="Permalink to this definition">¶</a></dt>
+<dd><p>Print column names of stats table.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="haka-function.&lt;stats&gt;.dump">
+<em class="property"> </em><tt class="descclassname">&lt;stats&gt;:</tt><tt class="descname">dump</tt><big>(</big><span class="optional">[</span><em>nb</em><span class="optional">]</span><big>)</big><a class="headerlink" href="#haka-function.<stats>.dump" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>nb</strong> (<a class="reference internal" href="../../ref/grammar.html#haka-function.number" title="number"><em>number</em></a>) &#8211; Number of entries to display.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p>Print <em>nb</em> entries of stats table.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="haka-function.&lt;stats&gt;.top">
+<em class="property"> </em><tt class="descclassname">&lt;stats&gt;:</tt><tt class="descname">top</tt><big>(</big><em>column_name</em><span class="optional">[</span>, <em>nb</em><span class="optional">]</span><big>)</big><a class="headerlink" href="#haka-function.<stats>.top" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>column_name</strong> (<em>string</em>) &#8211; Column to query.</li>
+<li><strong>nb</strong> (<a class="reference internal" href="../../ref/grammar.html#haka-function.number" title="number"><em>number</em></a>) &#8211; Number of entries to display.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p>Dump the top 10 of given field name. Limits output to <em>nb</em> if it is provided.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="haka-function.&lt;stats&gt;.select_table">
+<em class="property"> </em><tt class="descclassname">&lt;stats&gt;:</tt><tt class="descname">select_table</tt><big>(</big><em>column_tab</em><span class="optional">[</span>, <em>where</em><span class="optional">]</span><big>)</big><a class="headerlink" href="#haka-function.<stats>.select_table" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>column_name</strong> (<em>string</em>) &#8211; Column to query.</li>
+<li><strong>where</strong> (<em>function</em>) &#8211; Filter function called for each table line.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p>Select specific columns from table. Optionally, filter entry-lines based on <em>where</em> function.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="dumping-stats">
+<h2>6.3.5. Dumping stats<a class="headerlink" href="#dumping-stats" title="Permalink to this headline">¶</a></h2>
+<p>The first Haka script (<tt class="docutils literal"><span class="pre">stats_on_exit</span></tt>) gives an usage of the above api.</p>
+<div class="highlight-lua"><div class="highlight"><pre><span class="kd">local</span> <span class="n">stats</span> <span class="o">=</span> <span class="nb">require</span><span class="p">(</span><span class="s1">&#39;</span><span class="s">stats&#39;</span><span class="p">)</span>
+
+<span class="c1">-- Run some stats at exit on collected http info</span>
+<span class="n">haka</span><span class="p">.</span><span class="n">rule</span><span class="p">{</span>
+    <span class="n">hook</span> <span class="o">=</span> <span class="n">haka</span><span class="p">.</span><span class="n">events</span><span class="p">.</span><span class="n">exiting</span><span class="p">,</span>
+    <span class="n">eval</span> <span class="o">=</span> <span class="k">function</span> <span class="p">()</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="s">top 10 (by default) of useragent header&quot;</span><span class="p">)</span>
+        <span class="n">stats</span><span class="p">:</span><span class="n">top</span><span class="p">(</span><span class="s1">&#39;</span><span class="s">useragent&#39;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="s">&quot;</span><span class="p">)</span>
+
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="s">select columns &#39;ip, &#39;method&#39; and &#39;resource&#39; from the stats table&quot;</span><span class="p">)</span>
+        <span class="n">stats</span><span class="p">:</span><span class="n">select_table</span><span class="p">({</span><span class="s1">&#39;</span><span class="s">ip&#39;</span><span class="p">,</span> <span class="s1">&#39;</span><span class="s">method&#39;</span><span class="p">,</span> <span class="s1">&#39;</span><span class="s">resource&#39;</span><span class="p">}):</span><span class="n">dump</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="s">&quot;</span><span class="p">)</span>
+
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="s">list of source ip using &#39;Mozilla/2.0&#39; as user-gent&#39;&quot;</span><span class="p">)</span>
+        <span class="n">stats</span><span class="p">:</span><span class="n">select_table</span><span class="p">({</span><span class="s1">&#39;</span><span class="s">ip&#39;</span><span class="p">,</span> <span class="s1">&#39;</span><span class="s">useragent&#39;</span><span class="p">},</span>
+            <span class="k">function</span><span class="p">(</span><span class="n">elem</span><span class="p">)</span> <span class="k">return</span> <span class="n">elem</span><span class="p">.</span><span class="n">useragent</span><span class="p">:</span><span class="n">find</span><span class="p">(</span><span class="s1">&#39;</span><span class="s">Mozilla/2.0&#39;</span><span class="p">)</span> <span class="k">end</span><span class="p">):</span><span class="n">dump</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="s">&quot;</span><span class="p">)</span>
+
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="s">top ten of http resources that generated the most 404 status error&quot;</span><span class="p">)</span>
+        <span class="n">stats</span><span class="p">:</span><span class="n">select_table</span><span class="p">({</span><span class="s1">&#39;</span><span class="s">resource&#39;</span><span class="p">,</span> <span class="s1">&#39;</span><span class="s">status&#39;</span><span class="p">},</span>
+            <span class="k">function</span><span class="p">(</span><span class="n">elem</span><span class="p">)</span> <span class="k">return</span> <span class="n">elem</span><span class="p">.</span><span class="n">status</span> <span class="o">==</span> <span class="s1">&#39;</span><span class="s">404&#39;</span> <span class="k">end</span><span class="p">):</span><span class="n">top</span><span class="p">(</span><span class="s1">&#39;</span><span class="s">resource&#39;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="s">&quot;</span><span class="p">)</span>
+    <span class="k">end</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>The script will output some statistics on collected http trafic after parsing all packets in the provided pcap file (i.e. at Haka exit). Below, a snippet output generated while running the Haka script file on the DARPA pcap file:</p>
+<div class="highlight-console"><div class="highlight"><pre><span class="go">...</span>
+<span class="go">list of source ip using &#39;Mozilla/2.0&#39; as user-gent&#39;</span>
+<span class="go">| ip             | useragent                 |</span>
+<span class="go">| 172.16.117.132 | Mozilla/2.01 (Win3.1; I;) |</span>
+<span class="go">| 172.16.117.132 | Mozilla/2.01 (Win3.1; I;) |</span>
+<span class="go">| 172.16.117.132 | Mozilla/2.01 (Win3.1; I;) |</span>
+<span class="go">| 172.16.117.132 | Mozilla/2.01 (Win3.1; I;) |</span>
+<span class="go">| 172.16.117.132 | Mozilla/2.01 (Win3.1; I;) |</span>
+<span class="go">... 12762 remaining entries</span>
+<span class="go">...</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="getting-stats-in-interactive-mode">
+<h2>6.3.6. Getting stats in interactive mode<a class="headerlink" href="#getting-stats-in-interactive-mode" title="Permalink to this headline">¶</a></h2>
+<p>The second script (<tt class="docutils literal"><span class="pre">stats_interactive</span></tt>) fills the <cite>stats</cite> table with http info (thanks to the <tt class="docutils literal"><span class="pre">stats.lua</span></tt> script) and then launches the intercative mode after parsing all packets in the provided pcap file. Statistics are then available through the <cite>stats</cite> variable.</p>
+<div class="highlight-lua"><div class="highlight"><pre><span class="n">stats</span> <span class="o">=</span> <span class="nb">require</span><span class="p">(</span><span class="s1">&#39;</span><span class="s">stats&#39;</span><span class="p">)</span>
+<span class="kd">local</span> <span class="n">color</span> <span class="o">=</span> <span class="nb">require</span><span class="p">(</span><span class="s1">&#39;</span><span class="s">color&#39;</span><span class="p">)</span>
+
+<span class="n">haka</span><span class="p">.</span><span class="n">rule</span><span class="p">{</span>
+    <span class="n">hook</span> <span class="o">=</span> <span class="n">haka</span><span class="p">.</span><span class="n">events</span><span class="p">.</span><span class="n">exiting</span><span class="p">,</span>
+    <span class="n">eval</span> <span class="o">=</span> <span class="k">function</span><span class="p">()</span>
+        <span class="n">debug</span><span class="p">.</span><span class="n">interactive</span><span class="p">.</span><span class="n">enter</span><span class="p">(</span><span class="n">color</span><span class="p">.</span><span class="n">green</span> <span class="o">..</span> <span class="n">color</span><span class="p">.</span><span class="n">bold</span> <span class="o">..</span> <span class="s2">&quot;</span><span class="s">&gt;  &quot;</span> <span class="o">..</span> <span class="n">color</span><span class="p">.</span><span class="n">clear</span><span class="p">,</span>
+            <span class="n">color</span><span class="p">.</span><span class="n">green</span> <span class="o">..</span> <span class="n">color</span><span class="p">.</span><span class="n">bold</span> <span class="o">..</span> <span class="s2">&quot;</span><span class="s">&gt;&gt; &quot;</span> <span class="o">..</span> <span class="n">color</span><span class="p">.</span><span class="n">clear</span><span class="p">,</span>
+            <span class="s2">&quot;</span><span class="s">entering interactive mode for playing statistics</span><span class="se">\n</span><span class="s">Statistics are available through &#39;stats&#39; variable. Run&quot;</span> <span class="o">..</span>
+            <span class="s2">&quot;</span><span class="se">\n\t</span><span class="s">- stats:list() to get the list of column names&quot;</span> <span class="o">..</span>
+            <span class="s2">&quot;</span><span class="se">\n\t</span><span class="s">- stats:top(column) to get the top 10 of selected field&quot;</span> <span class="o">..</span>
+            <span class="s2">&quot;</span><span class="se">\n\t</span><span class="s">- stats:dump(nb) to dump &#39;nb&#39; entries of stats table&quot;</span> <span class="o">..</span>
+            <span class="s2">&quot;</span><span class="se">\n\t</span><span class="s">- stats:select_table({column_1, column_2, etc.}, cond_func)) to select some columns and filter them based on &#39;cond_func&#39; function&quot;</span> <span class="o">..</span>
+            <span class="s2">&quot;</span><span class="se">\n\n</span><span class="s">Examples:&quot;</span> <span class="o">..</span>
+            <span class="s2">&quot;</span><span class="se">\n\t</span><span class="s">- stats:top(&#39;useragent&#39;)&quot;</span> <span class="o">..</span>
+            <span class="s2">&quot;</span><span class="se">\n\t</span><span class="s">- stats:select_table({&#39;resource&#39;, &#39;status&#39;}, function(elem) return elem.status == &#39;404&#39; end):top(&#39;resource&#39;)&quot;</span><span class="p">)</span>
+    <span class="k">end</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Hereafter, <tt class="docutils literal"><span class="pre">hakapcap</span></tt> output when entering the interactive mode:</p>
+<div class="highlight-console"><div class="highlight"><pre><span class="go"> entering interactive session: entering interactive mode for playing statistics</span>
+<span class="go"> Statistics are available through &#39;stats&#39; variable. Run</span>
+<span class="go">     - stats:list() to get the list of column names</span>
+<span class="go">     - stats:top(column) to get the top 10 of selected field</span>
+<span class="go">     - stats:dump(nb) to dump &#39;nb&#39; entries of stats table</span>
+<span class="go">     - stats:select_table({column_1, column_2, etc.}, cond_func)) to select some columns and filter them based on &#39;cond_func&#39; function</span>
+<span class="go"> Examples:</span>
+<span class="go">     - stats:top(&#39;useragent&#39;)</span>
+<span class="go">     - stats:select_table({&#39;resource&#39;, &#39;status&#39;}, function(elem) return elem.status == &#39;404&#39; end):top(&#39;resource&#39;)</span>
+<span class="gp">&gt;</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Press CTRL-D to leave the interactive mode</p>
+</div>
+</div>
+</div>
+
+
+		</div>
+	</div>
+</div>
+
+
+
+<footer id="footer">
+	<div class="row" role="complementary">
+		<div class="medium-12 columns">
+			&copy; Copyright 2014, Arkoon Network Security, OpenWide and Telecom ParisTech.
+		</div>
+	</div>
+</footer>
+<script>
+	  $(document).foundation();
+</script>
+
+
+
+<script type="text/javascript" src="http://www.haka-security.org/js/track.js"></script>
+
+
+  </body>
+</html>

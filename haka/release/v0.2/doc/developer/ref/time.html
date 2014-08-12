@@ -1,0 +1,430 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>3.10. Time &mdash; Haka runtime 0.2.0 documentation</title>
+    
+    <link rel="stylesheet" href="../../../_static/haka.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/breathe.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../',
+        VERSION:     '0.2.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../../_static/js/scripts.js"></script>
+    <script type="text/javascript" src="../../../_static/js/vendor/modernizr.js"></script>
+    <script type="text/javascript" src="../../../_static/js/foundation/foundation.js"></script>
+    <script type="text/javascript" src="../../../_static/js/foundation/foundation.topbar.js"></script>
+    <link rel="top" title="Haka runtime 0.2.0 documentation" href="../../../index.html" />
+    <link rel="up" title="3. Developer reference guide" href="../devref.html" />
+    <link rel="next" title="3.12. Buffer" href="buffer.html" />
+    <link rel="prev" title="3.9.4. Regular expression module" href="regexp_module.html" /> 
+  </head>
+  <body>
+
+
+<header id="header" role="banner">
+	<div class="row">
+		<div class="medium-6 columns">
+			<h1 class="title"><a rel="home" title="Haka" href="http://www.haka-security.org">Haka</a></h1>
+			<h2 class="description">Software Defined Security</h2>
+		</div>
+		<div class="medium-6 columns">
+			<div id="version">Version 0.2.0</div>
+		</div>
+	</div>
+</header>
+
+<div class="contain-to-grid sticky">
+	
+
+<nav id="navbar" class="top-bar" data-topbar>
+	<ul class="title-area">
+		<!-- This is required for toggle-topbar to work -->
+		<li class="name"></li>
+		<li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
+	</ul>
+	<section class="top-bar-section">
+		<ul class="left">
+			<li class=" ">
+				<a href="../../user/userindex.html">Users</a>
+			</li>
+			<li class=" ">
+				<a href="../../ref/refindex.html" class="../../ref/refindex.html">References</a>
+			</li>
+			<li class=" active">
+				<a href="../devindex.html" class="">Developers</a>
+			</li>
+			<li class=" ">
+				<a href="../../faq.html" class="">Faq</a>
+			</li>
+			<li class="has-form">
+
+
+	<form class="search" action="../../../search.html" method="get" id="searchbox" style="display: none">
+		<input type="hidden" name="area" value="default" />
+		<input type="hidden" name="check_keywords" value="yes" />
+		<div class="row collapse">
+			<div class="medium-11 columns">
+				<input type="text" name="q" placeholder="Search" />
+			</div>
+			<div class="medium-1 columns" id="clean-search-highlight">
+			</div>
+		</div>
+	</form>
+	<script type="text/javascript">$('#searchbox').show(0);</script>
+</li>
+		</ul>
+		<ul class="right">
+				<li class="right"><a href="buffer.html" title="3.12. Buffer">Next &rarr;</a></li>
+				<li class="right"><a href="regexp_module.html" title="3.9.4. Regular expression module">&larr; Prev</a></li>
+				<li class="right"><a href="../devref.html" title="3. Developer reference guide">Up &uarr;</a></li>
+
+			<li class=" right"><a href="../../../genindex.html">Index</a></li>
+			<li class=" right"><a href="../../../haka-modindex.html">Modules</a></li>
+		</ul>
+	</section>
+</nav>
+</div>
+<div id="content">
+	<div class="row">
+		<ul id="breadcrumb" class="breadcrumbs medium-12 columns">
+			
+			<li><a href="../devindex.html">Welcome to Haka&#8217;s Developer Guide!</a></li>
+			
+			<li><a href="../devref.html">3. Developer reference guide</a></li>
+			
+			<li class="current"><a href="#">3.10. Time</a></li>
+		</ul>
+	</div>
+	<div class="row">
+		<div class="medium-12 columns">
+			
+  <div class="section" id="time">
+<h1>3.10. Time<a class="headerlink" href="#time" title="Permalink to this headline">¶</a></h1>
+<p></p>
+<p>Time representation. </p>
+<em>Defines</em><blockquote>
+<div><p><span class="target" id="project0time_8h_1aee09f7e151e7883297d02cc8b6b7daf5"></span><strong>TIME_BUFSIZE</strong></p>
+<blockquote>
+<div><p></p>
+<p>String buffer minimum size. </p>
+</div></blockquote>
+<p><span class="target" id="project0time_8h_1a0dd0def9d0d1f83eab3aa811bedbc3e4"></span><strong>INVALID_TIME</strong></p>
+<blockquote>
+<div><p></p>
+<p>Static initializer for the struct time. </p>
+</div></blockquote>
+</div></blockquote>
+<em>Functions</em><blockquote>
+<div><p><span class="target" id="project0time_8h_1a7db8ecf77cecd9217434ea81106a3f1f"></span><div class="line-block">
+<div class="line">void <strong>time_build</strong>(struct  <a class="reference internal" href="#project0structtime"><em>time</em></a>  * t, double secs)</div>
+</div>
+</p>
+<blockquote>
+<div><p></p>
+<p>Build a new time structure from a number of seconds. </p>
+</div></blockquote>
+<p><span class="target" id="project0time_8h_1aa96eede3d09498d08accf75a486025a3"></span><div class="line-block">
+<div class="line"><a class="reference internal" href="utils.html#project0types_8h_1a97a80ca1602ebf2303258971a2c938e2"><em>bool</em></a> <strong>time_gettimestamp</strong>(struct  <a class="reference internal" href="#project0structtime"><em>time</em></a>  * t)</div>
+</div>
+</p>
+<blockquote>
+<div><p></p>
+<p>Get a current timestamp. </p>
+</div></blockquote>
+<p><span class="target" id="project0time_8h_1a39c83fc4988d62fa8a0271255c5d2dd5"></span><div class="line-block">
+<div class="line">void <strong>time_add</strong>(struct  <a class="reference internal" href="#project0structtime"><em>time</em></a>  * res, const struct  <a class="reference internal" href="#project0structtime"><em>time</em></a>  * t1, const struct  <a class="reference internal" href="#project0structtime"><em>time</em></a>  * t2)</div>
+</div>
+</p>
+<blockquote>
+<div><p></p>
+<p>Add two time object. </p>
+</div></blockquote>
+<p><span class="target" id="project0time_8h_1a18614240f79369f1ad7a0bcc706d794b"></span><div class="line-block">
+<div class="line">int <strong>time_diff</strong>(struct  <a class="reference internal" href="#project0structtime"><em>time</em></a>  * res, const struct  <a class="reference internal" href="#project0structtime"><em>time</em></a>  * t1, const struct  <a class="reference internal" href="#project0structtime"><em>time</em></a>  * t2)</div>
+</div>
+</p>
+<blockquote>
+<div><p></p>
+<p>Compute the difference between two time object. It returns the result of time_cmp(t1, t2). </p>
+</div></blockquote>
+<p><span class="target" id="project0time_8h_1ac10d10d81b9b01f1b6356422cb30f0d7"></span><div class="line-block">
+<div class="line"><a class="reference internal" href="utils.html#project0types_8h_1a6861bed95d73703b3730053f3a6065bf"><em>uint64</em></a> <strong>time_divide</strong>(const struct  <a class="reference internal" href="#project0structtime"><em>time</em></a>  * t1, const struct  <a class="reference internal" href="#project0structtime"><em>time</em></a>  * t2)</div>
+</div>
+</p>
+<blockquote>
+<div><p></p>
+<p>Divide two time value. </p>
+</div></blockquote>
+<p><span class="target" id="project0time_8h_1a10733dfe2692e4060f8afdc4ca73b7f9"></span><div class="line-block">
+<div class="line">void <strong>time_mult</strong>(struct  <a class="reference internal" href="#project0structtime"><em>time</em></a>  * res, const struct  <a class="reference internal" href="#project0structtime"><em>time</em></a>  * t1, const int mult)</div>
+</div>
+</p>
+<blockquote>
+<div><p></p>
+<p>Multiply a time value. </p>
+</div></blockquote>
+<p><span class="target" id="project0time_8h_1abf3b11b33793d076547f495705320c22"></span><div class="line-block">
+<div class="line">int <strong>time_cmp</strong>(const struct  <a class="reference internal" href="#project0structtime"><em>time</em></a>  * t1, const struct  <a class="reference internal" href="#project0structtime"><em>time</em></a>  * t2)</div>
+</div>
+</p>
+<blockquote>
+<div><p></p>
+<p>Compare two time object. It returns -1, 1 or 0 respectivelly if t1 is smaller than t2, t1 is larger than t2 or t1 is equal to t2. </p>
+</div></blockquote>
+<p><span class="target" id="project0time_8h_1ae37662a04c68b3a4075f52803fec6a7d"></span><div class="line-block">
+<div class="line">double <strong>time_sec</strong>(const struct  <a class="reference internal" href="#project0structtime"><em>time</em></a>  * t)</div>
+</div>
+</p>
+<blockquote>
+<div><p></p>
+<p>Convert time to a number of seconds. </p>
+</div></blockquote>
+<p><span class="target" id="project0time_8h_1a0994ce9e14754ad176537707889bc2e3"></span><div class="line-block">
+<div class="line"><a class="reference internal" href="utils.html#project0types_8h_1a97a80ca1602ebf2303258971a2c938e2"><em>bool</em></a> <strong>time_tostring</strong>(const struct  <a class="reference internal" href="#project0structtime"><em>time</em></a>  * t, char * buffer, size_t len)</div>
+</div>
+</p>
+<blockquote>
+<div><p></p>
+<p>Convert time to a string <dl class="docutils">
+<dt><strong>See</strong></dt>
+<dd><a class="reference internal" href="#project0time_8h_1aee09f7e151e7883297d02cc8b6b7daf5"><em>TIME_BUFSIZE</em></a> </dd>
+</dl>
+</p>
+</div></blockquote>
+<p><span class="target" id="project0time_8h_1a9e1bbdb96c9230d46d149a5883d53922"></span><div class="line-block">
+<div class="line"><a class="reference internal" href="utils.html#project0types_8h_1a97a80ca1602ebf2303258971a2c938e2"><em>bool</em></a> <strong>time_isvalid</strong>(const struct  <a class="reference internal" href="#project0structtime"><em>time</em></a>  * t)</div>
+</div>
+</p>
+<blockquote>
+<div><p></p>
+<p>Check if the time is valid. </p>
+</div></blockquote>
+</div></blockquote>
+<em>Variables</em><blockquote>
+<div><p><span class="target" id="project0time_8h_1a0bd20186ce07c8d7ec384d60b7fbb675"></span>struct  <a class="reference internal" href="#project0structtime"><em>time</em></a> <strong>invalid_time</strong></p>
+<blockquote>
+<div><p></p>
+<p></p>
+</div></blockquote>
+</div></blockquote>
+<p><p id="project0structtime"><em>class</em> <strong>time</strong></p>
+<blockquote>
+<div><p></p>
+<p>Time structure. </p>
+<em>Public Members</em><blockquote>
+<div><p><span class="target" id="project0structtime_1a9c358201a1aca12d9b9368d1fd1dc974"></span>time_t <strong>secs</strong></p>
+<blockquote>
+<div><p></p>
+<p>Seconds </p>
+</div></blockquote>
+<p><span class="target" id="project0structtime_1a128058668e6df8c92868b0f5b2b8df3a"></span><a class="reference internal" href="utils.html#project0types_8h_1a8949da768e2857b8f602a69c5b68828a"><em>uint32</em></a> <strong>nsecs</strong></p>
+<blockquote>
+<div><p></p>
+<p>Nano-seconds </p>
+</div></blockquote>
+</div></blockquote>
+</div></blockquote>
+</p>
+</div>
+<div class="section" id="timer">
+<h1>3.11. Timer<a class="headerlink" href="#timer" title="Permalink to this headline">¶</a></h1>
+<p></p>
+<p>Timer functions. </p>
+<em>Typedefs</em><blockquote>
+<div><p><span class="target" id="project0timer_8h_1a58da69fa70a92ed9e3b74c215eeaa0fb"></span>typedef void(* <strong>timer_callback</strong>)(int count, void *data)</p>
+<blockquote>
+<div><p></p>
+<p>Opaque timer structure. Timer callback called whenever a timer triggers. </p>
+</div></blockquote>
+</div></blockquote>
+<em>Enums</em><blockquote>
+<div><p><span class="target" id="project0timer_8h_1a028c20e1cabbf1a50fb23b39648dafcc"></span><strong>time_realm_mode enum</strong></p>
+<blockquote>
+<div><p></p>
+<p>Timer mode. </p>
+<p><em>Values:</em></p>
+<ul class="breatheenumvalues">
+<li><tt class="first docutils literal"><span class="pre">TIME_REALM_REALTIME</span></tt> - </li>
+<li><tt class="first docutils literal"><span class="pre">TIME_REALM_STATIC</span></tt> - </li>
+</ul>
+</div></blockquote>
+</div></blockquote>
+<em>Functions</em><blockquote>
+<div><p><span class="target" id="project0timer_8h_1a8fbb69d831c60bb6e7f42727241df232"></span><div class="line-block">
+<div class="line"><a class="reference internal" href="utils.html#project0types_8h_1a97a80ca1602ebf2303258971a2c938e2"><em>bool</em></a> <strong>time_realm_initialize</strong>(struct  <a class="reference internal" href="#project0structtime__realm"><em>time_realm</em></a>  * realm, enum  <a class="reference internal" href="#project0timer_8h_1a028c20e1cabbf1a50fb23b39648dafcc"><em>time_realm_mode</em></a> mode)</div>
+</div>
+</p>
+<blockquote>
+<div><p></p>
+<p>Create a new time realm. </p>
+</div></blockquote>
+<p><span class="target" id="project0timer_8h_1a36ca835fa80c2884bdd4ebc62924e0e0"></span><div class="line-block">
+<div class="line"><a class="reference internal" href="utils.html#project0types_8h_1a97a80ca1602ebf2303258971a2c938e2"><em>bool</em></a> <strong>time_realm_destroy</strong>(struct  <a class="reference internal" href="#project0structtime__realm"><em>time_realm</em></a>  * realm)</div>
+</div>
+</p>
+<blockquote>
+<div><p></p>
+<p>Destroy a time realm. </p>
+</div></blockquote>
+<p><span class="target" id="project0timer_8h_1a27adacc2b226dd9360df0b770ffdaf1c"></span><div class="line-block">
+<div class="line">void <strong>time_realm_update</strong>(struct  <a class="reference internal" href="#project0structtime__realm"><em>time_realm</em></a>  * realm, const struct  <a class="reference internal" href="#project0structtime"><em>time</em></a>  * value)</div>
+</div>
+</p>
+<blockquote>
+<div><p></p>
+<p>Update the time of a time realm that is in TIMER_REALM_STATIC mode. </p>
+</div></blockquote>
+<p><span class="target" id="project0timer_8h_1ae1aeed7774c62657095c127da7e4094c"></span><div class="line-block">
+<div class="line">struct  <a class="reference internal" href="#project0structtime"><em>time</em></a>  * <strong>time_realm_current_time</strong>(struct  <a class="reference internal" href="#project0structtime__realm"><em>time_realm</em></a>  * realm)</div>
+</div>
+</p>
+<blockquote>
+<div><p></p>
+<p>Get the current local time of the time realm. </p>
+</div></blockquote>
+<p><span class="target" id="project0timer_8h_1a0c016c3a4d180fc9626a7f78a6ba2356"></span><div class="line-block">
+<div class="line">struct timer * <strong>time_realm_timer</strong>(struct  <a class="reference internal" href="#project0structtime__realm"><em>time_realm</em></a>  * realm, <a class="reference internal" href="#project0timer_8h_1a58da69fa70a92ed9e3b74c215eeaa0fb"><em>timer_callback</em></a> callback, void * user)</div>
+</div>
+</p>
+<blockquote>
+<div><p></p>
+<p>Create a new timer. </p>
+</div></blockquote>
+<p><span class="target" id="project0timer_8h_1a64cceccad43db7092b1f1b7be2ad5be5"></span><div class="line-block">
+<div class="line"><a class="reference internal" href="utils.html#project0types_8h_1a97a80ca1602ebf2303258971a2c938e2"><em>bool</em></a> <strong>time_realm_check</strong>(struct  <a class="reference internal" href="#project0structtime__realm"><em>time_realm</em></a>  * realm)</div>
+</div>
+</p>
+<blockquote>
+<div><p></p>
+<p>Check and execute timer callbacks. </p>
+</div></blockquote>
+<p><span class="target" id="project0timer_8h_1a27afce02f8c5215ae7b33fb9c13e529b"></span><div class="line-block">
+<div class="line"><a class="reference internal" href="utils.html#project0types_8h_1a97a80ca1602ebf2303258971a2c938e2"><em>bool</em></a> <strong>timer_init_thread</strong>()</div>
+</div>
+</p>
+<blockquote>
+<div><p></p>
+<p>Initialize the current thread for timer support. <dl class="docutils">
+<dt><strong>Return</strong></dt>
+<dd>false if an error occurred. </dd>
+</dl>
+</p>
+</div></blockquote>
+<p><span class="target" id="project0timer_8h_1a8376ad00d00d2069de0849c1113c8a61"></span><div class="line-block">
+<div class="line">void <strong>timer_destroy</strong>(struct timer * timer)</div>
+</div>
+</p>
+<blockquote>
+<div><p></p>
+<p>Destroy a timer. </p>
+</div></blockquote>
+<p><span class="target" id="project0timer_8h_1ad183e6a757b2c3d272cf4941c9dfce72"></span><div class="line-block">
+<div class="line"><a class="reference internal" href="utils.html#project0types_8h_1a97a80ca1602ebf2303258971a2c938e2"><em>bool</em></a> <strong>timer_once</strong>(struct timer * timer, struct  <a class="reference internal" href="#project0structtime"><em>time</em></a>  * delay)</div>
+</div>
+</p>
+<blockquote>
+<div><p></p>
+<p>Start a timer to be trigger only once. <dl class="docutils">
+<dt><strong>Return</strong></dt>
+<dd>false if an error occurred. </dd>
+</dl>
+</p>
+</div></blockquote>
+<p><span class="target" id="project0timer_8h_1a598f1f242e02eb81322eaf78a3356249"></span><div class="line-block">
+<div class="line"><a class="reference internal" href="utils.html#project0types_8h_1a97a80ca1602ebf2303258971a2c938e2"><em>bool</em></a> <strong>timer_repeat</strong>(struct timer * timer, struct  <a class="reference internal" href="#project0structtime"><em>time</em></a>  * delay)</div>
+</div>
+</p>
+<blockquote>
+<div><p></p>
+<p>Start a timer to be repeated until it is stopped or destroyed. <dl class="docutils">
+<dt><strong>Return</strong></dt>
+<dd>false if an error occurred. </dd>
+</dl>
+</p>
+</div></blockquote>
+<p><span class="target" id="project0timer_8h_1a5538a2c457f20da2bed636ddc430ab13"></span><div class="line-block">
+<div class="line"><a class="reference internal" href="utils.html#project0types_8h_1a97a80ca1602ebf2303258971a2c938e2"><em>bool</em></a> <strong>timer_stop</strong>(struct timer * timer)</div>
+</div>
+</p>
+<blockquote>
+<div><p></p>
+<p>Stop a timer. <dl class="docutils">
+<dt><strong>Return</strong></dt>
+<dd>false if an error occurred. </dd>
+</dl>
+</p>
+</div></blockquote>
+</div></blockquote>
+<p><p id="project0structtime__realm"><em>class</em> <strong>time_realm</strong></p>
+<blockquote>
+<div><p></p>
+<p>Opaque timer environment structure. </p>
+<em>Public Members</em><blockquote>
+<div><p><span class="target" id="project0structtime__realm_1a66dda61d311a618a1dd1990e7301522d"></span>enum  <a class="reference internal" href="#project0timer_8h_1a028c20e1cabbf1a50fb23b39648dafcc"><em>time_realm_mode</em></a> <strong>mode</strong></p>
+<blockquote>
+<div><p></p>
+<p></p>
+</div></blockquote>
+<p><span class="target" id="project0structtime__realm_1a0cbd5376328af8a1c0d31a85c125aacc"></span>struct  <a class="reference internal" href="#project0structtime"><em>time</em></a> <strong>time</strong></p>
+<blockquote>
+<div><p></p>
+<p></p>
+</div></blockquote>
+<p><span class="target" id="project0structtime__realm_1a6acc6aa1a15177d776dbb27b132eb64b"></span><a class="reference internal" href="utils.html#project0types_8h_1a97a80ca1602ebf2303258971a2c938e2"><em>bool</em></a> <strong>check_timer</strong></p>
+<blockquote>
+<div><p></p>
+<p></p>
+</div></blockquote>
+<p><span class="target" id="project0structtime__realm_1af170ae3c6d7cd34a588d3ae55c562898"></span><a class="reference internal" href="thread.html#project0group__TLS_1ga3255b1f0c4e096f68c0a6ebfe3fd8b64"><em>local_storage_t</em></a> <strong>states</strong></p>
+<blockquote>
+<div><p></p>
+<p></p>
+</div></blockquote>
+</div></blockquote>
+</div></blockquote>
+</p>
+</div>
+
+
+		</div>
+	</div>
+</div>
+
+
+
+<footer id="footer">
+	<div class="row" role="complementary">
+		<div class="medium-12 columns">
+			&copy; Copyright 2014, Arkoon Network Security, OpenWide and Telecom ParisTech.
+		</div>
+	</div>
+</footer>
+<script>
+	  $(document).foundation();
+</script>
+
+
+
+<script type="text/javascript" src="http://www.haka-security.org/js/track.js"></script>
+
+
+  </body>
+</html>

@@ -1,0 +1,419 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>7. Appendix &mdash; Haka runtime 0.2.0 documentation</title>
+    
+    <link rel="stylesheet" href="../../../_static/haka.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/breathe.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../',
+        VERSION:     '0.2.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../../_static/js/scripts.js"></script>
+    <script type="text/javascript" src="../../../_static/js/vendor/modernizr.js"></script>
+    <script type="text/javascript" src="../../../_static/js/foundation/foundation.js"></script>
+    <script type="text/javascript" src="../../../_static/js/foundation/foundation.topbar.js"></script>
+    <link rel="top" title="Haka runtime 0.2.0 documentation" href="../../../index.html" />
+    <link rel="up" title="7. Workshop" href="../workshop.html" />
+    <link rel="next" title="8. Console" href="../console.html" />
+    <link rel="prev" title="6. Going further" href="goingfurther.html" /> 
+  </head>
+  <body>
+
+
+<header id="header" role="banner">
+	<div class="row">
+		<div class="medium-6 columns">
+			<h1 class="title"><a rel="home" title="Haka" href="http://www.haka-security.org">Haka</a></h1>
+			<h2 class="description">Software Defined Security</h2>
+		</div>
+		<div class="medium-6 columns">
+			<div id="version">Version 0.2.0</div>
+		</div>
+	</div>
+</header>
+
+<div class="contain-to-grid sticky">
+	
+
+<nav id="navbar" class="top-bar" data-topbar>
+	<ul class="title-area">
+		<!-- This is required for toggle-topbar to work -->
+		<li class="name"></li>
+		<li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
+	</ul>
+	<section class="top-bar-section">
+		<ul class="left">
+			<li class=" active">
+				<a href="../userindex.html">Users</a>
+			</li>
+			<li class=" ">
+				<a href="../../ref/refindex.html" class="../../ref/refindex.html">References</a>
+			</li>
+			<li class=" ">
+				<a href="../../developer/devindex.html" class="">Developers</a>
+			</li>
+			<li class=" ">
+				<a href="../../faq.html" class="">Faq</a>
+			</li>
+			<li class="has-form">
+
+
+	<form class="search" action="../../../search.html" method="get" id="searchbox" style="display: none">
+		<input type="hidden" name="area" value="default" />
+		<input type="hidden" name="check_keywords" value="yes" />
+		<div class="row collapse">
+			<div class="medium-11 columns">
+				<input type="text" name="q" placeholder="Search" />
+			</div>
+			<div class="medium-1 columns" id="clean-search-highlight">
+			</div>
+		</div>
+	</form>
+	<script type="text/javascript">$('#searchbox').show(0);</script>
+</li>
+		</ul>
+		<ul class="right">
+				<li class="right"><a href="../console.html" title="8. Console">Next &rarr;</a></li>
+				<li class="right"><a href="goingfurther.html" title="6. Going further">&larr; Prev</a></li>
+				<li class="right"><a href="../workshop.html" title="7. Workshop">Up &uarr;</a></li>
+
+			<li class=" right"><a href="../../../genindex.html">Index</a></li>
+			<li class=" right"><a href="../../../haka-modindex.html">Modules</a></li>
+		</ul>
+	</section>
+</nav>
+</div>
+<div id="content">
+	<div class="row">
+		<ul id="breadcrumb" class="breadcrumbs medium-12 columns">
+			
+			<li><a href="../userindex.html">Welcome to Haka&#8217;s User Guide!</a></li>
+			
+			<li><a href="../workshop.html">7. Workshop</a></li>
+			
+			<li class="current"><a href="#">7. Appendix</a></li>
+		</ul>
+	</div>
+	<div class="row">
+		<div class="medium-12 columns">
+			
+  <div class="section" id="appendix">
+<h1>7. Appendix<a class="headerlink" href="#appendix" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="workshop-media">
+<h2>7.1. Workshop media<a class="headerlink" href="#workshop-media" title="Permalink to this headline">¶</a></h2>
+<p>A media is provided which contains all you need to do the Haka workshop.
+You can download it from our web-site in the section <em>Resources</em>.</p>
+<p>This media contains a full bootable live system that contains all dependencies
+of Haka (usable in a virtual machine (VirtualBox for instance) or directly as a
+bootable USB or CD.</p>
+<div class="section" id="tips">
+<h3>7.1.1. Tips<a class="headerlink" href="#tips" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="default-user-password">
+<h4>7.1.1.1. Default user/password<a class="headerlink" href="#default-user-password" title="Permalink to this headline">¶</a></h4>
+<p>The default user of the live system is <tt class="docutils literal"><span class="pre">user</span></tt> and password <tt class="docutils literal"><span class="pre">live</span></tt>.</p>
+</div>
+<div class="section" id="changing-keyboard-mapping">
+<h4>7.1.1.2. Changing keyboard mapping<a class="headerlink" href="#changing-keyboard-mapping" title="Permalink to this headline">¶</a></h4>
+<p>On the console:</p>
+<div class="highlight-python"><pre>$ sudo dpkg-reconfigure keyboard-configuration
+$ sudo service keyboard-setup restart</pre>
+</div>
+<p>Inside X11:</p>
+<div class="highlight-python"><pre>$ setxkbmap fr</pre>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="lua">
+<h2>7.2. Lua<a class="headerlink" href="#lua" title="Permalink to this headline">¶</a></h2>
+<p>Lua is a simple, lightweight and powerful language. It is used inside
+Haka to define configurations.</p>
+<p>The full documentation is available at <a class="reference external" href="http://www.lua.org/">http://www.lua.org/</a>.</p>
+<p>Some basic tutorial to introduce Lua are also available at
+<a class="reference external" href="http://lua-users.org/wiki/TutorialDirectory">http://lua-users.org/wiki/TutorialDirectory</a>.</p>
+<p>You can do some tests with the lua interpreter :</p>
+<pre class="ansi-block literal-block">
+$ lua
+Lua 5.2.1  Copyright (C) 1994-2012 Lua.org, PUC-Rio
+&gt;
+</pre>
+<p>The following is aimed at giving a quick overview of Lua language.</p>
+<div class="section" id="comments">
+<h3>7.2.1. Comments<a class="headerlink" href="#comments" title="Permalink to this headline">¶</a></h3>
+<p>Lua one-line comments are done with a <tt class="docutils literal"><span class="pre">--</span></tt>:</p>
+<div class="highlight-lua"><div class="highlight"><pre><span class="c1">-- This is a comment</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="variables">
+<h3>7.2.2. Variables<a class="headerlink" href="#variables" title="Permalink to this headline">¶</a></h3>
+<p>Lua variables are global except if they are preceded with <tt class="docutils literal"><span class="pre">local</span></tt> keyword.
+It is possible to declare it anywhere.</p>
+<div class="highlight-lua"><div class="highlight"><pre><span class="kd">local</span> <span class="n">mylocalvar</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="s">foo&quot;</span>
+<span class="n">myglobalvar</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="s">bar&quot;</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">It is strongly discouraged to use global variables.</p>
+</div>
+</div>
+<div class="section" id="types-in-lua">
+<h3>7.2.3. Types in Lua<a class="headerlink" href="#types-in-lua" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="basic-types">
+<h4>7.2.3.1. Basic types<a class="headerlink" href="#basic-types" title="Permalink to this headline">¶</a></h4>
+<p>Lua define the following basic types:</p>
+<blockquote>
+<div><ul class="simple">
+<li><cite>nil</cite> - represent a nil value. It is also a keyword.</li>
+<li><cite>boolean</cite> - represent a boolean value. Can be <tt class="docutils literal"><span class="pre">true</span></tt> or <tt class="docutils literal"><span class="pre">false</span></tt>.</li>
+<li><cite>number</cite> - represent a number. Can be either an integer or a floating
+point number.</li>
+<li><cite>string</cite> - represent a character string.</li>
+<li><cite>table</cite> - represent a table of object.</li>
+<li><cite>function</cite> - represent a function.</li>
+<li><cite>userdata</cite> - a complex type used to map C data.</li>
+</ul>
+</div></blockquote>
+</div>
+<div class="section" id="string">
+<h4>7.2.3.2. String<a class="headerlink" href="#string" title="Permalink to this headline">¶</a></h4>
+<p>Lua allow to easily concatenate string with the <tt class="docutils literal"><span class="pre">..</span></tt> keyword.</p>
+<div class="highlight-lua"><div class="highlight"><pre><span class="n">foo</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="s">foo&quot;</span>
+<span class="n">bar</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="s">bar&quot;</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">foo</span><span class="o">..</span><span class="s2">&quot;</span><span class="s"> : &quot;</span><span class="o">..</span><span class="n">bar</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>To format a string, the Lua library <tt class="docutils literal"><span class="pre">string</span></tt> provides an utility function
+to do this.</p>
+<div class="highlight-lua"><div class="highlight"><pre><span class="nb">print</span><span class="p">(</span><span class="nb">string.format</span><span class="p">(</span><span class="s2">&quot;</span><span class="s">%s: %d&quot;</span><span class="p">,</span> <span class="s2">&quot;</span><span class="s">foo&quot;</span><span class="p">,</span> <span class="mi">42</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="tables">
+<h4>7.2.3.3. Tables<a class="headerlink" href="#tables" title="Permalink to this headline">¶</a></h4>
+<p>As tables are used almost everywhere in Lua (and obviously in haka) you should
+know a few things about it. It can be used to represent an array or an object.</p>
+<p>Lua table declaration is made with <tt class="docutils literal"><span class="pre">{}</span></tt>.</p>
+<p>When used as an array, Lua table index starts at <tt class="docutils literal"><span class="pre">1</span></tt>.</p>
+<div class="highlight-lua"><div class="highlight"><pre><span class="n">mytable</span> <span class="o">=</span> <span class="p">{</span> <span class="s2">&quot;</span><span class="s">foo&quot;</span> <span class="p">}</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">mytable</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+</pre></div>
+</div>
+<p>Getting a inexistent element of a table return <tt class="docutils literal"><span class="pre">nil</span></tt>. It is then not an
+error to access an element not present.</p>
+<div class="highlight-lua"><div class="highlight"><pre><span class="n">mytable</span> <span class="o">=</span> <span class="p">{</span> <span class="s2">&quot;</span><span class="s">foo&quot;</span> <span class="p">}</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">mytable</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
+</pre></div>
+</div>
+<p>Setting an element in a table to <tt class="docutils literal"><span class="pre">nil</span></tt> simply remove it from the table.</p>
+<div class="highlight-lua"><div class="highlight"><pre><span class="n">mytable</span> <span class="o">=</span> <span class="p">{</span> <span class="s2">&quot;</span><span class="s">foo&quot;</span><span class="p">,</span> <span class="s2">&quot;</span><span class="s">bar&quot;</span> <span class="p">}</span>
+<span class="n">mytable</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="kc">nil</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">mytable</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">mytable</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Lua does not reorder the table when an element is removed from it.
+To do this, check the Lua library <cite>table</cite>.</p>
+</div>
+<p>Lua tables can be used as a map. Namely you can index element of a table with
+any type of value.</p>
+<p>Declaration of such element are done with a simple <tt class="docutils literal"><span class="pre">=</span></tt> in declaration or by
+adding it a posteriori:</p>
+<div class="highlight-lua"><div class="highlight"><pre><span class="n">mytable</span> <span class="o">=</span> <span class="p">{</span> <span class="n">foo</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="s">myfoostring&quot;</span> <span class="p">}</span>
+<span class="n">mytable</span><span class="p">.</span><span class="n">bar</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="s">mybarstring&quot;</span>
+</pre></div>
+</div>
+<p>Access to this element can be done with the usual <tt class="docutils literal"><span class="pre">[]</span></tt> or directly with a
+<tt class="docutils literal"><span class="pre">.</span></tt>.</p>
+<div class="highlight-lua"><div class="highlight"><pre><span class="nb">print</span><span class="p">(</span><span class="n">mytable</span><span class="p">[</span><span class="s2">&quot;</span><span class="s">foo&quot;</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">mytable</span><span class="p">.</span><span class="n">bar</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Don&#8217;t forget that accessing an inexistent element of a table return
+<tt class="docutils literal"><span class="pre">nil</span></tt>. Even for a table used as a map.</p>
+</div>
+<p>It is possible to mix indexed table and mapped table.</p>
+<div class="highlight-lua"><div class="highlight"><pre><span class="n">mytable</span> <span class="o">=</span> <span class="p">{</span> <span class="s2">&quot;</span><span class="s">foo&quot;</span> <span class="p">}</span>
+<span class="n">mytable</span><span class="p">.</span><span class="n">bar</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="s">bar&quot;</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">mytable</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">mytable</span><span class="p">.</span><span class="n">bar</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Lua provide two <cite>iterator</cite> function to loop on table.</p>
+<p>First one is called <tt class="docutils literal"><span class="pre">ipairs()</span></tt> and it will loop over indexed value of the
+table.</p>
+<p>Second one is called <tt class="docutils literal"><span class="pre">pairs()</span></tt> and it will loop over every value of the table.</p>
+<div class="admonition-see-also admonition seealso">
+<p class="first admonition-title">See also</p>
+<p class="last"><a class="reference internal" href="#for-loop-statement"><em>for loops</em></a> for more information on how to use
+<tt class="docutils literal"><span class="pre">pairs()</span></tt> and <tt class="docutils literal"><span class="pre">ipairs()</span></tt>.</p>
+</div>
+</div>
+</div>
+<div class="section" id="boolean-logic">
+<h3>7.2.4. Boolean logic<a class="headerlink" href="#boolean-logic" title="Permalink to this headline">¶</a></h3>
+<p>Lua offers the usual boolean operators:</p>
+<blockquote>
+<div><ul class="simple">
+<li><tt class="docutils literal"><span class="pre">and</span></tt></li>
+<li><tt class="docutils literal"><span class="pre">or</span></tt></li>
+<li><tt class="docutils literal"><span class="pre">not</span></tt></li>
+</ul>
+</div></blockquote>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">In Lua, everything is <tt class="docutils literal"><span class="pre">true</span></tt> except <tt class="docutils literal"><span class="pre">nil</span></tt> and <tt class="docutils literal"><span class="pre">false</span></tt>. For
+instance <tt class="docutils literal"><span class="pre">0</span></tt> is <tt class="docutils literal"><span class="pre">true</span></tt>.</p>
+</div>
+</div>
+<div class="section" id="control-flow">
+<h3>7.2.5. Control flow<a class="headerlink" href="#control-flow" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="if-then-else">
+<h4>7.2.5.1. if-then-(else)<a class="headerlink" href="#if-then-else" title="Permalink to this headline">¶</a></h4>
+<p>Lua <tt class="docutils literal"><span class="pre">if-then-(else)</span></tt> statement looks like:</p>
+<div class="highlight-lua"><div class="highlight"><pre><span class="k">if</span> <span class="n">condition</span> <span class="k">then</span>
+    <span class="c1">-- [...]</span>
+<span class="k">else</span>
+    <span class="c1">-- [...]</span>
+<span class="k">end</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">It is not required to wrap conditions inside parenthesis.</p>
+</div>
+</div>
+<div class="section" id="for-loops">
+<span id="for-loop-statement"></span><h4>7.2.5.2. for loops<a class="headerlink" href="#for-loops" title="Permalink to this headline">¶</a></h4>
+<p>Lua <tt class="docutils literal"><span class="pre">for</span></tt> loop statement looks like:</p>
+<div class="highlight-lua"><div class="highlight"><pre><span class="k">for</span> <span class="n">i</span> <span class="o">=</span> <span class="n">first</span><span class="p">,</span><span class="n">last</span><span class="p">,</span><span class="n">delta</span> <span class="k">do</span>
+    <span class="c1">-- [...]</span>
+<span class="k">end</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last"><tt class="docutils literal"><span class="pre">delta</span></tt> may be negative, allowing the for loop to count down or up.</p>
+</div>
+<p>Lua have a <tt class="docutils literal"><span class="pre">for-in</span></tt> loop statement:</p>
+<div class="highlight-lua"><div class="highlight"><pre><span class="k">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">element</span> <span class="k">in</span> <span class="nb">pairs</span><span class="p">(</span><span class="n">mytable</span><span class="p">)</span> <span class="k">do</span>
+    <span class="c1">-- [...]</span>
+<span class="k">end</span>
+</pre></div>
+</div>
+<p>A <tt class="docutils literal"><span class="pre">for-in</span></tt> statement use the special <tt class="docutils literal"><span class="pre">in</span></tt> keyword followed by a call to
+one of <tt class="docutils literal"><span class="pre">pairs()</span></tt> or <tt class="docutils literal"><span class="pre">ipairs()</span></tt> functions. Both return two values: <tt class="docutils literal"><span class="pre">index,</span>
+<span class="pre">value</span></tt>.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Lua recommends the use of <tt class="docutils literal"><span class="pre">_</span></tt> for unused variable</p>
+</div>
+</div>
+<div class="section" id="while-and-repeat-until-loops">
+<h4>7.2.5.3. while and repeat-until loops<a class="headerlink" href="#while-and-repeat-until-loops" title="Permalink to this headline">¶</a></h4>
+<p>Lua have a <tt class="docutils literal"><span class="pre">while</span></tt> loop statement:</p>
+<div class="highlight-lua"><div class="highlight"><pre><span class="k">while</span> <span class="n">condition</span> <span class="k">do</span>
+    <span class="c1">-- [...]</span>
+<span class="k">end</span>
+</pre></div>
+</div>
+<p>Lua provide an opposite loop statement called <tt class="docutils literal"><span class="pre">repeat-until</span></tt>:</p>
+<div class="highlight-lua"><div class="highlight"><pre><span class="k">repeat</span>
+    <span class="c1">-- [...]</span>
+<span class="k">until</span> <span class="n">condition</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="functions">
+<h3>7.2.6. Functions<a class="headerlink" href="#functions" title="Permalink to this headline">¶</a></h3>
+<p>Lua functions are declared with the <tt class="docutils literal"><span class="pre">function</span></tt> keyword.</p>
+<div class="highlight-lua"><div class="highlight"><pre><span class="k">function</span> <span class="nf">myfunc</span><span class="p">()</span>
+    <span class="c1">-- [...]</span>
+<span class="k">end</span>
+</pre></div>
+</div>
+<p>Lua function can return multiple values.</p>
+<div class="highlight-lua"><div class="highlight"><pre><span class="k">function</span> <span class="nf">myfunc</span><span class="p">()</span>
+    <span class="k">return</span> <span class="kc">true</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;</span><span class="s">foo&quot;</span>
+<span class="k">end</span>
+
+<span class="n">ok</span><span class="p">,</span> <span class="n">count</span><span class="p">,</span> <span class="n">bar</span> <span class="o">=</span> <span class="n">myfunc</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>There is not error when calling a function with an incorrect number
+of arguments. The extra arguments are not used and the missing one
+are set to <tt class="docutils literal"><span class="pre">nil</span></tt>.</p>
+<div class="highlight-lua"><div class="highlight"><pre><span class="k">function</span> <span class="nf">myfunc</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="p">)</span>
+<span class="k">end</span>
+
+<span class="n">myfunc</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span> <span class="c1">-- b and c will be equal to nil</span>
+</pre></div>
+</div>
+<p>Function are first-class value in Lua. This means that they can be used exactly
+like a <tt class="docutils literal"><span class="pre">number</span></tt> for instance. As an example, it is possible to return a function
+from a function.</p>
+<div class="highlight-lua"><div class="highlight"><pre><span class="k">function</span> <span class="nf">myfunc</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+    <span class="k">return</span> <span class="k">function</span> <span class="p">()</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+    <span class="k">end</span>
+<span class="k">end</span>
+
+<span class="n">myfunc</span><span class="p">(</span><span class="mi">10</span><span class="p">)()</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+
+
+		</div>
+	</div>
+</div>
+
+
+
+<footer id="footer">
+	<div class="row" role="complementary">
+		<div class="medium-12 columns">
+			&copy; Copyright 2014, Arkoon Network Security, OpenWide and Telecom ParisTech.
+		</div>
+	</div>
+</footer>
+<script>
+	  $(document).foundation();
+</script>
+
+
+
+<script type="text/javascript" src="http://www.haka-security.org/js/track.js"></script>
+
+
+  </body>
+</html>

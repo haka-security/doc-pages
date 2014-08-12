@@ -1,0 +1,340 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>7.7. Udp Connection &mdash; Haka runtime 0.2.0 documentation</title>
+    
+    <link rel="stylesheet" href="../../../../_static/haka.css" type="text/css" />
+    <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../../../_static/breathe.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../../',
+        VERSION:     '0.2.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../../../_static/js/scripts.js"></script>
+    <script type="text/javascript" src="../../../../_static/js/vendor/modernizr.js"></script>
+    <script type="text/javascript" src="../../../../_static/js/foundation/foundation.js"></script>
+    <script type="text/javascript" src="../../../../_static/js/foundation/foundation.topbar.js"></script>
+    <link rel="top" title="Haka runtime 0.2.0 documentation" href="../../../../index.html" />
+    <link rel="up" title="7. Haka dissectors" href="../../../../doc/ref/hakadissector.html" />
+    <link rel="next" title="7.8. Http" href="../../http/doc/http.html" />
+    <link rel="prev" title="7.6. Udp" href="udp.html" /> 
+  </head>
+  <body>
+
+
+<header id="header" role="banner">
+	<div class="row">
+		<div class="medium-6 columns">
+			<h1 class="title"><a rel="home" title="Haka" href="http://www.haka-security.org">Haka</a></h1>
+			<h2 class="description">Software Defined Security</h2>
+		</div>
+		<div class="medium-6 columns">
+			<div id="version">Version 0.2.0</div>
+		</div>
+	</div>
+</header>
+
+<div class="contain-to-grid sticky">
+	
+
+<nav id="navbar" class="top-bar" data-topbar>
+	<ul class="title-area">
+		<!-- This is required for toggle-topbar to work -->
+		<li class="name"></li>
+		<li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
+	</ul>
+	<section class="top-bar-section">
+		<ul class="left">
+			<li class=" ">
+				<a href="../../../../doc/user/userindex.html">Users</a>
+			</li>
+			<li class=" active">
+				<a href="../../../../doc/ref/refindex.html" class="../../../../doc/ref/refindex.html">References</a>
+			</li>
+			<li class=" ">
+				<a href="../../../../doc/developer/devindex.html" class="">Developers</a>
+			</li>
+			<li class=" ">
+				<a href="../../../../doc/faq.html" class="">Faq</a>
+			</li>
+			<li class="has-form">
+
+
+	<form class="search" action="../../../../search.html" method="get" id="searchbox" style="display: none">
+		<input type="hidden" name="area" value="default" />
+		<input type="hidden" name="check_keywords" value="yes" />
+		<div class="row collapse">
+			<div class="medium-11 columns">
+				<input type="text" name="q" placeholder="Search" />
+			</div>
+			<div class="medium-1 columns" id="clean-search-highlight">
+			</div>
+		</div>
+	</form>
+	<script type="text/javascript">$('#searchbox').show(0);</script>
+</li>
+		</ul>
+		<ul class="right">
+				<li class="right"><a href="../../http/doc/http.html" title="7.8. Http">Next &rarr;</a></li>
+				<li class="right"><a href="udp.html" title="7.6. Udp">&larr; Prev</a></li>
+				<li class="right"><a href="../../../../doc/ref/hakadissector.html" title="7. Haka dissectors">Up &uarr;</a></li>
+
+			<li class=" right"><a href="../../../../genindex.html">Index</a></li>
+			<li class=" right"><a href="../../../../haka-modindex.html">Modules</a></li>
+		</ul>
+	</section>
+</nav>
+</div>
+<div id="content">
+	<div class="row">
+		<ul id="breadcrumb" class="breadcrumbs medium-12 columns">
+			
+			<li><a href="../../../../doc/ref/refindex.html">Welcome to Haka&#8217;s User Reference Guide!</a></li>
+			
+			<li><a href="../../../../doc/ref/hakadissector.html">7. Haka dissectors</a></li>
+			
+			<li class="current"><a href="#">7.7. Udp Connection</a></li>
+		</ul>
+	</div>
+	<div class="row">
+		<div class="medium-12 columns">
+			
+  <div class="section" id="haka-module.udp_connection">
+<span id="udp-connection"></span><h1>7.7. Udp Connection<a class="headerlink" href="#haka-module.udp_connection" title="Permalink to this headline">¶</a></h1>
+<p>Udp state-full dissector module.</p>
+<p><strong>Usage:</strong></p>
+<div class="highlight-lua"><div class="highlight"><pre><span class="kd">local</span> <span class="n">udp_connection</span> <span class="o">=</span> <span class="nb">require</span><span class="p">(</span><span class="s1">&#39;</span><span class="s">protocol/udp_connection&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="section" id="dissector">
+<h2>7.7.1. Dissector<a class="headerlink" href="#dissector" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="haka-object.UdpConnectionDissector">
+<em class="property">dissector </em><tt class="descname">UdpConnectionDissector</tt><a class="headerlink" href="#haka-object.UdpConnectionDissector" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Name :</th><td class="field-body"><tt class="docutils literal"><span class="pre">'udp_connection'</span></tt></td>
+</tr>
+<tr class="field-even field"><th class="field-name">Extend :</th><td class="field-body"><a class="reference internal" href="../../../../doc/ref/dissector.html#haka-object.haka.helper.FlowDissector" title="haka.helper.FlowDissector"><tt class="xref haka haka-class docutils literal"><span class="pre">haka.helper.FlowDissector</span></tt></a>&nbsp;</td>
+</tr>
+</tbody>
+</table>
+<p>State-full dissector for UDP. It will associate each UDP packet with its matching connection.</p>
+<dl class="attribute">
+<dt id="haka-attribute.&lt;UdpConnectionDissector&gt;.srcip">
+<em class="property"> </em><tt class="descclassname">&lt;UdpConnectionDissector&gt;.</tt><tt class="descname">srcip</tt><a class="headerlink" href="#haka-attribute.<UdpConnectionDissector>.srcip" title="Permalink to this definition">¶</a></dt>
+<dt id="haka-attribute.&lt;UdpConnectionDissector&gt;.dstip">
+<em class="property"> </em><tt class="descclassname">&lt;UdpConnectionDissector&gt;.</tt><tt class="descname">dstip</tt><a class="headerlink" href="#haka-attribute.<UdpConnectionDissector>.dstip" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body"><a class="reference internal" href="../../ipv4/doc/ipv4.html#haka-function.ipv4.addr" title="ipv4.addr"><tt class="xref haka haka-class docutils literal"><span class="pre">ipv4.addr</span></tt></a>&nbsp;</td>
+</tr>
+</tbody>
+</table>
+<p>Connection IP informations.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="haka-attribute.&lt;UdpConnectionDissector&gt;.srcport">
+<em class="property"> </em><tt class="descclassname">&lt;UdpConnectionDissector&gt;.</tt><tt class="descname">srcport</tt><a class="headerlink" href="#haka-attribute.<UdpConnectionDissector>.srcport" title="Permalink to this definition">¶</a></dt>
+<dt id="haka-attribute.&lt;UdpConnectionDissector&gt;.dstport">
+<em class="property"> </em><tt class="descclassname">&lt;UdpConnectionDissector&gt;.</tt><tt class="descname">dstport</tt><a class="headerlink" href="#haka-attribute.<UdpConnectionDissector>.dstport" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">number</td>
+</tr>
+</tbody>
+</table>
+<p>Connection port informations.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="haka-function.&lt;UdpConnectionDissector&gt;.drop">
+<em class="property"> </em><tt class="descclassname">&lt;UdpConnectionDissector&gt;:</tt><tt class="descname">drop</tt><big>(</big><big>)</big><a class="headerlink" href="#haka-function.<UdpConnectionDissector>.drop" title="Permalink to this definition">¶</a></dt>
+<dd><p>Drop the UDP connection. All future packets that belong to this connection will be
+silently dropped for a few seconds.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="events">
+<h2>7.7.2. Events<a class="headerlink" href="#events" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="haka-function.udp_connection.events.new_connection">
+<em class="property">event </em><tt class="descclassname">udp_connection.events.</tt><tt class="descname">new_connection</tt><big>(</big><em>flow</em>, <em>udp</em><big>)</big><a class="headerlink" href="#haka-function.udp_connection.events.new_connection" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>flow</strong> (<a class="reference internal" href="#haka-object.UdpConnectionDissector" title="UdpConnectionDissector"><tt class="xref haka haka-class docutils literal"><span class="pre">UdpConnectionDissector</span></tt></a>) &#8211; UDP flow.</li>
+<li><strong>udp</strong> (<a class="reference internal" href="udp.html#haka-object.UdpDissector" title="UdpDissector"><tt class="xref haka haka-class docutils literal"><span class="pre">UdpDissector</span></tt></a>) &#8211; UDP packet.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p>Event triggered whenever a new UDP connection is about to be created.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="haka-function.udp_connection.events.end_connection">
+<em class="property">event </em><tt class="descclassname">udp_connection.events.</tt><tt class="descname">end_connection</tt><big>(</big><em>flow</em><big>)</big><a class="headerlink" href="#haka-function.udp_connection.events.end_connection" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>flow</strong> (<a class="reference internal" href="#haka-object.UdpConnectionDissector" title="UdpConnectionDissector"><tt class="xref haka haka-class docutils literal"><span class="pre">UdpConnectionDissector</span></tt></a>) &#8211; UDP flow.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p>Event triggered whenever a new UDP connection is being closed.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="haka-function.udp_connection.events.receive_data">
+<em class="property">event </em><tt class="descclassname">udp_connection.events.</tt><tt class="descname">receive_data</tt><big>(</big><em>flow</em>, <em>payload</em>, <em>direction</em><big>)</big><a class="headerlink" href="#haka-function.udp_connection.events.receive_data" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>flow</strong> (<a class="reference internal" href="#haka-object.UdpConnectionDissector" title="UdpConnectionDissector"><tt class="xref haka haka-class docutils literal"><span class="pre">UdpConnectionDissector</span></tt></a>) &#8211; UDP flow.</li>
+<li><strong>payload</strong> (<a class="reference internal" href="../../../../doc/ref/vbuffer.html#haka-object.vbuffer" title="vbuffer"><tt class="xref haka haka-class docutils literal"><span class="pre">vbuffer</span></tt></a>) &#8211; Payload data.</li>
+<li><strong>direction</strong> (<em>string</em>) &#8211; Data direction (<tt class="docutils literal"><span class="pre">'up'</span></tt> or <tt class="docutils literal"><span class="pre">'down'</span></tt>).</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p>Event triggered when some data are available on a UDP connection.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="haka-module.udp_connection.helper">
+<span id="helper"></span><h2>7.7.3. Helper<a class="headerlink" href="#haka-module.udp_connection.helper" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="haka-object.udp_connection.helper.UdpFlowDissector">
+<em class="property">dissector </em><tt class="descclassname">udp_connection.helper.</tt><tt class="descname">UdpFlowDissector</tt><a class="headerlink" href="#haka-object.udp_connection.helper.UdpFlowDissector" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="function">
+<dt id="haka-function.UdpFlowDissector.dissect">
+<em class="property"> </em><tt class="descclassname">UdpFlowDissector.</tt><tt class="descname">dissect</tt><big>(</big><em>cls</em>, <em>flow</em><big>)</big><a class="headerlink" href="#haka-function.UdpFlowDissector.dissect" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>cls</strong> &#8211; Current dissector class.</li>
+<li><strong>flow</strong> (<a class="reference internal" href="#haka-object.UdpConnectionDissector" title="UdpConnectionDissector"><tt class="xref haka haka-class docutils literal"><span class="pre">UdpConnectionDissector</span></tt></a>) &#8211; Parent Udp flow.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p>Enable the dissector on a given flow.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="haka-function.UdpFlowDissector.install_udp_rule">
+<em class="property"> </em><tt class="descclassname">UdpFlowDissector.</tt><tt class="descname">install_udp_rule</tt><big>(</big><em>cls</em>, <em>port</em><big>)</big><a class="headerlink" href="#haka-function.UdpFlowDissector.install_udp_rule" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>cls</strong> &#8211; Current dissector class.</li>
+<li><strong>port</strong> (<a class="reference internal" href="../../../../doc/ref/grammar.html#haka-function.number" title="number"><em>number</em></a>) &#8211; Udp port to select.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p>Create a security rule to enable the dissector on a given flow.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="haka-attribute.&lt;UdpFlowDissector&gt;.__init">
+<em class="property"> </em><tt class="descclassname">&lt;UdpFlowDissector&gt;.</tt><tt class="descname">__init</tt><big>(</big><em>flow</em><big>)</big><a class="headerlink" href="#haka-attribute.<UdpFlowDissector>.__init" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Param flow:</th><td class="field-body">Parent Udp flow.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Ptype flow:</th><td class="field-body"><a class="reference internal" href="#haka-object.UdpConnectionDissector" title="UdpConnectionDissector"><tt class="xref haka haka-class docutils literal"><span class="pre">UdpConnectionDissector</span></tt></a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="haka-attribute.&lt;UdpFlowDissector&gt;.flow">
+<em class="property"> </em><tt class="descclassname">&lt;UdpFlowDissector&gt;.</tt><tt class="descname">flow</tt><a class="headerlink" href="#haka-attribute.<UdpFlowDissector>.flow" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body"><a class="reference internal" href="#haka-object.UdpConnectionDissector" title="UdpConnectionDissector"><tt class="xref haka haka-class docutils literal"><span class="pre">UdpConnectionDissector</span></tt></a>&nbsp;</td>
+</tr>
+</tbody>
+</table>
+<p>Underlying Udp stream.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+
+
+		</div>
+	</div>
+</div>
+
+
+
+<footer id="footer">
+	<div class="row" role="complementary">
+		<div class="medium-12 columns">
+			&copy; Copyright 2014, Arkoon Network Security, OpenWide and Telecom ParisTech.
+		</div>
+	</div>
+</footer>
+<script>
+	  $(document).foundation();
+</script>
+
+
+
+<script type="text/javascript" src="http://www.haka-security.org/js/track.js"></script>
+
+
+  </body>
+</html>

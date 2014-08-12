@@ -1,0 +1,189 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>7. Workshop &mdash; Haka runtime 0.2.0 documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/haka.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/breathe.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '0.2.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../_static/js/scripts.js"></script>
+    <script type="text/javascript" src="../../_static/js/vendor/modernizr.js"></script>
+    <script type="text/javascript" src="../../_static/js/foundation/foundation.js"></script>
+    <script type="text/javascript" src="../../_static/js/foundation/foundation.topbar.js"></script>
+    <link rel="top" title="Haka runtime 0.2.0 documentation" href="../../index.html" />
+    <link rel="up" title="Welcome to Haka’s User Guide!" href="userindex.html" />
+    <link rel="next" title="1. Haka documentation" href="workshop/doc.html" />
+    <link rel="prev" title="Filtering spam" href="tutorial/dissector/security_rule.html" /> 
+  </head>
+  <body>
+
+
+<header id="header" role="banner">
+	<div class="row">
+		<div class="medium-6 columns">
+			<h1 class="title"><a rel="home" title="Haka" href="http://www.haka-security.org">Haka</a></h1>
+			<h2 class="description">Software Defined Security</h2>
+		</div>
+		<div class="medium-6 columns">
+			<div id="version">Version 0.2.0</div>
+		</div>
+	</div>
+</header>
+
+<div class="contain-to-grid sticky">
+	
+
+<nav id="navbar" class="top-bar" data-topbar>
+	<ul class="title-area">
+		<!-- This is required for toggle-topbar to work -->
+		<li class="name"></li>
+		<li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
+	</ul>
+	<section class="top-bar-section">
+		<ul class="left">
+			<li class=" active">
+				<a href="userindex.html">Users</a>
+			</li>
+			<li class=" ">
+				<a href="../ref/refindex.html" class="../ref/refindex.html">References</a>
+			</li>
+			<li class=" ">
+				<a href="../developer/devindex.html" class="">Developers</a>
+			</li>
+			<li class=" ">
+				<a href="../faq.html" class="">Faq</a>
+			</li>
+			<li class="has-form">
+
+
+	<form class="search" action="../../search.html" method="get" id="searchbox" style="display: none">
+		<input type="hidden" name="area" value="default" />
+		<input type="hidden" name="check_keywords" value="yes" />
+		<div class="row collapse">
+			<div class="medium-11 columns">
+				<input type="text" name="q" placeholder="Search" />
+			</div>
+			<div class="medium-1 columns" id="clean-search-highlight">
+			</div>
+		</div>
+	</form>
+	<script type="text/javascript">$('#searchbox').show(0);</script>
+</li>
+		</ul>
+		<ul class="right">
+				<li class="right"><a href="workshop/doc.html" title="1. Haka documentation">Next &rarr;</a></li>
+				<li class="right"><a href="tutorial/dissector/security_rule.html" title="Filtering spam">&larr; Prev</a></li>
+				<li class="right"><a href="userindex.html" title="Welcome to Haka&#8217;s User Guide!">Up &uarr;</a></li>
+
+			<li class=" right"><a href="../../genindex.html">Index</a></li>
+			<li class=" right"><a href="../../haka-modindex.html">Modules</a></li>
+		</ul>
+	</section>
+</nav>
+</div>
+<div id="content">
+	<div class="row">
+		<ul id="breadcrumb" class="breadcrumbs medium-12 columns">
+			
+			<li><a href="userindex.html">Welcome to Haka&#8217;s User Guide!</a></li>
+			
+			<li class="current"><a href="#">7. Workshop</a></li>
+		</ul>
+	</div>
+	<div class="row">
+		<div class="medium-12 columns">
+			
+  <div class="section" id="workshop">
+<h1>7. Workshop<a class="headerlink" href="#workshop" title="Permalink to this headline">¶</a></h1>
+<p>This section contains a full workshop to dig inside Haka. It will introduce
+most Haka concepts.</p>
+<p>To do it, you will first need to install and setup Haka on your computer or
+you can also download our Debian live based iso to directly boot with a
+full environment containing Haka with all its dependencies.</p>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="workshop/doc.html">1. Haka documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="workshop/hellopacket.html">2. Hellopacket</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="workshop/hellopacket.html#setting-up-my-first-haka-script">2.1. Setting up my first Haka script</a></li>
+<li class="toctree-l2"><a class="reference internal" href="workshop/hellopacket.html#optional-interactive-rule">2.2. Optional: Interactive rule</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="workshop/filter.html">3. Filtering with Haka</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="workshop/filter.html#basic-ip-filtering">3.1. Basic IP filtering</a></li>
+<li class="toctree-l2"><a class="reference internal" href="workshop/filter.html#tcp-filtering">3.2. TCP&nbsp;filtering</a></li>
+<li class="toctree-l2"><a class="reference internal" href="workshop/filter.html#filtering-with-nfqueue">3.3. Filtering with NFQueue</a></li>
+<li class="toctree-l2"><a class="reference internal" href="workshop/filter.html#optional-interactive-rule-debugging">3.4. Optional: Interactive rule debugging</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="workshop/modif.html">4. On-the-fly modifications</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="workshop/modif.html#http-dissector">4.1. HTTP dissector</a></li>
+<li class="toctree-l2"><a class="reference internal" href="workshop/modif.html#modifying-http-request">4.2. Modifying http request</a></li>
+<li class="toctree-l2"><a class="reference internal" href="workshop/modif.html#modifying-http-response">4.3. Modifying http response</a></li>
+<li class="toctree-l2"><a class="reference internal" href="workshop/modif.html#full-script">4.4. Full script</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="workshop/smtp.html">5. SMTP protocol dissection</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="workshop/smtp.html#grammar">5.1. Grammar</a></li>
+<li class="toctree-l2"><a class="reference internal" href="workshop/smtp.html#events">5.2. Events</a></li>
+<li class="toctree-l2"><a class="reference internal" href="workshop/smtp.html#state-machine">5.3. State machine</a></li>
+<li class="toctree-l2"><a class="reference internal" href="workshop/smtp.html#security-rules">5.4. Security rules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="workshop/smtp.html#full-dissector">5.5. Full dissector</a></li>
+<li class="toctree-l2"><a class="reference internal" href="workshop/smtp.html#appendix">5.6. Appendix</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="workshop/goingfurther.html">6. Going further</a></li>
+<li class="toctree-l1"><a class="reference internal" href="workshop/appendix.html">7. Appendix</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="workshop/appendix.html#workshop-media">7.1. Workshop media</a></li>
+<li class="toctree-l2"><a class="reference internal" href="workshop/appendix.html#lua">7.2. Lua</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+
+		</div>
+	</div>
+</div>
+
+
+
+<footer id="footer">
+	<div class="row" role="complementary">
+		<div class="medium-12 columns">
+			&copy; Copyright 2014, Arkoon Network Security, OpenWide and Telecom ParisTech.
+		</div>
+	</div>
+</footer>
+<script>
+	  $(document).foundation();
+</script>
+
+
+
+<script type="text/javascript" src="http://www.haka-security.org/js/track.js"></script>
+
+
+  </body>
+</html>

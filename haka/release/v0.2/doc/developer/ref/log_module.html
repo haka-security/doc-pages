@@ -1,0 +1,202 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>3.9.2. Log module &mdash; Haka runtime 0.2.0 documentation</title>
+    
+    <link rel="stylesheet" href="../../../_static/haka.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/breathe.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../',
+        VERSION:     '0.2.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../../_static/js/scripts.js"></script>
+    <script type="text/javascript" src="../../../_static/js/vendor/modernizr.js"></script>
+    <script type="text/javascript" src="../../../_static/js/foundation/foundation.js"></script>
+    <script type="text/javascript" src="../../../_static/js/foundation/foundation.topbar.js"></script>
+    <link rel="top" title="Haka runtime 0.2.0 documentation" href="../../../index.html" />
+    <link rel="up" title="3.8. Modules" href="module.html" />
+    <link rel="next" title="3.9.3. Alert module" href="alert_module.html" />
+    <link rel="prev" title="3.9.1. Packet module" href="packet_module.html" /> 
+  </head>
+  <body>
+
+
+<header id="header" role="banner">
+	<div class="row">
+		<div class="medium-6 columns">
+			<h1 class="title"><a rel="home" title="Haka" href="http://www.haka-security.org">Haka</a></h1>
+			<h2 class="description">Software Defined Security</h2>
+		</div>
+		<div class="medium-6 columns">
+			<div id="version">Version 0.2.0</div>
+		</div>
+	</div>
+</header>
+
+<div class="contain-to-grid sticky">
+	
+
+<nav id="navbar" class="top-bar" data-topbar>
+	<ul class="title-area">
+		<!-- This is required for toggle-topbar to work -->
+		<li class="name"></li>
+		<li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
+	</ul>
+	<section class="top-bar-section">
+		<ul class="left">
+			<li class=" ">
+				<a href="../../user/userindex.html">Users</a>
+			</li>
+			<li class=" ">
+				<a href="../../ref/refindex.html" class="../../ref/refindex.html">References</a>
+			</li>
+			<li class=" active">
+				<a href="../devindex.html" class="">Developers</a>
+			</li>
+			<li class=" ">
+				<a href="../../faq.html" class="">Faq</a>
+			</li>
+			<li class="has-form">
+
+
+	<form class="search" action="../../../search.html" method="get" id="searchbox" style="display: none">
+		<input type="hidden" name="area" value="default" />
+		<input type="hidden" name="check_keywords" value="yes" />
+		<div class="row collapse">
+			<div class="medium-11 columns">
+				<input type="text" name="q" placeholder="Search" />
+			</div>
+			<div class="medium-1 columns" id="clean-search-highlight">
+			</div>
+		</div>
+	</form>
+	<script type="text/javascript">$('#searchbox').show(0);</script>
+</li>
+		</ul>
+		<ul class="right">
+				<li class="right"><a href="alert_module.html" title="3.9.3. Alert module">Next &rarr;</a></li>
+				<li class="right"><a href="packet_module.html" title="3.9.1. Packet module">&larr; Prev</a></li>
+				<li class="right"><a href="module.html" title="3.8. Modules">Up &uarr;</a></li>
+
+			<li class=" right"><a href="../../../genindex.html">Index</a></li>
+			<li class=" right"><a href="../../../haka-modindex.html">Modules</a></li>
+		</ul>
+	</section>
+</nav>
+</div>
+<div id="content">
+	<div class="row">
+		<ul id="breadcrumb" class="breadcrumbs medium-12 columns">
+			
+			<li><a href="../devindex.html">Welcome to Haka&#8217;s Developer Guide!</a></li>
+			
+			<li><a href="../devref.html">3. Developer reference guide</a></li>
+			
+			<li><a href="module.html">3.8. Modules</a></li>
+			
+			<li class="current"><a href="#">3.9.2. Log module</a></li>
+		</ul>
+	</div>
+	<div class="row">
+		<div class="medium-12 columns">
+			
+  <div class="section" id="log-module">
+<h1>3.9.2. Log module<a class="headerlink" href="#log-module" title="Permalink to this headline">¶</a></h1>
+<p></p>
+<p>Logging back-end module. </p>
+<em>Functions</em><blockquote>
+<div><p><span class="target" id="project0log__module_8h_1a70fe899acbd6303445568bb4f52a7f3c"></span><div class="line-block">
+<div class="line">struct  <a class="reference internal" href="log.html#project0structlogger"><em>logger</em></a>  * <strong>log_module_logger</strong>(struct  <a class="reference internal" href="module.html#project0structmodule"><em>module</em></a>  * module, struct parameters * args)</div>
+</div>
+</p>
+<blockquote>
+<div><p></p>
+<p>Create a logger from the given module. </p>
+</div></blockquote>
+</div></blockquote>
+<p><p id="project0structlogger__module"><em>class</em> <strong>logger_module</strong></p>
+<blockquote>
+<div><p></p>
+<p>Logger helper structure. </p>
+<em>Public Members</em><blockquote>
+<div><p><span class="target" id="project0structlogger__module_1a4359cd3d28993581df044c19dab7cfd3"></span>struct  <a class="reference internal" href="log.html#project0structlogger"><em>logger</em></a> <strong>logger</strong></p>
+<blockquote>
+<div><p></p>
+<p></p>
+</div></blockquote>
+<p><span class="target" id="project0structlogger__module_1a9ebdbecc78d4ee8b0b05ea4e395c197c"></span>struct  <a class="reference internal" href="#project0structlog__module"><em>log_module</em></a>  * <strong>module</strong></p>
+<blockquote>
+<div><p></p>
+<p></p>
+</div></blockquote>
+</div></blockquote>
+</div></blockquote>
+</p>
+<p><p id="project0structlog__module"><em>class</em> <strong>log_module</strong></p>
+<blockquote>
+<div><p></p>
+<p>Log module structure. This module type will allow to create custom logging back-end for Haka to, for instance, put the log into syslog. </p>
+<em>Public Members</em><blockquote>
+<div><p><span class="target" id="project0structlog__module_1aa3d52287b54f1ef582d30af4d8809c32"></span>struct  <a class="reference internal" href="module.html#project0structmodule"><em>module</em></a> <strong>module</strong></p>
+<blockquote>
+<div><p></p>
+<p>Module structure. </p>
+</div></blockquote>
+<p><span class="target" id="project0structlog__module_1ae95056fbd6cc432d4440156204d29cdf"></span>struct  <a class="reference internal" href="#project0structlogger__module"><em>logger_module</em></a>  *(* <strong>init_logger</strong>)(struct parameters *args)</p>
+<blockquote>
+<div><p></p>
+<p>Create a new logger. This function must fill the fields of the struct <a class="reference internal" href="#project0structlogger__module"><em>logger_module</em></a>. </p>
+</div></blockquote>
+<p><span class="target" id="project0structlog__module_1aeeee2c36091b48917613dbe68977ff02"></span>void(* <strong>cleanup_logger</strong>)(struct logger_module *logger)</p>
+<blockquote>
+<div><p></p>
+<p>Destroy a logger. </p>
+</div></blockquote>
+</div></blockquote>
+</div></blockquote>
+</p>
+</div>
+
+
+		</div>
+	</div>
+</div>
+
+
+
+<footer id="footer">
+	<div class="row" role="complementary">
+		<div class="medium-12 columns">
+			&copy; Copyright 2014, Arkoon Network Security, OpenWide and Telecom ParisTech.
+		</div>
+	</div>
+</footer>
+<script>
+	  $(document).foundation();
+</script>
+
+
+
+<script type="text/javascript" src="http://www.haka-security.org/js/track.js"></script>
+
+
+  </body>
+</html>

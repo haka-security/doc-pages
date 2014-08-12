@@ -1,0 +1,329 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>3.6. Packet &mdash; Haka runtime 0.2.0 documentation</title>
+    
+    <link rel="stylesheet" href="../../../_static/haka.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/breathe.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../',
+        VERSION:     '0.2.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../../_static/js/scripts.js"></script>
+    <script type="text/javascript" src="../../../_static/js/vendor/modernizr.js"></script>
+    <script type="text/javascript" src="../../../_static/js/foundation/foundation.js"></script>
+    <script type="text/javascript" src="../../../_static/js/foundation/foundation.topbar.js"></script>
+    <link rel="top" title="Haka runtime 0.2.0 documentation" href="../../../index.html" />
+    <link rel="up" title="3. Developer reference guide" href="../devref.html" />
+    <link rel="next" title="3.7. Parameters" href="parameters.html" />
+    <link rel="prev" title="3.5. Alert" href="alert.html" /> 
+  </head>
+  <body>
+
+
+<header id="header" role="banner">
+	<div class="row">
+		<div class="medium-6 columns">
+			<h1 class="title"><a rel="home" title="Haka" href="http://www.haka-security.org">Haka</a></h1>
+			<h2 class="description">Software Defined Security</h2>
+		</div>
+		<div class="medium-6 columns">
+			<div id="version">Version 0.2.0</div>
+		</div>
+	</div>
+</header>
+
+<div class="contain-to-grid sticky">
+	
+
+<nav id="navbar" class="top-bar" data-topbar>
+	<ul class="title-area">
+		<!-- This is required for toggle-topbar to work -->
+		<li class="name"></li>
+		<li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
+	</ul>
+	<section class="top-bar-section">
+		<ul class="left">
+			<li class=" ">
+				<a href="../../user/userindex.html">Users</a>
+			</li>
+			<li class=" ">
+				<a href="../../ref/refindex.html" class="../../ref/refindex.html">References</a>
+			</li>
+			<li class=" active">
+				<a href="../devindex.html" class="">Developers</a>
+			</li>
+			<li class=" ">
+				<a href="../../faq.html" class="">Faq</a>
+			</li>
+			<li class="has-form">
+
+
+	<form class="search" action="../../../search.html" method="get" id="searchbox" style="display: none">
+		<input type="hidden" name="area" value="default" />
+		<input type="hidden" name="check_keywords" value="yes" />
+		<div class="row collapse">
+			<div class="medium-11 columns">
+				<input type="text" name="q" placeholder="Search" />
+			</div>
+			<div class="medium-1 columns" id="clean-search-highlight">
+			</div>
+		</div>
+	</form>
+	<script type="text/javascript">$('#searchbox').show(0);</script>
+</li>
+		</ul>
+		<ul class="right">
+				<li class="right"><a href="parameters.html" title="3.7. Parameters">Next &rarr;</a></li>
+				<li class="right"><a href="alert.html" title="3.5. Alert">&larr; Prev</a></li>
+				<li class="right"><a href="../devref.html" title="3. Developer reference guide">Up &uarr;</a></li>
+
+			<li class=" right"><a href="../../../genindex.html">Index</a></li>
+			<li class=" right"><a href="../../../haka-modindex.html">Modules</a></li>
+		</ul>
+	</section>
+</nav>
+</div>
+<div id="content">
+	<div class="row">
+		<ul id="breadcrumb" class="breadcrumbs medium-12 columns">
+			
+			<li><a href="../devindex.html">Welcome to Haka&#8217;s Developer Guide!</a></li>
+			
+			<li><a href="../devref.html">3. Developer reference guide</a></li>
+			
+			<li class="current"><a href="#">3.6. Packet</a></li>
+		</ul>
+	</div>
+	<div class="row">
+		<div class="medium-12 columns">
+			
+  <div class="section" id="packet">
+<h1>3.6. Packet<a class="headerlink" href="#packet" title="Permalink to this headline">¶</a></h1>
+<p></p>
+<p>Packet manipulation utilities. </p>
+<em>Enums</em><blockquote>
+<div><p><span class="target" id="project0packet_8h_1a779fe7d9d304f8d6e92b3036ff58de4a"></span><strong>packet_status enum</strong></p>
+<blockquote>
+<div><p></p>
+<p>Packet status. </p>
+<p><em>Values:</em></p>
+<ul class="breatheenumvalues">
+<li><tt class="first docutils literal"><span class="pre">STATUS_NORMAL</span></tt> - <p>Packet captured by Haka. </p>
+</li>
+<li><tt class="first docutils literal"><span class="pre">STATUS_FORGED</span></tt> - <p>Packet forged. </p>
+</li>
+<li><tt class="first docutils literal"><span class="pre">STATUS_SENT</span></tt> - <p>Packet already sent on the network. </p>
+</li>
+</ul>
+</div></blockquote>
+<p><span class="target" id="project0packet_8h_1acb2aee47bb11ab7e6c0f5cec633c68a8"></span><strong>packet_mode enum</strong></p>
+<blockquote>
+<div><p></p>
+<p>Packet capture mode. </p>
+<p><em>Values:</em></p>
+<ul class="breatheenumvalues">
+<li><tt class="first docutils literal"><span class="pre">MODE_NORMAL</span></tt> - <p>Normal mode (read/write). </p>
+</li>
+<li><tt class="first docutils literal"><span class="pre">MODE_PASSTHROUGH</span></tt> - <p>Listen mode (read-only). </p>
+</li>
+</ul>
+</div></blockquote>
+</div></blockquote>
+<em>Functions</em><blockquote>
+<div><p><span class="target" id="project0packet_8h_1a0795bff3eb8859a7b78f9889fb976886"></span><div class="line-block">
+<div class="line"><a class="reference internal" href="utils.html#project0types_8h_1a97a80ca1602ebf2303258971a2c938e2"><em>bool</em></a> <strong>packet_init</strong>(struct packet_module_state * state)</div>
+</div>
+</p>
+<blockquote>
+<div><p></p>
+<p>Initialize packet internals for a given thread. </p>
+</div></blockquote>
+<p><span class="target" id="project0packet_8h_1a73808af390fb7f3c31038b9a71c2ba62"></span><div class="line-block">
+<div class="line">void <strong>packet_addref</strong>(struct  <a class="reference internal" href="#project0structpacket"><em>packet</em></a>  * pkt)</div>
+</div>
+</p>
+<blockquote>
+<div><p></p>
+<p>Increment packet ref count. </p>
+</div></blockquote>
+<p><span class="target" id="project0packet_8h_1ae0f75c042367258edd9b030341c7c4d2"></span><div class="line-block">
+<div class="line"><a class="reference internal" href="utils.html#project0types_8h_1a97a80ca1602ebf2303258971a2c938e2"><em>bool</em></a> <strong>packet_release</strong>(struct  <a class="reference internal" href="#project0structpacket"><em>packet</em></a>  * pkt)</div>
+</div>
+</p>
+<blockquote>
+<div><p></p>
+<p>Decrement packet ref count and release it if needed. </p>
+</div></blockquote>
+<p><span class="target" id="project0packet_8h_1aa7eca21523bdc9e9bca5a053b0799626"></span><div class="line-block">
+<div class="line">struct  <a class="reference internal" href="#project0structpacket"><em>packet</em></a>  * <strong>packet_new</strong>(size_t size)</div>
+</div>
+</p>
+<blockquote>
+<div><p></p>
+<p>Create a new packet. </p>
+</div></blockquote>
+<p><span class="target" id="project0packet_8h_1a858e881b69a44145d22b693717aabae8"></span><div class="line-block">
+<div class="line">struct  <a class="reference internal" href="time.html#project0structtime"><em>time</em></a>  * <strong>packet_timestamp</strong>(struct  <a class="reference internal" href="#project0structpacket"><em>packet</em></a>  * pkt)</div>
+</div>
+</p>
+<blockquote>
+<div><p></p>
+<p>Get the timestamp of the packet. </p>
+</div></blockquote>
+<p><span class="target" id="project0packet_8h_1af659179c1ea877bfc2c4aca407300a52"></span><div class="line-block">
+<div class="line"><a class="reference internal" href="utils.html#project0types_8h_1a6861bed95d73703b3730053f3a6065bf"><em>uint64</em></a> <strong>packet_id</strong>(struct  <a class="reference internal" href="#project0structpacket"><em>packet</em></a>  * pkt)</div>
+</div>
+</p>
+<blockquote>
+<div><p></p>
+<p>Get the id of the packet. </p>
+</div></blockquote>
+<p><span class="target" id="project0packet_8h_1aaaaf9b941e43c63be8fc92651bdf9a16"></span><div class="line-block">
+<div class="line">struct  <a class="reference internal" href="buffer_vbuffer.html#project0structvbuffer"><em>vbuffer</em></a>  * <strong>packet_payload</strong>(struct  <a class="reference internal" href="#project0structpacket"><em>packet</em></a>  * pkt)</div>
+</div>
+</p>
+<blockquote>
+<div><p></p>
+<p>Get the packet payload. </p>
+</div></blockquote>
+<p><span class="target" id="project0packet_8h_1af8ad609298dc75e027e9eb018ac67ec6"></span><div class="line-block">
+<div class="line">const char * <strong>packet_dissector</strong>(struct  <a class="reference internal" href="#project0structpacket"><em>packet</em></a>  * pkt)</div>
+</div>
+</p>
+<blockquote>
+<div><p></p>
+<p>Get the packet dissector to use. </p>
+</div></blockquote>
+<p><span class="target" id="project0packet_8h_1acecc037c508a38901aa7c51b5edfbd30"></span><div class="line-block">
+<div class="line">void <strong>packet_drop</strong>(struct  <a class="reference internal" href="#project0structpacket"><em>packet</em></a>  * pkt)</div>
+</div>
+</p>
+<blockquote>
+<div><p></p>
+<p>Drop the packet. </p>
+</div></blockquote>
+<p><span class="target" id="project0packet_8h_1a01801af5c4318b503242fbcbc29898c3"></span><div class="line-block">
+<div class="line">void <strong>packet_accept</strong>(struct  <a class="reference internal" href="#project0structpacket"><em>packet</em></a>  * pkt)</div>
+</div>
+</p>
+<blockquote>
+<div><p></p>
+<p>Accept a packet and send it on the network. </p>
+</div></blockquote>
+<p><span class="target" id="project0packet_8h_1a5e643a3900ab7baca6c669675f346437"></span><div class="line-block">
+<div class="line"><a class="reference internal" href="utils.html#project0types_8h_1a97a80ca1602ebf2303258971a2c938e2"><em>bool</em></a> <strong>packet_send</strong>(struct  <a class="reference internal" href="#project0structpacket"><em>packet</em></a>  * pkt)</div>
+</div>
+</p>
+<blockquote>
+<div><p></p>
+<p>Send a packet. The packet will re-enter Haka to be filtered like a new packet. </p>
+</div></blockquote>
+<p><span class="target" id="project0packet_8h_1a85ec2c29d9d35a59866d0a7bd56c3935"></span><div class="line-block">
+<div class="line">int <strong>packet_receive</strong>(struct  <a class="reference internal" href="#project0structpacket"><em>packet</em></a>  ** pkt)</div>
+</div>
+</p>
+<blockquote>
+<div><p></p>
+<p>Wait for some packet to be availabe. </p>
+</div></blockquote>
+<p><span class="target" id="project0packet_8h_1ab3a98adb1f55df347be3d644411ed522"></span><div class="line-block">
+<div class="line">size_t <strong>packet_mtu</strong>(struct  <a class="reference internal" href="#project0structpacket"><em>packet</em></a>  * pkt)</div>
+</div>
+</p>
+<blockquote>
+<div><p></p>
+<p>Get the packet mtu. </p>
+</div></blockquote>
+<p><span class="target" id="project0packet_8h_1a60538ea44000916a192e2e3571bd7551"></span><div class="line-block">
+<div class="line">enum  <a class="reference internal" href="#project0packet_8h_1a779fe7d9d304f8d6e92b3036ff58de4a"><em>packet_status</em></a> <strong>packet_state</strong>(struct  <a class="reference internal" href="#project0structpacket"><em>packet</em></a>  * pkt)</div>
+</div>
+</p>
+<blockquote>
+<div><p></p>
+<p>Get the packet state. </p>
+</div></blockquote>
+<p><span class="target" id="project0packet_8h_1a50d1d71bf58ed9bd20ab287aec728734"></span><div class="line-block">
+<div class="line">enum  <a class="reference internal" href="#project0packet_8h_1acb2aee47bb11ab7e6c0f5cec633c68a8"><em>packet_mode</em></a> <strong>packet_mode</strong>()</div>
+</div>
+</p>
+<blockquote>
+<div><p></p>
+<p>Current packet capture mode. </p>
+</div></blockquote>
+</div></blockquote>
+<em>Variables</em><blockquote>
+<div><p><span class="target" id="project0packet_8h_1ac394cec6c8f9af228e2c42b51288711d"></span>struct  <a class="reference internal" href="time.html#project0structtime__realm"><em>time_realm</em></a> <strong>network_time</strong></p>
+<blockquote>
+<div><p></p>
+<p></p>
+</div></blockquote>
+</div></blockquote>
+<p><p id="project0structpacket"><em>class</em> <strong>packet</strong></p>
+<blockquote>
+<div><p></p>
+<p>Opaque packet structure. </p>
+<em>Private Members</em><blockquote>
+<div><p><span class="target" id="project0structpacket_1a38597da21b9cddc7b9c84f19152ab48e"></span>struct lua_object <strong>lua_object</strong></p>
+<blockquote>
+<div><p></p>
+<p></p>
+</div></blockquote>
+<p><span class="target" id="project0structpacket_1a2ec8942be27cdc267a107019d18a3740"></span><a class="reference internal" href="thread.html#project0group__Atomic_1ga755ba8d9debb62736845f4b66464e717"><em>atomic_t</em></a> <strong>ref</strong></p>
+<blockquote>
+<div><p></p>
+<p></p>
+</div></blockquote>
+<p><span class="target" id="project0structpacket_1ad73663b5b93c731fa8d74e25bb08150d"></span>struct  <a class="reference internal" href="buffer_vbuffer.html#project0structvbuffer"><em>vbuffer</em></a> <strong>payload</strong></p>
+<blockquote>
+<div><p></p>
+<p></p>
+</div></blockquote>
+</div></blockquote>
+</div></blockquote>
+</p>
+</div>
+
+
+		</div>
+	</div>
+</div>
+
+
+
+<footer id="footer">
+	<div class="row" role="complementary">
+		<div class="medium-12 columns">
+			&copy; Copyright 2014, Arkoon Network Security, OpenWide and Telecom ParisTech.
+		</div>
+	</div>
+</footer>
+<script>
+	  $(document).foundation();
+</script>
+
+
+
+<script type="text/javascript" src="http://www.haka-security.org/js/track.js"></script>
+
+
+  </body>
+</html>

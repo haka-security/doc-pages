@@ -1,0 +1,258 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>5. Alerting &mdash; Haka runtime 0.2.0 documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/haka.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/breathe.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '0.2.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../_static/js/scripts.js"></script>
+    <script type="text/javascript" src="../../_static/js/vendor/modernizr.js"></script>
+    <script type="text/javascript" src="../../_static/js/foundation/foundation.js"></script>
+    <script type="text/javascript" src="../../_static/js/foundation/foundation.topbar.js"></script>
+    <link rel="top" title="Haka runtime 0.2.0 documentation" href="../../index.html" />
+    <link rel="up" title="Welcome to Haka’s User Reference Guide!" href="refindex.html" />
+    <link rel="next" title="6. Regular Expression" href="regexp.html" />
+    <link rel="prev" title="4. Logging" href="log.html" /> 
+  </head>
+  <body>
+
+
+<header id="header" role="banner">
+	<div class="row">
+		<div class="medium-6 columns">
+			<h1 class="title"><a rel="home" title="Haka" href="http://www.haka-security.org">Haka</a></h1>
+			<h2 class="description">Software Defined Security</h2>
+		</div>
+		<div class="medium-6 columns">
+			<div id="version">Version 0.2.0</div>
+		</div>
+	</div>
+</header>
+
+<div class="contain-to-grid sticky">
+	
+
+<nav id="navbar" class="top-bar" data-topbar>
+	<ul class="title-area">
+		<!-- This is required for toggle-topbar to work -->
+		<li class="name"></li>
+		<li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
+	</ul>
+	<section class="top-bar-section">
+		<ul class="left">
+			<li class=" ">
+				<a href="../user/userindex.html">Users</a>
+			</li>
+			<li class=" active">
+				<a href="refindex.html" class="refindex.html">References</a>
+			</li>
+			<li class=" ">
+				<a href="../developer/devindex.html" class="">Developers</a>
+			</li>
+			<li class=" ">
+				<a href="../faq.html" class="">Faq</a>
+			</li>
+			<li class="has-form">
+
+
+	<form class="search" action="../../search.html" method="get" id="searchbox" style="display: none">
+		<input type="hidden" name="area" value="default" />
+		<input type="hidden" name="check_keywords" value="yes" />
+		<div class="row collapse">
+			<div class="medium-11 columns">
+				<input type="text" name="q" placeholder="Search" />
+			</div>
+			<div class="medium-1 columns" id="clean-search-highlight">
+			</div>
+		</div>
+	</form>
+	<script type="text/javascript">$('#searchbox').show(0);</script>
+</li>
+		</ul>
+		<ul class="right">
+				<li class="right"><a href="regexp.html" title="6. Regular Expression">Next &rarr;</a></li>
+				<li class="right"><a href="log.html" title="4. Logging">&larr; Prev</a></li>
+				<li class="right"><a href="refindex.html" title="Welcome to Haka&#8217;s User Reference Guide!">Up &uarr;</a></li>
+
+			<li class=" right"><a href="../../genindex.html">Index</a></li>
+			<li class=" right"><a href="../../haka-modindex.html">Modules</a></li>
+		</ul>
+	</section>
+</nav>
+</div>
+<div id="content">
+	<div class="row">
+		<ul id="breadcrumb" class="breadcrumbs medium-12 columns">
+			
+			<li><a href="refindex.html">Welcome to Haka&#8217;s User Reference Guide!</a></li>
+			
+			<li class="current"><a href="#">5. Alerting</a></li>
+		</ul>
+	</div>
+	<div class="row">
+		<div class="medium-12 columns">
+			
+  <div class="section" id="alerting">
+<h1>5. Alerting<a class="headerlink" href="#alerting" title="Permalink to this headline">¶</a></h1>
+<p>This section introduces the Haka alerting API.</p>
+<span class="target" id="haka-module.haka.alert"></span><dl class="function">
+<dt id="haka-function.haka.alert">
+<em class="property"> </em><tt class="descclassname">haka.</tt><tt class="descname">alert</tt><big>{</big><em>param1=value1</em>, <em>param2=value2</em><span class="optional">[</span>, <em>...</em><span class="optional">]</span><big>}</big> &rarr; alert<a class="headerlink" href="#haka-function.haka.alert" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>start_time</strong> (<a class="reference internal" href="misc.html#haka-function.haka.time" title="haka.time"><tt class="xref haka haka-class docutils literal"><span class="pre">haka.time</span></tt></a>) &#8211; Start time of this alert.</li>
+<li><strong>end_time</strong> (<a class="reference internal" href="misc.html#haka-function.haka.time" title="haka.time"><tt class="xref haka haka-class docutils literal"><span class="pre">haka.time</span></tt></a>) &#8211; End time of this alert.</li>
+<li><strong>description</strong> (<em>string</em>) &#8211; Description.</li>
+<li><strong>severity</strong> (<em>string</em>) &#8211; One of <tt class="docutils literal"><span class="pre">'low'</span></tt>, <tt class="docutils literal"><span class="pre">'medium'</span></tt> or <tt class="docutils literal"><span class="pre">'high'</span></tt>.</li>
+<li><strong>confidence</strong> (<em>string or number</em>) &#8211; <tt class="docutils literal"><span class="pre">'low'</span></tt>, <tt class="docutils literal"><span class="pre">'medium'</span></tt>, <tt class="docutils literal"><span class="pre">'high'</span></tt> or any user number.</li>
+<li><strong>completion</strong> (<em>string</em>) &#8211; State of the attack <tt class="docutils literal"><span class="pre">'failed'</span></tt> or <tt class="docutils literal"><span class="pre">'successful'</span></tt>.</li>
+<li><strong>method</strong> (<em>table</em>) &#8211; Attach method.</li>
+<li><strong>method.description</strong> (<em>string</em>) &#8211; Description of the method of the attack.</li>
+<li><strong>method.ref</strong> (<em>table of strings</em>) &#8211; List of external reference for this method.</li>
+<li><strong>sources</strong> (<em>table</em>) &#8211; List of <a class="reference internal" href="#haka-object.AlertAddress" title="AlertAddress"><tt class="xref haka haka-class docutils literal"><span class="pre">AlertAddress</span></tt></a>, <a class="reference internal" href="#haka-object.AlertService" title="AlertService"><tt class="xref haka haka-class docutils literal"><span class="pre">AlertService</span></tt></a>...</li>
+<li><strong>targets</strong> (<em>table</em>) &#8211; List of <a class="reference internal" href="#haka-object.AlertAddress" title="AlertAddress"><tt class="xref haka haka-class docutils literal"><span class="pre">AlertAddress</span></tt></a>, <a class="reference internal" href="#haka-object.AlertService" title="AlertService"><tt class="xref haka haka-class docutils literal"><span class="pre">AlertService</span></tt></a>...</li>
+<li><strong>ref</strong> (<em>table</em>) &#8211; List of alert references</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><ul class="first last simple">
+<li><strong>alert</strong> (<a class="reference internal" href="#haka-object.Alert" title="Alert"><tt class="xref haka haka-class docutils literal"><span class="pre">Alert</span></tt></a>) &#8211; Alert reference.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p>Raise an alert. All parameters are optional.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="haka-function.haka.alert.address">
+<em class="property"> </em><tt class="descclassname">haka.alert.</tt><tt class="descname">address</tt><big>(</big><em>object1</em>, <em>object2</em><span class="optional">[</span>, <em>...</em><span class="optional">]</span><big>)</big> &rarr; address<a class="headerlink" href="#haka-function.haka.alert.address" title="Permalink to this definition">¶</a></dt>
+<dt id="haka-function.haka.alert.service">
+<em class="property"> </em><tt class="descclassname">haka.alert.</tt><tt class="descname">service</tt><big>(</big><em>object1</em>, <em>object2</em><span class="optional">[</span>, <em>...</em><span class="optional">]</span><big>)</big> &rarr; service<a class="headerlink" href="#haka-function.haka.alert.service" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>object1,object2,...</strong> &#8211; Any object that can be converted to a string.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><ul class="first last simple">
+<li><strong>address</strong> (<a class="reference internal" href="#haka-object.AlertAddress" title="AlertAddress"><tt class="xref haka haka-class docutils literal"><span class="pre">AlertAddress</span></tt></a>) &#8211; Address object.</li>
+<li><strong>service</strong> (<a class="reference internal" href="#haka-object.AlertService" title="AlertService"><tt class="xref haka haka-class docutils literal"><span class="pre">AlertService</span></tt></a>) &#8211; Service object.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p>Create an object to describe a source or a target.</p>
+<dl class="class">
+<dt id="haka-object.AlertAddress">
+<em class="property">object </em><tt class="descname">AlertAddress</tt><a class="headerlink" href="#haka-object.AlertAddress" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="class">
+<dt id="haka-object.AlertService">
+<em class="property">object </em><tt class="descname">AlertService</tt><a class="headerlink" href="#haka-object.AlertService" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<p>Example:</p>
+<div class="highlight-lua"><div class="highlight"><pre><span class="n">haka</span><span class="p">.</span><span class="n">alert</span><span class="p">{</span>
+    <span class="n">start_time</span> <span class="o">=</span> <span class="n">pkt</span><span class="p">.</span><span class="n">raw</span><span class="p">.</span><span class="n">timestamp</span><span class="p">,</span>
+    <span class="n">description</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="s">packet received&quot;</span><span class="p">,</span>
+    <span class="n">severity</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="s">medium&#39;</span><span class="p">,</span>
+    <span class="n">confidence</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="s">high&#39;</span><span class="p">,</span>
+    <span class="n">completion</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="s">failed&#39;</span><span class="p">,</span>
+    <span class="n">method</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="n">description</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="s">Packet sent on the network&quot;</span><span class="p">,</span>
+        <span class="n">ref</span> <span class="o">=</span> <span class="p">{</span> <span class="s2">&quot;</span><span class="s">cve:2O13-XXX&quot;</span><span class="p">,</span> <span class="s2">&quot;</span><span class="s">http://intranet/vulnid?id=115&quot;</span><span class="p">,</span> <span class="s2">&quot;</span><span class="s">cwe:809&quot;</span> <span class="p">}</span>
+    <span class="p">},</span>
+    <span class="n">sources</span> <span class="o">=</span> <span class="p">{</span> <span class="n">haka</span><span class="p">.</span><span class="n">alert</span><span class="p">.</span><span class="n">address</span><span class="p">(</span><span class="n">pkt</span><span class="p">.</span><span class="n">src</span><span class="p">,</span> <span class="s2">&quot;</span><span class="s">evil.host.fqdn&quot;</span><span class="p">)</span> <span class="p">},</span>
+    <span class="n">targets</span> <span class="o">=</span> <span class="p">{</span> <span class="n">haka</span><span class="p">.</span><span class="n">alert</span><span class="p">.</span><span class="n">address</span><span class="p">(</span><span class="n">pkt</span><span class="p">.</span><span class="n">dst</span><span class="p">),</span> <span class="n">haka</span><span class="p">.</span><span class="n">alert</span><span class="p">.</span><span class="n">service</span><span class="p">(</span><span class="s2">&quot;</span><span class="s">tcp/22&quot;</span><span class="p">,</span> <span class="s2">&quot;</span><span class="s">ssh&quot;</span><span class="p">)</span> <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<dl class="class">
+<dt id="haka-object.Alert">
+<em class="property">object </em><tt class="descname">Alert</tt><a class="headerlink" href="#haka-object.Alert" title="Permalink to this definition">¶</a></dt>
+<dd><p>Alert object.</p>
+<dl class="method">
+<dt id="haka-function.&lt;alert&gt;.update">
+<em class="property"> </em><tt class="descclassname">&lt;alert&gt;:</tt><tt class="descname">update</tt><big>{</big><em>param1=value1</em>, <em>param2=value2</em><span class="optional">[</span>, <em>...</em><span class="optional">]</span><big>}</big><a class="headerlink" href="#haka-function.<alert>.update" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>param1,param2,...</strong> &#8211; Same names/values of alert (see <a class="reference internal" href="#haka-function.haka.alert" title="haka.alert"><tt class="xref haka haka-func docutils literal"><span class="pre">haka.alert()</span></tt></a>)</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p>Update an existing alert.</p>
+</dd></dl>
+
+<p>Example:</p>
+<div class="highlight-lua"><div class="highlight"><pre><span class="kd">local</span> <span class="n">my_alert</span> <span class="o">=</span> <span class="n">haka</span><span class="p">.</span><span class="n">alert</span><span class="p">{</span> <span class="n">severity</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="s">low&#39;</span><span class="p">,</span> <span class="n">sources</span> <span class="o">=</span> <span class="p">{</span> <span class="n">haka</span><span class="p">.</span><span class="n">alert</span><span class="p">.</span><span class="n">address</span><span class="p">(</span><span class="n">pkt</span><span class="p">.</span><span class="n">src</span><span class="p">)</span> <span class="p">}</span> <span class="p">}</span>
+<span class="n">my_alert</span><span class="p">:</span><span class="n">update</span><span class="p">{</span> <span class="n">completion</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="s">failed&#39;</span> <span class="p">}</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</div>
+
+
+		</div>
+	</div>
+</div>
+
+
+
+<footer id="footer">
+	<div class="row" role="complementary">
+		<div class="medium-12 columns">
+			&copy; Copyright 2014, Arkoon Network Security, OpenWide and Telecom ParisTech.
+		</div>
+	</div>
+</footer>
+<script>
+	  $(document).foundation();
+</script>
+
+
+
+<script type="text/javascript" src="http://www.haka-security.org/js/track.js"></script>
+
+
+  </body>
+</html>

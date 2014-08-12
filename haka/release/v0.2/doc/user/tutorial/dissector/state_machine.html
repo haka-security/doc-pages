@@ -1,0 +1,466 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Creating the state machine &mdash; Haka runtime 0.2.0 documentation</title>
+    
+    <link rel="stylesheet" href="../../../../_static/haka.css" type="text/css" />
+    <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../../../_static/breathe.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../../',
+        VERSION:     '0.2.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../../../_static/js/scripts.js"></script>
+    <script type="text/javascript" src="../../../../_static/js/vendor/modernizr.js"></script>
+    <script type="text/javascript" src="../../../../_static/js/foundation/foundation.js"></script>
+    <script type="text/javascript" src="../../../../_static/js/foundation/foundation.topbar.js"></script>
+    <link rel="top" title="Haka runtime 0.2.0 documentation" href="../../../../index.html" />
+    <link rel="up" title="6.6. SMTP Protocol dissection" href="../smtp_dissector.html" />
+    <link rel="next" title="Filtering spam" href="security_rule.html" />
+    <link rel="prev" title="Registering events" href="event.html" /> 
+  </head>
+  <body>
+
+
+<header id="header" role="banner">
+	<div class="row">
+		<div class="medium-6 columns">
+			<h1 class="title"><a rel="home" title="Haka" href="http://www.haka-security.org">Haka</a></h1>
+			<h2 class="description">Software Defined Security</h2>
+		</div>
+		<div class="medium-6 columns">
+			<div id="version">Version 0.2.0</div>
+		</div>
+	</div>
+</header>
+
+<div class="contain-to-grid sticky">
+	
+
+<nav id="navbar" class="top-bar" data-topbar>
+	<ul class="title-area">
+		<!-- This is required for toggle-topbar to work -->
+		<li class="name"></li>
+		<li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
+	</ul>
+	<section class="top-bar-section">
+		<ul class="left">
+			<li class=" active">
+				<a href="../../userindex.html">Users</a>
+			</li>
+			<li class=" ">
+				<a href="../../../ref/refindex.html" class="../../../ref/refindex.html">References</a>
+			</li>
+			<li class=" ">
+				<a href="../../../developer/devindex.html" class="">Developers</a>
+			</li>
+			<li class=" ">
+				<a href="../../../faq.html" class="">Faq</a>
+			</li>
+			<li class="has-form">
+
+
+	<form class="search" action="../../../../search.html" method="get" id="searchbox" style="display: none">
+		<input type="hidden" name="area" value="default" />
+		<input type="hidden" name="check_keywords" value="yes" />
+		<div class="row collapse">
+			<div class="medium-11 columns">
+				<input type="text" name="q" placeholder="Search" />
+			</div>
+			<div class="medium-1 columns" id="clean-search-highlight">
+			</div>
+		</div>
+	</form>
+	<script type="text/javascript">$('#searchbox').show(0);</script>
+</li>
+		</ul>
+		<ul class="right">
+				<li class="right"><a href="security_rule.html" title="Filtering spam">Next &rarr;</a></li>
+				<li class="right"><a href="event.html" title="Registering events">&larr; Prev</a></li>
+				<li class="right"><a href="../smtp_dissector.html" title="6.6. SMTP Protocol dissection">Up &uarr;</a></li>
+
+			<li class=" right"><a href="../../../../genindex.html">Index</a></li>
+			<li class=" right"><a href="../../../../haka-modindex.html">Modules</a></li>
+		</ul>
+	</section>
+</nav>
+</div>
+<div id="content">
+	<div class="row">
+		<ul id="breadcrumb" class="breadcrumbs medium-12 columns">
+			
+			<li><a href="../../userindex.html">Welcome to Haka&#8217;s User Guide!</a></li>
+			
+			<li><a href="../../tutorial.html">6. Tutorials</a></li>
+			
+			<li><a href="../smtp_dissector.html">6.6. SMTP Protocol dissection</a></li>
+			
+			<li class="current"><a href="#">Creating the state machine</a></li>
+		</ul>
+	</div>
+	<div class="row">
+		<div class="medium-12 columns">
+			
+  <div class="section" id="creating-the-state-machine">
+<h1>Creating the state machine<a class="headerlink" href="#creating-the-state-machine" title="Permalink to this headline">¶</a></h1>
+<p>Smtp state machine is created through the following skeleton. The first step is
+to set the type of the states. In our case, we select a bidirectionnal type (
+See <a class="reference internal" href="../../../ref/state_machine.html"><em>State Machine</em></a>) in order to handle data parsing in both
+direction: <cite>up</cite> (from client to server) and <cite>down</cite> (from server to client).
+Then, we create the required states and transitions between states. Finally, we
+select the initial state.</p>
+<div class="highlight-lua"><div class="highlight"><pre><span class="n">SmtpDissector</span><span class="p">.</span><span class="n">states</span> <span class="o">=</span> <span class="n">haka</span><span class="p">.</span><span class="n">state_machine</span><span class="p">.</span><span class="n">new</span><span class="p">(</span><span class="s2">&quot;</span><span class="s">smtp&quot;</span><span class="p">,</span> <span class="k">function</span> <span class="p">()</span>
+    <span class="c1">-- setting the type of the states</span>
+    <span class="n">state_type</span><span class="p">(</span><span class="n">BidirectionnalState</span><span class="p">)</span>
+
+    <span class="c1">-- creating new states</span>
+    <span class="n">state_1</span> <span class="o">=</span> <span class="n">state</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>
+    <span class="n">state_2</span> <span class="o">=</span> <span class="n">state</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>
+
+    <span class="c1">-- creting a transition for state_1</span>
+    <span class="n">state_1</span><span class="p">:</span><span class="n">on</span><span class="p">{</span>
+        <span class="o">...</span>
+    <span class="p">}</span>
+
+    <span class="c1">-- creating a second transition for state_1</span>
+    <span class="n">state_1</span><span class="p">:</span><span class="n">on</span><span class="p">{</span>
+        <span class="o">...</span>
+    <span class="p">}</span>
+
+    <span class="c1">-- creating a transition for state_2</span>
+    <span class="n">state_2</span><span class="p">:</span><span class="n">on</span><span class="p">{</span>
+        <span class="o">...</span>
+    <span class="p">}</span>
+
+    <span class="c1">-- setting common transitions</span>
+    <span class="n">any</span><span class="p">:</span><span class="n">on</span><span class="p">{</span>
+        <span class="o">...</span>
+    <span class="p">}</span>
+
+    <span class="c1">-- setting the initial state</span>
+    <span class="n">initial</span><span class="p">(</span><span class="n">state_1</span><span class="p">)</span>
+<span class="k">end</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="creating-new-states">
+<h1>Creating new states<a class="headerlink" href="#creating-new-states" title="Permalink to this headline">¶</a></h1>
+<p>In a bidiretionnal setting, we create a new state by passing the expected
+compiled grammar for each direction. In the following, we create five states to
+manage initiation phase, command/response and data transfert:</p>
+<div class="highlight-lua"><div class="highlight"><pre><span class="n">session_initiation</span> <span class="o">=</span> <span class="n">state</span><span class="p">(</span><span class="kc">nil</span><span class="p">,</span> <span class="n">SmtpDissector</span><span class="p">.</span><span class="n">grammar</span><span class="p">.</span><span class="n">smtp_responses</span><span class="p">)</span>
+<span class="n">client_initiation</span> <span class="o">=</span> <span class="n">state</span><span class="p">(</span><span class="n">SmtpDissector</span><span class="p">.</span><span class="n">grammar</span><span class="p">.</span><span class="n">smtp_command</span><span class="p">,</span> <span class="kc">nil</span><span class="p">)</span>
+<span class="n">response</span> <span class="o">=</span> <span class="n">state</span><span class="p">(</span><span class="kc">nil</span><span class="p">,</span> <span class="n">SmtpDissector</span><span class="p">.</span><span class="n">grammar</span><span class="p">.</span><span class="n">smtp_responses</span><span class="p">)</span>
+<span class="n">command</span> <span class="o">=</span> <span class="n">state</span><span class="p">(</span><span class="n">SmtpDissector</span><span class="p">.</span><span class="n">grammar</span><span class="p">.</span><span class="n">smtp_command</span><span class="p">,</span> <span class="kc">nil</span><span class="p">)</span>
+<span class="n">data_transmission</span> <span class="o">=</span> <span class="n">state</span><span class="p">(</span><span class="n">SmtpDissector</span><span class="p">.</span><span class="n">grammar</span><span class="p">.</span><span class="n">smtp_data</span><span class="p">,</span> <span class="kc">nil</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Note that we provide no grammar when messages are not expected in a given direction. If this happens (e.g. command received from client while expecting a response from server), a special event <cite>missing_grammmr</cite> is triggered to handle this error.</p>
+</div>
+</div>
+<div class="section" id="creating-transitions">
+<h1>Creating transitions<a class="headerlink" href="#creating-transitions" title="Permalink to this headline">¶</a></h1>
+<p>A transition is created through the following skeleton:</p>
+<div class="highlight-lua"><div class="highlight"><pre><span class="n">some_state</span><span class="p">:</span><span class="n">on</span><span class="p">{</span>
+    <span class="n">event</span> <span class="o">=</span> <span class="o">...</span><span class="p">,</span>
+    <span class="n">when</span> <span class="o">=</span> <span class="k">function</span> <span class="p">(</span><span class="o">...</span><span class="p">)</span> <span class="o">...</span> <span class="k">end</span><span class="p">,</span>
+    <span class="n">execute</span> <span class="o">=</span> <span class="k">function</span> <span class="p">(</span><span class="o">...</span><span class="p">)</span> <span class="o">...</span> <span class="k">end</span><span class="p">,</span>
+    <span class="n">jump</span> <span class="o">=</span> <span class="n">another_state</span><span class="p">,</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<dl class="docutils">
+<dt>A transition consists of:</dt>
+<dd><ul class="first last simple">
+<li><em>event</em>: an event to attach to. Do not confuse with user defined event. They
+are built-in events specific to the state machine type.</li>
+<li><em>when</em>: a checking function that takes the decision if we should switch to another state
+and/or to perform a specific action. By default (i.e. missing check function), the <cite>execute</cite>
+is performed and the <cite>jump</cite> is followed.</li>
+<li><em>execute</em>: an action to perform.</li>
+<li><em>jump</em>: the state to switch to.</li>
+</ul>
+</dd>
+</dl>
+<div class="section" id="managing-initiation-phase">
+<h2>Managing initiation phase<a class="headerlink" href="#managing-initiation-phase" title="Permalink to this headline">¶</a></h2>
+<p>This phase consists of two steps. In the first step, the client waits for a welcoming message. This is handled by our initial state <cite>session_initiation</cite>.</p>
+<p>We define transitions on the <cite>down</cite> event since we are expecting data from the server. These transitions are evaluated in the order in which they are defined.</p>
+<p>In the first transition, we trigger a <cite>response</cite> event and switch to the
+<cite>client_initiation</cite> state if the status response code is equal to &#8216;220&#8217;.
+Otherwise, the second transition is evaluated. In this case, we report an
+alert and switch to a built-in failure state.</p>
+<div class="highlight-lua"><div class="highlight"><pre><span class="n">session_initiation</span><span class="p">:</span><span class="n">on</span><span class="p">{</span>
+    <span class="n">event</span> <span class="o">=</span> <span class="n">events</span><span class="p">.</span><span class="n">down</span><span class="p">,</span>
+    <span class="n">when</span> <span class="o">=</span> <span class="k">function</span> <span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">res</span><span class="p">)</span> <span class="k">return</span> <span class="n">res</span><span class="p">.</span><span class="n">responses</span><span class="p">[</span><span class="mi">1</span><span class="p">].</span><span class="n">code</span> <span class="o">==</span> <span class="s1">&#39;</span><span class="s">220&#39;</span> <span class="k">end</span><span class="p">,</span>
+    <span class="n">execute</span> <span class="o">=</span> <span class="k">function</span> <span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">res</span><span class="p">)</span>
+        <span class="n">self</span><span class="p">:</span><span class="n">trigger</span><span class="p">(</span><span class="s1">&#39;</span><span class="s">response&#39;</span><span class="p">,</span> <span class="n">res</span><span class="p">)</span>
+    <span class="k">end</span><span class="p">,</span>
+    <span class="n">jump</span> <span class="o">=</span> <span class="n">client_initiation</span><span class="p">,</span>
+<span class="p">}</span>
+
+<span class="n">session_initiation</span><span class="p">:</span><span class="n">on</span><span class="p">{</span>
+    <span class="n">event</span> <span class="o">=</span> <span class="n">events</span><span class="p">.</span><span class="n">down</span><span class="p">,</span>
+    <span class="n">execute</span> <span class="o">=</span> <span class="k">function</span> <span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">res</span><span class="p">)</span>
+        <span class="n">haka</span><span class="p">.</span><span class="n">alert</span><span class="p">{</span>
+            <span class="n">description</span> <span class="o">=</span> <span class="nb">string.format</span><span class="p">(</span><span class="s2">&quot;</span><span class="s">unavailable service: %s&quot;</span><span class="p">,</span> <span class="n">status</span><span class="p">),</span>
+            <span class="n">severity</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="s">low&#39;</span>
+        <span class="p">}</span>
+    <span class="k">end</span><span class="p">,</span>
+    <span class="n">jump</span> <span class="o">=</span> <span class="n">fail</span><span class="p">,</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>We define also a transition on <cite>parse_error</cite> event to report error when smtp responses do not comply to their specification.</p>
+<div class="highlight-lua"><div class="highlight"><pre><span class="n">session_initiation</span><span class="p">:</span><span class="n">on</span><span class="p">{</span>
+    <span class="n">event</span> <span class="o">=</span> <span class="n">events</span><span class="p">.</span><span class="n">parse_error</span><span class="p">,</span>
+    <span class="n">execute</span> <span class="o">=</span> <span class="k">function</span> <span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">err</span><span class="p">)</span>
+        <span class="n">haka</span><span class="p">.</span><span class="n">alert</span><span class="p">{</span>
+            <span class="n">description</span> <span class="o">=</span> <span class="nb">string.format</span><span class="p">(</span><span class="s2">&quot;</span><span class="s">invalid smtp response %s&quot;</span><span class="p">,</span> <span class="n">err</span><span class="p">),</span>
+            <span class="n">severity</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="s">high&#39;</span>
+        <span class="p">}</span>
+    <span class="k">end</span><span class="p">,</span>
+    <span class="n">jump</span> <span class="o">=</span> <span class="n">fail</span><span class="p">,</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>In the same way, we define <cite>client_initiation</cite> transitions attaching this time to the <cite>up</cite> event since we are expecting only messages from the client.</p>
+<p>In the first transition, we check that the <cite>command</cite> value (this value is
+available in the parsing result <cite>res</cite>; remember that we defined a <cite>field</cite> named
+command in our grammar) is equal to &#8216;HELO&#8217; or &#8216;EHLO&#8217;. If this condition is
+satisfied, we store the parsing result and made it available to security rules
+attached to the triggered event <cite>command</cite> and then jump to <cite>response</cite> state.
+Otherwise, we jump to a failure state.</p>
+<div class="highlight-lua"><div class="highlight"><pre><span class="n">client_initiation</span><span class="p">:</span><span class="n">on</span><span class="p">{</span>
+    <span class="n">event</span> <span class="o">=</span> <span class="n">events</span><span class="p">.</span><span class="n">up</span><span class="p">,</span>
+    <span class="n">when</span> <span class="o">=</span> <span class="k">function</span> <span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">res</span><span class="p">)</span>
+        <span class="kd">local</span> <span class="n">command</span> <span class="o">=</span> <span class="nb">string.upper</span><span class="p">(</span><span class="n">res</span><span class="p">.</span><span class="n">command</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">command</span> <span class="o">==</span> <span class="s1">&#39;</span><span class="s">EHLO&#39;</span> <span class="ow">or</span> <span class="n">command</span> <span class="o">==</span> <span class="s1">&#39;</span><span class="s">HELO&#39;</span>
+    <span class="k">end</span><span class="p">,</span>
+    <span class="n">execute</span> <span class="o">=</span> <span class="k">function</span> <span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">res</span><span class="p">)</span>
+        <span class="n">self</span><span class="p">.</span><span class="n">command</span> <span class="o">=</span> <span class="n">res</span>
+        <span class="n">self</span><span class="p">:</span><span class="n">trigger</span><span class="p">(</span><span class="s1">&#39;</span><span class="s">command&#39;</span><span class="p">,</span> <span class="n">res</span><span class="p">)</span>
+    <span class="k">end</span><span class="p">,</span>
+    <span class="n">jump</span> <span class="o">=</span> <span class="n">response</span><span class="p">,</span>
+<span class="p">}</span>
+
+<span class="n">client_initiation</span><span class="p">:</span><span class="n">on</span><span class="p">{</span>
+    <span class="n">event</span> <span class="o">=</span> <span class="n">events</span><span class="p">.</span><span class="n">up</span><span class="p">,</span>
+    <span class="n">execute</span> <span class="o">=</span> <span class="k">function</span> <span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">res</span><span class="p">)</span>
+        <span class="n">haka</span><span class="p">.</span><span class="n">alert</span><span class="p">{</span>
+            <span class="n">description</span> <span class="o">=</span> <span class="nb">string.format</span><span class="p">(</span><span class="s2">&quot;</span><span class="s">invalid client initiation command&quot;</span><span class="p">),</span>
+            <span class="n">severity</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="s">low&#39;</span>
+        <span class="p">}</span>
+    <span class="k">end</span><span class="p">,</span>
+    <span class="n">jump</span> <span class="o">=</span> <span class="n">fail</span><span class="p">,</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Similarly, we attach a transition on <cite>parse_error</cite> event that will report an error in case of unexpected smtp command.</p>
+<div class="highlight-lua"><div class="highlight"><pre><span class="n">client_initiation</span><span class="p">:</span><span class="n">on</span><span class="p">{</span>
+    <span class="n">event</span> <span class="o">=</span> <span class="n">events</span><span class="p">.</span><span class="n">parse_error</span><span class="p">,</span>
+    <span class="n">execute</span> <span class="o">=</span> <span class="k">function</span> <span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">err</span><span class="p">)</span>
+        <span class="n">haka</span><span class="p">.</span><span class="n">alert</span><span class="p">{</span>
+            <span class="n">description</span> <span class="o">=</span> <span class="nb">string.format</span><span class="p">(</span><span class="s2">&quot;</span><span class="s">invalid smtp command %s&quot;</span><span class="p">,</span> <span class="n">err</span><span class="p">),</span>
+            <span class="n">severity</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="s">low&#39;</span>
+        <span class="p">}</span>
+    <span class="k">end</span><span class="p">,</span>
+    <span class="n">jump</span> <span class="o">=</span> <span class="n">fail</span><span class="p">,</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="managing-command-response-comunication">
+<h2>Managing command/response comunication<a class="headerlink" href="#managing-command-response-comunication" title="Permalink to this headline">¶</a></h2>
+<p>Two states have been defined previously to manage command and response. In the former,
+we expect messages from <cite>up</cite> direction to conform to the <cite>smtp-command</cite> grammar.
+In the latter, we expect message from <cite>down</cite> direction to conform to the
+<cite>smtp-responses</cite> grammar and if messages are well-formed then we move to the
+approriate state by checking the status code.</p>
+<div class="highlight-lua"><div class="highlight"><pre><span class="n">response</span><span class="p">:</span><span class="n">on</span><span class="p">{</span>
+    <span class="n">event</span> <span class="o">=</span> <span class="n">events</span><span class="p">.</span><span class="n">down</span><span class="p">,</span>
+    <span class="n">when</span> <span class="o">=</span> <span class="k">function</span> <span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">res</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">res</span><span class="p">.</span><span class="n">responses</span><span class="p">[</span><span class="mi">1</span><span class="p">].</span><span class="n">code</span> <span class="o">==</span> <span class="s1">&#39;</span><span class="s">354&#39;</span>
+    <span class="k">end</span><span class="p">,</span>
+    <span class="n">execute</span> <span class="o">=</span> <span class="k">function</span> <span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">res</span><span class="p">)</span>
+        <span class="n">self</span><span class="p">.</span><span class="n">response</span> <span class="o">=</span> <span class="n">res</span>
+        <span class="n">self</span><span class="p">:</span><span class="n">trigger</span><span class="p">(</span><span class="s1">&#39;</span><span class="s">response&#39;</span><span class="p">,</span> <span class="n">res</span><span class="p">)</span>
+    <span class="k">end</span><span class="p">,</span>
+    <span class="n">jump</span> <span class="o">=</span> <span class="n">data_transmission</span><span class="p">,</span>
+<span class="p">}</span>
+
+<span class="n">response</span><span class="p">:</span><span class="n">on</span><span class="p">{</span>
+    <span class="n">event</span> <span class="o">=</span> <span class="n">events</span><span class="p">.</span><span class="n">down</span><span class="p">,</span>
+    <span class="n">when</span> <span class="o">=</span> <span class="k">function</span> <span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">res</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">res</span><span class="p">.</span><span class="n">responses</span><span class="p">[</span><span class="mi">1</span><span class="p">].</span><span class="n">code</span> <span class="o">==</span> <span class="s1">&#39;</span><span class="s">221&#39;</span>
+    <span class="k">end</span><span class="p">,</span>
+    <span class="n">execute</span> <span class="o">=</span> <span class="k">function</span> <span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">res</span><span class="p">)</span>
+        <span class="n">self</span><span class="p">.</span><span class="n">response</span> <span class="o">=</span> <span class="n">res</span>
+        <span class="n">self</span><span class="p">:</span><span class="n">trigger</span><span class="p">(</span><span class="s1">&#39;</span><span class="s">response&#39;</span><span class="p">,</span> <span class="n">res</span><span class="p">)</span>
+    <span class="k">end</span><span class="p">,</span>
+    <span class="n">jump</span> <span class="o">=</span> <span class="n">finish</span><span class="p">,</span>
+<span class="p">}</span>
+
+<span class="n">response</span><span class="p">:</span><span class="n">on</span><span class="p">{</span>
+    <span class="n">event</span> <span class="o">=</span> <span class="n">events</span><span class="p">.</span><span class="n">down</span><span class="p">,</span>
+    <span class="n">execute</span> <span class="o">=</span> <span class="k">function</span> <span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">res</span><span class="p">)</span>
+        <span class="n">self</span><span class="p">.</span><span class="n">response</span> <span class="o">=</span> <span class="n">res</span>
+        <span class="n">self</span><span class="p">:</span><span class="n">trigger</span><span class="p">(</span><span class="s1">&#39;</span><span class="s">response&#39;</span><span class="p">,</span> <span class="n">res</span><span class="p">)</span>
+    <span class="k">end</span><span class="p">,</span>
+    <span class="n">jump</span> <span class="o">=</span> <span class="n">command</span><span class="p">,</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>And as usual, we move to a failure state in case of parsing errors:</p>
+<div class="highlight-lua"><div class="highlight"><pre><span class="n">response</span><span class="p">:</span><span class="n">on</span><span class="p">{</span>
+    <span class="n">event</span> <span class="o">=</span> <span class="n">events</span><span class="p">.</span><span class="n">parse_error</span><span class="p">,</span>
+    <span class="n">execute</span> <span class="o">=</span> <span class="k">function</span> <span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">err</span><span class="p">)</span>
+        <span class="n">haka</span><span class="p">.</span><span class="n">alert</span><span class="p">{</span>
+            <span class="n">description</span> <span class="o">=</span> <span class="nb">string.format</span><span class="p">(</span><span class="s2">&quot;</span><span class="s">invalid smtp response %s&quot;</span><span class="p">,</span> <span class="n">err</span><span class="p">),</span>
+            <span class="n">severity</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="s">low&#39;</span>
+        <span class="p">}</span>
+    <span class="k">end</span><span class="p">,</span>
+    <span class="n">jump</span> <span class="o">=</span> <span class="n">fail</span><span class="p">,</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Have a look at <a class="reference download internal" href="../../../../_downloads/smtp.lua"><tt class="xref download docutils literal"><span class="pre">smtp.lua</span></tt></a> to get the full code of the transitions defined on <cite>command</cite> state.</p>
+</div>
+</div>
+<div class="section" id="managing-content-mail-transfert">
+<h2>Managing content mail transfert<a class="headerlink" href="#managing-content-mail-transfert" title="Permalink to this headline">¶</a></h2>
+<p>We get here (i.e. <cite>data_transmission</cite> state) if server responds with a status code 354 to a DATA command.</p>
+<p>First of all, we define a transition attached to <cite>enter</cite> event to build stream in order to collect mail content:</p>
+<div class="highlight-lua"><div class="highlight"><pre><span class="n">data_transmission</span><span class="p">:</span><span class="n">on</span><span class="p">{</span>
+    <span class="n">event</span> <span class="o">=</span> <span class="n">events</span><span class="p">.</span><span class="n">enter</span><span class="p">,</span>
+    <span class="n">execute</span> <span class="o">=</span> <span class="k">function</span> <span class="p">(</span><span class="n">self</span><span class="p">)</span>
+        <span class="n">self</span><span class="p">.</span><span class="n">mail</span> <span class="o">=</span> <span class="n">haka</span><span class="p">.</span><span class="n">vbuffer_sub_stream</span><span class="p">()</span>
+    <span class="k">end</span><span class="p">,</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Next, we want to send the mail data pieces by pieces as soon as available to the
+security rules. To do this we add a callback on the grammar for the data:</p>
+<div class="highlight-lua"><div class="highlight"><pre><span class="n">smtp_data</span> <span class="o">=</span> <span class="n">record</span><span class="p">{</span>
+    <span class="n">field</span><span class="p">(</span><span class="s1">&#39;</span><span class="s">data&#39;</span><span class="p">,</span> <span class="n">bytes</span><span class="p">()</span>
+        <span class="p">:</span><span class="n">untiltoken</span><span class="p">(</span><span class="s2">&quot;</span><span class="s">%r?%n%.%r?%n&quot;</span><span class="p">)</span>
+        <span class="p">:</span><span class="n">chunked</span><span class="p">(</span><span class="k">function</span> <span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">sub</span><span class="p">,</span> <span class="n">last</span><span class="p">,</span> <span class="n">ctx</span><span class="p">)</span>
+            <span class="n">ctx</span><span class="p">.</span><span class="n">user</span><span class="p">:</span><span class="n">push_data</span><span class="p">(</span><span class="n">sub</span><span class="p">,</span> <span class="n">last</span><span class="p">)</span>
+        <span class="k">end</span><span class="p">)),</span>
+    <span class="n">token</span><span class="p">(</span><span class="s2">&quot;</span><span class="s">%r?%n%.%r?%n&quot;</span><span class="p">)</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>The <tt class="docutils literal"><span class="pre">chunked</span></tt> callback allow to push data into a streamed view. The code of this function
+is available in the full smtp code.</p>
+<p>We just have to add a simple transition to go back to the <tt class="docutils literal"><span class="pre">response</span></tt> state when the
+data transfer is over.</p>
+<div class="highlight-lua"><div class="highlight"><pre><span class="n">data_transmission</span><span class="p">:</span><span class="n">on</span><span class="p">{</span>
+    <span class="n">event</span> <span class="o">=</span> <span class="n">events</span><span class="p">.</span><span class="n">up</span><span class="p">,</span>
+    <span class="n">jump</span> <span class="o">=</span> <span class="n">response</span><span class="p">,</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Finally, we destroy the stream while leaving the <cite>data_transmission</cite> state:</p>
+<div class="highlight-lua"><div class="highlight"><pre><span class="n">data_transmission</span><span class="p">:</span><span class="n">on</span><span class="p">{</span>
+    <span class="n">event</span> <span class="o">=</span> <span class="n">events</span><span class="p">.</span><span class="n">leave</span><span class="p">,</span>
+    <span class="n">execute</span> <span class="o">=</span> <span class="k">function</span> <span class="p">(</span><span class="n">self</span><span class="p">)</span>
+        <span class="n">self</span><span class="p">.</span><span class="n">mail</span> <span class="o">=</span> <span class="kc">nil</span>
+    <span class="k">end</span><span class="p">,</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Additionnaly, a transition is defined to handle parsing errors:</p>
+<div class="highlight-lua"><div class="highlight"><pre><span class="n">data_transmission</span><span class="p">:</span><span class="n">on</span><span class="p">{</span>
+    <span class="n">event</span> <span class="o">=</span> <span class="n">events</span><span class="p">.</span><span class="n">parse_error</span><span class="p">,</span>
+    <span class="n">execute</span> <span class="o">=</span> <span class="k">function</span> <span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">err</span><span class="p">)</span>
+        <span class="n">haka</span><span class="p">.</span><span class="n">alert</span><span class="p">{</span>
+            <span class="n">description</span> <span class="o">=</span> <span class="nb">string.format</span><span class="p">(</span><span class="s2">&quot;</span><span class="s">invalid data blob %s&quot;</span><span class="p">,</span> <span class="n">err</span><span class="p">),</span>
+            <span class="n">severity</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="s">low&#39;</span>
+        <span class="p">}</span>
+    <span class="k">end</span><span class="p">,</span>
+    <span class="n">jump</span> <span class="o">=</span> <span class="n">fail</span><span class="p">,</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="setting-default-transitions">
+<h1>Setting default transitions<a class="headerlink" href="#setting-default-transitions" title="Permalink to this headline">¶</a></h1>
+<p>We define two transitions that are common to all states. The first one is used
+to handle errors which we manage by dropping the connection:</p>
+<div class="highlight-lua"><div class="highlight"><pre><span class="n">any</span><span class="p">:</span><span class="n">on</span><span class="p">{</span>
+    <span class="n">event</span> <span class="o">=</span> <span class="n">events</span><span class="p">.</span><span class="n">fail</span><span class="p">,</span>
+    <span class="n">action</span> <span class="o">=</span> <span class="k">function</span> <span class="p">(</span><span class="n">self</span><span class="p">)</span>
+        <span class="n">self</span><span class="p">:</span><span class="n">drop</span><span class="p">()</span>
+    <span class="k">end</span><span class="p">,</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>The second transition allows to handle the cases where messages are not expected from client or server.</p>
+<div class="highlight-lua"><div class="highlight"><pre><span class="n">any</span><span class="p">:</span><span class="n">on</span><span class="p">{</span>
+    <span class="n">event</span> <span class="o">=</span> <span class="n">events</span><span class="p">.</span><span class="n">missing_grammar</span><span class="p">,</span>
+    <span class="n">execute</span> <span class="o">=</span> <span class="k">function</span> <span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">direction</span><span class="p">,</span> <span class="n">payload</span><span class="p">)</span>
+        <span class="kd">local</span> <span class="n">description</span>
+        <span class="k">if</span> <span class="n">direction</span> <span class="o">==</span> <span class="s1">&#39;</span><span class="s">up&#39;</span> <span class="k">then</span>
+            <span class="n">description</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="s">unexpected client command&quot;</span>
+        <span class="k">else</span>
+            <span class="n">description</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="s">unexpected server response&quot;</span>
+        <span class="k">end</span>
+        <span class="n">haka</span><span class="p">.</span><span class="n">alert</span><span class="p">{</span>
+            <span class="n">description</span> <span class="o">=</span> <span class="n">description</span><span class="p">,</span>
+            <span class="n">severity</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="s">low&#39;</span>
+        <span class="p">}</span>
+    <span class="k">end</span><span class="p">,</span>
+    <span class="n">jump</span> <span class="o">=</span> <span class="n">fail</span><span class="p">,</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+
+
+		</div>
+	</div>
+</div>
+
+
+
+<footer id="footer">
+	<div class="row" role="complementary">
+		<div class="medium-12 columns">
+			&copy; Copyright 2014, Arkoon Network Security, OpenWide and Telecom ParisTech.
+		</div>
+	</div>
+</footer>
+<script>
+	  $(document).foundation();
+</script>
+
+
+
+<script type="text/javascript" src="http://www.haka-security.org/js/track.js"></script>
+
+
+  </body>
+</html>

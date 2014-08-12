@@ -1,0 +1,872 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>7.8. Http &mdash; Haka runtime 0.2.0 documentation</title>
+    
+    <link rel="stylesheet" href="../../../../_static/haka.css" type="text/css" />
+    <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../../../_static/breathe.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../../',
+        VERSION:     '0.2.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../../../_static/js/scripts.js"></script>
+    <script type="text/javascript" src="../../../../_static/js/vendor/modernizr.js"></script>
+    <script type="text/javascript" src="../../../../_static/js/foundation/foundation.js"></script>
+    <script type="text/javascript" src="../../../../_static/js/foundation/foundation.topbar.js"></script>
+    <link rel="top" title="Haka runtime 0.2.0 documentation" href="../../../../index.html" />
+    <link rel="up" title="7. Haka dissectors" href="../../../../doc/ref/hakadissector.html" />
+    <link rel="next" title="7.9. Dns" href="../../dns/doc/dns.html" />
+    <link rel="prev" title="7.7. Udp Connection" href="../../udp/doc/udp_connection.html" /> 
+  </head>
+  <body>
+
+
+<header id="header" role="banner">
+	<div class="row">
+		<div class="medium-6 columns">
+			<h1 class="title"><a rel="home" title="Haka" href="http://www.haka-security.org">Haka</a></h1>
+			<h2 class="description">Software Defined Security</h2>
+		</div>
+		<div class="medium-6 columns">
+			<div id="version">Version 0.2.0</div>
+		</div>
+	</div>
+</header>
+
+<div class="contain-to-grid sticky">
+	
+
+<nav id="navbar" class="top-bar" data-topbar>
+	<ul class="title-area">
+		<!-- This is required for toggle-topbar to work -->
+		<li class="name"></li>
+		<li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
+	</ul>
+	<section class="top-bar-section">
+		<ul class="left">
+			<li class=" ">
+				<a href="../../../../doc/user/userindex.html">Users</a>
+			</li>
+			<li class=" active">
+				<a href="../../../../doc/ref/refindex.html" class="../../../../doc/ref/refindex.html">References</a>
+			</li>
+			<li class=" ">
+				<a href="../../../../doc/developer/devindex.html" class="">Developers</a>
+			</li>
+			<li class=" ">
+				<a href="../../../../doc/faq.html" class="">Faq</a>
+			</li>
+			<li class="has-form">
+
+
+	<form class="search" action="../../../../search.html" method="get" id="searchbox" style="display: none">
+		<input type="hidden" name="area" value="default" />
+		<input type="hidden" name="check_keywords" value="yes" />
+		<div class="row collapse">
+			<div class="medium-11 columns">
+				<input type="text" name="q" placeholder="Search" />
+			</div>
+			<div class="medium-1 columns" id="clean-search-highlight">
+			</div>
+		</div>
+	</form>
+	<script type="text/javascript">$('#searchbox').show(0);</script>
+</li>
+		</ul>
+		<ul class="right">
+				<li class="right"><a href="../../dns/doc/dns.html" title="7.9. Dns">Next &rarr;</a></li>
+				<li class="right"><a href="../../udp/doc/udp_connection.html" title="7.7. Udp Connection">&larr; Prev</a></li>
+				<li class="right"><a href="../../../../doc/ref/hakadissector.html" title="7. Haka dissectors">Up &uarr;</a></li>
+
+			<li class=" right"><a href="../../../../genindex.html">Index</a></li>
+			<li class=" right"><a href="../../../../haka-modindex.html">Modules</a></li>
+		</ul>
+	</section>
+</nav>
+</div>
+<div id="content">
+	<div class="row">
+		<ul id="breadcrumb" class="breadcrumbs medium-12 columns">
+			
+			<li><a href="../../../../doc/ref/refindex.html">Welcome to Haka&#8217;s User Reference Guide!</a></li>
+			
+			<li><a href="../../../../doc/ref/hakadissector.html">7. Haka dissectors</a></li>
+			
+			<li class="current"><a href="#">7.8. Http</a></li>
+		</ul>
+	</div>
+	<div class="row">
+		<div class="medium-12 columns">
+			
+  <div class="section" id="haka-module.http">
+<span id="http"></span><h1>7.8. Http<a class="headerlink" href="#haka-module.http" title="Permalink to this headline">¶</a></h1>
+<p>Http dissector module.</p>
+<p><strong>Usage:</strong></p>
+<div class="highlight-lua"><div class="highlight"><pre><span class="kd">local</span> <span class="n">http</span> <span class="o">=</span> <span class="nb">require</span><span class="p">(</span><span class="s1">&#39;</span><span class="s">protocol/http&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="section" id="dissector">
+<h2>7.8.1. Dissector<a class="headerlink" href="#dissector" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="haka-object.HttpDissector">
+<em class="property">dissector </em><tt class="descname">HttpDissector</tt><a class="headerlink" href="#haka-object.HttpDissector" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Name :</th><td class="field-body"><tt class="docutils literal"><span class="pre">'http'</span></tt></td>
+</tr>
+<tr class="field-even field"><th class="field-name">Extend :</th><td class="field-body"><a class="reference internal" href="../../../../doc/ref/dissector.html#haka-object.haka.helper.FlowDissector" title="haka.helper.FlowDissector"><tt class="xref haka haka-class docutils literal"><span class="pre">haka.helper.FlowDissector</span></tt></a>&nbsp;</td>
+</tr>
+</tbody>
+</table>
+<p>HTTP protocol dissector supporting the following features:</p>
+<ul class="simple">
+<li>HTTP 1.0 and 1.1</li>
+<li>Chunked transfer mode</li>
+<li>Request analysis</li>
+<li>Reponse analysis</li>
+<li>Keep-alive connections</li>
+</ul>
+<dl class="function">
+<dt id="haka-function.http.install_tcp_rule">
+<em class="property"> </em><tt class="descclassname">http.</tt><tt class="descname">install_tcp_rule</tt><big>(</big><em>port</em><big>)</big><a class="headerlink" href="#haka-function.http.install_tcp_rule" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>port</strong> (<a class="reference internal" href="../../../../doc/ref/grammar.html#haka-function.number" title="number"><em>number</em></a>) &#8211; TCP port number.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p>Install a rule on TCP to enable HTTP dissection on the given port number.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="haka-function.http.dissect">
+<em class="property"> </em><tt class="descclassname">http.</tt><tt class="descname">dissect</tt><big>(</big><em>flow</em><big>)</big><a class="headerlink" href="#haka-function.http.dissect" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>flow</strong> (<a class="reference internal" href="../../../../doc/ref/dissector.html#haka-object.haka.helper.FlowDissector" title="haka.helper.FlowDissector"><tt class="xref haka haka-class docutils literal"><span class="pre">haka.helper.FlowDissector</span></tt></a>) &#8211; Upper flow dissector.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p>Activate HTTP dissection on the given flow.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="haka-attribute.&lt;HttpDissector&gt;.flow">
+<em class="property"> </em><tt class="descclassname">&lt;HttpDissector&gt;.</tt><tt class="descname">flow</tt><a class="headerlink" href="#haka-attribute.<HttpDissector>.flow" title="Permalink to this definition">¶</a></dt>
+<dd><p>Flow from which HTTP is built.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="haka-function.&lt;HttpDissector&gt;.enable_data_modification">
+<em class="property"> </em><tt class="descclassname">&lt;HttpDissector&gt;:</tt><tt class="descname">enable_data_modification</tt><big>(</big><big>)</big><a class="headerlink" href="#haka-function.<HttpDissector>.enable_data_modification" title="Permalink to this definition">¶</a></dt>
+<dd><p>Activate data modification for all data received along with the current request
+or response. This mode allow to modify on the fly any data without having to handle
+chunk sizes or the content-length header.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="haka-function.&lt;HttpDissector&gt;.drop">
+<em class="property"> </em><tt class="descclassname">&lt;HttpDissector&gt;:</tt><tt class="descname">drop</tt><big>(</big><big>)</big><a class="headerlink" href="#haka-function.<HttpDissector>.drop" title="Permalink to this definition">¶</a></dt>
+<dd><p>Drop the associated flow.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="haka-function.&lt;HttpDissector&gt;.reset">
+<em class="property"> </em><tt class="descclassname">&lt;HttpDissector&gt;:</tt><tt class="descname">reset</tt><big>(</big><big>)</big><a class="headerlink" href="#haka-function.<HttpDissector>.reset" title="Permalink to this definition">¶</a></dt>
+<dd><p>Reset the current HTTP connection. The client and the server will be notified
+with RST tcp packets.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="protocol-elements">
+<h2>7.8.2. Protocol elements<a class="headerlink" href="#protocol-elements" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="haka-object.http.HttpHeaders">
+<em class="property">object </em><tt class="descclassname">http.</tt><tt class="descname">HttpHeaders</tt><a class="headerlink" href="#haka-object.http.HttpHeaders" title="Permalink to this definition">¶</a></dt>
+<dd><p>Parsed headers information for HTTP.</p>
+<dl class="operator">
+<dt id="haka-operator.&lt;HttpHeaders&gt;.[]">
+<em class="property"> </em><tt class="descclassname">&lt;HttpHeaders&gt;</tt><big>[</big><em>name</em><big>]</big> &rarr; value<a class="headerlink" href="#haka-operator.<HttpHeaders>.[]" title="Permalink to this definition">¶</a></dt>
+<dt>
+<em class="property"> </em><tt class="descclassname">&lt;HttpHeaders&gt;</tt><big>[</big><em>name</em><big>]</big> = newvalue</dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>name</strong> (<em>string</em>) &#8211; Header name.</li>
+<li><strong>newvalue</strong> (<em>string</em>) &#8211; New header value.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><ul class="first last simple">
+<li><strong>value</strong> (<em>string</em>) &#8211; Current header value.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p>Access and modify any HTTP header.</p>
+</dd></dl>
+
+<dl class="operator">
+<dt id="haka-operator.&lt;HttpHeaders&gt;.pairs">
+<em class="property"> </em><tt class="descname">pairs</tt><big>(</big><tt class="descclassname">&lt;HttpHeaders&gt;</tt><big>)</big> &rarr; key,value<a class="headerlink" href="#haka-operator.<HttpHeaders>.pairs" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"><ul class="first last simple">
+<li><strong>key</strong> (<em>string</em>) &#8211; Header key.</li>
+<li><strong>value</strong> (<em>string</em>) &#8211; Header value.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p>Return an iterator over all headers.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="haka-object.http.HttpRequest">
+<em class="property">object </em><tt class="descclassname">http.</tt><tt class="descname">HttpRequest</tt><a class="headerlink" href="#haka-object.http.HttpRequest" title="Permalink to this definition">¶</a></dt>
+<dd><p>Parsed information about a request.</p>
+<dl class="attribute">
+<dt id="haka-attribute.&lt;HttpRequest&gt;.method">
+<em class="property"> </em><tt class="descclassname">&lt;HttpRequest&gt;.</tt><tt class="descname">method</tt><a class="headerlink" href="#haka-attribute.<HttpRequest>.method" title="Permalink to this definition">¶</a></dt>
+<dt id="haka-attribute.&lt;HttpRequest&gt;.uri">
+<em class="property"> </em><tt class="descclassname">&lt;HttpRequest&gt;.</tt><tt class="descname">uri</tt><a class="headerlink" href="#haka-attribute.<HttpRequest>.uri" title="Permalink to this definition">¶</a></dt>
+<dt id="haka-attribute.&lt;HttpRequest&gt;.version">
+<em class="property"> </em><tt class="descclassname">&lt;HttpRequest&gt;.</tt><tt class="descname">version</tt><a class="headerlink" href="#haka-attribute.<HttpRequest>.version" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">string</td>
+</tr>
+</tbody>
+</table>
+<p>Request line elements.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="haka-attribute.&lt;HttpRequest&gt;.headers">
+<em class="property"> </em><tt class="descclassname">&lt;HttpRequest&gt;.</tt><tt class="descname">headers</tt><a class="headerlink" href="#haka-attribute.<HttpRequest>.headers" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body"><a class="reference internal" href="#haka-object.http.HttpHeaders" title="http.HttpHeaders"><tt class="xref haka haka-class docutils literal"><span class="pre">HttpHeaders</span></tt></a>&nbsp;</td>
+</tr>
+</tbody>
+</table>
+<p>Headers table.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="haka-object.http.HttpResponse">
+<em class="property">object </em><tt class="descclassname">http.</tt><tt class="descname">HttpResponse</tt><a class="headerlink" href="#haka-object.http.HttpResponse" title="Permalink to this definition">¶</a></dt>
+<dd><p>Parsed information about a response.</p>
+<dl class="attribute">
+<dt>
+<em class="property"> </em><tt class="descclassname">&lt;HttpRequest&gt;.</tt><tt class="descname">version</tt></dt>
+<dt id="haka-attribute.&lt;HttpRequest&gt;.status">
+<em class="property"> </em><tt class="descclassname">&lt;HttpRequest&gt;.</tt><tt class="descname">status</tt><a class="headerlink" href="#haka-attribute.<HttpRequest>.status" title="Permalink to this definition">¶</a></dt>
+<dt id="haka-attribute.&lt;HttpRequest&gt;.reason">
+<em class="property"> </em><tt class="descclassname">&lt;HttpRequest&gt;.</tt><tt class="descname">reason</tt><a class="headerlink" href="#haka-attribute.<HttpRequest>.reason" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">string</td>
+</tr>
+</tbody>
+</table>
+<p>Response line elements.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt>
+<em class="property"> </em><tt class="descclassname">&lt;HttpRequest&gt;.</tt><tt class="descname">headers</tt></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body"><a class="reference internal" href="#haka-object.http.HttpHeaders" title="http.HttpHeaders"><tt class="xref haka haka-class docutils literal"><span class="pre">HttpHeaders</span></tt></a>&nbsp;</td>
+</tr>
+</tbody>
+</table>
+<p>Headers table.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="events">
+<h2>7.8.3. Events<a class="headerlink" href="#events" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="haka-function.http.events.request">
+<em class="property">event </em><tt class="descclassname">http.events.</tt><tt class="descname">request</tt><big>(</big><em>http</em>, <em>request</em><big>)</big><a class="headerlink" href="#haka-function.http.events.request" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>http</strong> (<a class="reference internal" href="#haka-object.HttpDissector" title="HttpDissector"><tt class="xref haka haka-class docutils literal"><span class="pre">HttpDissector</span></tt></a>) &#8211; HTTP dissector.</li>
+<li><strong>request</strong> (<a class="reference internal" href="#haka-object.http.HttpRequest" title="http.HttpRequest"><tt class="xref haka haka-class docutils literal"><span class="pre">HttpRequest</span></tt></a>) &#8211; HTTP request data.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p>Event triggered whenever a new HTTP request is received.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="haka-function.http.events.response">
+<em class="property">event </em><tt class="descclassname">http.events.</tt><tt class="descname">response</tt><big>(</big><em>http</em>, <em>response</em><big>)</big><a class="headerlink" href="#haka-function.http.events.response" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>http</strong> (<a class="reference internal" href="#haka-object.HttpDissector" title="HttpDissector"><tt class="xref haka haka-class docutils literal"><span class="pre">HttpDissector</span></tt></a>) &#8211; HTTP dissector.</li>
+<li><strong>response</strong> (<a class="reference internal" href="#haka-object.http.HttpResponse" title="http.HttpResponse"><tt class="xref haka haka-class docutils literal"><span class="pre">HttpResponse</span></tt></a>) &#8211; HTTP response data.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p>Event triggered whenever a new HTTP response is received.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="haka-function.http.events.receive_data">
+<em class="property">event </em><tt class="descclassname">http.events.</tt><tt class="descname">receive_data</tt><big>(</big><em>http</em>, <em>stream</em>, <em>current</em>, <em>direction</em><big>)</big><a class="headerlink" href="#haka-function.http.events.receive_data" title="Permalink to this definition">¶</a></dt>
+<dd><p><strong>Event options:</strong></p>
+<blockquote>
+<div><dl class="data">
+<dt>
+<em class="property"> </em><tt class="descname">streamed</tt></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">boolean</td>
+</tr>
+</tbody>
+</table>
+<p>Run the event listener as a streamed function.</p>
+</dd></dl>
+
+</div></blockquote>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>http</strong> (<a class="reference internal" href="#haka-object.HttpDissector" title="HttpDissector"><tt class="xref haka haka-class docutils literal"><span class="pre">HttpDissector</span></tt></a>) &#8211; HTTP dissector.</li>
+<li><strong>stream</strong> (<a class="reference internal" href="../../../../doc/ref/vbuffer.html#haka-object.vbuffer_stream" title="vbuffer_stream"><tt class="xref haka haka-class docutils literal"><span class="pre">vbuffer_stream</span></tt></a>) &#8211; TCP data stream.</li>
+<li><strong>current</strong> (<a class="reference internal" href="../../../../doc/ref/vbuffer.html#haka-object.vbuffer_iterator" title="vbuffer_iterator"><tt class="xref haka haka-class docutils literal"><span class="pre">vbuffer_iterator</span></tt></a>) &#8211; Current position in the stream.</li>
+<li><strong>direction</strong> (<em>string</em>) &#8211; Data direction (<tt class="docutils literal"><span class="pre">'up'</span></tt> or <tt class="docutils literal"><span class="pre">'down'</span></tt>).</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p>Event triggered when some data are available on either a request or a response.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="haka-function.http.events.request_data">
+<em class="property">event </em><tt class="descclassname">http.events.</tt><tt class="descname">request_data</tt><big>(</big><em>http</em>, <em>stream</em>, <em>current</em><big>)</big><a class="headerlink" href="#haka-function.http.events.request_data" title="Permalink to this definition">¶</a></dt>
+<dd><p><strong>Event options:</strong></p>
+<blockquote>
+<div><dl class="data">
+<dt>
+<em class="property"> </em><tt class="descname">streamed</tt></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">boolean</td>
+</tr>
+</tbody>
+</table>
+<p>Run the event listener as a streamed function.</p>
+</dd></dl>
+
+</div></blockquote>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>http</strong> (<a class="reference internal" href="#haka-object.HttpDissector" title="HttpDissector"><tt class="xref haka haka-class docutils literal"><span class="pre">HttpDissector</span></tt></a>) &#8211; HTTP dissector.</li>
+<li><strong>stream</strong> (<a class="reference internal" href="../../../../doc/ref/vbuffer.html#haka-object.vbuffer_stream" title="vbuffer_stream"><tt class="xref haka haka-class docutils literal"><span class="pre">vbuffer_stream</span></tt></a>) &#8211; TCP data stream.</li>
+<li><strong>current</strong> (<a class="reference internal" href="../../../../doc/ref/vbuffer.html#haka-object.vbuffer_iterator" title="vbuffer_iterator"><tt class="xref haka haka-class docutils literal"><span class="pre">vbuffer_iterator</span></tt></a>) &#8211; Current position in the stream.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p>Event triggered when some data are available on a request.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="haka-function.http.events.response_data">
+<em class="property">event </em><tt class="descclassname">http.events.</tt><tt class="descname">response_data</tt><big>(</big><em>http</em>, <em>stream</em>, <em>current</em><big>)</big><a class="headerlink" href="#haka-function.http.events.response_data" title="Permalink to this definition">¶</a></dt>
+<dd><p><strong>Event options:</strong></p>
+<blockquote>
+<div><dl class="data">
+<dt>
+<em class="property"> </em><tt class="descname">streamed</tt></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">boolean</td>
+</tr>
+</tbody>
+</table>
+<p>Run the event listener as a streamed function.</p>
+</dd></dl>
+
+</div></blockquote>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>http</strong> (<a class="reference internal" href="#haka-object.HttpDissector" title="HttpDissector"><tt class="xref haka haka-class docutils literal"><span class="pre">HttpDissector</span></tt></a>) &#8211; HTTP dissector.</li>
+<li><strong>stream</strong> (<a class="reference internal" href="../../../../doc/ref/vbuffer.html#haka-object.vbuffer_stream" title="vbuffer_stream"><tt class="xref haka haka-class docutils literal"><span class="pre">vbuffer_stream</span></tt></a>) &#8211; TCP data stream.</li>
+<li><strong>current</strong> (<a class="reference internal" href="../../../../doc/ref/vbuffer.html#haka-object.vbuffer_iterator" title="vbuffer_iterator"><tt class="xref haka haka-class docutils literal"><span class="pre">vbuffer_iterator</span></tt></a>) &#8211; Current position in the stream.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p>Event triggered when some data are available on a response.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="haka-module.http.uri">
+<span id="utilities"></span><h2>7.8.4. Utilities<a class="headerlink" href="#haka-module.http.uri" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="haka-object.HttpUriSplit">
+<em class="property">object </em><tt class="descname">HttpUriSplit</tt><a class="headerlink" href="#haka-object.HttpUriSplit" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="function">
+<dt id="haka-function.http.uri.split">
+<em class="property"> </em><tt class="descclassname">http.uri.</tt><tt class="descname">split</tt><big>(</big><em>uri</em><big>)</big> &rarr; split<a class="headerlink" href="#haka-function.http.uri.split" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>uri</strong> (<em>string</em>) &#8211; Uri to split.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><ul class="first last simple">
+<li><strong>split</strong> (<a class="reference internal" href="#haka-object.HttpUriSplit" title="HttpUriSplit"><tt class="xref haka haka-class docutils literal"><span class="pre">HttpUriSplit</span></tt></a>) &#8211; New split uri representation.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p>Split uri into subparts.</p>
+<p><strong>Example:</strong></p>
+<div class="highlight-lua"><div class="highlight"><pre><span class="n">http</span><span class="p">.</span><span class="n">uri</span><span class="p">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;</span><span class="s">http://www.example.com:8888/foo/page.php&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="haka-attribute.&lt;HttpUriSplit&gt;.scheme">
+<em class="property"> </em><tt class="descclassname">&lt;HttpUriSplit&gt;.</tt><tt class="descname">scheme</tt><a class="headerlink" href="#haka-attribute.<HttpUriSplit>.scheme" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">string</td>
+</tr>
+</tbody>
+</table>
+<p>Uri scheme.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="haka-attribute.&lt;HttpUriSplit&gt;.authority">
+<em class="property"> </em><tt class="descclassname">&lt;HttpUriSplit&gt;.</tt><tt class="descname">authority</tt><a class="headerlink" href="#haka-attribute.<HttpUriSplit>.authority" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">string</td>
+</tr>
+</tbody>
+</table>
+<p>Uri authority.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="haka-attribute.&lt;HttpUriSplit&gt;.host">
+<em class="property"> </em><tt class="descclassname">&lt;HttpUriSplit&gt;.</tt><tt class="descname">host</tt><a class="headerlink" href="#haka-attribute.<HttpUriSplit>.host" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">string</td>
+</tr>
+</tbody>
+</table>
+<p>Uri host.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="haka-attribute.&lt;HttpUriSplit&gt;.userinfo">
+<em class="property"> </em><tt class="descclassname">&lt;HttpUriSplit&gt;.</tt><tt class="descname">userinfo</tt><a class="headerlink" href="#haka-attribute.<HttpUriSplit>.userinfo" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">string</td>
+</tr>
+</tbody>
+</table>
+<p>Uri user information.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="haka-attribute.&lt;HttpUriSplit&gt;.user">
+<em class="property"> </em><tt class="descclassname">&lt;HttpUriSplit&gt;.</tt><tt class="descname">user</tt><a class="headerlink" href="#haka-attribute.<HttpUriSplit>.user" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">string</td>
+</tr>
+</tbody>
+</table>
+<p>Uri user (from <em>userinfo</em>).</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="haka-attribute.&lt;HttpUriSplit&gt;.pass">
+<em class="property"> </em><tt class="descclassname">&lt;HttpUriSplit&gt;.</tt><tt class="descname">pass</tt><a class="headerlink" href="#haka-attribute.<HttpUriSplit>.pass" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">string</td>
+</tr>
+</tbody>
+</table>
+<p>Uri password (from <em>userinfo</em>).</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">rfc 3986 states that the format &#8220;user:password&#8221; in the <cite>userinfo</cite> field is deprecated.</p>
+</div>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="haka-attribute.&lt;HttpUriSplit&gt;.port">
+<em class="property"> </em><tt class="descclassname">&lt;HttpUriSplit&gt;.</tt><tt class="descname">port</tt><a class="headerlink" href="#haka-attribute.<HttpUriSplit>.port" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">string</td>
+</tr>
+</tbody>
+</table>
+<p>Uri port.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="haka-attribute.&lt;HttpUriSplit&gt;.path">
+<em class="property"> </em><tt class="descclassname">&lt;HttpUriSplit&gt;.</tt><tt class="descname">path</tt><a class="headerlink" href="#haka-attribute.<HttpUriSplit>.path" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">string</td>
+</tr>
+</tbody>
+</table>
+<p>Uri path.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="haka-attribute.&lt;HttpUriSplit&gt;.query">
+<em class="property"> </em><tt class="descclassname">&lt;HttpUriSplit&gt;.</tt><tt class="descname">query</tt><a class="headerlink" href="#haka-attribute.<HttpUriSplit>.query" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">string</td>
+</tr>
+</tbody>
+</table>
+<p>Uri query.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="haka-attribute.&lt;HttpUriSplit&gt;.args">
+<em class="property"> </em><tt class="descclassname">&lt;HttpUriSplit&gt;.</tt><tt class="descname">args</tt><a class="headerlink" href="#haka-attribute.<HttpUriSplit>.args" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">table</td>
+</tr>
+</tbody>
+</table>
+<p>Uri query&#8217;s parameters.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="haka-attribute.&lt;HttpUriSplit&gt;.fragment">
+<em class="property"> </em><tt class="descclassname">&lt;HttpUriSplit&gt;.</tt><tt class="descname">fragment</tt><a class="headerlink" href="#haka-attribute.<HttpUriSplit>.fragment" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">string</td>
+</tr>
+</tbody>
+</table>
+<p>Uri fragment.</p>
+</dd></dl>
+
+<dl class="operator">
+<dt id="haka-operator.&lt;HttpUriSplit&gt;.tostring">
+<em class="property"> </em><tt class="descname">tostring</tt><big>(</big><tt class="descclassname">&lt;HttpUriSplit&gt;</tt><big>)</big> &rarr; str<a class="headerlink" href="#haka-operator.<HttpUriSplit>.tostring" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"><ul class="first last simple">
+<li><strong>str</strong> (<em>string</em>) &#8211; Full uri.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p>Recreate the uri full string.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="haka-function.&lt;HttpUriSplit&gt;.normalize">
+<em class="property"> </em><tt class="descclassname">&lt;HttpUriSplit&gt;:</tt><tt class="descname">normalize</tt><big>(</big><big>)</big><a class="headerlink" href="#haka-function.<HttpUriSplit>.normalize" title="Permalink to this definition">¶</a></dt>
+<dd><p>Normalize URI according to rfc 3986: remove dot-segments in path, capitalize letters in escape sequences,
+decode percent-encoded octets (safe decoding), remove default port, etc.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="function">
+<dt id="haka-function.http.uri.normalize">
+<em class="property"> </em><tt class="descclassname">http.uri.</tt><tt class="descname">normalize</tt><big>(</big><em>uri</em><big>)</big> &rarr; norm_uri<a class="headerlink" href="#haka-function.http.uri.normalize" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>uri</strong> (<em>string</em>) &#8211; Uri.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><ul class="first last simple">
+<li><strong>norm_uri</strong> (<em>string</em>) &#8211; Normalized uri.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p>Normalize URI according to rfc 3986.</p>
+<div class="admonition-see-also admonition seealso">
+<p class="first admonition-title">See also</p>
+<p class="last"><a class="reference internal" href="#haka-function.&lt;HttpUriSplit&gt;.normalize" title="&amp;lt;HttpUriSplit&amp;gt;.normalize"><tt class="xref haka haka-func docutils literal"><span class="pre">&lt;HttpUriSplit&gt;.normalize()</span></tt></a></p>
+</div>
+</dd></dl>
+
+<span class="target" id="haka-module.http.cookies"></span><dl class="class">
+<dt id="haka-object.http.cookies.HttpCookiesSplit">
+<em class="property">object </em><tt class="descclassname">http.cookies.</tt><tt class="descname">HttpCookiesSplit</tt><a class="headerlink" href="#haka-object.http.cookies.HttpCookiesSplit" title="Permalink to this definition">¶</a></dt>
+<dd><p>Store the cookies as a table of key-value pairs.</p>
+<dl class="function">
+<dt id="haka-function.http.cookies.split">
+<em class="property"> </em><tt class="descclassname">http.cookies.</tt><tt class="descname">split</tt><big>(</big><em>cookies</em><big>)</big> &rarr; split_cookies<a class="headerlink" href="#haka-function.http.cookies.split" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>cookies</strong> (<em>string</em>) &#8211; Cookies line extracted from the HTTP headers.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><ul class="first last simple">
+<li><strong>split_cookies</strong> (<a class="reference internal" href="#haka-object.http.cookies.HttpCookiesSplit" title="http.cookies.HttpCookiesSplit"><tt class="xref haka haka-class docutils literal"><span class="pre">HttpCookiesSplit</span></tt></a>) &#8211; Split cookies.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p>Parse the cookies and split them.</p>
+</dd></dl>
+
+<dl class="operator">
+<dt id="haka-operator.&lt;HttpCookiesSplit&gt;.tostring">
+<em class="property"> </em><tt class="descname">tostring</tt><big>(</big><tt class="descclassname">&lt;HttpCookiesSplit&gt;</tt><big>)</big> &rarr; str<a class="headerlink" href="#haka-operator.<HttpCookiesSplit>.tostring" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"><ul class="first last simple">
+<li><strong>str</strong> (<em>string</em>) &#8211; String containing all cookies.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p>Return all cookies as a string.</p>
+</dd></dl>
+
+<dl class="operator">
+<dt id="haka-operator.&lt;HttpCookiesSplit&gt;.[]">
+<em class="property"> </em><tt class="descclassname">&lt;HttpCookiesSplit&gt;</tt><big>[</big><em>key</em><big>]</big> &rarr; value<a class="headerlink" href="#haka-operator.<HttpCookiesSplit>.[]" title="Permalink to this definition">¶</a></dt>
+<dt>
+<em class="property"> </em><tt class="descclassname">&lt;HttpCookiesSplit&gt;</tt><big>[</big><em>key</em><big>]</big> = newvalue</dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>name</strong> (<em>string</em>) &#8211; Cookie name.</li>
+<li><strong>newvalue</strong> (<em>string</em>) &#8211; New cookie value.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><ul class="first last simple">
+<li><strong>value</strong> (<em>string</em>) &#8211; Current cookie value.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p>Access and modify any cookies in the table.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="example">
+<h2>7.8.5. Example<a class="headerlink" href="#example" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-lua"><div class="highlight"><pre><span class="c1">------------------------------------</span>
+<span class="c1">---- Loading regex engine</span>
+<span class="c1">--------------------------------------</span>
+
+<span class="kd">local</span> <span class="n">rem</span> <span class="o">=</span> <span class="nb">require</span><span class="p">(</span><span class="s2">&quot;</span><span class="s">regexp/pcre&quot;</span><span class="p">)</span>
+
+
+<span class="c1">--local http_methods = &#39;^get$|^post$|^head$|^put$|^trace$|^delete$|^options$&#39;</span>
+<span class="c1">--local re = rem.re:compile(http_methods, rem.re.CASE_INSENSITIVE)</span>
+<span class="c1">--</span>
+
+<span class="c1">------------------------------------</span>
+<span class="c1">-- HTTP Policy</span>
+<span class="c1">------------------------------------</span>
+
+<span class="c1">-- add custom user-agent</span>
+<span class="n">haka</span><span class="p">.</span><span class="n">rule</span> <span class="p">{</span>
+    <span class="n">hook</span> <span class="o">=</span> <span class="n">http</span><span class="p">.</span><span class="n">events</span><span class="p">.</span><span class="n">request</span><span class="p">,</span>
+    <span class="n">eval</span> <span class="o">=</span> <span class="k">function</span> <span class="p">(</span><span class="n">http</span><span class="p">,</span> <span class="n">request</span><span class="p">)</span>
+        <span class="n">request</span><span class="p">.</span><span class="n">headers</span><span class="p">[</span><span class="s2">&quot;</span><span class="s">User-Agent&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="s">Haka User-Agent&quot;</span>
+    <span class="k">end</span>
+<span class="p">}</span>
+
+<span class="c1">-- report and alert if method is different than get and post</span>
+<span class="n">haka</span><span class="p">.</span><span class="n">rule</span> <span class="p">{</span>
+    <span class="n">hook</span> <span class="o">=</span> <span class="n">http</span><span class="p">.</span><span class="n">events</span><span class="p">.</span><span class="n">request</span><span class="p">,</span>
+    <span class="n">eval</span> <span class="o">=</span> <span class="k">function</span> <span class="p">(</span><span class="n">http</span><span class="p">,</span> <span class="n">request</span><span class="p">)</span>
+        <span class="kd">local</span> <span class="n">method</span> <span class="o">=</span> <span class="n">request</span><span class="p">.</span><span class="n">method</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">rem</span><span class="p">.</span><span class="n">re</span><span class="p">:</span><span class="n">match</span><span class="p">(</span><span class="s1">&#39;</span><span class="s">^get$|^post$&#39;</span><span class="p">,</span> <span class="n">method</span><span class="p">,</span> <span class="n">rem</span><span class="p">.</span><span class="n">re</span><span class="p">.</span><span class="n">CASE_INSENSITIVE</span><span class="p">)</span> <span class="k">then</span>
+            <span class="n">haka</span><span class="p">.</span><span class="n">alert</span><span class="p">{</span>
+                <span class="n">description</span> <span class="o">=</span> <span class="nb">string.format</span><span class="p">(</span><span class="s2">&quot;</span><span class="s">forbidden http method &#39;%s&#39;&quot;</span><span class="p">,</span> <span class="n">method</span><span class="p">),</span>
+                <span class="n">sources</span> <span class="o">=</span> <span class="n">haka</span><span class="p">.</span><span class="n">alert</span><span class="p">.</span><span class="n">address</span><span class="p">(</span><span class="n">http</span><span class="p">.</span><span class="n">flow</span><span class="p">.</span><span class="n">srcip</span><span class="p">),</span>
+                <span class="n">targets</span> <span class="o">=</span> <span class="p">{</span>
+                    <span class="n">haka</span><span class="p">.</span><span class="n">alert</span><span class="p">.</span><span class="n">address</span><span class="p">(</span><span class="n">http</span><span class="p">.</span><span class="n">flow</span><span class="p">.</span><span class="n">dstip</span><span class="p">),</span>
+                    <span class="n">haka</span><span class="p">.</span><span class="n">alert</span><span class="p">.</span><span class="n">service</span><span class="p">(</span><span class="nb">string.format</span><span class="p">(</span><span class="s2">&quot;</span><span class="s">tcp/%d&quot;</span><span class="p">,</span> <span class="n">http</span><span class="p">.</span><span class="n">flow</span><span class="p">.</span><span class="n">dstport</span><span class="p">),</span> <span class="s2">&quot;</span><span class="s">http&quot;</span><span class="p">)</span>
+                <span class="p">},</span>
+            <span class="p">}</span>
+        <span class="k">end</span>
+    <span class="k">end</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+		</div>
+	</div>
+</div>
+
+
+
+<footer id="footer">
+	<div class="row" role="complementary">
+		<div class="medium-12 columns">
+			&copy; Copyright 2014, Arkoon Network Security, OpenWide and Telecom ParisTech.
+		</div>
+	</div>
+</footer>
+<script>
+	  $(document).foundation();
+</script>
+
+
+
+<script type="text/javascript" src="http://www.haka-security.org/js/track.js"></script>
+
+
+  </body>
+</html>

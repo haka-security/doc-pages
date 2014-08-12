@@ -1,0 +1,356 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>3.1. Types &mdash; Haka runtime 0.2.0 documentation</title>
+    
+    <link rel="stylesheet" href="../../../_static/haka.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/breathe.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../',
+        VERSION:     '0.2.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../../_static/js/scripts.js"></script>
+    <script type="text/javascript" src="../../../_static/js/vendor/modernizr.js"></script>
+    <script type="text/javascript" src="../../../_static/js/foundation/foundation.js"></script>
+    <script type="text/javascript" src="../../../_static/js/foundation/foundation.topbar.js"></script>
+    <link rel="top" title="Haka runtime 0.2.0 documentation" href="../../../index.html" />
+    <link rel="up" title="3. Developer reference guide" href="../devref.html" />
+    <link rel="next" title="3.3. Threads utilities" href="thread.html" />
+    <link rel="prev" title="3. Developer reference guide" href="../devref.html" /> 
+  </head>
+  <body>
+
+
+<header id="header" role="banner">
+	<div class="row">
+		<div class="medium-6 columns">
+			<h1 class="title"><a rel="home" title="Haka" href="http://www.haka-security.org">Haka</a></h1>
+			<h2 class="description">Software Defined Security</h2>
+		</div>
+		<div class="medium-6 columns">
+			<div id="version">Version 0.2.0</div>
+		</div>
+	</div>
+</header>
+
+<div class="contain-to-grid sticky">
+	
+
+<nav id="navbar" class="top-bar" data-topbar>
+	<ul class="title-area">
+		<!-- This is required for toggle-topbar to work -->
+		<li class="name"></li>
+		<li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
+	</ul>
+	<section class="top-bar-section">
+		<ul class="left">
+			<li class=" ">
+				<a href="../../user/userindex.html">Users</a>
+			</li>
+			<li class=" ">
+				<a href="../../ref/refindex.html" class="../../ref/refindex.html">References</a>
+			</li>
+			<li class=" active">
+				<a href="../devindex.html" class="">Developers</a>
+			</li>
+			<li class=" ">
+				<a href="../../faq.html" class="">Faq</a>
+			</li>
+			<li class="has-form">
+
+
+	<form class="search" action="../../../search.html" method="get" id="searchbox" style="display: none">
+		<input type="hidden" name="area" value="default" />
+		<input type="hidden" name="check_keywords" value="yes" />
+		<div class="row collapse">
+			<div class="medium-11 columns">
+				<input type="text" name="q" placeholder="Search" />
+			</div>
+			<div class="medium-1 columns" id="clean-search-highlight">
+			</div>
+		</div>
+	</form>
+	<script type="text/javascript">$('#searchbox').show(0);</script>
+</li>
+		</ul>
+		<ul class="right">
+				<li class="right"><a href="thread.html" title="3.3. Threads utilities">Next &rarr;</a></li>
+				<li class="right"><a href="../devref.html" title="3. Developer reference guide">&larr; Prev</a></li>
+				<li class="right"><a href="../devref.html" title="3. Developer reference guide">Up &uarr;</a></li>
+
+			<li class=" right"><a href="../../../genindex.html">Index</a></li>
+			<li class=" right"><a href="../../../haka-modindex.html">Modules</a></li>
+		</ul>
+	</section>
+</nav>
+</div>
+<div id="content">
+	<div class="row">
+		<ul id="breadcrumb" class="breadcrumbs medium-12 columns">
+			
+			<li><a href="../devindex.html">Welcome to Haka&#8217;s Developer Guide!</a></li>
+			
+			<li><a href="../devref.html">3. Developer reference guide</a></li>
+			
+			<li class="current"><a href="#">3.1. Types</a></li>
+		</ul>
+	</div>
+	<div class="row">
+		<div class="medium-12 columns">
+			
+  <div class="section" id="types">
+<h1>3.1. Types<a class="headerlink" href="#types" title="Permalink to this headline">¶</a></h1>
+<p></p>
+<p>Basic types used all along Haka. </p>
+<em>Defines</em><blockquote>
+<div><p><span class="target" id="project0types_8h_1a41f9c5fb8b08eb5dc3edce4dcb37fee7"></span><strong>true</strong></p>
+<blockquote>
+<div><p></p>
+<p>Boolean value <tt class="docutils literal"><span class="pre">true</span></tt>. </p>
+</div></blockquote>
+<p><span class="target" id="project0types_8h_1a65e9886d74aaee76545e83dd09011727"></span><strong>false</strong></p>
+<blockquote>
+<div><p></p>
+<p>Boolean value <tt class="docutils literal"><span class="pre">false</span></tt>. </p>
+</div></blockquote>
+<p><span class="target" id="project0types_8h_1a27747fb699ed144013fd51f9c7c1a841"></span><strong>SWAP</strong>(type, x)</p>
+<blockquote>
+<div><p></p>
+<p><p>Byte swapping utility macro.</p>
+<p><dl class="docutils">
+<dt><strong>Parameters</strong></dt>
+<dd><ul class="breatheparameterlist first last">
+<li><tt class="first docutils literal"><span class="pre">type</span></tt> - <p>C type (int32, uint64...) </p>
+</li>
+<li><tt class="first docutils literal"><span class="pre">x</span></tt> - <p>Value to swap. </p>
+</li>
+</ul>
+</dd>
+</dl>
+</p>
+</p>
+</div></blockquote>
+<p><span class="target" id="project0types_8h_1ac776bbdb36f3247fb97c6a339e8f6baa"></span><strong>SWAP_TO_LE</strong>(type, x)</p>
+<blockquote>
+<div><p></p>
+<p><p>Byte swapping utility macro. Swap from local machine endian to little endian.</p>
+<p><dl class="docutils">
+<dt><strong>Parameters</strong></dt>
+<dd><ul class="breatheparameterlist first last">
+<li><tt class="first docutils literal"><span class="pre">type</span></tt> - <p>C type (int32, uint64...) </p>
+</li>
+<li><tt class="first docutils literal"><span class="pre">x</span></tt> - <p>Value to swap. </p>
+</li>
+</ul>
+</dd>
+</dl>
+</p>
+</p>
+</div></blockquote>
+<p><span class="target" id="project0types_8h_1ad792648cc621b2ede5ccf4a641bb9097"></span><strong>SWAP_FROM_LE</strong>(type, x)</p>
+<blockquote>
+<div><p></p>
+<p><p>Byte swapping utility macro. Swap from little endian to local machine endian.</p>
+<p><dl class="docutils">
+<dt><strong>Parameters</strong></dt>
+<dd><ul class="breatheparameterlist first last">
+<li><tt class="first docutils literal"><span class="pre">type</span></tt> - <p>C type (int32, uint64...) </p>
+</li>
+<li><tt class="first docutils literal"><span class="pre">x</span></tt> - <p>Value to swap. </p>
+</li>
+</ul>
+</dd>
+</dl>
+</p>
+</p>
+</div></blockquote>
+<p><span class="target" id="project0types_8h_1a742defc97c929992c0635ea0c87da323"></span><strong>SWAP_TO_BE</strong>(type, x)</p>
+<blockquote>
+<div><p></p>
+<p><p>Byte swapping utility macro. Swap from local machine endian to big endian.</p>
+<p><dl class="docutils">
+<dt><strong>Parameters</strong></dt>
+<dd><ul class="breatheparameterlist first last">
+<li><tt class="first docutils literal"><span class="pre">type</span></tt> - <p>C type (int32, uint64...) </p>
+</li>
+<li><tt class="first docutils literal"><span class="pre">x</span></tt> - <p>Value to swap. </p>
+</li>
+</ul>
+</dd>
+</dl>
+</p>
+</p>
+</div></blockquote>
+<p><span class="target" id="project0types_8h_1aa295769803ce2ff68df3fbdd2a8c8d82"></span><strong>SWAP_FROM_BE</strong>(type, x)</p>
+<blockquote>
+<div><p></p>
+<p><p>Byte swapping utility macro. Swap from big endian to local machine endian.</p>
+<p><dl class="docutils">
+<dt><strong>Parameters</strong></dt>
+<dd><ul class="breatheparameterlist first last">
+<li><tt class="first docutils literal"><span class="pre">type</span></tt> - <p>C type (int32, uint64...) </p>
+</li>
+<li><tt class="first docutils literal"><span class="pre">x</span></tt> - <p>Value to swap. </p>
+</li>
+</ul>
+</dd>
+</dl>
+</p>
+</p>
+</div></blockquote>
+<p><span class="target" id="project0types_8h_1a97d0d6609f70e42d6b86a5a6e63d28c3"></span><strong>GET_BIT</strong>(v, i)</p>
+<blockquote>
+<div><p></p>
+<p>Get the bit <tt class="docutils literal"><span class="pre">i</span></tt> from an integer <tt class="docutils literal"><span class="pre">v</span></tt>. </p>
+</div></blockquote>
+<p><span class="target" id="project0types_8h_1ae53a222573f3526d2e6982b9024d9f2c"></span><strong>SET_BIT</strong>(v, i, x)</p>
+<blockquote>
+<div><p></p>
+<p>Set the bit <tt class="docutils literal"><span class="pre">i</span></tt> from an integer <tt class="docutils literal"><span class="pre">v</span></tt> to <tt class="docutils literal"><span class="pre">x</span></tt>. </p>
+</div></blockquote>
+<p><span class="target" id="project0types_8h_1abdddfeeac3775c4cdc4c0acd90bced18"></span><strong>GET_BITS</strong>(v, i, j)</p>
+<blockquote>
+<div><p></p>
+<p>Get the bits in range [<tt class="docutils literal"><span class="pre">i</span></tt> ; <tt class="docutils literal"><span class="pre">j</span></tt>] from an integer <tt class="docutils literal"><span class="pre">v</span></tt>. </p>
+</div></blockquote>
+<p><span class="target" id="project0types_8h_1a327da9a094596e74b8ef20b65389e94a"></span><strong>SET_BITS</strong>(v, i, j, x)</p>
+<blockquote>
+<div><p></p>
+<p>Set the bits in range [<tt class="docutils literal"><span class="pre">i</span></tt> ; <tt class="docutils literal"><span class="pre">j</span></tt>] from an integer <tt class="docutils literal"><span class="pre">v</span></tt> to <tt class="docutils literal"><span class="pre">x</span></tt>. </p>
+</div></blockquote>
+</div></blockquote>
+<em>Typedefs</em><blockquote>
+<div><p><span class="target" id="project0types_8h_1a97a80ca1602ebf2303258971a2c938e2"></span>typedef unsigned char <strong>bool</strong></p>
+<blockquote>
+<div><p></p>
+<p>Boolean. Its value can be <tt class="docutils literal"><span class="pre">true</span></tt> or <tt class="docutils literal"><span class="pre">false</span></tt>. </p>
+</div></blockquote>
+<p><span class="target" id="project0types_8h_1ae47c588f3ab8c61121c1c7ab7edc47cd"></span>typedef char <strong>int8</strong></p>
+<blockquote>
+<div><p></p>
+<p>Signed 1 byte integer type. </p>
+</div></blockquote>
+<p><span class="target" id="project0types_8h_1a0f803c617d964bba70520a5f35633588"></span>typedef HAKA_16BIT_TYPE <strong>int16</strong></p>
+<blockquote>
+<div><p></p>
+<p>Signed 2 byte integer type. </p>
+</div></blockquote>
+<p><span class="target" id="project0types_8h_1a07727e09da6050cee189bc027e3a96a2"></span>typedef HAKA_32BIT_TYPE <strong>int32</strong></p>
+<blockquote>
+<div><p></p>
+<p>Signed 4 byte integer type. </p>
+</div></blockquote>
+<p><span class="target" id="project0types_8h_1a3bc2ce57f28d8946459a84ac306b9ddb"></span>typedef HAKA_64BIT_TYPE <strong>int64</strong></p>
+<blockquote>
+<div><p></p>
+<p>Signed 8 byte integer type. </p>
+</div></blockquote>
+<p><span class="target" id="project0types_8h_1adde6aaee8457bee49c2a92621fe22b79"></span>typedef unsigned char <strong>uint8</strong></p>
+<blockquote>
+<div><p></p>
+<p>Unsigned 1 byte integer type. </p>
+</div></blockquote>
+<p><span class="target" id="project0types_8h_1a2b4af144ae1d2e025dff3f4910696a74"></span>typedef unsigned HAKA_16BIT_TYPE <strong>uint16</strong></p>
+<blockquote>
+<div><p></p>
+<p>Unsigned 2 byte integer type. </p>
+</div></blockquote>
+<p><span class="target" id="project0types_8h_1a8949da768e2857b8f602a69c5b68828a"></span>typedef unsigned HAKA_32BIT_TYPE <strong>uint32</strong></p>
+<blockquote>
+<div><p></p>
+<p>Unsigned 4 byte integer type. </p>
+</div></blockquote>
+<p><span class="target" id="project0types_8h_1a6861bed95d73703b3730053f3a6065bf"></span>typedef unsigned HAKA_64BIT_TYPE <strong>uint64</strong></p>
+<blockquote>
+<div><p></p>
+<p>Unsigned 8 byte integer type. </p>
+</div></blockquote>
+</div></blockquote>
+</div>
+<div class="section" id="errors-handling">
+<h1>3.2. Errors handling<a class="headerlink" href="#errors-handling" title="Permalink to this headline">¶</a></h1>
+<p></p>
+<p>Error handling functions. </p>
+<em>Functions</em><blockquote>
+<div><p><span class="target" id="project0error_8h_1a97b442cb932709abfaba3687e72461e7"></span><div class="line-block">
+<div class="line">void <strong>error</strong>(const wchar_t * error, ...)</div>
+</div>
+</p>
+<blockquote>
+<div><p></p>
+<p><p>Set <tt class="docutils literal"><span class="pre">error</span></tt> to be reported to the callers. The function follows the printf API and can be used in multi-threaded application. The error can then be retrieved using <a class="reference internal" href="#project0error_8h_1a0299559dafa0e78a9a5b60392e5d7638"><em>clear_error()</em></a> and <a class="reference internal" href="#project0error_8h_1a095b0570d2542b99d5f5e93752509a6d"><em>check_error()</em></a>.</p>
+<p>If lua is at the origin of this call, the error will be converted to a lua error. </p>
+</p>
+</div></blockquote>
+<p><span class="target" id="project0error_8h_1ab734cda4c9507938625b782f97fc4e7b"></span><div class="line-block">
+<div class="line">const char * <strong>errno_error</strong>(int err)</div>
+</div>
+</p>
+<blockquote>
+<div><p></p>
+<p><p>Convert the <tt class="docutils literal"><span class="pre">err</span></tt> value to a human readable error message.</p>
+<p>The returned string will be erased by the next call to this function. This function is thread-safe. </p>
+</p>
+</div></blockquote>
+<p><span class="target" id="project0error_8h_1a095b0570d2542b99d5f5e93752509a6d"></span><div class="line-block">
+<div class="line"><a class="reference internal" href="#project0types_8h_1a97a80ca1602ebf2303258971a2c938e2"><em>bool</em></a> <strong>check_error</strong>()</div>
+</div>
+</p>
+<blockquote>
+<div><p></p>
+<p>Check if an error has occurred. This function does not clear error flag. </p>
+</div></blockquote>
+<p><span class="target" id="project0error_8h_1a0299559dafa0e78a9a5b60392e5d7638"></span><div class="line-block">
+<div class="line">const wchar_t * <strong>clear_error</strong>()</div>
+</div>
+</p>
+<blockquote>
+<div><p></p>
+<p>Get the error message and clear the error state. </p>
+</div></blockquote>
+</div></blockquote>
+</div>
+
+
+		</div>
+	</div>
+</div>
+
+
+
+<footer id="footer">
+	<div class="row" role="complementary">
+		<div class="medium-12 columns">
+			&copy; Copyright 2014, Arkoon Network Security, OpenWide and Telecom ParisTech.
+		</div>
+	</div>
+</footer>
+<script>
+	  $(document).foundation();
+</script>
+
+
+
+<script type="text/javascript" src="http://www.haka-security.org/js/track.js"></script>
+
+
+  </body>
+</html>
