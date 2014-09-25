@@ -1,0 +1,273 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>4. Writing Haka extensions &mdash; Haka runtime 0.2.1 documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/haka.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/breathe.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '0.2.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../_static/js/scripts.js"></script>
+    <script type="text/javascript" src="../../_static/js/vendor/modernizr.js"></script>
+    <script type="text/javascript" src="../../_static/js/foundation/foundation.js"></script>
+    <script type="text/javascript" src="../../_static/js/foundation/foundation.topbar.js"></script>
+    <link rel="top" title="Haka runtime 0.2.1 documentation" href="../../index.html" />
+    <link rel="up" title="Welcome to Haka’s Developer Guide!" href="devindex.html" />
+    <link rel="next" title="5. Contribute" href="contribute.html" />
+    <link rel="prev" title="3.13. IPv4" href="ref/protocol.html" /> 
+  </head>
+  <body>
+
+
+<header id="header" role="banner">
+	<div class="row">
+		<div class="medium-6 columns">
+			<h1 class="title"><a rel="home" title="Haka" href="http://www.haka-security.org">Haka</a></h1>
+			<h2 class="description">Software Defined Security</h2>
+		</div>
+		<div class="medium-6 columns">
+			<div id="version">Version 0.2.1</div>
+		</div>
+	</div>
+</header>
+
+<div class="contain-to-grid sticky">
+	
+
+<nav id="navbar" class="top-bar" data-topbar>
+	<ul class="title-area">
+		<!-- This is required for toggle-topbar to work -->
+		<li class="name"></li>
+		<li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
+	</ul>
+	<section class="top-bar-section">
+		<ul class="left">
+			<li class=" ">
+				<a href="../user/userindex.html">Users</a>
+			</li>
+			<li class=" ">
+				<a href="../ref/refindex.html" class="../ref/refindex.html">References</a>
+			</li>
+			<li class=" active">
+				<a href="devindex.html" class="">Developers</a>
+			</li>
+			<li class=" ">
+				<a href="../faq.html" class="">Faq</a>
+			</li>
+			<li class="has-form">
+
+
+	<form class="search" action="../../search.html" method="get" id="searchbox" style="display: none">
+		<input type="hidden" name="area" value="default" />
+		<input type="hidden" name="check_keywords" value="yes" />
+		<div class="row collapse">
+			<div class="medium-11 columns">
+				<input type="text" name="q" placeholder="Search" />
+			</div>
+			<div class="medium-1 columns" id="clean-search-highlight">
+			</div>
+		</div>
+	</form>
+	<script type="text/javascript">$('#searchbox').show(0);</script>
+</li>
+		</ul>
+		<ul class="right">
+				<li class="right"><a href="contribute.html" title="5. Contribute">Next &rarr;</a></li>
+				<li class="right"><a href="ref/protocol.html" title="3.13. IPv4">&larr; Prev</a></li>
+				<li class="right"><a href="devindex.html" title="Welcome to Haka&#8217;s Developer Guide!">Up &uarr;</a></li>
+
+			<li class=" right"><a href="../../genindex.html">Index</a></li>
+			<li class=" right"><a href="../../haka-modindex.html">Modules</a></li>
+		</ul>
+	</section>
+</nav>
+</div>
+<div id="content">
+	<div class="row">
+		<ul id="breadcrumb" class="breadcrumbs medium-12 columns">
+			
+			<li><a href="devindex.html">Welcome to Haka&#8217;s Developer Guide!</a></li>
+			
+			<li class="current"><a href="#">4. Writing Haka extensions</a></li>
+		</ul>
+	</div>
+	<div class="row">
+		<div class="medium-12 columns">
+			
+  <div class="section" id="writing-haka-extensions">
+<h1>4. Writing Haka extensions<a class="headerlink" href="#writing-haka-extensions" title="Permalink to this headline">¶</a></h1>
+<p>Haka has a modular architecture and you can extend it by adding your favorite
+module.</p>
+<p>We provide here a Makefile to compile your source files, link your module
+against haka libraries and have it installed on haka target path.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">You are free to use your own compilation toolchain.</p>
+</div>
+<p>In the following, we will create a sample C module <tt class="docutils literal"><span class="pre">mymodule</span></tt> that exports a
+single function <tt class="docutils literal"><span class="pre">myfunc</span></tt>.</p>
+<p>First, create a directory <tt class="docutils literal"><span class="pre">mymodule</span></tt> and two sub folders <tt class="docutils literal"><span class="pre">src</span></tt> and <tt class="docutils literal"><span class="pre">obj</span></tt>.
+In the former, create your source and header files:</p>
+<div class="highlight-c"><pre>mymodule
+\--obj
+\--src
+   \--mymodule.c
+   \--mymodule.h
+   \--mymodule.i
+\--Makefile</pre>
+</div>
+<p>The source file <tt class="docutils literal"><span class="pre">mymodule.c</span></tt> must include a module structure that sets the
+type of the module to <tt class="docutils literal"><span class="pre">MODULE_EXTENSION</span></tt> along with other information such as
+the name and the author of the module:</p>
+<div class="highlight-c"><div class="highlight"><pre><span class="k">struct</span> <span class="n">module</span> <span class="n">MY_MODULE</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="nl">type:</span>        <span class="n">MODULE_EXTENSION</span><span class="p">,</span>
+    <span class="nl">name:</span>        <span class="s">L&quot;my module&quot;</span><span class="p">,</span>
+    <span class="nl">description:</span> <span class="s">L&quot;my module&quot;</span><span class="p">,</span>
+    <span class="nl">api_version:</span> <span class="n">HAKA_API_VERSION</span><span class="p">,</span>
+    <span class="nl">init:</span>        <span class="n">init</span><span class="p">,</span>
+    <span class="nl">cleanup:</span>     <span class="n">cleanup</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+<p>The module code must also defines a initialization and a cleanup function that
+will be called when the module loads and unloads, respectively.</p>
+<div class="highlight-c"><div class="highlight"><pre><span class="k">static</span> <span class="kt">int</span> <span class="nf">init</span><span class="p">(</span><span class="k">struct</span> <span class="n">parameters</span> <span class="n">args</span><span class="p">)</span><span class="c1">//</span>
+<span class="p">{</span>
+    <span class="n">messagef</span><span class="p">(</span><span class="n">HAKA_LOG_INFO</span><span class="p">,</span> <span class="s">L&quot;mymodule&quot;</span><span class="p">,</span> <span class="s">L&quot;init my module&quot;</span><span class="p">);</span>
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="k">static</span> <span class="kt">void</span> <span class="nf">cleanup</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="n">messagef</span><span class="p">(</span><span class="n">HAKA_LOG_INFO</span><span class="p">,</span> <span class="s">L&quot;mymodule&quot;</span><span class="p">,</span> <span class="s">L&quot;cleanup my module&quot;</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Here is the <a class="reference download internal" href="../../_downloads/mymodule.c"><tt class="xref download docutils literal"><span class="pre">mymodule.c</span></tt></a> which defines
+also the <tt class="docutils literal"><span class="pre">myfunc</span></tt> function that we want to export.</p>
+<p>Then, we have created a single header file <a class="reference download internal" href="../../_downloads/mymodule.h"><tt class="xref download docutils literal"><span class="pre">mymodule.h</span></tt></a>
+That simply defines the prototype of the function <tt class="docutils literal"><span class="pre">myfunc</span></tt>.</p>
+<p>Finally, in Haka we use <a class="reference external" href="http://www.swig.org/Doc1.3/Lua.html">SWIG</a> to bind C
+functions to Lua objects. Here is the content of our swig file
+<a class="reference download internal" href="../../_downloads/mymodule.i"><tt class="xref download docutils literal"><span class="pre">mymodule.i</span></tt></a> that binds the <tt class="docutils literal"><span class="pre">myfunc</span></tt> function.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">for more complex binding, you can have a look at C protocol modules in
+Haka source tree.</p>
+</div>
+<p>The last step is to compile (<tt class="docutils literal"><span class="pre">make</span></tt>) our newly created module using the
+following <a class="reference download internal" href="../../_downloads/Makefile"><tt class="xref download docutils literal"><span class="pre">Makefile</span></tt></a> that must be created in the main
+module folder.</p>
+<div class="highlight-makefile"><div class="highlight"><pre><span class="c"># This Source Code Form is subject to the terms of the Mozilla Public</span>
+<span class="c"># License, v. 2.0. If a copy of the MPL was not distributed with this</span>
+<span class="c"># file, You can obtain one at http://mozilla.org/MPL/2.0/.</span>
+
+<span class="c"># Configure variables</span>
+<span class="nv">HAKA_PATH</span> <span class="o">?=</span> /usr
+INSTALL ?<span class="o">=</span> install -o root -g bin
+
+<span class="nv">MODULE_NAME</span> <span class="o">=</span> mymodule
+
+<span class="nv">SRCS</span> <span class="o">=</span> mymodule.c mymodule.i
+
+<span class="c"># Haka specifics</span>
+<span class="nv">OBJ_DIR</span> <span class="o">=</span> obj
+<span class="nv">OUT_DIR</span> <span class="o">=</span> out
+<span class="nv">SRC_DIR</span> <span class="o">=</span> src
+OBJS :<span class="o">=</span> <span class="k">${</span><span class="nv">SRCS</span><span class="p">:%.i=%_lua.c</span><span class="k">}</span>
+OBJS :<span class="o">=</span> <span class="k">${</span><span class="nv">OBJS</span><span class="p">:%.c=</span><span class="k">$(</span>OBJ_DIR<span class="k">)</span><span class="p">/%.o</span><span class="k">}</span>
+SRCS :<span class="o">=</span> <span class="k">${</span><span class="nv">addprefix</span><span class="p"> </span><span class="k">$(</span>SRC_DIR<span class="k">)</span><span class="p">/, </span><span class="k">$(</span>SRCS<span class="k">)}</span>
+<span class="nv">OUT</span> <span class="o">=</span> <span class="k">$(</span>MODULE_NAME<span class="k">)</span>.so
+<span class="nv">BIN</span> <span class="o">=</span> <span class="k">$(</span>OUT_DIR<span class="k">)</span>/<span class="k">$(</span>OUT<span class="k">)</span>
+
+<span class="nv">SWIG</span> <span class="o">=</span> swig
+<span class="nv">CFLAGS</span> <span class="o">=</span> -Wall -I<span class="k">$(</span>HAKA_PATH<span class="k">)</span>/include/ -I<span class="k">$(</span>HAKA_PATH<span class="k">)</span>/include/haka/lua -I<span class="k">$(</span>SRC_DIR<span class="k">)</span> -fPIC -c -g
+<span class="nv">LDFLAGS</span> <span class="o">=</span> -L<span class="k">$(</span>HAKA_PATH<span class="k">)</span>/lib/ -lhaka -shared -Wl,-soname,<span class="k">$(</span>OUT<span class="k">)</span> -Wl,--defsym<span class="o">=</span>luaopen_external/<span class="k">$(</span>MODULE_NAME<span class="k">)</span><span class="o">=</span>luaopen_<span class="k">$(</span>MODULE_NAME<span class="k">)</span>
+<span class="nv">SWIGFLAGS</span> <span class="o">=</span> -I<span class="k">$(</span>HAKA_PATH<span class="k">)</span>/include/ -lua -module <span class="k">$(</span>MODULE_NAME<span class="k">)</span>
+
+<span class="k">$(</span>BIN<span class="k">)</span>: <span class="k">$(</span>OBJS<span class="k">)</span>
+    <span class="k">$(</span>CC<span class="k">)</span> <span class="k">$(</span>LDFLAGS<span class="k">)</span> -o <span class="k">$(</span>BIN<span class="k">)</span> <span class="k">$(</span>OBJS<span class="k">)</span>
+
+install: <span class="k">$(</span>BIN<span class="k">)</span>
+    <span class="k">$(</span>INSTALL<span class="k">)</span> -m 555 <span class="k">$(</span>BIN<span class="k">)</span> -D <span class="k">$(</span>HAKA_PATH<span class="k">)</span>/lib/haka/modules/external/<span class="k">$(</span>OUT<span class="k">)</span>
+
+clean:
+    rm -f <span class="k">$(</span>BIN<span class="k">)</span> <span class="k">$(</span>OBJS<span class="k">)</span>
+
+<span class="k">$(</span>OBJ_DIR<span class="k">)</span>:
+    mkdir <span class="k">$(</span>OBJ_DIR<span class="k">)</span> <span class="k">$(</span>OUT_DIR<span class="k">)</span>
+
+<span class="c"># Haka rules</span>
+<span class="k">$(</span>OBJ_DIR<span class="k">)</span>/%.o: <span class="k">$(</span>SRC_DIR<span class="k">)</span>/%.c <span class="k">$(</span>OBJ_DIR<span class="k">)</span>
+    <span class="k">$(</span>CC<span class="k">)</span> <span class="k">$(</span>CFLAGS<span class="k">)</span> -o <span class="nv">$@</span> <span class="nv">$&lt;</span>
+
+<span class="k">$(</span>OBJ_DIR<span class="k">)</span>/%_lua.c: <span class="k">$(</span>SRC_DIR<span class="k">)</span>/%.i <span class="k">$(</span>OBJ_DIR<span class="k">)</span>
+    <span class="k">$(</span>SWIG<span class="k">)</span> <span class="k">$(</span>SWIGFLAGS<span class="k">)</span> -o <span class="nv">$@</span> <span class="nv">$&lt;</span>
+
+.SECONDARY:
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">You may need to adjust the HAKA_PATH variable.</p>
+</div>
+<p>Now, we are ready to use the module in haka script files. Here is a sample file
+that simply calls the <tt class="docutils literal"><span class="pre">myfunc</span></tt> function:</p>
+<div class="highlight-lua"><div class="highlight"><pre><span class="kd">local</span> <span class="n">mymodule</span> <span class="o">=</span> <span class="nb">require</span><span class="p">(</span><span class="s1">&#39;</span><span class="s">external/mymodule&#39;</span><span class="p">)</span>
+<span class="kd">local</span> <span class="n">ipv4</span> <span class="o">=</span> <span class="nb">require</span><span class="p">(</span><span class="s1">&#39;</span><span class="s">protocol/ipv4&#39;</span><span class="p">)</span>
+
+<span class="n">haka</span><span class="p">.</span><span class="n">rule</span><span class="p">{</span>
+    <span class="n">hook</span> <span class="o">=</span> <span class="n">ipv4</span><span class="p">.</span><span class="n">events</span><span class="p">.</span><span class="n">receive_packet</span><span class="p">,</span>
+    <span class="n">eval</span> <span class="o">=</span> <span class="k">function</span> <span class="p">()</span>
+        <span class="n">mymodule</span><span class="p">.</span><span class="n">myfunc</span><span class="p">()</span>
+    <span class="k">end</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+
+
+		</div>
+	</div>
+</div>
+
+
+
+<footer id="footer">
+	<div class="row" role="complementary">
+		<div class="medium-12 columns">
+			&copy; Copyright 2014, Arkoon Network Security, OpenWide and Telecom ParisTech.
+		</div>
+	</div>
+</footer>
+<script>
+	  $(document).foundation();
+</script>
+
+
+
+<script type="text/javascript" src="http://www.haka-security.org/js/track.js"></script>
+
+
+  </body>
+</html>

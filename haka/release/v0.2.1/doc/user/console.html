@@ -1,0 +1,444 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>8. Console &mdash; Haka runtime 0.2.1 documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/haka.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/breathe.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '0.2.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../_static/js/scripts.js"></script>
+    <script type="text/javascript" src="../../_static/js/vendor/modernizr.js"></script>
+    <script type="text/javascript" src="../../_static/js/foundation/foundation.js"></script>
+    <script type="text/javascript" src="../../_static/js/foundation/foundation.topbar.js"></script>
+    <link rel="top" title="Haka runtime 0.2.1 documentation" href="../../index.html" />
+    <link rel="up" title="Welcome to Haka’s User Guide!" href="userindex.html" />
+    <link rel="next" title="9. Debugging" href="debug.html" />
+    <link rel="prev" title="8. Appendix" href="workshop/appendix.html" /> 
+  </head>
+  <body>
+
+
+<header id="header" role="banner">
+	<div class="row">
+		<div class="medium-6 columns">
+			<h1 class="title"><a rel="home" title="Haka" href="http://www.haka-security.org">Haka</a></h1>
+			<h2 class="description">Software Defined Security</h2>
+		</div>
+		<div class="medium-6 columns">
+			<div id="version">Version 0.2.1</div>
+		</div>
+	</div>
+</header>
+
+<div class="contain-to-grid sticky">
+	
+
+<nav id="navbar" class="top-bar" data-topbar>
+	<ul class="title-area">
+		<!-- This is required for toggle-topbar to work -->
+		<li class="name"></li>
+		<li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
+	</ul>
+	<section class="top-bar-section">
+		<ul class="left">
+			<li class=" active">
+				<a href="userindex.html">Users</a>
+			</li>
+			<li class=" ">
+				<a href="../ref/refindex.html" class="../ref/refindex.html">References</a>
+			</li>
+			<li class=" ">
+				<a href="../developer/devindex.html" class="">Developers</a>
+			</li>
+			<li class=" ">
+				<a href="../faq.html" class="">Faq</a>
+			</li>
+			<li class="has-form">
+
+
+	<form class="search" action="../../search.html" method="get" id="searchbox" style="display: none">
+		<input type="hidden" name="area" value="default" />
+		<input type="hidden" name="check_keywords" value="yes" />
+		<div class="row collapse">
+			<div class="medium-11 columns">
+				<input type="text" name="q" placeholder="Search" />
+			</div>
+			<div class="medium-1 columns" id="clean-search-highlight">
+			</div>
+		</div>
+	</form>
+	<script type="text/javascript">$('#searchbox').show(0);</script>
+</li>
+		</ul>
+		<ul class="right">
+				<li class="right"><a href="debug.html" title="9. Debugging">Next &rarr;</a></li>
+				<li class="right"><a href="workshop/appendix.html" title="8. Appendix">&larr; Prev</a></li>
+				<li class="right"><a href="userindex.html" title="Welcome to Haka&#8217;s User Guide!">Up &uarr;</a></li>
+
+			<li class=" right"><a href="../../genindex.html">Index</a></li>
+			<li class=" right"><a href="../../haka-modindex.html">Modules</a></li>
+		</ul>
+	</section>
+</nav>
+</div>
+<div id="content">
+	<div class="row">
+		<ul id="breadcrumb" class="breadcrumbs medium-12 columns">
+			
+			<li><a href="userindex.html">Welcome to Haka&#8217;s User Guide!</a></li>
+			
+			<li class="current"><a href="#">8. Console</a></li>
+		</ul>
+	</div>
+	<div class="row">
+		<div class="medium-12 columns">
+			
+  <div class="section" id="console">
+<h1>8. Console<a class="headerlink" href="#console" title="Permalink to this headline">¶</a></h1>
+<p>The console allows to execute and interact with a running haka daemon. It
+is possible to get some statistics or to drop a connection for instance.</p>
+<div class="section" id="starting-the-console">
+<h2>8.1. Starting the console<a class="headerlink" href="#starting-the-console" title="Permalink to this headline">¶</a></h2>
+<p>The console is started using <tt class="docutils literal"><span class="pre">hakactl</span> <span class="pre">console</span></tt>. On connection, a prompt
+allows to write Lua commands. The completion is also available to guide the
+user and list the available functions.</p>
+<p>This section provides the list of all available commands.</p>
+</div>
+<div class="section" id="returned-data">
+<h2>8.2. Returned data<a class="headerlink" href="#returned-data" title="Permalink to this headline">¶</a></h2>
+<p>Most functions return an object containing all requested data. This object
+named <em>List</em> have many features to enable advanced scripting.</p>
+<dl class="class">
+<dt id="haka-object.List">
+<em class="property">object </em><tt class="descname">List</tt><a class="headerlink" href="#haka-object.List" title="Permalink to this definition">¶</a></dt>
+<dd><p>Collection of elements.</p>
+<dl class="operator">
+<dt id="haka-operator.&lt;List&gt;.[]">
+<em class="property"> </em><tt class="descclassname">&lt;List&gt;</tt><big>[</big><em>field</em><big>]</big> &rarr; value<a class="headerlink" href="#haka-operator.<List>.[]" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>field</strong> (<em>string</em>) &#8211; Field to retrieve.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><ul class="first last simple">
+<li><strong>value</strong> &#8211; Value for the field.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p>Get a field value for the given <em>field</em>.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="haka-function.&lt;List&gt;.get">
+<em class="property"> </em><tt class="descclassname">&lt;List&gt;:</tt><tt class="descname">get</tt><big>(</big><em>key</em><big>)</big> &rarr; list<a class="headerlink" href="#haka-function.<List>.get" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>key</strong> &#8211; Key to retrieve.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><ul class="first last simple">
+<li><strong>list</strong> (<a class="reference internal" href="#haka-object.List" title="List"><tt class="xref haka haka-class docutils literal"><span class="pre">List</span></tt></a>) &#8211; New list containing only the requested element.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p>Select only one element from a list.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="haka-function.&lt;List&gt;.filter">
+<em class="property"> </em><tt class="descclassname">&lt;List&gt;:</tt><tt class="descname">filter</tt><big>(</big><em>f</em><big>)</big> &rarr; list<a class="headerlink" href="#haka-function.<List>.filter" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>f</strong> (<em>function</em>) &#8211; Function returning <tt class="docutils literal"><span class="pre">true</span></tt> for element to keep.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><ul class="first last simple">
+<li><strong>list</strong> (<a class="reference internal" href="#haka-object.List" title="List"><tt class="xref haka haka-class docutils literal"><span class="pre">List</span></tt></a>) &#8211; New list containing only the element not filtered out.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p>Filter out and only keep some elements of the list.</p>
+<p>The function <em>f</em> follows this prototype:</p>
+<dl class="function">
+<dt id="haka-function.f">
+<em class="property"> </em><tt class="descname">f</tt><big>(</big><em>elem</em><big>)</big> &rarr; should_keep<a class="headerlink" href="#haka-function.f" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="method">
+<dt id="haka-function.&lt;List&gt;.sort">
+<em class="property"> </em><tt class="descclassname">&lt;List&gt;:</tt><tt class="descname">sort</tt><big>(</big><em>order</em>, <em>invert=false</em><big>)</big> &rarr; list<a class="headerlink" href="#haka-function.<List>.sort" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>order</strong> (<em>string or function</em>) &#8211; String of the field to use for sorting or order function.</li>
+<li><strong>invert</strong> (<em>boolean</em>) &#8211; Invert the result.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><ul class="first last simple">
+<li><strong>list</strong> (<a class="reference internal" href="#haka-object.List" title="List"><tt class="xref haka haka-class docutils literal"><span class="pre">List</span></tt></a>) &#8211; New list containing only the element not filtered out.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p>Sort the element of the list.</p>
+</dd></dl>
+
+</dd></dl>
+
+<p>This object is used by various console commands. Each of them will list the available
+fields as well as the extra method available when it is the case.</p>
+</div>
+<div class="section" id="haka-module.console">
+<span id="general-utilities"></span><h2>8.3. General utilities<a class="headerlink" href="#haka-module.console" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="haka-function.threads">
+<em class="property"> </em><tt class="descname">threads</tt><big>(</big><big>)</big> &rarr; list<a class="headerlink" href="#haka-function.threads" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"><ul class="first last simple">
+<li><strong>list</strong> (<a class="reference internal" href="#haka-object.List" title="List"><tt class="xref haka haka-class docutils literal"><span class="pre">List</span></tt></a>) &#8211; Threads information.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p>Get information about the haka threads (id, packet statistics, byte statistics...).</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="haka-function.rules">
+<em class="property"> </em><tt class="descname">rules</tt><big>(</big><big>)</big> &rarr; list<a class="headerlink" href="#haka-function.rules" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"><ul class="first last simple">
+<li><strong>list</strong> (<a class="reference internal" href="#haka-object.List" title="List"><tt class="xref haka haka-class docutils literal"><span class="pre">List</span></tt></a>) &#8211; Rules information.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p>Get information about the loaded rules (name, event...).</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="haka-function.events">
+<em class="property"> </em><tt class="descname">events</tt><big>(</big><big>)</big> &rarr; list<a class="headerlink" href="#haka-function.events" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"><ul class="first last simple">
+<li><strong>list</strong> (<a class="reference internal" href="#haka-object.List" title="List"><tt class="xref haka haka-class docutils literal"><span class="pre">List</span></tt></a>) &#8211; Events information.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p>Get information about all events registered in haka.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="haka-function.setloglevel">
+<em class="property"> </em><tt class="descname">setloglevel</tt><big>(</big><em>level</em><span class="optional">[</span>, <em>module</em><span class="optional">]</span><big>)</big><a class="headerlink" href="#haka-function.setloglevel" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>level</strong> (<em>string</em>) &#8211; Log level (<tt class="docutils literal"><span class="pre">'debug'</span></tt>, <tt class="docutils literal"><span class="pre">'info'</span></tt>, <tt class="docutils literal"><span class="pre">'warning'</span></tt>, <tt class="docutils literal"><span class="pre">'error'</span></tt> or <tt class="docutils literal"><span class="pre">'fatal'</span></tt>).</li>
+<li><strong>module</strong> (<em>string</em>) &#8211; Module name if needed.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p>Change the logging level of haka.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="haka-function.stop">
+<em class="property"> </em><tt class="descname">stop</tt><big>(</big><big>)</big><a class="headerlink" href="#haka-function.stop" title="Permalink to this definition">¶</a></dt>
+<dd><p>Cleanly stop the running haka.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="protocol-utilities">
+<h2>8.4. Protocol utilities<a class="headerlink" href="#protocol-utilities" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="udp">
+<h3>8.4.1. UDP<a class="headerlink" href="#udp" title="Permalink to this headline">¶</a></h3>
+<dl class="function">
+<dt id="haka-function.udp.connections">
+<em class="property"> </em><tt class="descclassname">udp.</tt><tt class="descname">connections</tt><big>(</big><em>show_dropped=false</em><big>)</big> &rarr; list<a class="headerlink" href="#haka-function.udp.connections" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>show_dropped</strong> (<em>boolean</em>) &#8211; <tt class="docutils literal"><span class="pre">true</span></tt> if also the dropped connections should be listed.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><ul class="first last simple">
+<li><strong>list</strong> (<a class="reference internal" href="#haka-object.UdpConnList" title="UdpConnList"><tt class="xref haka haka-class docutils literal"><span class="pre">UdpConnList</span></tt></a>) &#8211; Udp connections information.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p>Get information about all udp connections currently known in haka (ips, ports,
+statistics, state...).</p>
+<p>Some extra method are available on this list:</p>
+<dl class="class">
+<dt id="haka-object.UdpConnList">
+<em class="property">object </em><tt class="descname">UdpConnList</tt><a class="headerlink" href="#haka-object.UdpConnList" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Extends:</th><td class="field-body"><a class="reference internal" href="#haka-object.List" title="List"><tt class="xref haka haka-class docutils literal"><span class="pre">List</span></tt></a>&nbsp;</td>
+</tr>
+</tbody>
+</table>
+<dl class="method">
+<dt id="haka-function.&lt;UdpConnList&gt;.drop">
+<em class="property"> </em><tt class="descclassname">&lt;UdpConnList&gt;:</tt><tt class="descname">drop</tt><big>(</big><big>)</big><a class="headerlink" href="#haka-function.<UdpConnList>.drop" title="Permalink to this definition">¶</a></dt>
+<dd><p>Drop all connections that are part of the list. This can be used to drop
+one connection or more.</p>
+</dd></dl>
+
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="tcp">
+<h3>8.4.2. TCP<a class="headerlink" href="#tcp" title="Permalink to this headline">¶</a></h3>
+<dl class="function">
+<dt id="haka-function.tcp.connections">
+<em class="property"> </em><tt class="descclassname">tcp.</tt><tt class="descname">connections</tt><big>(</big><em>show_dropped=false</em><big>)</big> &rarr; list<a class="headerlink" href="#haka-function.tcp.connections" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>show_dropped</strong> (<em>boolean</em>) &#8211; <tt class="docutils literal"><span class="pre">true</span></tt> if also the dropped connections should be listed.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><ul class="first last simple">
+<li><strong>list</strong> (<a class="reference internal" href="#haka-object.TcpConnList" title="TcpConnList"><tt class="xref haka haka-class docutils literal"><span class="pre">TcpConnList</span></tt></a>) &#8211; Tdp connections information.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p>Get information about all tcp connections currently known in haka (ips, ports,
+statistics, state...).</p>
+<p>Some extra method are available on this list:</p>
+<dl class="class">
+<dt id="haka-object.TcpConnList">
+<em class="property">object </em><tt class="descname">TcpConnList</tt><a class="headerlink" href="#haka-object.TcpConnList" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Extends:</th><td class="field-body"><a class="reference internal" href="#haka-object.List" title="List"><tt class="xref haka haka-class docutils literal"><span class="pre">List</span></tt></a>&nbsp;</td>
+</tr>
+</tbody>
+</table>
+<dl class="method">
+<dt id="haka-function.&lt;TcpConnList&gt;.drop">
+<em class="property"> </em><tt class="descclassname">&lt;TcpConnList&gt;:</tt><tt class="descname">drop</tt><big>(</big><big>)</big><a class="headerlink" href="#haka-function.<TcpConnList>.drop" title="Permalink to this definition">¶</a></dt>
+<dd><p>Drop all connections that are part of the list. This can be used to drop
+one connection or more.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="haka-function.&lt;TcpConnList&gt;.reset">
+<em class="property"> </em><tt class="descclassname">&lt;TcpConnList&gt;:</tt><tt class="descname">reset</tt><big>(</big><big>)</big><a class="headerlink" href="#haka-function.<TcpConnList>.reset" title="Permalink to this definition">¶</a></dt>
+<dd><p>Reset all connections that are part of the list. This can be used to reset
+one connection or more.</p>
+</dd></dl>
+
+</dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+</div>
+
+
+		</div>
+	</div>
+</div>
+
+
+
+<footer id="footer">
+	<div class="row" role="complementary">
+		<div class="medium-12 columns">
+			&copy; Copyright 2014, Arkoon Network Security, OpenWide and Telecom ParisTech.
+		</div>
+	</div>
+</footer>
+<script>
+	  $(document).foundation();
+</script>
+
+
+
+<script type="text/javascript" src="http://www.haka-security.org/js/track.js"></script>
+
+
+  </body>
+</html>

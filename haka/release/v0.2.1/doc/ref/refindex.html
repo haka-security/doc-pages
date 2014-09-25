@@ -1,0 +1,236 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Welcome to Haka’s User Reference Guide! &mdash; Haka runtime 0.2.1 documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/haka.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/breathe.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '0.2.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../_static/js/scripts.js"></script>
+    <script type="text/javascript" src="../../_static/js/vendor/modernizr.js"></script>
+    <script type="text/javascript" src="../../_static/js/foundation/foundation.js"></script>
+    <script type="text/javascript" src="../../_static/js/foundation/foundation.topbar.js"></script>
+    <link rel="top" title="Haka runtime 0.2.1 documentation" href="../../index.html" />
+    <link rel="next" title="1. Introduction" href="intro.html" />
+    <link rel="prev" title="9. Debugging" href="../user/debug.html" /> 
+  </head>
+  <body>
+
+
+<header id="header" role="banner">
+	<div class="row">
+		<div class="medium-6 columns">
+			<h1 class="title"><a rel="home" title="Haka" href="http://www.haka-security.org">Haka</a></h1>
+			<h2 class="description">Software Defined Security</h2>
+		</div>
+		<div class="medium-6 columns">
+			<div id="version">Version 0.2.1</div>
+		</div>
+	</div>
+</header>
+
+<div class="contain-to-grid sticky">
+	
+
+<nav id="navbar" class="top-bar" data-topbar>
+	<ul class="title-area">
+		<!-- This is required for toggle-topbar to work -->
+		<li class="name"></li>
+		<li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
+	</ul>
+	<section class="top-bar-section">
+		<ul class="left">
+			<li class=" ">
+				<a href="../user/userindex.html">Users</a>
+			</li>
+			<li class="active ">
+				<a href="#" class="#">References</a>
+			</li>
+			<li class=" ">
+				<a href="../developer/devindex.html" class="">Developers</a>
+			</li>
+			<li class=" ">
+				<a href="../faq.html" class="">Faq</a>
+			</li>
+			<li class="has-form">
+
+
+	<form class="search" action="../../search.html" method="get" id="searchbox" style="display: none">
+		<input type="hidden" name="area" value="default" />
+		<input type="hidden" name="check_keywords" value="yes" />
+		<div class="row collapse">
+			<div class="medium-11 columns">
+				<input type="text" name="q" placeholder="Search" />
+			</div>
+			<div class="medium-1 columns" id="clean-search-highlight">
+			</div>
+		</div>
+	</form>
+	<script type="text/javascript">$('#searchbox').show(0);</script>
+</li>
+		</ul>
+		<ul class="right">
+				<li class="right"><a href="intro.html" title="1. Introduction">Next &rarr;</a></li>
+				<li class="right"><a href="../user/debug.html" title="9. Debugging">&larr; Prev</a></li>
+				<li class="right"><a href="../../index.html" title="Haka runtime 0.2.1 documentation">Up &uarr;</a></li>
+
+			<li class=" right"><a href="../../genindex.html">Index</a></li>
+			<li class=" right"><a href="../../haka-modindex.html">Modules</a></li>
+		</ul>
+	</section>
+</nav>
+</div>
+<div id="content">
+	<div class="row">
+		<ul id="breadcrumb" class="breadcrumbs medium-12 columns">
+			
+			<li class="current"><a href="#">Welcome to Haka&#8217;s User Reference Guide!</a></li>
+		</ul>
+	</div>
+	<div class="row">
+		<div class="medium-12 columns">
+			
+  <div class="section" id="welcome-to-haka-s-user-reference-guide">
+<h1>Welcome to Haka&#8217;s User Reference Guide!<a class="headerlink" href="#welcome-to-haka-s-user-reference-guide" title="Permalink to this headline">¶</a></h1>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="intro.html">1. Introduction</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="intro.html#module">1.1. Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="intro.html#function">1.2. Function</a></li>
+<li class="toctree-l2"><a class="reference internal" href="intro.html#variable">1.3. Variable</a></li>
+<li class="toctree-l2"><a class="reference internal" href="intro.html#object">1.4. Object</a></li>
+<li class="toctree-l2"><a class="reference internal" href="intro.html#event">1.5. Event</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="packet.html">2. Packet</a></li>
+<li class="toctree-l1"><a class="reference internal" href="vbuffer.html">3. Buffers</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="vbuffer.html#haka-module.haka">3.1. Buffer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="vbuffer.html#sub-buffer">3.2. Sub-buffer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="vbuffer.html#iterator">3.3. Iterator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="vbuffer.html#streams">3.4. Streams</a></li>
+<li class="toctree-l2"><a class="reference internal" href="vbuffer.html#stream-coroutine-manager">3.5. Stream coroutine manager</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="log.html">4. Logging</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="log.html#example">4.1. Example</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="alert.html">5. Alerting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="regexp.html">6. Regular Expression</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="regexp.html#regular-expression-format">6.1. Regular expression format</a></li>
+<li class="toctree-l2"><a class="reference internal" href="regexp.html#module">6.2. Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="regexp.html#compiled-regular-expression">6.3. Compiled regular expression</a></li>
+<li class="toctree-l2"><a class="reference internal" href="regexp.html#regular-expression-sink">6.4. Regular expression sink</a></li>
+<li class="toctree-l2"><a class="reference internal" href="regexp.html#example">6.5. Example</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="hakadissector.html">7. Haka dissectors</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../modules/protocol/raw/doc/raw.html">7.1. Raw</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../modules/protocol/ipv4/doc/ipv4.html">7.2. Ipv4</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../modules/protocol/icmp/doc/icmp.html">7.3. Icmp</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../modules/protocol/tcp/doc/tcp.html">7.4. Tcp</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../modules/protocol/tcp/doc/tcp_connection.html">7.5. Tcp Connection</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../modules/protocol/udp/doc/udp.html">7.6. Udp</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../modules/protocol/udp/doc/udp_connection.html">7.7. Udp Connection</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../modules/protocol/http/doc/http.html">7.8. Http</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../modules/protocol/dns/doc/dns.html">7.9. Dns</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="hakamodule.html">8. Haka modules</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../modules/misc/geoip/doc/geoip.html">8.1. Geoip</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../modules/misc/elasticsearch/doc/elasticsearch.html">8.2. ElasticSearch</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="rule.html">9. Rules</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="rule.html#events">9.1. Events</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rule.html#single-rule">9.2. Single Rule</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rule.html#interactive-rule">9.3. Interactive rule</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rule.html#rule-group">9.4. Rule Group</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="grammar.html">10. Grammar</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="grammar.html#elements">10.1. Elements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="grammar.html#haka-module.haka.grammar.converter">10.2. Converters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="grammar.html#compiled-grammar">10.3. Compiled grammar</a></li>
+<li class="toctree-l2"><a class="reference internal" href="grammar.html#parsing-error">10.4. Parsing error</a></li>
+<li class="toctree-l2"><a class="reference internal" href="grammar.html#parsing-context">10.5. Parsing context</a></li>
+<li class="toctree-l2"><a class="reference internal" href="grammar.html#example">10.6. Example</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="state_machine.html">11. State Machine</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="state_machine.html#haka-module.haka.state_machine">11.1. Description</a></li>
+<li class="toctree-l2"><a class="reference internal" href="state_machine.html#instance">11.2. Instance</a></li>
+<li class="toctree-l2"><a class="reference internal" href="state_machine.html#example">11.3. Example</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="class.html">12. Class</a></li>
+<li class="toctree-l1"><a class="reference internal" href="context.html">13. Context</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dissector.html">14. Dissector</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="dissector.html#haka-module.haka.dissector">14.1. Utilities</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dissector.html#haka-module.haka.helper">14.2. Dissector types</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dissector.html#examples">14.3. Examples</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="misc.html">15. Misc</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="misc.html#haka-module.haka">15.1. Threads</a></li>
+<li class="toctree-l2"><a class="reference internal" href="misc.html#exit">15.2. Exit</a></li>
+<li class="toctree-l2"><a class="reference internal" href="misc.html#time">15.3. Time</a></li>
+<li class="toctree-l2"><a class="reference internal" href="misc.html#general-events">15.4. General Events</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="console.html">16. Console</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="console.html#haka-module.list">16.1. List</a></li>
+<li class="toctree-l2"><a class="reference internal" href="console.html#new-function">16.2. New function</a></li>
+<li class="toctree-l2"><a class="reference internal" href="console.html#example">16.3. Example</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+
+		</div>
+	</div>
+</div>
+
+
+
+<footer id="footer">
+	<div class="row" role="complementary">
+		<div class="medium-12 columns">
+			&copy; Copyright 2014, Arkoon Network Security, OpenWide and Telecom ParisTech.
+		</div>
+	</div>
+</footer>
+<script>
+	  $(document).foundation();
+</script>
+
+
+
+<script type="text/javascript" src="http://www.haka-security.org/js/track.js"></script>
+
+
+  </body>
+</html>

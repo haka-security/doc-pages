@@ -1,0 +1,749 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>3.3. Threads utilities &mdash; Haka runtime 0.2.1 documentation</title>
+    
+    <link rel="stylesheet" href="../../../_static/haka.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/breathe.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../',
+        VERSION:     '0.2.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../../_static/js/scripts.js"></script>
+    <script type="text/javascript" src="../../../_static/js/vendor/modernizr.js"></script>
+    <script type="text/javascript" src="../../../_static/js/foundation/foundation.js"></script>
+    <script type="text/javascript" src="../../../_static/js/foundation/foundation.topbar.js"></script>
+    <link rel="top" title="Haka runtime 0.2.1 documentation" href="../../../index.html" />
+    <link rel="up" title="3. Developer reference guide" href="../devref.html" />
+    <link rel="next" title="3.4. Log" href="log.html" />
+    <link rel="prev" title="3.1. Types" href="utils.html" /> 
+  </head>
+  <body>
+
+
+<header id="header" role="banner">
+	<div class="row">
+		<div class="medium-6 columns">
+			<h1 class="title"><a rel="home" title="Haka" href="http://www.haka-security.org">Haka</a></h1>
+			<h2 class="description">Software Defined Security</h2>
+		</div>
+		<div class="medium-6 columns">
+			<div id="version">Version 0.2.1</div>
+		</div>
+	</div>
+</header>
+
+<div class="contain-to-grid sticky">
+	
+
+<nav id="navbar" class="top-bar" data-topbar>
+	<ul class="title-area">
+		<!-- This is required for toggle-topbar to work -->
+		<li class="name"></li>
+		<li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
+	</ul>
+	<section class="top-bar-section">
+		<ul class="left">
+			<li class=" ">
+				<a href="../../user/userindex.html">Users</a>
+			</li>
+			<li class=" ">
+				<a href="../../ref/refindex.html" class="../../ref/refindex.html">References</a>
+			</li>
+			<li class=" active">
+				<a href="../devindex.html" class="">Developers</a>
+			</li>
+			<li class=" ">
+				<a href="../../faq.html" class="">Faq</a>
+			</li>
+			<li class="has-form">
+
+
+	<form class="search" action="../../../search.html" method="get" id="searchbox" style="display: none">
+		<input type="hidden" name="area" value="default" />
+		<input type="hidden" name="check_keywords" value="yes" />
+		<div class="row collapse">
+			<div class="medium-11 columns">
+				<input type="text" name="q" placeholder="Search" />
+			</div>
+			<div class="medium-1 columns" id="clean-search-highlight">
+			</div>
+		</div>
+	</form>
+	<script type="text/javascript">$('#searchbox').show(0);</script>
+</li>
+		</ul>
+		<ul class="right">
+				<li class="right"><a href="log.html" title="3.4. Log">Next &rarr;</a></li>
+				<li class="right"><a href="utils.html" title="3.1. Types">&larr; Prev</a></li>
+				<li class="right"><a href="../devref.html" title="3. Developer reference guide">Up &uarr;</a></li>
+
+			<li class=" right"><a href="../../../genindex.html">Index</a></li>
+			<li class=" right"><a href="../../../haka-modindex.html">Modules</a></li>
+		</ul>
+	</section>
+</nav>
+</div>
+<div id="content">
+	<div class="row">
+		<ul id="breadcrumb" class="breadcrumbs medium-12 columns">
+			
+			<li><a href="../devindex.html">Welcome to Haka&#8217;s Developer Guide!</a></li>
+			
+			<li><a href="../devref.html">3. Developer reference guide</a></li>
+			
+			<li class="current"><a href="#">3.3. Threads utilities</a></li>
+		</ul>
+	</div>
+	<div class="row">
+		<div class="medium-12 columns">
+			
+  <div class="section" id="threads-utilities">
+<h1>3.3. Threads utilities<a class="headerlink" href="#threads-utilities" title="Permalink to this headline">¶</a></h1>
+<p></p>
+<p>Thread utilities functions. </p>
+<em>Defines</em><blockquote>
+<div><p><span class="target" id="project0group__Thread_1gac3882c06344a97d3939f6882f68499d4"></span><strong>THREAD_CANCELED</strong></p>
+<blockquote>
+<div><p></p>
+<p>Thread return value when canceled. </p>
+</div></blockquote>
+<p><span class="target" id="project0group__Mutex_1ga96be0bfc33e7e113099c7546798bec99"></span><strong>MUTEX_INIT</strong></p>
+<blockquote>
+<div><p></p>
+<p>Mutex static initializer. </p>
+</div></blockquote>
+<p><span class="target" id="project0group__RWLock_1gabbc32faa8e101d59ac71e9ea8f2bc964"></span><strong>RWLOCK_INIT</strong></p>
+<blockquote>
+<div><p></p>
+<p>Read-write lock static initializer. </p>
+</div></blockquote>
+</div></blockquote>
+<em>Typedefs</em><blockquote>
+<div><p><span class="target" id="project0group__Thread_1gaa406fd87cfd69d7c0a93b6a241978712"></span>typedef pthread_t <strong>thread_t</strong></p>
+<blockquote>
+<div><p></p>
+<p>Opaque thread type. </p>
+</div></blockquote>
+<p><span class="target" id="project0group__Mutex_1ga6bfdd7a014fe4d4d6c392df201d822dd"></span>typedef pthread_mutex_t <strong>mutex_t</strong></p>
+<blockquote>
+<div><p></p>
+<p>Opaque mutex type. </p>
+</div></blockquote>
+<p><span class="target" id="project0group__Spinlock_1gaab88bccc9094ecf4c0ce289d6c5f0138"></span>typedef pthread_spinlock_t <strong>spinlock_t</strong></p>
+<blockquote>
+<div><p></p>
+<p>Opaque spinlock type. </p>
+</div></blockquote>
+<p><span class="target" id="project0group__RWLock_1gaa3a0af2021defb226f972ec12b9289ab"></span>typedef pthread_rwlock_t <strong>rwlock_t</strong></p>
+<blockquote>
+<div><p></p>
+<p>Opaque read-write lock type. </p>
+</div></blockquote>
+<p><span class="target" id="project0group__Semaphore_1ga906ed21532884d221dbfe30488d97b88"></span>typedef sem_t <strong>semaphore_t</strong></p>
+<blockquote>
+<div><p></p>
+<p>Opaque semaphore type. </p>
+</div></blockquote>
+<p><span class="target" id="project0group__Barrier_1gaa651a7acf321228f831752d775baa1d6"></span>typedef pthread_barrier_t <strong>barrier_t</strong></p>
+<blockquote>
+<div><p></p>
+<p>Opaque barrier type. </p>
+</div></blockquote>
+<p><span class="target" id="project0group__TLS_1ga3255b1f0c4e096f68c0a6ebfe3fd8b64"></span>typedef pthread_key_t <strong>local_storage_t</strong></p>
+<blockquote>
+<div><p></p>
+<p>Opaque local storage type. </p>
+</div></blockquote>
+<p><span class="target" id="project0group__Atomic_1ga755ba8d9debb62736845f4b66464e717"></span>typedef <a class="reference internal" href="utils.html#project0types_8h_1a8949da768e2857b8f602a69c5b68828a"><em>uint32</em></a> <strong>atomic_t</strong></p>
+<blockquote>
+<div><p></p>
+<p>32 bit atomic opaque type. </p>
+</div></blockquote>
+<p><span class="target" id="project0group__Atomic_1gaa89a0876d195f66eb667dcfd5574d827"></span>typedef <a class="reference internal" href="utils.html#project0types_8h_1a6861bed95d73703b3730053f3a6065bf"><em>uint64</em></a> <strong>atomic64_t</strong></p>
+<blockquote>
+<div><p></p>
+<p>64 bit atomic opaque type. </p>
+</div></blockquote>
+</div></blockquote>
+<em>Enums</em><blockquote>
+<div><p><span class="target" id="project0group__Thread_1gae97affdedb9134ae2cab3789a1131996"></span><strong>thread_cancel_t enum</strong></p>
+<blockquote>
+<div><p></p>
+<p>Thread cancel mode. </p>
+<p><em>Values:</em></p>
+<ul class="breatheenumvalues">
+<li><tt class="first docutils literal"><span class="pre">THREAD_CANCEL_DEFERRED</span></tt> - <p>Deferred mode. </p>
+</li>
+<li><tt class="first docutils literal"><span class="pre">THREAD_CANCEL_ASYNCHRONOUS</span></tt> - <p>Asynchronous mode. </p>
+</li>
+</ul>
+</div></blockquote>
+</div></blockquote>
+<em>Functions</em><blockquote>
+<div><p><span class="target" id="project0group__Thread_1ga0701950476e1dff5f7db882897d3ddc9"></span><div class="line-block">
+<div class="line">int <strong>thread_get_packet_capture_cpu_count</strong>()</div>
+</div>
+</p>
+<blockquote>
+<div><p></p>
+<p>Get the number of thread to be used by the application for packet capture. </p>
+</div></blockquote>
+<p><span class="target" id="project0group__Thread_1ga2f041f5e2bacdb0f17626eb976424048"></span><div class="line-block">
+<div class="line">void <strong>thread_set_packet_capture_cpu_count</strong>(int count)</div>
+</div>
+</p>
+<blockquote>
+<div><p></p>
+<p>Set the number of thread to be used by the application for packet capture. <dl class="docutils">
+<dt><strong>Parameters</strong></dt>
+<dd><ul class="breatheparameterlist first last">
+<li><tt class="first docutils literal"><span class="pre">count</span></tt> - <p>Number of thread to use for capture. </p>
+</li>
+</ul>
+</dd>
+</dl>
+</p>
+</div></blockquote>
+<p><span class="target" id="project0group__Thread_1ga51e8ba296b1dbc2c60d2a7fc5bfa87c3"></span><div class="line-block">
+<div class="line">int <strong>thread_get_cpu_count</strong>()</div>
+</div>
+</p>
+<blockquote>
+<div><p></p>
+<p>Get the number of CPUs. </p>
+</div></blockquote>
+<p><span class="target" id="project0group__Thread_1ga0a39c6a16229bb941dd797ad929a74e4"></span><div class="line-block">
+<div class="line"><a class="reference internal" href="utils.html#project0types_8h_1a97a80ca1602ebf2303258971a2c938e2"><em>bool</em></a> <strong>thread_create</strong>(<a class="reference internal" href="#project0group__Thread_1gaa406fd87cfd69d7c0a93b6a241978712"><em>thread_t</em></a>  * thread, void *(*)(void *) main, void * param)</div>
+</div>
+</p>
+<blockquote>
+<div><p></p>
+<p>Start a new thread. </p>
+</div></blockquote>
+<p><span class="target" id="project0group__Thread_1ga71f0ab6900d00f7272ec62493e0676f4"></span><div class="line-block">
+<div class="line"><a class="reference internal" href="#project0group__Thread_1gaa406fd87cfd69d7c0a93b6a241978712"><em>thread_t</em></a> <strong>thread_current</strong>()</div>
+</div>
+</p>
+<blockquote>
+<div><p></p>
+<p>Get the current thread. </p>
+</div></blockquote>
+<p><span class="target" id="project0group__Thread_1gadb94376b055cd1464c04bda7abc75860"></span><div class="line-block">
+<div class="line"><a class="reference internal" href="utils.html#project0types_8h_1a97a80ca1602ebf2303258971a2c938e2"><em>bool</em></a> <strong>thread_join</strong>(<a class="reference internal" href="#project0group__Thread_1gaa406fd87cfd69d7c0a93b6a241978712"><em>thread_t</em></a> thread, void ** ret)</div>
+</div>
+</p>
+<blockquote>
+<div><p></p>
+<p>Join a thread. </p>
+</div></blockquote>
+<p><span class="target" id="project0group__Thread_1gab361386374ce6b00bbddbb7531121282"></span><div class="line-block">
+<div class="line"><a class="reference internal" href="utils.html#project0types_8h_1a97a80ca1602ebf2303258971a2c938e2"><em>bool</em></a> <strong>thread_cancel</strong>(<a class="reference internal" href="#project0group__Thread_1gaa406fd87cfd69d7c0a93b6a241978712"><em>thread_t</em></a> thread)</div>
+</div>
+</p>
+<blockquote>
+<div><p></p>
+<p>Cancel a running thread. </p>
+</div></blockquote>
+<p><span class="target" id="project0group__Thread_1ga47f4964e86587abf7da2d16612b332c8"></span><div class="line-block">
+<div class="line">int <strong>thread_getid</strong>()</div>
+</div>
+</p>
+<blockquote>
+<div><p></p>
+<p>Get current thread id. </p>
+</div></blockquote>
+<p><span class="target" id="project0group__Thread_1ga2e3f7013cf1fc8811b6976240d4dd6cf"></span><div class="line-block">
+<div class="line">void <strong>thread_setid</strong>(int id)</div>
+</div>
+</p>
+<blockquote>
+<div><p></p>
+<p>Set current thread id. <dl class="docutils">
+<dt><strong>Parameters</strong></dt>
+<dd><ul class="breatheparameterlist first last">
+<li><tt class="first docutils literal"><span class="pre">id</span></tt> - <p>New thread identifier. </p>
+</li>
+</ul>
+</dd>
+</dl>
+</p>
+</div></blockquote>
+<p><span class="target" id="project0group__Thread_1ga6a34eb6110a1952b2d390aa4455d49a7"></span><div class="line-block">
+<div class="line"><a class="reference internal" href="utils.html#project0types_8h_1a97a80ca1602ebf2303258971a2c938e2"><em>bool</em></a> <strong>thread_sigmask</strong>(int how, sigset_t * set, sigset_t * oldset)</div>
+</div>
+</p>
+<blockquote>
+<div><p></p>
+<p>Set signal mask on a thread. </p>
+</div></blockquote>
+<p><span class="target" id="project0group__Thread_1gaa0f38d78305148f1c42e502fd270f448"></span><div class="line-block">
+<div class="line"><a class="reference internal" href="utils.html#project0types_8h_1a97a80ca1602ebf2303258971a2c938e2"><em>bool</em></a> <strong>thread_signal</strong>(<a class="reference internal" href="#project0group__Thread_1gaa406fd87cfd69d7c0a93b6a241978712"><em>thread_t</em></a> thread, int sig)</div>
+</div>
+</p>
+<blockquote>
+<div><p></p>
+<p>Send a signal to the given thread. </p>
+</div></blockquote>
+<p><span class="target" id="project0group__Thread_1ga717bb355e202143ccdfa0cc84e763be3"></span><div class="line-block">
+<div class="line"><a class="reference internal" href="utils.html#project0types_8h_1a97a80ca1602ebf2303258971a2c938e2"><em>bool</em></a> <strong>thread_setcancelstate</strong>(<a class="reference internal" href="utils.html#project0types_8h_1a97a80ca1602ebf2303258971a2c938e2"><em>bool</em></a> enable)</div>
+</div>
+</p>
+<blockquote>
+<div><p></p>
+<p>Change thread support for cancel. </p>
+</div></blockquote>
+<p><span class="target" id="project0group__Thread_1gab661d7826db1439737194bdfc19d9eef"></span><div class="line-block">
+<div class="line"><a class="reference internal" href="utils.html#project0types_8h_1a97a80ca1602ebf2303258971a2c938e2"><em>bool</em></a> <strong>thread_setcanceltype</strong>(enum  <a class="reference internal" href="#project0group__Thread_1gae97affdedb9134ae2cab3789a1131996"><em>thread_cancel_t</em></a> type)</div>
+</div>
+</p>
+<blockquote>
+<div><p></p>
+<p>Change thread cancel mode. </p>
+</div></blockquote>
+<p><span class="target" id="project0group__Thread_1ga54db98e945f58f4a16b5b6c8fcbe2af4"></span><div class="line-block">
+<div class="line">void <strong>thread_testcancel</strong>()</div>
+</div>
+</p>
+<blockquote>
+<div><p></p>
+<p>Check for cancel. </p>
+</div></blockquote>
+<p><span class="target" id="project0group__Thread_1ga4e49a82c764e8984a55dca4f9d6b93dd"></span><div class="line-block">
+<div class="line">void <strong>thread_protect</strong>(void(*)(void *) run, void * runarg, void(*)(void *) finish, void * finisharg)</div>
+</div>
+</p>
+<blockquote>
+<div><p></p>
+<p>Run a function in protected mode. If a cancel is raised, then a cleanup function is called before leaving the thread. </p>
+</div></blockquote>
+<p><span class="target" id="project0group__Thread_1gaf66034da01b51b600c830d3c0a52473b"></span><div class="line-block">
+<div class="line"><a class="reference internal" href="#project0group__Thread_1gaa406fd87cfd69d7c0a93b6a241978712"><em>thread_t</em></a> <strong>thread_main</strong>()</div>
+</div>
+</p>
+<blockquote>
+<div><p></p>
+<p>Get the main thread handle. </p>
+</div></blockquote>
+<p><span class="target" id="project0group__Thread_1gaf3ecd6bfde637cfd9acc2a2f4093339c"></span><div class="line-block">
+<div class="line"><a class="reference internal" href="#project0group__Thread_1gaa406fd87cfd69d7c0a93b6a241978712"><em>thread_t</em></a> <strong>thread_self</strong>()</div>
+</div>
+</p>
+<blockquote>
+<div><p></p>
+<p>Get the current thread. </p>
+</div></blockquote>
+<p><span class="target" id="project0group__Thread_1gac7863736c86eca1f4ccb11a6f08c630a"></span><div class="line-block">
+<div class="line"><a class="reference internal" href="utils.html#project0types_8h_1a97a80ca1602ebf2303258971a2c938e2"><em>bool</em></a> <strong>thread_equal</strong>(<a class="reference internal" href="#project0group__Thread_1gaa406fd87cfd69d7c0a93b6a241978712"><em>thread_t</em></a> a, <a class="reference internal" href="#project0group__Thread_1gaa406fd87cfd69d7c0a93b6a241978712"><em>thread_t</em></a> b)</div>
+</div>
+</p>
+<blockquote>
+<div><p></p>
+<p>Check if two threads are the same. </p>
+</div></blockquote>
+<p><span class="target" id="project0group__Thread_1gaf3a644c4630384e40b76490adcfef2ae"></span><div class="line-block">
+<div class="line"><a class="reference internal" href="utils.html#project0types_8h_1a97a80ca1602ebf2303258971a2c938e2"><em>bool</em></a> <strong>thread_kill</strong>(<a class="reference internal" href="#project0group__Thread_1gaa406fd87cfd69d7c0a93b6a241978712"><em>thread_t</em></a> thread, int sig)</div>
+</div>
+</p>
+<blockquote>
+<div><p></p>
+<p>Raise a signal on the given thread. </p>
+</div></blockquote>
+<p><span class="target" id="project0group__Mutex_1ga232f2c400197fac9c7e0b96e18a7e8d6"></span><div class="line-block">
+<div class="line"><a class="reference internal" href="utils.html#project0types_8h_1a97a80ca1602ebf2303258971a2c938e2"><em>bool</em></a> <strong>mutex_init</strong>(<a class="reference internal" href="#project0group__Mutex_1ga6bfdd7a014fe4d4d6c392df201d822dd"><em>mutex_t</em></a>  * mutex, <a class="reference internal" href="utils.html#project0types_8h_1a97a80ca1602ebf2303258971a2c938e2"><em>bool</em></a> recursive)</div>
+</div>
+</p>
+<blockquote>
+<div><p></p>
+<p></p>
+</div></blockquote>
+<p><span class="target" id="project0group__Mutex_1gad9658d515ac5cd0abdfae6ee4c97b8e5"></span><div class="line-block">
+<div class="line"><a class="reference internal" href="utils.html#project0types_8h_1a97a80ca1602ebf2303258971a2c938e2"><em>bool</em></a> <strong>mutex_destroy</strong>(<a class="reference internal" href="#project0group__Mutex_1ga6bfdd7a014fe4d4d6c392df201d822dd"><em>mutex_t</em></a>  * mutex)</div>
+</div>
+</p>
+<blockquote>
+<div><p></p>
+<p></p>
+</div></blockquote>
+<p><span class="target" id="project0group__Mutex_1ga854e7d51da5d11f1a1301b2d0daf4642"></span><div class="line-block">
+<div class="line"><a class="reference internal" href="utils.html#project0types_8h_1a97a80ca1602ebf2303258971a2c938e2"><em>bool</em></a> <strong>mutex_lock</strong>(<a class="reference internal" href="#project0group__Mutex_1ga6bfdd7a014fe4d4d6c392df201d822dd"><em>mutex_t</em></a>  * mutex)</div>
+</div>
+</p>
+<blockquote>
+<div><p></p>
+<p></p>
+</div></blockquote>
+<p><span class="target" id="project0group__Mutex_1gaeca785ca57e2e8af6ecbc953d4aa0b68"></span><div class="line-block">
+<div class="line"><a class="reference internal" href="utils.html#project0types_8h_1a97a80ca1602ebf2303258971a2c938e2"><em>bool</em></a> <strong>mutex_trylock</strong>(<a class="reference internal" href="#project0group__Mutex_1ga6bfdd7a014fe4d4d6c392df201d822dd"><em>mutex_t</em></a>  * mutex)</div>
+</div>
+</p>
+<blockquote>
+<div><p></p>
+<p></p>
+</div></blockquote>
+<p><span class="target" id="project0group__Mutex_1ga8d56c416448ec682366396e31a6b0fcb"></span><div class="line-block">
+<div class="line"><a class="reference internal" href="utils.html#project0types_8h_1a97a80ca1602ebf2303258971a2c938e2"><em>bool</em></a> <strong>mutex_unlock</strong>(<a class="reference internal" href="#project0group__Mutex_1ga6bfdd7a014fe4d4d6c392df201d822dd"><em>mutex_t</em></a>  * mutex)</div>
+</div>
+</p>
+<blockquote>
+<div><p></p>
+<p></p>
+</div></blockquote>
+<p><span class="target" id="project0group__Spinlock_1ga49957d14906fb09e0659f6fd4e1882ae"></span><div class="line-block">
+<div class="line"><a class="reference internal" href="utils.html#project0types_8h_1a97a80ca1602ebf2303258971a2c938e2"><em>bool</em></a> <strong>spinlock_init</strong>(<a class="reference internal" href="#project0group__Spinlock_1gaab88bccc9094ecf4c0ce289d6c5f0138"><em>spinlock_t</em></a>  * lock)</div>
+</div>
+</p>
+<blockquote>
+<div><p></p>
+<p></p>
+</div></blockquote>
+<p><span class="target" id="project0group__Spinlock_1ga64fcc7e942e3150d66db1e3445ee9e0e"></span><div class="line-block">
+<div class="line"><a class="reference internal" href="utils.html#project0types_8h_1a97a80ca1602ebf2303258971a2c938e2"><em>bool</em></a> <strong>spinlock_destroy</strong>(<a class="reference internal" href="#project0group__Spinlock_1gaab88bccc9094ecf4c0ce289d6c5f0138"><em>spinlock_t</em></a>  * lock)</div>
+</div>
+</p>
+<blockquote>
+<div><p></p>
+<p></p>
+</div></blockquote>
+<p><span class="target" id="project0group__Spinlock_1gaad300f01231606a1f37c83cb2a88baba"></span><div class="line-block">
+<div class="line"><a class="reference internal" href="utils.html#project0types_8h_1a97a80ca1602ebf2303258971a2c938e2"><em>bool</em></a> <strong>spinlock_lock</strong>(<a class="reference internal" href="#project0group__Spinlock_1gaab88bccc9094ecf4c0ce289d6c5f0138"><em>spinlock_t</em></a>  * lock)</div>
+</div>
+</p>
+<blockquote>
+<div><p></p>
+<p></p>
+</div></blockquote>
+<p><span class="target" id="project0group__Spinlock_1ga0a063b759d871263e580355ed8fda9df"></span><div class="line-block">
+<div class="line"><a class="reference internal" href="utils.html#project0types_8h_1a97a80ca1602ebf2303258971a2c938e2"><em>bool</em></a> <strong>spinlock_trylock</strong>(<a class="reference internal" href="#project0group__Spinlock_1gaab88bccc9094ecf4c0ce289d6c5f0138"><em>spinlock_t</em></a>  * lock)</div>
+</div>
+</p>
+<blockquote>
+<div><p></p>
+<p></p>
+</div></blockquote>
+<p><span class="target" id="project0group__Spinlock_1gadcaba6ca16200bf0eaa891f2d075ea70"></span><div class="line-block">
+<div class="line"><a class="reference internal" href="utils.html#project0types_8h_1a97a80ca1602ebf2303258971a2c938e2"><em>bool</em></a> <strong>spinlock_unlock</strong>(<a class="reference internal" href="#project0group__Spinlock_1gaab88bccc9094ecf4c0ce289d6c5f0138"><em>spinlock_t</em></a>  * lock)</div>
+</div>
+</p>
+<blockquote>
+<div><p></p>
+<p></p>
+</div></blockquote>
+<p><span class="target" id="project0group__RWLock_1gae6537b031601c07bdf2e77ac51140649"></span><div class="line-block">
+<div class="line"><a class="reference internal" href="utils.html#project0types_8h_1a97a80ca1602ebf2303258971a2c938e2"><em>bool</em></a> <strong>rwlock_init</strong>(<a class="reference internal" href="#project0group__RWLock_1gaa3a0af2021defb226f972ec12b9289ab"><em>rwlock_t</em></a>  * rwlock)</div>
+</div>
+</p>
+<blockquote>
+<div><p></p>
+<p></p>
+</div></blockquote>
+<p><span class="target" id="project0group__RWLock_1ga32322a65cd3a59881b9f60399d7a6c35"></span><div class="line-block">
+<div class="line"><a class="reference internal" href="utils.html#project0types_8h_1a97a80ca1602ebf2303258971a2c938e2"><em>bool</em></a> <strong>rwlock_destroy</strong>(<a class="reference internal" href="#project0group__RWLock_1gaa3a0af2021defb226f972ec12b9289ab"><em>rwlock_t</em></a>  * rwlock)</div>
+</div>
+</p>
+<blockquote>
+<div><p></p>
+<p></p>
+</div></blockquote>
+<p><span class="target" id="project0group__RWLock_1ga0d18ef20edea119f3d2c5108d2f1a9c5"></span><div class="line-block">
+<div class="line"><a class="reference internal" href="utils.html#project0types_8h_1a97a80ca1602ebf2303258971a2c938e2"><em>bool</em></a> <strong>rwlock_readlock</strong>(<a class="reference internal" href="#project0group__RWLock_1gaa3a0af2021defb226f972ec12b9289ab"><em>rwlock_t</em></a>  * rwlock)</div>
+</div>
+</p>
+<blockquote>
+<div><p></p>
+<p></p>
+</div></blockquote>
+<p><span class="target" id="project0group__RWLock_1gaaf6562a35f5a568e4d651a3fdb0cff73"></span><div class="line-block">
+<div class="line"><a class="reference internal" href="utils.html#project0types_8h_1a97a80ca1602ebf2303258971a2c938e2"><em>bool</em></a> <strong>rwlock_tryreadlock</strong>(<a class="reference internal" href="#project0group__RWLock_1gaa3a0af2021defb226f972ec12b9289ab"><em>rwlock_t</em></a>  * rwlock)</div>
+</div>
+</p>
+<blockquote>
+<div><p></p>
+<p></p>
+</div></blockquote>
+<p><span class="target" id="project0group__RWLock_1ga20be83015d73333fb008ba298bca51dc"></span><div class="line-block">
+<div class="line"><a class="reference internal" href="utils.html#project0types_8h_1a97a80ca1602ebf2303258971a2c938e2"><em>bool</em></a> <strong>rwlock_writelock</strong>(<a class="reference internal" href="#project0group__RWLock_1gaa3a0af2021defb226f972ec12b9289ab"><em>rwlock_t</em></a>  * rwlock)</div>
+</div>
+</p>
+<blockquote>
+<div><p></p>
+<p></p>
+</div></blockquote>
+<p><span class="target" id="project0group__RWLock_1gaadae94431825618e473290cbfb3fcc21"></span><div class="line-block">
+<div class="line"><a class="reference internal" href="utils.html#project0types_8h_1a97a80ca1602ebf2303258971a2c938e2"><em>bool</em></a> <strong>rwlock_trywritelock</strong>(<a class="reference internal" href="#project0group__RWLock_1gaa3a0af2021defb226f972ec12b9289ab"><em>rwlock_t</em></a>  * rwlock)</div>
+</div>
+</p>
+<blockquote>
+<div><p></p>
+<p></p>
+</div></blockquote>
+<p><span class="target" id="project0group__RWLock_1ga10b4a44621561af9eb9766120e1aed19"></span><div class="line-block">
+<div class="line"><a class="reference internal" href="utils.html#project0types_8h_1a97a80ca1602ebf2303258971a2c938e2"><em>bool</em></a> <strong>rwlock_unlock</strong>(<a class="reference internal" href="#project0group__RWLock_1gaa3a0af2021defb226f972ec12b9289ab"><em>rwlock_t</em></a>  * rwlock)</div>
+</div>
+</p>
+<blockquote>
+<div><p></p>
+<p></p>
+</div></blockquote>
+<p><span class="target" id="project0group__Semaphore_1ga12606ec2e4d3ca258a1b267d069f8c36"></span><div class="line-block">
+<div class="line"><a class="reference internal" href="utils.html#project0types_8h_1a97a80ca1602ebf2303258971a2c938e2"><em>bool</em></a> <strong>semaphore_init</strong>(<a class="reference internal" href="#project0group__Semaphore_1ga906ed21532884d221dbfe30488d97b88"><em>semaphore_t</em></a>  * semaphore, <a class="reference internal" href="utils.html#project0types_8h_1a8949da768e2857b8f602a69c5b68828a"><em>uint32</em></a> initial)</div>
+</div>
+</p>
+<blockquote>
+<div><p></p>
+<p></p>
+</div></blockquote>
+<p><span class="target" id="project0group__Semaphore_1gad321de9b9311277a09ab09a69b9f8dc9"></span><div class="line-block">
+<div class="line"><a class="reference internal" href="utils.html#project0types_8h_1a97a80ca1602ebf2303258971a2c938e2"><em>bool</em></a> <strong>semaphore_destroy</strong>(<a class="reference internal" href="#project0group__Semaphore_1ga906ed21532884d221dbfe30488d97b88"><em>semaphore_t</em></a>  * semaphore)</div>
+</div>
+</p>
+<blockquote>
+<div><p></p>
+<p></p>
+</div></blockquote>
+<p><span class="target" id="project0group__Semaphore_1ga6ae6568266ce8869fac32faa57f6ce07"></span><div class="line-block">
+<div class="line"><a class="reference internal" href="utils.html#project0types_8h_1a97a80ca1602ebf2303258971a2c938e2"><em>bool</em></a> <strong>semaphore_wait</strong>(<a class="reference internal" href="#project0group__Semaphore_1ga906ed21532884d221dbfe30488d97b88"><em>semaphore_t</em></a>  * semaphore)</div>
+</div>
+</p>
+<blockquote>
+<div><p></p>
+<p></p>
+</div></blockquote>
+<p><span class="target" id="project0group__Semaphore_1gae9354539c46acd13ff711ab8e059b69c"></span><div class="line-block">
+<div class="line"><a class="reference internal" href="utils.html#project0types_8h_1a97a80ca1602ebf2303258971a2c938e2"><em>bool</em></a> <strong>semaphore_post</strong>(<a class="reference internal" href="#project0group__Semaphore_1ga906ed21532884d221dbfe30488d97b88"><em>semaphore_t</em></a>  * semaphore)</div>
+</div>
+</p>
+<blockquote>
+<div><p></p>
+<p></p>
+</div></blockquote>
+<p><span class="target" id="project0group__Barrier_1gaec6a37cc49c487f5891f6399928bf377"></span><div class="line-block">
+<div class="line"><a class="reference internal" href="utils.html#project0types_8h_1a97a80ca1602ebf2303258971a2c938e2"><em>bool</em></a> <strong>barrier_init</strong>(<a class="reference internal" href="#project0group__Barrier_1gaa651a7acf321228f831752d775baa1d6"><em>barrier_t</em></a>  * barrier, <a class="reference internal" href="utils.html#project0types_8h_1a8949da768e2857b8f602a69c5b68828a"><em>uint32</em></a> count)</div>
+</div>
+</p>
+<blockquote>
+<div><p></p>
+<p></p>
+</div></blockquote>
+<p><span class="target" id="project0group__Barrier_1gaece3daad14d74333f63ffdb0b0f660be"></span><div class="line-block">
+<div class="line"><a class="reference internal" href="utils.html#project0types_8h_1a97a80ca1602ebf2303258971a2c938e2"><em>bool</em></a> <strong>barrier_destroy</strong>(<a class="reference internal" href="#project0group__Barrier_1gaa651a7acf321228f831752d775baa1d6"><em>barrier_t</em></a>  * barrier)</div>
+</div>
+</p>
+<blockquote>
+<div><p></p>
+<p></p>
+</div></blockquote>
+<p><span class="target" id="project0group__Barrier_1gacfa40f79336e44ad54f7e0247ae9f8a4"></span><div class="line-block">
+<div class="line"><a class="reference internal" href="utils.html#project0types_8h_1a97a80ca1602ebf2303258971a2c938e2"><em>bool</em></a> <strong>barrier_wait</strong>(<a class="reference internal" href="#project0group__Barrier_1gaa651a7acf321228f831752d775baa1d6"><em>barrier_t</em></a>  * barrier)</div>
+</div>
+</p>
+<blockquote>
+<div><p></p>
+<p></p>
+</div></blockquote>
+<p><span class="target" id="project0group__TLS_1gacd668c24b4d9391b0d915d8ac672f600"></span><div class="line-block">
+<div class="line"><a class="reference internal" href="utils.html#project0types_8h_1a97a80ca1602ebf2303258971a2c938e2"><em>bool</em></a> <strong>local_storage_init</strong>(<a class="reference internal" href="#project0group__TLS_1ga3255b1f0c4e096f68c0a6ebfe3fd8b64"><em>local_storage_t</em></a>  * key, void(*)(void *) destructor)</div>
+</div>
+</p>
+<blockquote>
+<div><p></p>
+<p><p>Initialize thread local storage. The parameter <tt class="docutils literal"><span class="pre">destructor</span></tt> allows to set a cleanup function to call when the storage is destroyed.</p>
+<p><dl class="docutils">
+<dt><strong>Return</strong></dt>
+<dd>True on success. Use <a class="reference internal" href="utils.html#project0error_8h_1a3c048f257f31d45b023a3b2cc08e5a40"><em>clear_error()</em></a> to get details about the error. </dd>
+</dl>
+</p>
+</p>
+</div></blockquote>
+<p><span class="target" id="project0group__TLS_1gad166e856c4c5467db2cc5a6f0c0b8cb3"></span><div class="line-block">
+<div class="line"><a class="reference internal" href="utils.html#project0types_8h_1a97a80ca1602ebf2303258971a2c938e2"><em>bool</em></a> <strong>local_storage_destroy</strong>(<a class="reference internal" href="#project0group__TLS_1ga3255b1f0c4e096f68c0a6ebfe3fd8b64"><em>local_storage_t</em></a>  * key)</div>
+</div>
+</p>
+<blockquote>
+<div><p></p>
+<p><p>Destroy a thread local storage.</p>
+<p><dl class="docutils">
+<dt><strong>Return</strong></dt>
+<dd>True on success. Use <a class="reference internal" href="utils.html#project0error_8h_1a3c048f257f31d45b023a3b2cc08e5a40"><em>clear_error()</em></a> to get details about the error. </dd>
+</dl>
+</p>
+</p>
+</div></blockquote>
+<p><span class="target" id="project0group__TLS_1ga9a2f205df0119de77004d33161509316"></span><div class="line-block">
+<div class="line">void * <strong>local_storage_get</strong>(<a class="reference internal" href="#project0group__TLS_1ga3255b1f0c4e096f68c0a6ebfe3fd8b64"><em>local_storage_t</em></a>  * key)</div>
+</div>
+</p>
+<blockquote>
+<div><p></p>
+<p><p>Get the value of the thread local storage.</p>
+<p><dl class="docutils">
+<dt><strong>Return</strong></dt>
+<dd>The value associated with the current thread. </dd>
+</dl>
+</p>
+</p>
+</div></blockquote>
+<p><span class="target" id="project0group__TLS_1gafe35e708a3a35554dbdb35f62bdb0477"></span><div class="line-block">
+<div class="line"><a class="reference internal" href="utils.html#project0types_8h_1a97a80ca1602ebf2303258971a2c938e2"><em>bool</em></a> <strong>local_storage_set</strong>(<a class="reference internal" href="#project0group__TLS_1ga3255b1f0c4e096f68c0a6ebfe3fd8b64"><em>local_storage_t</em></a>  * key, const void * value)</div>
+</div>
+</p>
+<blockquote>
+<div><p></p>
+<p><p>Set the value of the thread local storage.</p>
+<p><dl class="docutils">
+<dt><strong>Return</strong></dt>
+<dd>True on success. Use <a class="reference internal" href="utils.html#project0error_8h_1a3c048f257f31d45b023a3b2cc08e5a40"><em>clear_error()</em></a> to get details about the error. </dd>
+</dl>
+</p>
+</p>
+</div></blockquote>
+<p><span class="target" id="project0group__Atomic_1gad870854b897302d4c6c3963002c4fc8c"></span><div class="line-block">
+<div class="line">INLINE  <a class="reference internal" href="utils.html#project0types_8h_1a8949da768e2857b8f602a69c5b68828a"><em>uint32</em></a> <strong>atomic_inc</strong>(<a class="reference internal" href="#project0group__Atomic_1ga755ba8d9debb62736845f4b66464e717"><em>atomic_t</em></a>  * v)</div>
+</div>
+</p>
+<blockquote>
+<div><p></p>
+<p><p>Increment an atomic counter.</p>
+<p><dl class="docutils">
+<dt><strong>Return</strong></dt>
+<dd>The new value after increment. </dd>
+</dl>
+</p>
+</p>
+</div></blockquote>
+<p><span class="target" id="project0group__Atomic_1ga8593b11e76b58de071da86aef21c0136"></span><div class="line-block">
+<div class="line">INLINE  <a class="reference internal" href="utils.html#project0types_8h_1a8949da768e2857b8f602a69c5b68828a"><em>uint32</em></a> <strong>atomic_dec</strong>(<a class="reference internal" href="#project0group__Atomic_1ga755ba8d9debb62736845f4b66464e717"><em>atomic_t</em></a>  * v)</div>
+</div>
+</p>
+<blockquote>
+<div><p></p>
+<p><p>Decrement an atomic counter.</p>
+<p><dl class="docutils">
+<dt><strong>Return</strong></dt>
+<dd>The new value after decrement. </dd>
+</dl>
+</p>
+</p>
+</div></blockquote>
+<p><span class="target" id="project0group__Atomic_1ga2f1101df7e47ebcc31a82bab885dc7b7"></span><div class="line-block">
+<div class="line">INLINE  <a class="reference internal" href="utils.html#project0types_8h_1a8949da768e2857b8f602a69c5b68828a"><em>uint32</em></a> <strong>atomic_get</strong>(<a class="reference internal" href="#project0group__Atomic_1ga755ba8d9debb62736845f4b66464e717"><em>atomic_t</em></a>  * v)</div>
+</div>
+</p>
+<blockquote>
+<div><p></p>
+<p>Get the value of an atomic counter. </p>
+</div></blockquote>
+<p><span class="target" id="project0group__Atomic_1ga3364f3cb6fbf22218e8d3e3b10edc5e6"></span><div class="line-block">
+<div class="line">INLINE void <strong>atomic_set</strong>(<a class="reference internal" href="#project0group__Atomic_1ga755ba8d9debb62736845f4b66464e717"><em>atomic_t</em></a>  * v, <a class="reference internal" href="utils.html#project0types_8h_1a8949da768e2857b8f602a69c5b68828a"><em>uint32</em></a> x)</div>
+</div>
+</p>
+<blockquote>
+<div><p></p>
+<p>Set the current value of an atomic counter. </p>
+</div></blockquote>
+<p><span class="target" id="project0group__Atomic_1gafaa3934e4df89c2b17ac88930d30b661"></span><div class="line-block">
+<div class="line">INLINE void <strong>atomic64_set</strong>(<a class="reference internal" href="#project0group__Atomic_1gaa89a0876d195f66eb667dcfd5574d827"><em>atomic64_t</em></a>  * v, <a class="reference internal" href="utils.html#project0types_8h_1a6861bed95d73703b3730053f3a6065bf"><em>uint64</em></a> x)</div>
+</div>
+</p>
+<blockquote>
+<div><p></p>
+<p>Set the current value of a 64 bit atomic counter. </p>
+</div></blockquote>
+<p><span class="target" id="project0group__Atomic_1ga803442bda0ba6dd4f9fd3076cb6c7721"></span><div class="line-block">
+<div class="line">INLINE void <strong>atomic64_init</strong>(<a class="reference internal" href="#project0group__Atomic_1gaa89a0876d195f66eb667dcfd5574d827"><em>atomic64_t</em></a>  * v, <a class="reference internal" href="utils.html#project0types_8h_1a6861bed95d73703b3730053f3a6065bf"><em>uint64</em></a> x)</div>
+</div>
+</p>
+<blockquote>
+<div><p></p>
+<p>Initialize a 64 bit atomic counter. </p>
+</div></blockquote>
+<p><span class="target" id="project0group__Atomic_1gac9213ce314c9010c3fd62cfe3b47c4af"></span><div class="line-block">
+<div class="line">INLINE void <strong>atomic64_destroy</strong>(<a class="reference internal" href="#project0group__Atomic_1gaa89a0876d195f66eb667dcfd5574d827"><em>atomic64_t</em></a>  * v)</div>
+</div>
+</p>
+<blockquote>
+<div><p></p>
+<p>Destroy a 64 bit atomic counter. </p>
+</div></blockquote>
+<p><span class="target" id="project0group__Atomic_1ga6437a16cefc843feb17d7a7cc6cd2b9a"></span><div class="line-block">
+<div class="line">INLINE  <a class="reference internal" href="utils.html#project0types_8h_1a6861bed95d73703b3730053f3a6065bf"><em>uint64</em></a> <strong>atomic64_inc</strong>(<a class="reference internal" href="#project0group__Atomic_1gaa89a0876d195f66eb667dcfd5574d827"><em>atomic64_t</em></a>  * v)</div>
+</div>
+</p>
+<blockquote>
+<div><p></p>
+<p><p>Increment a 64 bit atomic counter.</p>
+<p><dl class="docutils">
+<dt><strong>Return</strong></dt>
+<dd>The new value after increment. </dd>
+</dl>
+</p>
+</p>
+</div></blockquote>
+<p><span class="target" id="project0group__Atomic_1ga6a53b2b98190eedd166561815b6e843e"></span><div class="line-block">
+<div class="line">INLINE  <a class="reference internal" href="utils.html#project0types_8h_1a6861bed95d73703b3730053f3a6065bf"><em>uint64</em></a> <strong>atomic64_dec</strong>(<a class="reference internal" href="#project0group__Atomic_1gaa89a0876d195f66eb667dcfd5574d827"><em>atomic64_t</em></a>  * v)</div>
+</div>
+</p>
+<blockquote>
+<div><p></p>
+<p><p>Decrement a 64 bit atomic counter.</p>
+<p><dl class="docutils">
+<dt><strong>Return</strong></dt>
+<dd>The new value after decrement. </dd>
+</dl>
+</p>
+</p>
+</div></blockquote>
+<p><span class="target" id="project0group__Atomic_1ga70a6ffa98ba8eda63aaf394457e65f79"></span><div class="line-block">
+<div class="line">INLINE  <a class="reference internal" href="utils.html#project0types_8h_1a6861bed95d73703b3730053f3a6065bf"><em>uint64</em></a> <strong>atomic64_get</strong>(<a class="reference internal" href="#project0group__Atomic_1gaa89a0876d195f66eb667dcfd5574d827"><em>atomic64_t</em></a>  * v)</div>
+</div>
+</p>
+<blockquote>
+<div><p></p>
+<p>Get the value of a 64 bit atomic counter. </p>
+</div></blockquote>
+</div></blockquote>
+</div>
+
+
+		</div>
+	</div>
+</div>
+
+
+
+<footer id="footer">
+	<div class="row" role="complementary">
+		<div class="medium-12 columns">
+			&copy; Copyright 2014, Arkoon Network Security, OpenWide and Telecom ParisTech.
+		</div>
+	</div>
+</footer>
+<script>
+	  $(document).foundation();
+</script>
+
+
+
+<script type="text/javascript" src="http://www.haka-security.org/js/track.js"></script>
+
+
+  </body>
+</html>

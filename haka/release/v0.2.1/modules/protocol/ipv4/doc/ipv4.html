@@ -1,0 +1,744 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>7.2. Ipv4 &mdash; Haka runtime 0.2.1 documentation</title>
+    
+    <link rel="stylesheet" href="../../../../_static/haka.css" type="text/css" />
+    <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../../../_static/breathe.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../../',
+        VERSION:     '0.2.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../../../_static/js/scripts.js"></script>
+    <script type="text/javascript" src="../../../../_static/js/vendor/modernizr.js"></script>
+    <script type="text/javascript" src="../../../../_static/js/foundation/foundation.js"></script>
+    <script type="text/javascript" src="../../../../_static/js/foundation/foundation.topbar.js"></script>
+    <link rel="top" title="Haka runtime 0.2.1 documentation" href="../../../../index.html" />
+    <link rel="up" title="7. Haka dissectors" href="../../../../doc/ref/hakadissector.html" />
+    <link rel="next" title="7.3. Icmp" href="../../icmp/doc/icmp.html" />
+    <link rel="prev" title="7.1. Raw" href="../../raw/doc/raw.html" /> 
+  </head>
+  <body>
+
+
+<header id="header" role="banner">
+	<div class="row">
+		<div class="medium-6 columns">
+			<h1 class="title"><a rel="home" title="Haka" href="http://www.haka-security.org">Haka</a></h1>
+			<h2 class="description">Software Defined Security</h2>
+		</div>
+		<div class="medium-6 columns">
+			<div id="version">Version 0.2.1</div>
+		</div>
+	</div>
+</header>
+
+<div class="contain-to-grid sticky">
+	
+
+<nav id="navbar" class="top-bar" data-topbar>
+	<ul class="title-area">
+		<!-- This is required for toggle-topbar to work -->
+		<li class="name"></li>
+		<li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
+	</ul>
+	<section class="top-bar-section">
+		<ul class="left">
+			<li class=" ">
+				<a href="../../../../doc/user/userindex.html">Users</a>
+			</li>
+			<li class=" active">
+				<a href="../../../../doc/ref/refindex.html" class="../../../../doc/ref/refindex.html">References</a>
+			</li>
+			<li class=" ">
+				<a href="../../../../doc/developer/devindex.html" class="">Developers</a>
+			</li>
+			<li class=" ">
+				<a href="../../../../doc/faq.html" class="">Faq</a>
+			</li>
+			<li class="has-form">
+
+
+	<form class="search" action="../../../../search.html" method="get" id="searchbox" style="display: none">
+		<input type="hidden" name="area" value="default" />
+		<input type="hidden" name="check_keywords" value="yes" />
+		<div class="row collapse">
+			<div class="medium-11 columns">
+				<input type="text" name="q" placeholder="Search" />
+			</div>
+			<div class="medium-1 columns" id="clean-search-highlight">
+			</div>
+		</div>
+	</form>
+	<script type="text/javascript">$('#searchbox').show(0);</script>
+</li>
+		</ul>
+		<ul class="right">
+				<li class="right"><a href="../../icmp/doc/icmp.html" title="7.3. Icmp">Next &rarr;</a></li>
+				<li class="right"><a href="../../raw/doc/raw.html" title="7.1. Raw">&larr; Prev</a></li>
+				<li class="right"><a href="../../../../doc/ref/hakadissector.html" title="7. Haka dissectors">Up &uarr;</a></li>
+
+			<li class=" right"><a href="../../../../genindex.html">Index</a></li>
+			<li class=" right"><a href="../../../../haka-modindex.html">Modules</a></li>
+		</ul>
+	</section>
+</nav>
+</div>
+<div id="content">
+	<div class="row">
+		<ul id="breadcrumb" class="breadcrumbs medium-12 columns">
+			
+			<li><a href="../../../../doc/ref/refindex.html">Welcome to Haka&#8217;s User Reference Guide!</a></li>
+			
+			<li><a href="../../../../doc/ref/hakadissector.html">7. Haka dissectors</a></li>
+			
+			<li class="current"><a href="#">7.2. Ipv4</a></li>
+		</ul>
+	</div>
+	<div class="row">
+		<div class="medium-12 columns">
+			
+  <div class="section" id="haka-module.ipv4">
+<span id="ipv4"></span><h1>7.2. Ipv4<a class="headerlink" href="#haka-module.ipv4" title="Permalink to this headline">¶</a></h1>
+<p>Ipv4 dissector module.</p>
+<p><strong>Usage:</strong></p>
+<div class="highlight-lua"><div class="highlight"><pre><span class="kd">local</span> <span class="n">ipv4</span> <span class="o">=</span> <span class="nb">require</span><span class="p">(</span><span class="s1">&#39;</span><span class="s">protocol/ipv4&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="section" id="dissector">
+<h2>7.2.1. Dissector<a class="headerlink" href="#dissector" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="haka-object.Ipv4Dissector">
+<em class="property">dissector </em><tt class="descname">Ipv4Dissector</tt><a class="headerlink" href="#haka-object.Ipv4Dissector" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Name :</th><td class="field-body"><tt class="docutils literal"><span class="pre">'ipv4'</span></tt></td>
+</tr>
+<tr class="field-even field"><th class="field-name">Extend :</th><td class="field-body"><a class="reference internal" href="../../../../doc/ref/dissector.html#haka-object.haka.helper.PacketDissector" title="haka.helper.PacketDissector"><tt class="xref haka haka-class docutils literal"><span class="pre">haka.helper.PacketDissector</span></tt></a>&nbsp;</td>
+</tr>
+</tbody>
+</table>
+<p>IP version 4 packet dissector.</p>
+<dl class="function">
+<dt id="haka-function.ipv4.register_proto">
+<em class="property"> </em><tt class="descclassname">ipv4.</tt><tt class="descname">register_proto</tt><big>(</big><em>proto</em>, <em>dissector</em><big>)</big><a class="headerlink" href="#haka-function.ipv4.register_proto" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>proto</strong> (<a class="reference internal" href="../../../../doc/ref/grammar.html#haka-function.number" title="number"><em>number</em></a>) &#8211; IP protocol number.</li>
+<li><strong>dissector</strong> (<a class="reference internal" href="../../../../doc/ref/dissector.html#haka-object.Dissector" title="Dissector"><tt class="xref haka haka-class docutils literal"><span class="pre">Dissector</span></tt></a>) &#8211; Dissector to use.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p>Register the dissector to associate with the given IP protocol number.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="haka-function.ipv4.create">
+<em class="property"> </em><tt class="descclassname">ipv4.</tt><tt class="descname">create</tt><big>(</big><em>pkt</em><big>)</big> &rarr; ip<a class="headerlink" href="#haka-function.ipv4.create" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>pkt</strong> (<em>dissector</em>) &#8211; Lower level packet.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><ul class="first last simple">
+<li><strong>ip</strong> (<a class="reference internal" href="#haka-object.Ipv4Dissector" title="Ipv4Dissector"><tt class="xref haka haka-class docutils literal"><span class="pre">Ipv4Dissector</span></tt></a>) &#8211; Created packet.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p>Create a new IPv4 packet on top of a lower level packet (raw for instance).</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="haka-attribute.&lt;Ipv4Dissector&gt;.hdr_len">
+<em class="property"> </em><tt class="descclassname">&lt;Ipv4Dissector&gt;.</tt><tt class="descname">hdr_len</tt><a class="headerlink" href="#haka-attribute.<Ipv4Dissector>.hdr_len" title="Permalink to this definition">¶</a></dt>
+<dt id="haka-attribute.&lt;Ipv4Dissector&gt;.version">
+<em class="property"> </em><tt class="descclassname">&lt;Ipv4Dissector&gt;.</tt><tt class="descname">version</tt><a class="headerlink" href="#haka-attribute.<Ipv4Dissector>.version" title="Permalink to this definition">¶</a></dt>
+<dt id="haka-attribute.&lt;Ipv4Dissector&gt;.tos">
+<em class="property"> </em><tt class="descclassname">&lt;Ipv4Dissector&gt;.</tt><tt class="descname">tos</tt><a class="headerlink" href="#haka-attribute.<Ipv4Dissector>.tos" title="Permalink to this definition">¶</a></dt>
+<dt id="haka-attribute.&lt;Ipv4Dissector&gt;.len">
+<em class="property"> </em><tt class="descclassname">&lt;Ipv4Dissector&gt;.</tt><tt class="descname">len</tt><a class="headerlink" href="#haka-attribute.<Ipv4Dissector>.len" title="Permalink to this definition">¶</a></dt>
+<dt id="haka-attribute.&lt;Ipv4Dissector&gt;.id">
+<em class="property"> </em><tt class="descclassname">&lt;Ipv4Dissector&gt;.</tt><tt class="descname">id</tt><a class="headerlink" href="#haka-attribute.<Ipv4Dissector>.id" title="Permalink to this definition">¶</a></dt>
+<dt id="haka-attribute.&lt;Ipv4Dissector&gt;.frag_offset">
+<em class="property"> </em><tt class="descclassname">&lt;Ipv4Dissector&gt;.</tt><tt class="descname">frag_offset</tt><a class="headerlink" href="#haka-attribute.<Ipv4Dissector>.frag_offset" title="Permalink to this definition">¶</a></dt>
+<dt id="haka-attribute.&lt;Ipv4Dissector&gt;.ttl">
+<em class="property"> </em><tt class="descclassname">&lt;Ipv4Dissector&gt;.</tt><tt class="descname">ttl</tt><a class="headerlink" href="#haka-attribute.<Ipv4Dissector>.ttl" title="Permalink to this definition">¶</a></dt>
+<dt id="haka-attribute.&lt;Ipv4Dissector&gt;.proto">
+<em class="property"> </em><tt class="descclassname">&lt;Ipv4Dissector&gt;.</tt><tt class="descname">proto</tt><a class="headerlink" href="#haka-attribute.<Ipv4Dissector>.proto" title="Permalink to this definition">¶</a></dt>
+<dt id="haka-attribute.&lt;Ipv4Dissector&gt;.checksum">
+<em class="property"> </em><tt class="descclassname">&lt;Ipv4Dissector&gt;.</tt><tt class="descname">checksum</tt><a class="headerlink" href="#haka-attribute.<Ipv4Dissector>.checksum" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">number</td>
+</tr>
+</tbody>
+</table>
+<p>IPv4 fields.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="haka-attribute.&lt;Ipv4Dissector&gt;.src">
+<em class="property"> </em><tt class="descclassname">&lt;Ipv4Dissector&gt;.</tt><tt class="descname">src</tt><a class="headerlink" href="#haka-attribute.<Ipv4Dissector>.src" title="Permalink to this definition">¶</a></dt>
+<dt id="haka-attribute.&lt;Ipv4Dissector&gt;.dst">
+<em class="property"> </em><tt class="descclassname">&lt;Ipv4Dissector&gt;.</tt><tt class="descname">dst</tt><a class="headerlink" href="#haka-attribute.<Ipv4Dissector>.dst" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body"><a class="reference internal" href="#haka-object.addr" title="addr"><tt class="xref haka haka-class docutils literal"><span class="pre">addr</span></tt></a>&nbsp;</td>
+</tr>
+</tbody>
+</table>
+<p>Source and destination.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="haka-attribute.&lt;Ipv4Dissector&gt;.flags.rb">
+<em class="property"> </em><tt class="descclassname">&lt;Ipv4Dissector&gt;.flags.</tt><tt class="descname">rb</tt><a class="headerlink" href="#haka-attribute.<Ipv4Dissector>.flags.rb" title="Permalink to this definition">¶</a></dt>
+<dt id="haka-attribute.&lt;Ipv4Dissector&gt;.flags.df">
+<em class="property"> </em><tt class="descclassname">&lt;Ipv4Dissector&gt;.flags.</tt><tt class="descname">df</tt><a class="headerlink" href="#haka-attribute.<Ipv4Dissector>.flags.df" title="Permalink to this definition">¶</a></dt>
+<dt id="haka-attribute.&lt;Ipv4Dissector&gt;.flags.mf">
+<em class="property"> </em><tt class="descclassname">&lt;Ipv4Dissector&gt;.flags.</tt><tt class="descname">mf</tt><a class="headerlink" href="#haka-attribute.<Ipv4Dissector>.flags.mf" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">boolean</td>
+</tr>
+</tbody>
+</table>
+<p>IPv4 flags.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="haka-attribute.&lt;Ipv4Dissector.flags&gt;.all">
+<em class="property"> </em><tt class="descclassname">&lt;Ipv4Dissector.flags&gt;.</tt><tt class="descname">all</tt><a class="headerlink" href="#haka-attribute.<Ipv4Dissector.flags>.all" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">number</td>
+</tr>
+</tbody>
+</table>
+<p>All flags raw value.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="haka-attribute.&lt;Ipv4Dissector&gt;.payload">
+<em class="property"> </em><tt class="descclassname">&lt;Ipv4Dissector&gt;.</tt><tt class="descname">payload</tt><a class="headerlink" href="#haka-attribute.<Ipv4Dissector>.payload" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body"><a class="reference internal" href="../../../../doc/ref/vbuffer.html#haka-object.vbuffer" title="vbuffer"><tt class="xref haka haka-class docutils literal"><span class="pre">vbuffer</span></tt></a>&nbsp;</td>
+</tr>
+</tbody>
+</table>
+<p>Payload of the packet.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="haka-function.&lt;Ipv4Dissector&gt;.verify_checksum">
+<em class="property"> </em><tt class="descclassname">&lt;Ipv4Dissector&gt;:</tt><tt class="descname">verify_checksum</tt><big>(</big><big>)</big> &rarr; correct<a class="headerlink" href="#haka-function.<Ipv4Dissector>.verify_checksum" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"><ul class="first last simple">
+<li><strong>correct</strong> (<em>boolean</em>) &#8211; <tt class="docutils literal"><span class="pre">true</span></tt> if the checksum is correct.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p>Verify if the checksum is correct.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="haka-function.&lt;Ipv4Dissector&gt;.compute_checksum">
+<em class="property"> </em><tt class="descclassname">&lt;Ipv4Dissector&gt;:</tt><tt class="descname">compute_checksum</tt><big>(</big><big>)</big><a class="headerlink" href="#haka-function.<Ipv4Dissector>.compute_checksum" title="Permalink to this definition">¶</a></dt>
+<dd><p>Recompute the checksum and set the resulting value in the packet.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="haka-function.&lt;Ipv4Dissector&gt;.drop">
+<em class="property"> </em><tt class="descclassname">&lt;Ipv4Dissector&gt;:</tt><tt class="descname">drop</tt><big>(</big><big>)</big><a class="headerlink" href="#haka-function.<Ipv4Dissector>.drop" title="Permalink to this definition">¶</a></dt>
+<dd><p>Drop the packet.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="haka-function.&lt;Ipv4Dissector&gt;.send">
+<em class="property"> </em><tt class="descclassname">&lt;Ipv4Dissector&gt;:</tt><tt class="descname">send</tt><big>(</big><big>)</big><a class="headerlink" href="#haka-function.<Ipv4Dissector>.send" title="Permalink to this definition">¶</a></dt>
+<dd><p>Send the packet.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="haka-function.&lt;Ipv4Dissector&gt;.inject">
+<em class="property"> </em><tt class="descclassname">&lt;Ipv4Dissector&gt;:</tt><tt class="descname">inject</tt><big>(</big><big>)</big><a class="headerlink" href="#haka-function.<Ipv4Dissector>.inject" title="Permalink to this definition">¶</a></dt>
+<dd><p>Inject the packet.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="events">
+<h2>7.2.2. Events<a class="headerlink" href="#events" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="haka-function.ipv4.events.receive_packet">
+<em class="property">event </em><tt class="descclassname">ipv4.events.</tt><tt class="descname">receive_packet</tt><big>(</big><em>pkt</em><big>)</big><a class="headerlink" href="#haka-function.ipv4.events.receive_packet" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>pkt</strong> (<a class="reference internal" href="#haka-object.Ipv4Dissector" title="Ipv4Dissector"><tt class="xref haka haka-class docutils literal"><span class="pre">Ipv4Dissector</span></tt></a>) &#8211; IPv4 packet.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p>Event that is triggered whenever a new packet is received.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="haka-function.ipv4.events.send_packet">
+<em class="property">event </em><tt class="descclassname">ipv4.events.</tt><tt class="descname">send_packet</tt><big>(</big><em>pkt</em><big>)</big><a class="headerlink" href="#haka-function.ipv4.events.send_packet" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>pkt</strong> (<a class="reference internal" href="#haka-object.Ipv4Dissector" title="Ipv4Dissector"><tt class="xref haka haka-class docutils literal"><span class="pre">Ipv4Dissector</span></tt></a>) &#8211; IPv4 packet.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p>Event that is triggered just before sending a packet on the network.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="utilities">
+<h2>7.2.3. Utilities<a class="headerlink" href="#utilities" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="haka-object.addr">
+<em class="property">object </em><tt class="descname">addr</tt><a class="headerlink" href="#haka-object.addr" title="Permalink to this definition">¶</a></dt>
+<dd><p>Represent an ipv4 address.</p>
+<dl class="function">
+<dt id="haka-function.ipv4.addr">
+<em class="property"> </em><tt class="descclassname">ipv4.</tt><tt class="descname">addr</tt><big>(</big><em>str</em><big>)</big> &rarr; addr<a class="headerlink" href="#haka-function.ipv4.addr" title="Permalink to this definition">¶</a></dt>
+<dt>
+<em class="property"> </em><tt class="descclassname">ipv4.</tt><tt class="descname">addr</tt><big>(</big><em>addr</em><big>)</big> &rarr; addr</dt>
+<dt>
+<em class="property"> </em><tt class="descclassname">ipv4.</tt><tt class="descname">addr</tt><big>(</big><em>a</em>, <em>b</em>, <em>c</em>, <em>d</em><big>)</big> &rarr; addr</dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>str</strong> (<em>string</em>) &#8211; IP address as a string representation (ie. <tt class="docutils literal"><span class="pre">'127.0.0.1'</span></tt>)</li>
+<li><strong>addr</strong> (<a class="reference internal" href="../../../../doc/ref/grammar.html#haka-function.number" title="number"><em>number</em></a>) &#8211; IP address as a number representation (ie. <tt class="docutils literal"><span class="pre">0x0100007f</span></tt>)</li>
+<li><strong>a,b,c,d</strong> &#8211; IP address as a byte representation</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><ul class="first last simple">
+<li><strong>addr</strong> (<a class="reference internal" href="#haka-object.addr" title="addr"><tt class="xref haka haka-class docutils literal"><span class="pre">addr</span></tt></a>) &#8211; Created address.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p>Address constructors.</p>
+<p><strong>Examples:</strong></p>
+<div class="highlight-lua"><div class="highlight"><pre><span class="n">ipv4</span><span class="p">.</span><span class="n">addr</span><span class="p">(</span><span class="s2">&quot;</span><span class="s">127.0.0.1&quot;</span><span class="p">)</span>
+<span class="n">ipv4</span><span class="p">.</span><span class="n">addr</span><span class="p">(</span><span class="mh">0x0100007f</span><span class="p">)</span>
+<span class="n">ipv4</span><span class="p">.</span><span class="n">addr</span><span class="p">(</span><span class="mi">127</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="haka-attribute.&lt;addr&gt;.packed">
+<em class="property"> </em><tt class="descclassname">&lt;addr&gt;.</tt><tt class="descname">packed</tt><a class="headerlink" href="#haka-attribute.<addr>.packed" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">number</td>
+</tr>
+</tbody>
+</table>
+<p>Packed representation of the IP address.</p>
+</dd></dl>
+
+<dl class="operator">
+<dt id="haka-operator.&lt;addr&gt;.tostring">
+<em class="property"> </em><tt class="descname">tostring</tt><big>(</big><tt class="descclassname">&lt;addr&gt;</tt><big>)</big> &rarr; str<a class="headerlink" href="#haka-operator.<addr>.tostring" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"><ul class="first last simple">
+<li><strong>str</strong> (<em>string</em>) &#8211; String representation of the address.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p>Convert an address to its string representation.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="haka-object.network">
+<em class="property">object </em><tt class="descname">network</tt><a class="headerlink" href="#haka-object.network" title="Permalink to this definition">¶</a></dt>
+<dd><p>Class used to represent an ipv4 network address.</p>
+<dl class="function">
+<dt id="haka-function.ipv4.network">
+<em class="property"> </em><tt class="descclassname">ipv4.</tt><tt class="descname">network</tt><big>(</big><em>str</em><big>)</big> &rarr; net<a class="headerlink" href="#haka-function.ipv4.network" title="Permalink to this definition">¶</a></dt>
+<dt>
+<em class="property"> </em><tt class="descclassname">ipv4.</tt><tt class="descname">network</tt><big>(</big><em>ipaddr</em>, <em>mask</em><big>)</big> &rarr; net</dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>str</strong> (<em>string</em>) &#8211; String representation of the IP network (ie. <tt class="docutils literal"><span class="pre">'127.0.0.1/8'</span></tt>).</li>
+<li><strong>ipaddr</strong> (<a class="reference internal" href="#haka-object.addr" title="addr"><tt class="xref haka haka-class docutils literal"><span class="pre">addr</span></tt></a>) &#8211; IP network address.</li>
+<li><strong>mask</strong> (<a class="reference internal" href="../../../../doc/ref/grammar.html#haka-function.number" title="number"><em>number</em></a>) &#8211; IP network mask.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><ul class="first last simple">
+<li><strong>net</strong> (<a class="reference internal" href="#haka-object.network" title="network"><tt class="xref haka haka-class docutils literal"><span class="pre">network</span></tt></a>) &#8211; New IP network.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p>Network constructors.</p>
+<p><strong>Examples:</strong></p>
+<div class="highlight-lua"><div class="highlight"><pre><span class="n">ipv4</span><span class="p">.</span><span class="n">network</span><span class="p">(</span><span class="s2">&quot;</span><span class="s">127.0.0.1/8&quot;</span><span class="p">)</span>
+<span class="n">ipv4</span><span class="p">.</span><span class="n">network</span><span class="p">(</span><span class="n">ipv4</span><span class="p">.</span><span class="n">addr</span><span class="p">(</span><span class="mi">127</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="mi">8</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="haka-attribute.&lt;network&gt;.net">
+<em class="property">const  </em><tt class="descclassname">&lt;network&gt;.</tt><tt class="descname">net</tt><a class="headerlink" href="#haka-attribute.<network>.net" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body"><a class="reference internal" href="#haka-object.addr" title="addr"><tt class="xref haka haka-class docutils literal"><span class="pre">addr</span></tt></a>&nbsp;</td>
+</tr>
+</tbody>
+</table>
+<p>Network address.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="haka-attribute.&lt;network&gt;.mask">
+<em class="property">const  </em><tt class="descclassname">&lt;network&gt;.</tt><tt class="descname">mask</tt><a class="headerlink" href="#haka-attribute.<network>.mask" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">number</td>
+</tr>
+</tbody>
+</table>
+<p>Network mask.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="haka-function.&lt;network&gt;.contains">
+<em class="property"> </em><tt class="descclassname">&lt;network&gt;:</tt><tt class="descname">contains</tt><big>(</big><em>addr</em><big>)</big> &rarr; bool<a class="headerlink" href="#haka-function.<network>.contains" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>addr</strong> (<a class="reference internal" href="#haka-object.addr" title="addr"><tt class="xref haka haka-class docutils literal"><span class="pre">addr</span></tt></a>) &#8211; An IP address</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><ul class="first last simple">
+<li><strong>bool</strong> (<em>boolean</em>) &#8211; true if IP address belong to the network, false otherwise.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p>Check if the IP address belong to the network.</p>
+</dd></dl>
+
+<dl class="operator">
+<dt id="haka-operator.&lt;network&gt;.tostring">
+<em class="property"> </em><tt class="descname">tostring</tt><big>(</big><tt class="descclassname">&lt;network&gt;</tt><big>)</big> &rarr; str<a class="headerlink" href="#haka-operator.<network>.tostring" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"><ul class="first last simple">
+<li><strong>str</strong> (<em>string</em>) &#8211; String representation of the network.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p>Convert a network to its string representation.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="haka-object.inet_checksum">
+<em class="property">object </em><tt class="descname">inet_checksum</tt><a class="headerlink" href="#haka-object.inet_checksum" title="Permalink to this definition">¶</a></dt>
+<dd><p>Helper to compute inet checksum on buffers pieces by pieces.</p>
+<dl class="function">
+<dt id="haka-function.ipv4.checksum_partial">
+<em class="property"> </em><tt class="descclassname">ipv4.</tt><tt class="descname">checksum_partial</tt><big>(</big><big>)</big> &rarr; new<a class="headerlink" href="#haka-function.ipv4.checksum_partial" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"><ul class="first last simple">
+<li><strong>new</strong> (<a class="reference internal" href="#haka-object.inet_checksum" title="inet_checksum"><tt class="xref haka haka-class docutils literal"><span class="pre">inet_checksum</span></tt></a>) &#8211; New inet checksum helper.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p>Create a new inet checksum helper.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="haka-function.ipv4.process">
+<em class="property"> </em><tt class="descclassname">ipv4.</tt><tt class="descname">process</tt><big>(</big><em>buffer</em><big>)</big><a class="headerlink" href="#haka-function.ipv4.process" title="Permalink to this definition">¶</a></dt>
+<dt>
+<em class="property"> </em><tt class="descclassname">ipv4.</tt><tt class="descname">process</tt><big>(</big><em>sub</em><big>)</big></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>buffer</strong> (<a class="reference internal" href="../../../../doc/ref/vbuffer.html#haka-object.vbuffer" title="vbuffer"><tt class="xref haka haka-class docutils literal"><span class="pre">vbuffer</span></tt></a>&nbsp;) &#8211; Buffer to process.</li>
+<li><strong>sub</strong> (<a class="reference internal" href="../../../../doc/ref/vbuffer.html#haka-object.vbuffer_sub" title="vbuffer_sub"><tt class="xref haka haka-class docutils literal"><span class="pre">vbuffer_sub</span></tt></a>&nbsp;) &#8211; Sub-buffer to process.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p>Process the buffer to compute its checksum value. This function can be called
+multiple times to compute it on data represented by multiple buffers.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="haka-function.ipv4.reduce">
+<em class="property"> </em><tt class="descclassname">ipv4.</tt><tt class="descname">reduce</tt><big>(</big><big>)</big> &rarr; checksum<a class="headerlink" href="#haka-function.ipv4.reduce" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"><ul class="first last simple">
+<li><strong>checksum</strong> (<a class="reference internal" href="../../../../doc/ref/grammar.html#haka-function.number" title="number"><em>number</em></a>) &#8211; Final checksum value.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p>Compute the final inet checksum value. This function must be called at the end
+after one or multiple calls to <a class="reference internal" href="#haka-function.ipv4.process" title="ipv4.process"><tt class="xref haka haka-func docutils literal"><span class="pre">process()</span></tt></a>.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="haka-object.cnx_table">
+<em class="property">object </em><tt class="descname">cnx_table</tt><a class="headerlink" href="#haka-object.cnx_table" title="Permalink to this definition">¶</a></dt>
+<dd><p>Object used to create a table of connections. The connection table uses source and
+destination IP along with some source and destination ports. Those ports can be extracted
+from TCP or UDP for instance.</p>
+<dl class="function">
+<dt id="haka-function.ipv4.cnx_table">
+<em class="property"> </em><tt class="descclassname">ipv4.</tt><tt class="descname">cnx_table</tt><big>(</big><big>)</big> &rarr; table<a class="headerlink" href="#haka-function.ipv4.cnx_table" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"><ul class="first last simple">
+<li><strong>table</strong> (<a class="reference internal" href="#haka-object.cnx_table" title="cnx_table"><tt class="xref haka haka-class docutils literal"><span class="pre">cnx_table</span></tt></a>) &#8211; New connection table</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p>Create a new connection table.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="haka-function.&lt;cnx_table&gt;.create">
+<em class="property"> </em><tt class="descclassname">&lt;cnx_table&gt;:</tt><tt class="descname">create</tt><big>(</big><em>srcip</em>, <em>dstip</em>, <em>srcport</em>, <em>dstport</em><big>)</big> &rarr; cnx<a class="headerlink" href="#haka-function.<cnx_table>.create" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>srcip</strong> (<a class="reference internal" href="#haka-object.addr" title="addr"><tt class="xref haka haka-class docutils literal"><span class="pre">addr</span></tt></a>) &#8211; Source IP.</li>
+<li><strong>dstip</strong> (<a class="reference internal" href="#haka-object.addr" title="addr"><tt class="xref haka haka-class docutils literal"><span class="pre">addr</span></tt></a>) &#8211; Destination IP.</li>
+<li><strong>srcport</strong> (<a class="reference internal" href="../../../../doc/ref/grammar.html#haka-function.number" title="number"><em>number</em></a>) &#8211; Source port.</li>
+<li><strong>dstport</strong> (<a class="reference internal" href="../../../../doc/ref/grammar.html#haka-function.number" title="number"><em>number</em></a>) &#8211; Destination port.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><ul class="first last simple">
+<li><strong>cnx</strong> (<a class="reference internal" href="#haka-object.cnx" title="cnx"><tt class="xref haka haka-class docutils literal"><span class="pre">cnx</span></tt></a>) &#8211; New connection</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p>Create a new entry in the connection table.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="haka-function.&lt;cnx_table&gt;.get">
+<em class="property"> </em><tt class="descclassname">&lt;cnx_table&gt;:</tt><tt class="descname">get</tt><big>(</big><em>srcip</em>, <em>dstip</em>, <em>srcport</em>, <em>dstport</em><big>)</big> &rarr; cnx<a class="headerlink" href="#haka-function.<cnx_table>.get" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>srcip</strong> (<a class="reference internal" href="#haka-object.addr" title="addr"><tt class="xref haka haka-class docutils literal"><span class="pre">addr</span></tt></a>) &#8211; Source IP.</li>
+<li><strong>dstip</strong> (<a class="reference internal" href="#haka-object.addr" title="addr"><tt class="xref haka haka-class docutils literal"><span class="pre">addr</span></tt></a>) &#8211; Destination IP.</li>
+<li><strong>srcport</strong> (<a class="reference internal" href="../../../../doc/ref/grammar.html#haka-function.number" title="number"><em>number</em></a>) &#8211; Source port.</li>
+<li><strong>dstport</strong> (<a class="reference internal" href="../../../../doc/ref/grammar.html#haka-function.number" title="number"><em>number</em></a>) &#8211; Destination port.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><ul class="first last simple">
+<li><strong>cnx</strong> (<a class="reference internal" href="#haka-object.cnx" title="cnx"><tt class="xref haka haka-class docutils literal"><span class="pre">cnx</span></tt></a>) &#8211; Corresponding connection</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p>Get an entry in the connection table.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="haka-object.cnx">
+<em class="property">object </em><tt class="descname">cnx</tt><a class="headerlink" href="#haka-object.cnx" title="Permalink to this definition">¶</a></dt>
+<dd><p>Object that represent a connection.</p>
+<dl class="attribute">
+<dt id="haka-attribute.&lt;cnx&gt;.data">
+<em class="property"> </em><tt class="descclassname">&lt;cnx&gt;.</tt><tt class="descname">data</tt><a class="headerlink" href="#haka-attribute.<cnx>.data" title="Permalink to this definition">¶</a></dt>
+<dd><p>Data that can be used to associate any Lua object with the connection.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="haka-function.&lt;cnx&gt;.close">
+<em class="property"> </em><tt class="descclassname">&lt;cnx&gt;:</tt><tt class="descname">close</tt><big>(</big><big>)</big><a class="headerlink" href="#haka-function.<cnx>.close" title="Permalink to this definition">¶</a></dt>
+<dd><p>Close the connection. It will be removed from the associated table.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="haka-function.&lt;cnx&gt;.drop">
+<em class="property"> </em><tt class="descclassname">&lt;cnx&gt;:</tt><tt class="descname">drop</tt><big>(</big><big>)</big><a class="headerlink" href="#haka-function.<cnx>.drop" title="Permalink to this definition">¶</a></dt>
+<dd><p>Mark the connection as dropped. The connection remains in the table until
+<a class="reference internal" href="#haka-function.&lt;cnx&gt;.close" title="&amp;lt;cnx&amp;gt;.close"><tt class="xref haka haka-func docutils literal"><span class="pre">&lt;cnx&gt;.close()</span></tt></a> is called.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="example">
+<h2>7.2.4. Example<a class="headerlink" href="#example" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-lua"><div class="highlight"><pre><span class="c1">------------------------------------</span>
+<span class="c1">-- IP attacks</span>
+<span class="c1">------------------------------------</span>
+
+<span class="n">haka</span><span class="p">.</span><span class="n">rule</span> <span class="p">{</span>
+    <span class="n">hook</span> <span class="o">=</span> <span class="n">ipv4</span><span class="p">.</span><span class="n">events</span><span class="p">.</span><span class="n">receive_packet</span><span class="p">,</span>
+    <span class="n">eval</span> <span class="o">=</span> <span class="k">function</span> <span class="p">(</span><span class="n">pkt</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">pkt</span><span class="p">.</span><span class="n">src</span> <span class="o">==</span> <span class="n">pkt</span><span class="p">.</span><span class="n">dst</span> <span class="ow">and</span> <span class="n">pkt</span><span class="p">.</span><span class="n">src</span> <span class="o">~=</span> <span class="n">ipv4</span><span class="p">.</span><span class="n">addr</span><span class="p">(</span><span class="s2">&quot;</span><span class="s">127.0.0.1&quot;</span><span class="p">)</span> <span class="k">then</span>
+            <span class="n">haka</span><span class="p">.</span><span class="n">alert</span><span class="p">{</span>
+                <span class="n">description</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="s">Land attack detected&quot;</span><span class="p">,</span>
+                <span class="n">severity</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="s">high&#39;</span><span class="p">,</span>
+                <span class="n">confidence</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="s">medium&#39;</span><span class="p">,</span>
+                <span class="n">sources</span> <span class="o">=</span> <span class="p">{</span> <span class="n">haka</span><span class="p">.</span><span class="n">alert</span><span class="p">.</span><span class="n">address</span><span class="p">(</span><span class="n">pkt</span><span class="p">.</span><span class="n">src</span><span class="p">)</span> <span class="p">},</span>
+            <span class="p">}</span>
+            <span class="n">pkt</span><span class="p">:</span><span class="n">drop</span><span class="p">()</span>
+        <span class="k">end</span>
+    <span class="k">end</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+		</div>
+	</div>
+</div>
+
+
+
+<footer id="footer">
+	<div class="row" role="complementary">
+		<div class="medium-12 columns">
+			&copy; Copyright 2014, Arkoon Network Security, OpenWide and Telecom ParisTech.
+		</div>
+	</div>
+</footer>
+<script>
+	  $(document).foundation();
+</script>
+
+
+
+<script type="text/javascript" src="http://www.haka-security.org/js/track.js"></script>
+
+
+  </body>
+</html>

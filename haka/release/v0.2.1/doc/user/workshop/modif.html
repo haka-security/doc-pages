@@ -1,0 +1,293 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>4. On-the-fly modifications &mdash; Haka runtime 0.2.1 documentation</title>
+    
+    <link rel="stylesheet" href="../../../_static/haka.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/breathe.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../',
+        VERSION:     '0.2.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../../_static/js/scripts.js"></script>
+    <script type="text/javascript" src="../../../_static/js/vendor/modernizr.js"></script>
+    <script type="text/javascript" src="../../../_static/js/foundation/foundation.js"></script>
+    <script type="text/javascript" src="../../../_static/js/foundation/foundation.topbar.js"></script>
+    <link rel="top" title="Haka runtime 0.2.1 documentation" href="../../../index.html" />
+    <link rel="up" title="7. Workshop" href="../workshop.html" />
+    <link rel="next" title="5. SMTP protocol dissection" href="smtp.html" />
+    <link rel="prev" title="3. Filtering with Haka" href="filter.html" /> 
+  </head>
+  <body>
+
+
+<header id="header" role="banner">
+	<div class="row">
+		<div class="medium-6 columns">
+			<h1 class="title"><a rel="home" title="Haka" href="http://www.haka-security.org">Haka</a></h1>
+			<h2 class="description">Software Defined Security</h2>
+		</div>
+		<div class="medium-6 columns">
+			<div id="version">Version 0.2.1</div>
+		</div>
+	</div>
+</header>
+
+<div class="contain-to-grid sticky">
+	
+
+<nav id="navbar" class="top-bar" data-topbar>
+	<ul class="title-area">
+		<!-- This is required for toggle-topbar to work -->
+		<li class="name"></li>
+		<li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
+	</ul>
+	<section class="top-bar-section">
+		<ul class="left">
+			<li class=" active">
+				<a href="../userindex.html">Users</a>
+			</li>
+			<li class=" ">
+				<a href="../../ref/refindex.html" class="../../ref/refindex.html">References</a>
+			</li>
+			<li class=" ">
+				<a href="../../developer/devindex.html" class="">Developers</a>
+			</li>
+			<li class=" ">
+				<a href="../../faq.html" class="">Faq</a>
+			</li>
+			<li class="has-form">
+
+
+	<form class="search" action="../../../search.html" method="get" id="searchbox" style="display: none">
+		<input type="hidden" name="area" value="default" />
+		<input type="hidden" name="check_keywords" value="yes" />
+		<div class="row collapse">
+			<div class="medium-11 columns">
+				<input type="text" name="q" placeholder="Search" />
+			</div>
+			<div class="medium-1 columns" id="clean-search-highlight">
+			</div>
+		</div>
+	</form>
+	<script type="text/javascript">$('#searchbox').show(0);</script>
+</li>
+		</ul>
+		<ul class="right">
+				<li class="right"><a href="smtp.html" title="5. SMTP protocol dissection">Next &rarr;</a></li>
+				<li class="right"><a href="filter.html" title="3. Filtering with Haka">&larr; Prev</a></li>
+				<li class="right"><a href="../workshop.html" title="7. Workshop">Up &uarr;</a></li>
+
+			<li class=" right"><a href="../../../genindex.html">Index</a></li>
+			<li class=" right"><a href="../../../haka-modindex.html">Modules</a></li>
+		</ul>
+	</section>
+</nav>
+</div>
+<div id="content">
+	<div class="row">
+		<ul id="breadcrumb" class="breadcrumbs medium-12 columns">
+			
+			<li><a href="../userindex.html">Welcome to Haka&#8217;s User Guide!</a></li>
+			
+			<li><a href="../workshop.html">7. Workshop</a></li>
+			
+			<li class="current"><a href="#">4. On-the-fly modifications</a></li>
+		</ul>
+	</div>
+	<div class="row">
+		<div class="medium-12 columns">
+			
+  <div class="section" id="on-the-fly-modifications">
+<h1>4. On-the-fly modifications<a class="headerlink" href="#on-the-fly-modifications" title="Permalink to this headline">¶</a></h1>
+<p>Haka can also be used to alter packet content as they pass through the system.
+The following example will try to blur the web. More specifically, it will add
+some css trick on every html pages.</p>
+<div class="section" id="http-dissector">
+<h2>4.1. HTTP dissector<a class="headerlink" href="#http-dissector" title="Permalink to this headline">¶</a></h2>
+<p>As usual we first need to load the http dissector named <tt class="docutils literal"><span class="pre">protocol/http</span></tt>.</p>
+<p>As there is no mechanism over TCP&nbsp;to specify the next protocol (unlike IP) we
+also have to tell Haka which TCP connection it will have to dissect with the
+HTTP dissector.</p>
+<div class="highlight-lua"><div class="highlight"><pre><span class="n">http</span><span class="p">.</span><span class="n">install_tcp_rule</span><span class="p">(</span><span class="mi">80</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="admonition-exercise admonition">
+<p class="first admonition-title">Exercise</p>
+<p>By going to the documentation of the HTTP&nbsp;dissector we can see that it provides
+an interesting event called <tt class="docutils literal"><span class="pre">http.events.request</span></tt>. This event will pass the
+HTTP connection and the HTTP request to the eval function.</p>
+<p class="last">Create a rule hooked on <tt class="docutils literal"><span class="pre">http.events.request</span></tt>. Check it work correctly by
+logging some part of the request object. You can use haka on real traffic or
+download the following pcap file: <a class="reference download internal" href="../../../_downloads/http.pcap"><tt class="xref download docutils literal"><span class="pre">http.pcap</span></tt></a>.</p>
+</div>
+</div>
+<div class="section" id="modifying-http-request">
+<h2>4.2. Modifying http request<a class="headerlink" href="#modifying-http-request" title="Permalink to this headline">¶</a></h2>
+<p>From this request object we are able to get the HTTP&nbsp;headers. It is located in the
+request field available in the dissector object, for instance:</p>
+<div class="highlight-lua"><div class="highlight"><pre><span class="n">request</span><span class="p">.</span><span class="n">headers</span><span class="p">[</span><span class="s1">&#39;</span><span class="s">Host&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>We will first create a new rule on the request to make sure that the response data
+will be transmitted in clear text. This is required as we want to modify the HTTP
+page.</p>
+<div class="admonition-exercise admonition">
+<p class="first admonition-title">Exercise</p>
+<p>In order to be sure to receive a clear text response (not gzipped) it is
+required to change the following headers:</p>
+<blockquote>
+<div><ul class="simple">
+<li>remove <tt class="docutils literal"><span class="pre">Accept-Encoding</span></tt></li>
+<li>set <tt class="docutils literal"><span class="pre">Accept</span></tt> to <tt class="docutils literal"><span class="pre">'*/*'</span></tt></li>
+</ul>
+</div></blockquote>
+<p class="last">Write a rule hooked on <tt class="docutils literal"><span class="pre">http.events.request</span></tt> that do the required change.</p>
+</div>
+<div class="admonition-exercise admonition">
+<p class="first admonition-title">Exercise</p>
+<p>Also to avoid cache issues, it is easy to remove some cache control headers:</p>
+<blockquote>
+<div><ul class="simple">
+<li>remove <tt class="docutils literal"><span class="pre">If-Modified-Since</span></tt></li>
+<li>and remove <tt class="docutils literal"><span class="pre">If-None-Match</span></tt></li>
+</ul>
+</div></blockquote>
+<p class="last">Update your rule.</p>
+</div>
+</div>
+<div class="section" id="modifying-http-response">
+<h2>4.3. Modifying http response<a class="headerlink" href="#modifying-http-response" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="request">
+<h3>4.3.1. Request<a class="headerlink" href="#request" title="Permalink to this headline">¶</a></h3>
+<p>Our goal is to insert data inside the HTTP page, to be able to do it correctly,
+a rule on the event <tt class="docutils literal"><span class="pre">http.events.response</span></tt> need to be added. It must call the
+function <a class="reference internal" href="../../../modules/protocol/http/doc/http.html#haka-function.&lt;HttpDissector&gt;.enable_data_modification" title="&amp;lt;HttpDissector&amp;gt;.enable_data_modification"><tt class="xref haka haka-func docutils literal"><span class="pre">&lt;HttpDissector&gt;.enable_data_modification()</span></tt></a>. This will enable
+our next rule to insert its data without having to take care of updating the
+<em>Content-Length</em> header value for instance.</p>
+</div>
+<div class="section" id="css">
+<h3>4.3.2. CSS<a class="headerlink" href="#css" title="Permalink to this headline">¶</a></h3>
+<p>To blur the web, we will need to add the following snippet:</p>
+<div class="highlight-css"><div class="highlight"><pre><span class="o">*</span> <span class="p">{</span>
+    <span class="k">color</span><span class="o">:</span> <span class="k">transparent</span> <span class="cp">!important</span><span class="p">;</span>
+    <span class="k">text-shadow</span><span class="o">:</span> <span class="m">0</span> <span class="m">0</span> <span class="m">3px</span> <span class="nb">black</span> <span class="cp">!important</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>We can define a simple variable to save it:</p>
+<div class="highlight-lua"><div class="highlight"><pre><span class="kd">local</span> <span class="n">css</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="s">&lt;style type=&quot;text/css&quot; media=&quot;screen&quot;&gt; * { color: transparent !important; text-shadow: 0 0 3px black !important; } &lt;/style&gt;&#39;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="stream">
+<h3>4.3.3. Stream<a class="headerlink" href="#stream" title="Permalink to this headline">¶</a></h3>
+<p>In order to add the css snippet on every html page we can use the
+<tt class="docutils literal"><span class="pre">http.events.response_data</span></tt> event of the HTTP&nbsp;dissector.</p>
+<p>This event will be triggered each time response data will be available. This
+event have a very interesting and powerful option, namely <tt class="docutils literal"><span class="pre">streamed</span></tt>.</p>
+<div class="highlight-lua"><div class="highlight"><pre><span class="n">haka</span><span class="p">.</span><span class="n">rule</span><span class="p">{</span>
+    <span class="n">hook</span> <span class="o">=</span> <span class="n">http</span><span class="p">.</span><span class="n">events</span><span class="p">.</span><span class="n">response_data</span><span class="p">,</span>
+    <span class="n">options</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="n">streamed</span> <span class="o">=</span> <span class="kc">true</span><span class="p">,</span>
+    <span class="p">},</span>
+    <span class="n">eval</span> <span class="o">=</span> <span class="k">function</span> <span class="p">(</span><span class="n">flow</span><span class="p">,</span> <span class="n">iter</span><span class="p">)</span>
+        <span class="c1">-- Eval function</span>
+    <span class="k">end</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>This option turn on the streamed mode. Consequently the eval function will be
+called once, and only once. It will automatically wait for data when needed
+if it uses <cite>stream functions</cite>.</p>
+<p>Next step is to look for the right place in the stream to insert our css
+snippet. Namely in the <tt class="docutils literal"><span class="pre">&lt;head&gt;&lt;/head&gt;</span></tt> section.  In order to find where is
+this section in the response data we can use a regular expression.</p>
+</div>
+<div class="section" id="regular-expression">
+<h3>4.3.4. Regular expression<a class="headerlink" href="#regular-expression" title="Permalink to this headline">¶</a></h3>
+<p>Regular expression are available through modules in Haka. Currently Haka provide
+only one regular expression module : <tt class="docutils literal"><span class="pre">pcre</span></tt>.</p>
+<div class="highlight-lua"><div class="highlight"><pre><span class="kd">local</span> <span class="n">rem</span> <span class="o">=</span> <span class="nb">require</span><span class="p">(</span><span class="s1">&#39;</span><span class="s">regexp/pcre&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Then we have to compile a new regexp.</p>
+<div class="highlight-lua"><div class="highlight"><pre><span class="kd">local</span> <span class="n">regexp</span> <span class="o">=</span> <span class="n">rem</span><span class="p">.</span><span class="n">re</span><span class="p">:</span><span class="n">compile</span><span class="p">(</span><span class="s2">&quot;</span><span class="s">&lt;/head&gt;&quot;</span><span class="p">,</span> <span class="n">rem</span><span class="p">.</span><span class="n">re</span><span class="p">.</span><span class="n">CASE_INSENSITIVE</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>It is important to note that regexp module is stream aware, and so, it can read
+an entire stream looking for a given pattern before returning.</p>
+</div>
+<div class="section" id="vbuffer-iterator">
+<h3>4.3.5. vbuffer iterator<a class="headerlink" href="#vbuffer-iterator" title="Permalink to this headline">¶</a></h3>
+<p>Both the eval function of the <tt class="docutils literal"><span class="pre">http.events.response_data</span></tt> event and the
+<tt class="docutils literal"><span class="pre">match()</span></tt> function of the regexp module use a special object called an
+<cite>iterator</cite>. This iterator represent a point on the data stream. It can advance
+on the stream and it can be used to manipulate (insert, remove, replace) it.</p>
+<p>For example, finding the right place to insert our css snippet is as simple as:</p>
+<div class="highlight-lua"><div class="highlight"><pre><span class="kd">local</span> <span class="n">result</span> <span class="o">=</span> <span class="n">regexp</span><span class="p">:</span><span class="n">match</span><span class="p">(</span><span class="n">iter</span><span class="p">,</span> <span class="kc">true</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><tt class="docutils literal"><span class="pre">result</span></tt> will be a sub-buffer representing the matching part of our regexp in
+the data stream.</p>
+<p>Finally if we want to insert our snippet we can use the vbuffer API:</p>
+<div class="highlight-lua"><div class="highlight"><pre><span class="n">result</span><span class="p">:</span><span class="n">pos</span><span class="p">(</span><span class="s1">&#39;</span><span class="s">begin&#39;</span><span class="p">):</span><span class="n">insert</span><span class="p">(</span><span class="n">haka</span><span class="p">.</span><span class="n">vbuffer_from</span><span class="p">(</span><span class="n">css</span><span class="p">))</span>
+</pre></div>
+</div>
+<div class="admonition-exercise admonition">
+<p class="first admonition-title">Exercise</p>
+<p>Bring all the pieces together in one rule and test it on live traffic.</p>
+<p class="last">Test it on http traffic not on https. <a class="reference external" href="http://www.haka-security.org">http://www.haka-security.org</a> might be
+a good candidate for it.</p>
+</div>
+</div>
+</div>
+<div class="section" id="full-script">
+<h2>4.4. Full script<a class="headerlink" href="#full-script" title="Permalink to this headline">¶</a></h2>
+<p>You will find the full script here <a class="reference download internal" href="../../../_downloads/blurring-the-web.lua"><tt class="xref download docutils literal"><span class="pre">blurring-the-web.lua</span></tt></a>.</p>
+</div>
+</div>
+
+
+		</div>
+	</div>
+</div>
+
+
+
+<footer id="footer">
+	<div class="row" role="complementary">
+		<div class="medium-12 columns">
+			&copy; Copyright 2014, Arkoon Network Security, OpenWide and Telecom ParisTech.
+		</div>
+	</div>
+</footer>
+<script>
+	  $(document).foundation();
+</script>
+
+
+
+<script type="text/javascript" src="http://www.haka-security.org/js/track.js"></script>
+
+
+  </body>
+</html>

@@ -1,0 +1,226 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Elasticsearch alert alert/elasticsearch &mdash; Haka runtime 0.2.1 documentation</title>
+    
+    <link rel="stylesheet" href="../../../../_static/haka.css" type="text/css" />
+    <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../../../_static/breathe.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../../',
+        VERSION:     '0.2.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../../../_static/js/scripts.js"></script>
+    <script type="text/javascript" src="../../../../_static/js/vendor/modernizr.js"></script>
+    <script type="text/javascript" src="../../../../_static/js/foundation/foundation.js"></script>
+    <script type="text/javascript" src="../../../../_static/js/foundation/foundation.topbar.js"></script>
+    <link rel="top" title="Haka runtime 0.2.1 documentation" href="../../../../index.html" />
+    <link rel="up" title="4.4. Modules" href="../../../../doc/user/tool_suite_modules.html" />
+    <link rel="next" title="File alert alert/file" href="../../file/doc/module.html" />
+    <link rel="prev" title="Pcap packet/pcap" href="../../../packet/pcap/doc/module.html" /> 
+  </head>
+  <body>
+
+
+<header id="header" role="banner">
+	<div class="row">
+		<div class="medium-6 columns">
+			<h1 class="title"><a rel="home" title="Haka" href="http://www.haka-security.org">Haka</a></h1>
+			<h2 class="description">Software Defined Security</h2>
+		</div>
+		<div class="medium-6 columns">
+			<div id="version">Version 0.2.1</div>
+		</div>
+	</div>
+</header>
+
+<div class="contain-to-grid sticky">
+	
+
+<nav id="navbar" class="top-bar" data-topbar>
+	<ul class="title-area">
+		<!-- This is required for toggle-topbar to work -->
+		<li class="name"></li>
+		<li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
+	</ul>
+	<section class="top-bar-section">
+		<ul class="left">
+			<li class=" active">
+				<a href="../../../../doc/user/userindex.html">Users</a>
+			</li>
+			<li class=" ">
+				<a href="../../../../doc/ref/refindex.html" class="../../../../doc/ref/refindex.html">References</a>
+			</li>
+			<li class=" ">
+				<a href="../../../../doc/developer/devindex.html" class="">Developers</a>
+			</li>
+			<li class=" ">
+				<a href="../../../../doc/faq.html" class="">Faq</a>
+			</li>
+			<li class="has-form">
+
+
+	<form class="search" action="../../../../search.html" method="get" id="searchbox" style="display: none">
+		<input type="hidden" name="area" value="default" />
+		<input type="hidden" name="check_keywords" value="yes" />
+		<div class="row collapse">
+			<div class="medium-11 columns">
+				<input type="text" name="q" placeholder="Search" />
+			</div>
+			<div class="medium-1 columns" id="clean-search-highlight">
+			</div>
+		</div>
+	</form>
+	<script type="text/javascript">$('#searchbox').show(0);</script>
+</li>
+		</ul>
+		<ul class="right">
+				<li class="right"><a href="../../file/doc/module.html" title="File alert <cite>alert/file</cite>">Next &rarr;</a></li>
+				<li class="right"><a href="../../../packet/pcap/doc/module.html" title="Pcap  <cite>packet/pcap</cite>">&larr; Prev</a></li>
+				<li class="right"><a href="../../../../doc/user/tool_suite_modules.html" title="4.4. Modules">Up &uarr;</a></li>
+
+			<li class=" right"><a href="../../../../genindex.html">Index</a></li>
+			<li class=" right"><a href="../../../../haka-modindex.html">Modules</a></li>
+		</ul>
+	</section>
+</nav>
+</div>
+<div id="content">
+	<div class="row">
+		<ul id="breadcrumb" class="breadcrumbs medium-12 columns">
+			
+			<li><a href="../../../../doc/user/userindex.html">Welcome to Haka&#8217;s User Guide!</a></li>
+			
+			<li><a href="../../../../doc/user/tool_suite.html">4. Haka tool suite</a></li>
+			
+			<li><a href="../../../../doc/user/tool_suite_modules.html">4.4. Modules</a></li>
+			
+			<li class="current"><a href="#">Elasticsearch alert <cite>alert/elasticsearch</cite></a></li>
+		</ul>
+	</div>
+	<div class="row">
+		<div class="medium-12 columns">
+			
+  <div class="section" id="elasticsearch-alert-alert-elasticsearch">
+<h1>Elasticsearch alert <cite>alert/elasticsearch</cite><a class="headerlink" href="#elasticsearch-alert-alert-elasticsearch" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="description">
+<h2>Description<a class="headerlink" href="#description" title="Permalink to this headline">¶</a></h2>
+<p>This module will exports all alerts to an elasticsearch server. It also adds also
+some extra information such as geoip data.</p>
+</div>
+<div class="section" id="parameters">
+<h2>Parameters<a class="headerlink" href="#parameters" title="Permalink to this headline">¶</a></h2>
+<dl class="describe">
+<dt>
+<tt class="descname">elasticsearch_server</tt></dt>
+<dd><p>Elasticsearch server address.</p>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">Be careful not to create security rules that block elasticsearch traffic.</p>
+</div>
+</dd></dl>
+
+<dl class="describe">
+<dt>
+<tt class="descname">elasticsearch_index</tt></dt>
+<dd><p>Elasticsearch index.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">If this field is missing, Haka will use <tt class="docutils literal"><span class="pre">ips</span></tt> as default kibana index.</p>
+</div>
+</dd></dl>
+
+<dl class="describe">
+<dt>
+<tt class="descname">geoip_database</tt></dt>
+<dd><p>Absolute file path to geoip data file. Optional field that provides
+geolocalization support.</p>
+</dd></dl>
+
+<p>Example :</p>
+<div class="highlight-ini"><div class="highlight"><pre><span class="k">[alert]</span>
+<span class="c"># Select the alert module</span>
+<span class="na">module</span> <span class="o">=</span> <span class="s">&quot;alert/elasticsearch&quot;</span>
+
+<span class="c"># alert/elasticsearch module option</span>
+<span class="na">elasticsearch_server</span> <span class="o">=</span> <span class="s">&quot;http://127.0.0.1:9200&quot;</span>
+<span class="c">#elasticsearch_index = &quot;ips&quot;</span>
+<span class="na">geoip_database</span> <span class="o">=</span> <span class="s">&quot;/usr/share/GeoIP/GeoIP.dat&quot;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="kibana-and-elasticsearch-setup">
+<h2>Kibana and Elasticsearch setup<a class="headerlink" href="#kibana-and-elasticsearch-setup" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Install and start Elasticsearch server</li>
+</ul>
+<div class="highlight-console"><div class="highlight"><pre><span class="go">sudo dpkg -i elasticsearch-&lt;version&gt;.deb</span>
+<span class="go">sudo service elasticsearch start</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li>Install and setup Kibana</li>
+</ul>
+<div class="highlight-console"><div class="highlight"><pre><span class="go">tar -zxvf kibana-&lt;version&gt;.tar.gz \</span>
+<span class="go">    --strip-components=1 \</span>
+<span class="go">        -C &lt;webserver-path&gt;/kibana</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">you may need to edit &#8216;config.js&#8217; file and set the elasticsearch
+address (e.g. elasticsearch = <a class="reference external" href="http://127.0.0.1:9200">http://127.0.0.1:9200</a>)</p>
+</div>
+</div>
+<div class="section" id="kibana-dashboard">
+<h2>Kibana dashboard<a class="headerlink" href="#kibana-dashboard" title="Permalink to this headline">¶</a></h2>
+<p>The dashboard <a class="reference download internal" href="../../../../_downloads/ips_dahsboard.json"><tt class="xref download docutils literal"><span class="pre">ips_dahsboard.json</span></tt></a> is an example of a Kibana dashboard that shows some info about haka alerts.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Set the elasticsearch index to <tt class="docutils literal"><span class="pre">elasticsearch_index</span></tt> value in the main kibana dashboard setting.</p>
+</div>
+</div>
+</div>
+
+
+		</div>
+	</div>
+</div>
+
+
+
+<footer id="footer">
+	<div class="row" role="complementary">
+		<div class="medium-12 columns">
+			&copy; Copyright 2014, Arkoon Network Security, OpenWide and Telecom ParisTech.
+		</div>
+	</div>
+</footer>
+<script>
+	  $(document).foundation();
+</script>
+
+
+
+<script type="text/javascript" src="http://www.haka-security.org/js/track.js"></script>
+
+
+  </body>
+</html>

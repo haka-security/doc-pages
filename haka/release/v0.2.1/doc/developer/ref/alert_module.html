@@ -1,0 +1,202 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>3.9.3. Alert module &mdash; Haka runtime 0.2.1 documentation</title>
+    
+    <link rel="stylesheet" href="../../../_static/haka.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/breathe.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../',
+        VERSION:     '0.2.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../../_static/js/scripts.js"></script>
+    <script type="text/javascript" src="../../../_static/js/vendor/modernizr.js"></script>
+    <script type="text/javascript" src="../../../_static/js/foundation/foundation.js"></script>
+    <script type="text/javascript" src="../../../_static/js/foundation/foundation.topbar.js"></script>
+    <link rel="top" title="Haka runtime 0.2.1 documentation" href="../../../index.html" />
+    <link rel="up" title="3.8. Modules" href="module.html" />
+    <link rel="next" title="3.9.4. Regular expression module" href="regexp_module.html" />
+    <link rel="prev" title="3.9.2. Log module" href="log_module.html" /> 
+  </head>
+  <body>
+
+
+<header id="header" role="banner">
+	<div class="row">
+		<div class="medium-6 columns">
+			<h1 class="title"><a rel="home" title="Haka" href="http://www.haka-security.org">Haka</a></h1>
+			<h2 class="description">Software Defined Security</h2>
+		</div>
+		<div class="medium-6 columns">
+			<div id="version">Version 0.2.1</div>
+		</div>
+	</div>
+</header>
+
+<div class="contain-to-grid sticky">
+	
+
+<nav id="navbar" class="top-bar" data-topbar>
+	<ul class="title-area">
+		<!-- This is required for toggle-topbar to work -->
+		<li class="name"></li>
+		<li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
+	</ul>
+	<section class="top-bar-section">
+		<ul class="left">
+			<li class=" ">
+				<a href="../../user/userindex.html">Users</a>
+			</li>
+			<li class=" ">
+				<a href="../../ref/refindex.html" class="../../ref/refindex.html">References</a>
+			</li>
+			<li class=" active">
+				<a href="../devindex.html" class="">Developers</a>
+			</li>
+			<li class=" ">
+				<a href="../../faq.html" class="">Faq</a>
+			</li>
+			<li class="has-form">
+
+
+	<form class="search" action="../../../search.html" method="get" id="searchbox" style="display: none">
+		<input type="hidden" name="area" value="default" />
+		<input type="hidden" name="check_keywords" value="yes" />
+		<div class="row collapse">
+			<div class="medium-11 columns">
+				<input type="text" name="q" placeholder="Search" />
+			</div>
+			<div class="medium-1 columns" id="clean-search-highlight">
+			</div>
+		</div>
+	</form>
+	<script type="text/javascript">$('#searchbox').show(0);</script>
+</li>
+		</ul>
+		<ul class="right">
+				<li class="right"><a href="regexp_module.html" title="3.9.4. Regular expression module">Next &rarr;</a></li>
+				<li class="right"><a href="log_module.html" title="3.9.2. Log module">&larr; Prev</a></li>
+				<li class="right"><a href="module.html" title="3.8. Modules">Up &uarr;</a></li>
+
+			<li class=" right"><a href="../../../genindex.html">Index</a></li>
+			<li class=" right"><a href="../../../haka-modindex.html">Modules</a></li>
+		</ul>
+	</section>
+</nav>
+</div>
+<div id="content">
+	<div class="row">
+		<ul id="breadcrumb" class="breadcrumbs medium-12 columns">
+			
+			<li><a href="../devindex.html">Welcome to Haka&#8217;s Developer Guide!</a></li>
+			
+			<li><a href="../devref.html">3. Developer reference guide</a></li>
+			
+			<li><a href="module.html">3.8. Modules</a></li>
+			
+			<li class="current"><a href="#">3.9.3. Alert module</a></li>
+		</ul>
+	</div>
+	<div class="row">
+		<div class="medium-12 columns">
+			
+  <div class="section" id="alert-module">
+<h1>3.9.3. Alert module<a class="headerlink" href="#alert-module" title="Permalink to this headline">¶</a></h1>
+<p></p>
+<p>Alert module back-end. </p>
+<em>Functions</em><blockquote>
+<div><p><span class="target" id="project0alert__module_8h_1ae074d6a853f1bc13b9f428cce5bdee8a"></span><div class="line-block">
+<div class="line">struct  <a class="reference internal" href="alert.html#project0structalerter"><em>alerter</em></a>  * <strong>alert_module_alerter</strong>(struct  <a class="reference internal" href="module.html#project0structmodule"><em>module</em></a>  * module, struct parameters * args)</div>
+</div>
+</p>
+<blockquote>
+<div><p></p>
+<p>Create an alerter from the given module. </p>
+</div></blockquote>
+</div></blockquote>
+<p><p id="project0structalerter__module"><em>class</em> <strong>alerter_module</strong></p>
+<blockquote>
+<div><p></p>
+<p>Alerter helper structure. </p>
+<em>Public Members</em><blockquote>
+<div><p><span class="target" id="project0structalerter__module_1ab1873fe4b96aef4d7095962fab5ea435"></span>struct  <a class="reference internal" href="alert.html#project0structalerter"><em>alerter</em></a> <strong>alerter</strong></p>
+<blockquote>
+<div><p></p>
+<p></p>
+</div></blockquote>
+<p><span class="target" id="project0structalerter__module_1a044aeca6d2fdcdd9cdc5ec04d0367390"></span>struct  <a class="reference internal" href="#project0structalert__module"><em>alert_module</em></a>  * <strong>module</strong></p>
+<blockquote>
+<div><p></p>
+<p></p>
+</div></blockquote>
+</div></blockquote>
+</div></blockquote>
+</p>
+<p><p id="project0structalert__module"><em>class</em> <strong>alert_module</strong></p>
+<blockquote>
+<div><p></p>
+<p>Alert module structure. This module type will allow to create custom alert back-end for Haka to, for instance, put the alert into syslog or append it to a database. </p>
+<em>Public Members</em><blockquote>
+<div><p><span class="target" id="project0structalert__module_1ad8a07ff795eb12d5ed72fd05ce2473a4"></span>struct  <a class="reference internal" href="module.html#project0structmodule"><em>module</em></a> <strong>module</strong></p>
+<blockquote>
+<div><p></p>
+<p>Module structure. </p>
+</div></blockquote>
+<p><span class="target" id="project0structalert__module_1a007d04365d36e4b653d291f6af4b1af4"></span>struct  <a class="reference internal" href="#project0structalerter__module"><em>alerter_module</em></a>  *(* <strong>init_alerter</strong>)(struct parameters *args)</p>
+<blockquote>
+<div><p></p>
+<p>Create a new alerter. This function must fill the fields of the struct <a class="reference internal" href="#project0structalerter__module"><em>alerter_module</em></a>. </p>
+</div></blockquote>
+<p><span class="target" id="project0structalert__module_1a99bf1cab745c4cef500468157db4feee"></span>void(* <strong>cleanup_alerter</strong>)(struct alerter_module *alerter)</p>
+<blockquote>
+<div><p></p>
+<p>Destroy an alerter. </p>
+</div></blockquote>
+</div></blockquote>
+</div></blockquote>
+</p>
+</div>
+
+
+		</div>
+	</div>
+</div>
+
+
+
+<footer id="footer">
+	<div class="row" role="complementary">
+		<div class="medium-12 columns">
+			&copy; Copyright 2014, Arkoon Network Security, OpenWide and Telecom ParisTech.
+		</div>
+	</div>
+</footer>
+<script>
+	  $(document).foundation();
+</script>
+
+
+
+<script type="text/javascript" src="http://www.haka-security.org/js/track.js"></script>
+
+
+  </body>
+</html>

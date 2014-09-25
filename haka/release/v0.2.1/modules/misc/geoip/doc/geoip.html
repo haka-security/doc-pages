@@ -1,0 +1,209 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>8.1. Geoip &mdash; Haka runtime 0.2.1 documentation</title>
+    
+    <link rel="stylesheet" href="../../../../_static/haka.css" type="text/css" />
+    <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../../../_static/breathe.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../../',
+        VERSION:     '0.2.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../../../_static/js/scripts.js"></script>
+    <script type="text/javascript" src="../../../../_static/js/vendor/modernizr.js"></script>
+    <script type="text/javascript" src="../../../../_static/js/foundation/foundation.js"></script>
+    <script type="text/javascript" src="../../../../_static/js/foundation/foundation.topbar.js"></script>
+    <link rel="top" title="Haka runtime 0.2.1 documentation" href="../../../../index.html" />
+    <link rel="up" title="8. Haka modules" href="../../../../doc/ref/hakamodule.html" />
+    <link rel="next" title="8.2. ElasticSearch" href="../../elasticsearch/doc/elasticsearch.html" />
+    <link rel="prev" title="8. Haka modules" href="../../../../doc/ref/hakamodule.html" /> 
+  </head>
+  <body>
+
+
+<header id="header" role="banner">
+	<div class="row">
+		<div class="medium-6 columns">
+			<h1 class="title"><a rel="home" title="Haka" href="http://www.haka-security.org">Haka</a></h1>
+			<h2 class="description">Software Defined Security</h2>
+		</div>
+		<div class="medium-6 columns">
+			<div id="version">Version 0.2.1</div>
+		</div>
+	</div>
+</header>
+
+<div class="contain-to-grid sticky">
+	
+
+<nav id="navbar" class="top-bar" data-topbar>
+	<ul class="title-area">
+		<!-- This is required for toggle-topbar to work -->
+		<li class="name"></li>
+		<li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
+	</ul>
+	<section class="top-bar-section">
+		<ul class="left">
+			<li class=" ">
+				<a href="../../../../doc/user/userindex.html">Users</a>
+			</li>
+			<li class=" active">
+				<a href="../../../../doc/ref/refindex.html" class="../../../../doc/ref/refindex.html">References</a>
+			</li>
+			<li class=" ">
+				<a href="../../../../doc/developer/devindex.html" class="">Developers</a>
+			</li>
+			<li class=" ">
+				<a href="../../../../doc/faq.html" class="">Faq</a>
+			</li>
+			<li class="has-form">
+
+
+	<form class="search" action="../../../../search.html" method="get" id="searchbox" style="display: none">
+		<input type="hidden" name="area" value="default" />
+		<input type="hidden" name="check_keywords" value="yes" />
+		<div class="row collapse">
+			<div class="medium-11 columns">
+				<input type="text" name="q" placeholder="Search" />
+			</div>
+			<div class="medium-1 columns" id="clean-search-highlight">
+			</div>
+		</div>
+	</form>
+	<script type="text/javascript">$('#searchbox').show(0);</script>
+</li>
+		</ul>
+		<ul class="right">
+				<li class="right"><a href="../../elasticsearch/doc/elasticsearch.html" title="8.2. ElasticSearch">Next &rarr;</a></li>
+				<li class="right"><a href="../../../../doc/ref/hakamodule.html" title="8. Haka modules">&larr; Prev</a></li>
+				<li class="right"><a href="../../../../doc/ref/hakamodule.html" title="8. Haka modules">Up &uarr;</a></li>
+
+			<li class=" right"><a href="../../../../genindex.html">Index</a></li>
+			<li class=" right"><a href="../../../../haka-modindex.html">Modules</a></li>
+		</ul>
+	</section>
+</nav>
+</div>
+<div id="content">
+	<div class="row">
+		<ul id="breadcrumb" class="breadcrumbs medium-12 columns">
+			
+			<li><a href="../../../../doc/ref/refindex.html">Welcome to Haka&#8217;s User Reference Guide!</a></li>
+			
+			<li><a href="../../../../doc/ref/hakamodule.html">8. Haka modules</a></li>
+			
+			<li class="current"><a href="#">8.1. Geoip</a></li>
+		</ul>
+	</div>
+	<div class="row">
+		<div class="medium-12 columns">
+			
+  <div class="section" id="haka-module.geoip">
+<span id="geoip"></span><h1>8.1. Geoip<a class="headerlink" href="#haka-module.geoip" title="Permalink to this headline">¶</a></h1>
+<p>GeoIP utility module.</p>
+<p><strong>Usage:</strong></p>
+<div class="highlight-lua"><div class="highlight"><pre><span class="kd">local</span> <span class="n">geoip</span> <span class="o">=</span> <span class="nb">require</span><span class="p">(</span><span class="s1">&#39;</span><span class="s">misc/geoip&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="section" id="api">
+<h2>8.1.1. API<a class="headerlink" href="#api" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="haka-function.geoip.open">
+<em class="property"> </em><tt class="descclassname">geoip.</tt><tt class="descname">open</tt><big>(</big><em>file</em><big>)</big> &rarr; geoip_handle<a class="headerlink" href="#haka-function.geoip.open" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>file</strong> (<em>string</em>) &#8211; GeoIP data file.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p>Load GeoIP data file.</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="haka-object.geoip.GeoIPHandle">
+<em class="property">object </em><tt class="descclassname">geoip.</tt><tt class="descname">GeoIPHandle</tt><a class="headerlink" href="#haka-object.geoip.GeoIPHandle" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="function">
+<dt id="haka-function.GeoIPHandle.country">
+<em class="property"> </em><tt class="descclassname">GeoIPHandle:</tt><tt class="descname">country</tt><big>(</big><em>ip</em><big>)</big> &rarr; country_code<a class="headerlink" href="#haka-function.GeoIPHandle.country" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>ip</strong> (<a class="reference internal" href="../../../protocol/ipv4/doc/ipv4.html#haka-function.ipv4.addr" title="ipv4.addr"><tt class="xref haka haka-class docutils literal"><span class="pre">ipv4.addr</span></tt></a>) &#8211; IPv4 address.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><ul class="first last simple">
+<li><strong>country_code</strong> (<em>string</em>) &#8211; Result country code or nil if not found.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p>Query the country code for an IP address.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="example">
+<h2>8.1.2. Example<a class="headerlink" href="#example" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-lua"><div class="highlight"><pre><span class="kd">local</span> <span class="n">ipv4</span> <span class="o">=</span> <span class="nb">require</span><span class="p">(</span><span class="s1">&#39;</span><span class="s">protocol/ipv4&#39;</span><span class="p">)</span>
+<span class="kd">local</span> <span class="n">geoip_module</span> <span class="o">=</span> <span class="nb">require</span><span class="p">(</span><span class="s1">&#39;</span><span class="s">misc/geoip&#39;</span><span class="p">)</span>
+
+<span class="kd">local</span> <span class="n">geoip</span> <span class="o">=</span> <span class="n">geoip_module</span><span class="p">.</span><span class="n">open</span><span class="p">(</span><span class="s1">&#39;</span><span class="s">/usr/share/GeoIP/GeoIP.dat&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">geoip</span><span class="p">:</span><span class="n">country</span><span class="p">(</span><span class="n">ipv4</span><span class="p">.</span><span class="n">addr</span><span class="p">(</span><span class="s2">&quot;</span><span class="s">8.8.8.8&quot;</span><span class="p">)))</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+		</div>
+	</div>
+</div>
+
+
+
+<footer id="footer">
+	<div class="row" role="complementary">
+		<div class="medium-12 columns">
+			&copy; Copyright 2014, Arkoon Network Security, OpenWide and Telecom ParisTech.
+		</div>
+	</div>
+</footer>
+<script>
+	  $(document).foundation();
+</script>
+
+
+
+<script type="text/javascript" src="http://www.haka-security.org/js/track.js"></script>
+
+
+  </body>
+</html>

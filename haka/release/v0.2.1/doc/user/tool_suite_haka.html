@@ -1,0 +1,362 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>4.1. haka &mdash; Haka runtime 0.2.1 documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/haka.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/breathe.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '0.2.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../_static/js/scripts.js"></script>
+    <script type="text/javascript" src="../../_static/js/vendor/modernizr.js"></script>
+    <script type="text/javascript" src="../../_static/js/foundation/foundation.js"></script>
+    <script type="text/javascript" src="../../_static/js/foundation/foundation.topbar.js"></script>
+    <link rel="top" title="Haka runtime 0.2.1 documentation" href="../../index.html" />
+    <link rel="up" title="4. Haka tool suite" href="tool_suite.html" />
+    <link rel="next" title="4.2. hakactl" href="tool_suite_hakactl.html" />
+    <link rel="prev" title="4. Haka tool suite" href="tool_suite.html" /> 
+  </head>
+  <body>
+
+
+<header id="header" role="banner">
+	<div class="row">
+		<div class="medium-6 columns">
+			<h1 class="title"><a rel="home" title="Haka" href="http://www.haka-security.org">Haka</a></h1>
+			<h2 class="description">Software Defined Security</h2>
+		</div>
+		<div class="medium-6 columns">
+			<div id="version">Version 0.2.1</div>
+		</div>
+	</div>
+</header>
+
+<div class="contain-to-grid sticky">
+	
+
+<nav id="navbar" class="top-bar" data-topbar>
+	<ul class="title-area">
+		<!-- This is required for toggle-topbar to work -->
+		<li class="name"></li>
+		<li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
+	</ul>
+	<section class="top-bar-section">
+		<ul class="left">
+			<li class=" active">
+				<a href="userindex.html">Users</a>
+			</li>
+			<li class=" ">
+				<a href="../ref/refindex.html" class="../ref/refindex.html">References</a>
+			</li>
+			<li class=" ">
+				<a href="../developer/devindex.html" class="">Developers</a>
+			</li>
+			<li class=" ">
+				<a href="../faq.html" class="">Faq</a>
+			</li>
+			<li class="has-form">
+
+
+	<form class="search" action="../../search.html" method="get" id="searchbox" style="display: none">
+		<input type="hidden" name="area" value="default" />
+		<input type="hidden" name="check_keywords" value="yes" />
+		<div class="row collapse">
+			<div class="medium-11 columns">
+				<input type="text" name="q" placeholder="Search" />
+			</div>
+			<div class="medium-1 columns" id="clean-search-highlight">
+			</div>
+		</div>
+	</form>
+	<script type="text/javascript">$('#searchbox').show(0);</script>
+</li>
+		</ul>
+		<ul class="right">
+				<li class="right"><a href="tool_suite_hakactl.html" title="4.2. hakactl">Next &rarr;</a></li>
+				<li class="right"><a href="tool_suite.html" title="4. Haka tool suite">&larr; Prev</a></li>
+				<li class="right"><a href="tool_suite.html" title="4. Haka tool suite">Up &uarr;</a></li>
+
+			<li class=" right"><a href="../../genindex.html">Index</a></li>
+			<li class=" right"><a href="../../haka-modindex.html">Modules</a></li>
+		</ul>
+	</section>
+</nav>
+</div>
+<div id="content">
+	<div class="row">
+		<ul id="breadcrumb" class="breadcrumbs medium-12 columns">
+			
+			<li><a href="userindex.html">Welcome to Haka&#8217;s User Guide!</a></li>
+			
+			<li><a href="tool_suite.html">4. Haka tool suite</a></li>
+			
+			<li class="current"><a href="#">4.1. haka</a></li>
+		</ul>
+	</div>
+	<div class="row">
+		<div class="medium-12 columns">
+			
+  <div class="section" id="haka">
+<h1>4.1. haka<a class="headerlink" href="#haka" title="Permalink to this headline">¶</a></h1>
+<p><tt class="docutils literal"><span class="pre">haka</span></tt> is the main program of the collection. It allows to capture packets using either pcap
+or nfqueue and to filter/alter them according to the specified Haka policy file.</p>
+<p><tt class="docutils literal"><span class="pre">haka</span></tt> is usually launched as a daemon to monitor packets in the background, but it can
+also be launched from the command line to debug Haka scripts.</p>
+<div class="section" id="options">
+<h2>4.1.1. Options<a class="headerlink" href="#options" title="Permalink to this headline">¶</a></h2>
+<p><tt class="docutils literal"><span class="pre">haka</span></tt> takes the following options:</p>
+<dl class="option">
+<dt id="cmdoption-haka-h">
+<tt class="descname">-h</tt><tt class="descclassname"></tt><tt class="descclassname">, </tt><tt class="descname">--help</tt><tt class="descclassname"></tt><a class="headerlink" href="#cmdoption-haka-h" title="Permalink to this definition">¶</a></dt>
+<dd><p>Display usage and options information.</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-haka--version">
+<tt class="descname">--version</tt><tt class="descclassname"></tt><a class="headerlink" href="#cmdoption-haka--version" title="Permalink to this definition">¶</a></dt>
+<dd><p>Display version information.</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-haka-d">
+<tt class="descname">-d</tt><tt class="descclassname"></tt><tt class="descclassname">, </tt><tt class="descname">--debug</tt><tt class="descclassname"></tt><a class="headerlink" href="#cmdoption-haka-d" title="Permalink to this definition">¶</a></dt>
+<dd><p>Display debug output.</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-haka-l">
+<tt class="descname">-l</tt><tt class="descclassname"></tt><tt class="descclassname">, </tt><tt class="descname">--loglevel</tt><tt class="descclassname"> [&lt;module&gt;=]&lt;level&gt;[,&lt;module&gt;=&lt;level&gt;[,...]]</tt><a class="headerlink" href="#cmdoption-haka-l" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="docutils">
+<dt>Set the logging level globally and per module. Available levels are :</dt>
+<dd><ul class="first last simple">
+<li>debug</li>
+<li>info</li>
+<li>warning</li>
+<li>error</li>
+<li>fatal</li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-haka--no-daemon">
+<tt class="descname">--no-daemon</tt><tt class="descclassname"></tt><a class="headerlink" href="#cmdoption-haka--no-daemon" title="Permalink to this definition">¶</a></dt>
+<dd><p>Do not run haka as daemon, do not detach from the command line.</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-haka-c">
+<tt class="descname">-c</tt><tt class="descclassname"></tt><tt class="descclassname">, </tt><tt class="descname">--config</tt><tt class="descclassname"> &lt;config&gt;</tt><a class="headerlink" href="#cmdoption-haka-c" title="Permalink to this definition">¶</a></dt>
+<dd><p>Read setup configuration from given file.</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-haka-r">
+<tt class="descname">-r</tt><tt class="descclassname"></tt><tt class="descclassname">, </tt><tt class="descname">--rule</tt><tt class="descclassname"> &lt;rules&gt;</tt><a class="headerlink" href="#cmdoption-haka-r" title="Permalink to this definition">¶</a></dt>
+<dd><p>Override the configuration rule file.</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-haka--debug-lua">
+<tt class="descname">--debug-lua</tt><tt class="descclassname"></tt><a class="headerlink" href="#cmdoption-haka--debug-lua" title="Permalink to this definition">¶</a></dt>
+<dd><p>Start haka with debugger capability.</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-haka--opt">
+<tt class="descname">--opt</tt><tt class="descclassname"> &lt;section&gt;:&lt;key&gt;=&lt;value&gt;</tt><a class="headerlink" href="#cmdoption-haka--opt" title="Permalink to this definition">¶</a></dt>
+<dd><p>Override a parameter value of the configuration.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="configuration-file">
+<h2>4.1.2. Configuration file<a class="headerlink" href="#configuration-file" title="Permalink to this headline">¶</a></h2>
+<p>The configuration file is divided into three main sections <strong>general</strong>, <strong>packet</strong>, <strong>alert</strong> and <strong>log</strong>.</p>
+<div class="section" id="general-directives">
+<h3>General directives<a class="headerlink" href="#general-directives" title="Permalink to this headline">¶</a></h3>
+<dl class="describe">
+<dt>
+<tt class="descname">configuration</tt></dt>
+<dd><p>Set the Haka policy file.</p>
+</dd></dl>
+
+<dl class="describe">
+<dt>
+<tt class="descname">thread</tt></dt>
+<dd><p>Set the number of threads to use. By default, Haka will use as many threads as cpu-cores.</p>
+</dd></dl>
+
+<dl class="describe">
+<dt>
+<tt class="descname">pass-through=[yes|no]</tt></dt>
+<dd><p>Activate pass-through mode. Haka will only monitor traffic and will not allow blocking
+or modification of packets. The overall performence of Haka will be greatly improved.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="packet-directives">
+<h3>Packet directives<a class="headerlink" href="#packet-directives" title="Permalink to this headline">¶</a></h3>
+<dl class="describe">
+<dt>
+<tt class="descname">module</tt></dt>
+<dd><p>Set the packet capture module to use.</p>
+<div class="admonition-see-also admonition seealso">
+<p class="first admonition-title">See also</p>
+<p class="last"><a class="reference internal" href="tool_suite_modules.html#packet-module-section"><em>Packet capture modules</em></a> contains a list of all available modules and
+their options</p>
+</div>
+</dd></dl>
+
+</div>
+<div class="section" id="alert-directives">
+<h3>Alert directives<a class="headerlink" href="#alert-directives" title="Permalink to this headline">¶</a></h3>
+<dl class="describe">
+<dt>
+<tt class="descname">alert_on_stdout=[yes|no]</tt></dt>
+<dd><p>Enable output of alert on stdout when haka is not run as a daemon. Default
+to yes.</p>
+</dd></dl>
+
+<dl class="describe">
+<dt>
+<tt class="descname">module</tt></dt>
+<dd><p>Set the alert module to use.</p>
+<div class="admonition-see-also admonition seealso">
+<p class="first admonition-title">See also</p>
+<p class="last"><a class="reference internal" href="tool_suite_modules.html#alert-module-section"><em>Alert modules</em></a> contains the list of all available modules and
+their options</p>
+</div>
+</dd></dl>
+
+</div>
+<div class="section" id="log-directives">
+<h3>Log directives<a class="headerlink" href="#log-directives" title="Permalink to this headline">¶</a></h3>
+<dl class="describe">
+<dt>
+<tt class="descname">level=[&lt;module&gt;=]&lt;level&gt;[,&lt;module&gt;=&lt;level&gt;[,...]]</tt></dt>
+<dd><p>Set the logging level globally and per module.</p>
+</dd></dl>
+
+<dl class="describe">
+<dt>
+<tt class="descname">module</tt></dt>
+<dd><p>Set the logging module to use.</p>
+<div class="admonition-see-also admonition seealso">
+<p class="first admonition-title">See also</p>
+<p class="last"><a class="reference internal" href="tool_suite_modules.html#log-module-section"><em>Logging modules</em></a> contains the list of all available modules and
+their options</p>
+</div>
+</dd></dl>
+
+</div>
+<div class="section" id="example">
+<h3>Example<a class="headerlink" href="#example" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-ini"><div class="highlight"><pre><span class="k">[general]</span>
+<span class="c"># Select the haka script file</span>
+<span class="na">configuration</span> <span class="o">=</span> <span class="s">&quot;gettingstarted.lua&quot;</span>
+
+<span class="k">[packet]</span>
+<span class="c"># Select the capture method: nfqueue or pcap</span>
+<span class="na">module</span> <span class="o">=</span> <span class="s">&quot;packet/nfqueue&quot;</span>
+
+<span class="c"># Select the interfaces to listen to</span>
+<span class="na">interfaces</span> <span class="o">=</span> <span class="s">&quot;eth0&quot;</span>
+
+<span class="k">[log]</span>
+<span class="c"># Set log level</span>
+<span class="na">level</span> <span class="o">=</span> <span class="s">&quot;warning,tcp_connection=error,ipv4=debug&quot;</span>
+
+<span class="c"># Select the log module</span>
+<span class="na">module</span> <span class="o">=</span> <span class="s">&quot;log/syslog&quot;</span>
+
+<span class="k">[alert]</span>
+<span class="c"># Select the alert module</span>
+<span class="na">module</span> <span class="o">=</span> <span class="s">&quot;alert/syslog&quot;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="service">
+<h2>4.1.3. Service<a class="headerlink" href="#service" title="Permalink to this headline">¶</a></h2>
+<p>On debian, <tt class="docutils literal"><span class="pre">haka</span></tt> is installed as a system service by the .deb package.
+Unless otherwise specified using the <cite>-c</cite> command line option, <tt class="docutils literal"><span class="pre">haka</span></tt> will
+load the default configuration file <tt class="docutils literal"><span class="pre">&lt;haka_install_path&gt;/etc/haka/haka.conf</span></tt>.</p>
+<ul>
+<li><p class="first">Starting Haka service</p>
+<blockquote>
+<div><div class="highlight-console"><div class="highlight"><pre><span class="gp">$</span> sudo service haka start
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+<li><p class="first">Stopping Haka service</p>
+<blockquote>
+<div><div class="highlight-console"><div class="highlight"><pre><span class="gp">$</span> sudo service haka stop
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+<li><p class="first">Restarting Haka service</p>
+<blockquote>
+<div><div class="highlight-console"><div class="highlight"><pre><span class="gp">$</span> sudo service haka restart
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+<li><p class="first">Getting status of Haka service</p>
+<blockquote>
+<div><div class="highlight-console"><div class="highlight"><pre><span class="gp">$</span> sudo service haka status
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+</ul>
+</div>
+</div>
+
+
+		</div>
+	</div>
+</div>
+
+
+
+<footer id="footer">
+	<div class="row" role="complementary">
+		<div class="medium-12 columns">
+			&copy; Copyright 2014, Arkoon Network Security, OpenWide and Telecom ParisTech.
+		</div>
+	</div>
+</footer>
+<script>
+	  $(document).foundation();
+</script>
+
+
+
+<script type="text/javascript" src="http://www.haka-security.org/js/track.js"></script>
+
+
+  </body>
+</html>
