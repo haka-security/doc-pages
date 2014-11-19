@@ -1,0 +1,617 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>6.4. SQLi attack detection &mdash; Haka runtime 0.2.2 documentation</title>
+    
+    <link rel="stylesheet" href="../../../_static/haka.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/breathe.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../',
+        VERSION:     '0.2.2',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../../_static/js/scripts.js"></script>
+    <script type="text/javascript" src="../../../_static/js/vendor/modernizr.js"></script>
+    <script type="text/javascript" src="../../../_static/js/foundation/foundation.js"></script>
+    <script type="text/javascript" src="../../../_static/js/foundation/foundation.topbar.js"></script>
+    <link rel="top" title="Haka runtime 0.2.2 documentation" href="../../../index.html" />
+    <link rel="up" title="6. Tutorials" href="../tutorial.html" />
+    <link rel="next" title="6.5. Rule set example" href="ruleset.html" />
+    <link rel="prev" title="6.3. Statistics" href="stats.html" /> 
+  </head>
+  <body>
+
+
+<header id="header" role="banner">
+	<div class="row">
+		<div class="medium-6 columns">
+			<h1 class="title"><a rel="home" title="Haka" href="http://www.haka-security.org">Haka</a></h1>
+			<h2 class="description">Software Defined Security</h2>
+		</div>
+		<div class="medium-6 columns">
+			<div id="version">Version 0.2.2</div>
+		</div>
+	</div>
+</header>
+
+<div class="contain-to-grid sticky">
+	
+
+<nav id="navbar" class="top-bar" data-topbar>
+	<ul class="title-area">
+		<!-- This is required for toggle-topbar to work -->
+		<li class="name"></li>
+		<li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
+	</ul>
+	<section class="top-bar-section">
+		<ul class="left">
+			<li class=" active">
+				<a href="../userindex.html">Users</a>
+			</li>
+			<li class=" ">
+				<a href="../../ref/refindex.html" class="../../ref/refindex.html">References</a>
+			</li>
+			<li class=" ">
+				<a href="../../developer/devindex.html" class="">Developers</a>
+			</li>
+			<li class=" ">
+				<a href="../../faq.html" class="">Faq</a>
+			</li>
+			<li class="has-form">
+
+
+	<form class="search" action="../../../search.html" method="get" id="searchbox" style="display: none">
+		<input type="hidden" name="area" value="default" />
+		<input type="hidden" name="check_keywords" value="yes" />
+		<div class="row collapse">
+			<div class="medium-11 columns">
+				<input type="text" name="q" placeholder="Search" />
+			</div>
+			<div class="medium-1 columns" id="clean-search-highlight">
+			</div>
+		</div>
+	</form>
+	<script type="text/javascript">$('#searchbox').show(0);</script>
+</li>
+		</ul>
+		<ul class="right">
+				<li class="right"><a href="ruleset.html" title="6.5. Rule set example">Next &rarr;</a></li>
+				<li class="right"><a href="stats.html" title="6.3. Statistics">&larr; Prev</a></li>
+				<li class="right"><a href="../tutorial.html" title="6. Tutorials">Up &uarr;</a></li>
+
+			<li class=" right"><a href="../../../genindex.html">Index</a></li>
+			<li class=" right"><a href="../../../haka-modindex.html">Modules</a></li>
+		</ul>
+	</section>
+</nav>
+</div>
+<div id="content">
+	<div class="row">
+		<ul id="breadcrumb" class="breadcrumbs medium-12 columns">
+			
+			<li><a href="../userindex.html">Welcome to Haka&#8217;s User Guide!</a></li>
+			
+			<li><a href="../tutorial.html">6. Tutorials</a></li>
+			
+			<li class="current"><a href="#">6.4. SQLi attack detection</a></li>
+		</ul>
+	</div>
+	<div class="row">
+		<div class="medium-12 columns">
+			
+  <div class="section" id="sqli-attack-detection">
+<h1>6.4. SQLi attack detection<a class="headerlink" href="#sqli-attack-detection" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="introduction">
+<h2>6.4.1. Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
+<p>This tutorial shows how tu use Haka in order to detect SQL injection attacks (SQLi). SQLi are common web attacks that consist in injecting SQL commands through http requests leading to sensitive data disclosure or authentication scheme bypass.</p>
+<p>Note that our goal is not to block 100% of SQLi attacks (with 0% false-positive rate) but to show how to build iteratively an sqli filtering policy thanks to Haka capabilities.</p>
+</div>
+<div class="section" id="how-to">
+<h2>6.4.2. How-to<a class="headerlink" href="#how-to" title="Permalink to this headline">¶</a></h2>
+<p>This tutorial introduces a set of Haka script files located at &lt;haka_install_path&gt;/share/haka/sample/sqli and which could be ran using the <tt class="docutils literal"><span class="pre">hakapcap</span></tt> tool:</p>
+<div class="highlight-console"><div class="highlight"><pre><span class="gp">$</span> <span class="nb">cd</span> &lt;haka_install_path&gt;/share/haka/sample/qli
+<span class="gp">$</span> hakapcap sqli-sample.lua sqli.pcap
+</pre></div>
+</div>
+<p>All the samples are self-documented.</p>
+</div>
+<div class="section" id="writing-http-rules">
+<h2>6.4.3. Writing http rules<a class="headerlink" href="#writing-http-rules" title="Permalink to this headline">¶</a></h2>
+<p>To write http rules, we need first to load the ipv4, tcp and http dissectors. This is the purpose of the <tt class="docutils literal"><span class="pre">httpconfig.lua</span></tt> which is required by all the samples given in this tutorial.</p>
+<div class="highlight-lua"><div class="highlight"><pre><span class="c1">------------------------------------</span>
+<span class="c1">-- Loading dissectors</span>
+<span class="c1">------------------------------------</span>
+
+<span class="nb">require</span><span class="p">(</span><span class="s1">&#39;</span><span class="s">protocol/ipv4&#39;</span><span class="p">)</span>
+<span class="nb">require</span><span class="p">(</span><span class="s1">&#39;</span><span class="s">protocol/tcp&#39;</span><span class="p">)</span>
+<span class="n">httplib</span> <span class="o">=</span> <span class="nb">require</span><span class="p">(</span><span class="s1">&#39;</span><span class="s">protocol/http&#39;</span><span class="p">)</span>
+
+<span class="c1">------------------------------------</span>
+<span class="c1">-- Setting next dissector</span>
+<span class="c1">------------------------------------</span>
+
+<span class="n">httplib</span><span class="p">.</span><span class="n">install_tcp_rule</span><span class="p">(</span><span class="mi">80</span><span class="p">)</span>
+
+<span class="c1">-----------------------------------</span>
+<span class="c1">-- Dumping request info</span>
+<span class="c1">-----------------------------------</span>
+
+<span class="k">function</span> <span class="nf">dump_request</span><span class="p">(</span><span class="n">request</span><span class="p">)</span>
+    <span class="n">haka</span><span class="p">.</span><span class="n">log</span><span class="p">(</span><span class="s2">&quot;</span><span class="s">sqli&quot;</span><span class="p">,</span> <span class="s2">&quot;</span><span class="s">receiving http request&quot;</span><span class="p">)</span>
+    <span class="kd">local</span> <span class="n">uri</span> <span class="o">=</span> <span class="n">request</span><span class="p">.</span><span class="n">uri</span>
+    <span class="n">haka</span><span class="p">.</span><span class="n">log</span><span class="p">(</span><span class="s2">&quot;</span><span class="s">sqli&quot;</span><span class="p">,</span> <span class="s2">&quot;</span><span class="s">    uri: %s&quot;</span><span class="p">,</span> <span class="n">uri</span><span class="p">)</span>
+    <span class="kd">local</span> <span class="n">cookies</span> <span class="o">=</span> <span class="n">request</span><span class="p">.</span><span class="n">headers</span><span class="p">[</span><span class="s1">&#39;</span><span class="s">Cookie&#39;</span><span class="p">]</span>
+    <span class="k">if</span> <span class="n">cookies</span> <span class="k">then</span>
+        <span class="n">haka</span><span class="p">.</span><span class="n">log</span><span class="p">(</span><span class="s2">&quot;</span><span class="s">sqli&quot;</span><span class="p">,</span> <span class="s2">&quot;</span><span class="s">    cookies: %s&quot;</span><span class="p">,</span> <span class="n">cookies</span><span class="p">)</span>
+    <span class="k">end</span>
+<span class="k">end</span>
+</pre></div>
+</div>
+<p>The file defines also a useful function which logs some info about http request
+: uri and Cookie header.</p>
+</div>
+<div class="section" id="my-first-naive-rule">
+<h2>6.4.4. My first naive rule<a class="headerlink" href="#my-first-naive-rule" title="Permalink to this headline">¶</a></h2>
+<p>The first example presents a naive rule which checks some malicious patterns against the whole uri. A score is updated whenever an sqli keywords is found (<cite>select</cite>, <cite>update</cite>, etc.). An alert is raised if the score exceeds a predefined threshold.</p>
+<div class="highlight-lua"><div class="highlight"><pre><span class="nb">require</span><span class="p">(</span><span class="s1">&#39;</span><span class="s">httpconfig&#39;</span><span class="p">)</span>
+
+<span class="c1">------------------------------------</span>
+<span class="c1">-- Malicious Patterns</span>
+<span class="c1">------------------------------------</span>
+
+<span class="kd">local</span> <span class="n">keywords</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;</span><span class="s">select&#39;</span><span class="p">,</span> <span class="s1">&#39;</span><span class="s">insert&#39;</span><span class="p">,</span> <span class="s1">&#39;</span><span class="s">update&#39;</span><span class="p">,</span> <span class="s1">&#39;</span><span class="s">delete&#39;</span><span class="p">,</span> <span class="s1">&#39;</span><span class="s">union&#39;</span>
+<span class="p">}</span>
+
+<span class="c1">------------------------------------</span>
+<span class="c1">-- SQLi Naive Rule</span>
+<span class="c1">------------------------------------</span>
+
+<span class="n">haka</span><span class="p">.</span><span class="n">rule</span><span class="p">{</span>
+    <span class="c1">-- Evaluation applies on upcoming requests</span>
+    <span class="n">hook</span> <span class="o">=</span> <span class="n">httplib</span><span class="p">.</span><span class="n">events</span><span class="p">.</span><span class="n">request</span><span class="p">,</span>
+    <span class="n">eval</span> <span class="o">=</span> <span class="k">function</span> <span class="p">(</span><span class="n">http</span><span class="p">,</span> <span class="n">request</span><span class="p">)</span>
+        <span class="n">dump_request</span><span class="p">(</span><span class="n">request</span><span class="p">)</span>
+
+        <span class="kd">local</span> <span class="n">score</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="c1">-- Http fields (uri, headers) are available through &#39;request&#39; parameter</span>
+        <span class="kd">local</span> <span class="n">uri</span> <span class="o">=</span> <span class="n">request</span><span class="p">.</span><span class="n">uri</span>
+
+        <span class="k">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">key</span> <span class="k">in</span> <span class="nb">ipairs</span><span class="p">(</span><span class="n">keywords</span><span class="p">)</span> <span class="k">do</span>
+            <span class="c1">-- Check the whole uri against the list of malicious keywords</span>
+            <span class="k">if</span> <span class="n">uri</span><span class="p">:</span><span class="n">find</span><span class="p">(</span><span class="n">key</span><span class="p">)</span> <span class="k">then</span>
+                <span class="c1">-- Update the score</span>
+                <span class="n">score</span> <span class="o">=</span> <span class="n">score</span> <span class="o">+</span> <span class="mi">4</span>
+            <span class="k">end</span>
+        <span class="k">end</span>
+        
+        <span class="k">if</span> <span class="n">score</span> <span class="o">&gt;=</span> <span class="mi">8</span> <span class="k">then</span>
+            <span class="c1">-- Raise an alert if the score exceeds a fixed threshold (compact format)</span>
+            <span class="n">haka</span><span class="p">.</span><span class="n">alert</span><span class="p">{</span>
+                <span class="n">description</span> <span class="o">=</span> <span class="nb">string.format</span><span class="p">(</span><span class="s2">&quot;</span><span class="s">SQLi attack detected with score %d&quot;</span><span class="p">,</span> <span class="n">score</span><span class="p">),</span>
+                <span class="n">severity</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="s">high&#39;</span><span class="p">,</span>
+                <span class="n">confidence</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="s">low&#39;</span><span class="p">,</span>
+            <span class="p">}</span>
+            <span class="n">http</span><span class="p">:</span><span class="n">drop</span><span class="p">()</span>
+        <span class="k">end</span>
+    <span class="k">end</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="anti-evasion">
+<h2>6.4.5. Anti-evasion<a class="headerlink" href="#anti-evasion" title="Permalink to this headline">¶</a></h2>
+<p>It is trivial to bypass the above rule with slight modifications on uri. For instance hiding a <cite>select</cite> keyword using comments (e.g. <cite>sel/*something*/ect</cite>) or simply using uppercase letters will bypass our naive rule. The script file <tt class="docutils literal"><span class="pre">sqli-decode.lua</span></tt> improves detection by applying decoding functions on uri. This functions are defined in <tt class="docutils literal"><span class="pre">httpdecode.lua</span></tt> file.</p>
+<div class="highlight-lua"><div class="highlight"><pre><span class="nb">require</span><span class="p">(</span><span class="s1">&#39;</span><span class="s">httpconfig&#39;</span><span class="p">)</span>
+<span class="nb">require</span><span class="p">(</span><span class="s1">&#39;</span><span class="s">httpdecode&#39;</span><span class="p">)</span>
+
+<span class="c1">------------------------------------</span>
+<span class="c1">-- Malicious Patterns</span>
+<span class="c1">------------------------------------</span>
+
+<span class="kd">local</span> <span class="n">keywords</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;</span><span class="s">select&#39;</span><span class="p">,</span> <span class="s1">&#39;</span><span class="s">insert&#39;</span><span class="p">,</span> <span class="s1">&#39;</span><span class="s">update&#39;</span><span class="p">,</span> <span class="s1">&#39;</span><span class="s">delete&#39;</span><span class="p">,</span> <span class="s1">&#39;</span><span class="s">union&#39;</span>
+<span class="p">}</span>
+
+<span class="c1">-- Still naive rule</span>
+<span class="n">haka</span><span class="p">.</span><span class="n">rule</span><span class="p">{</span>
+    <span class="n">hook</span> <span class="o">=</span> <span class="n">httplib</span><span class="p">.</span><span class="n">events</span><span class="p">.</span><span class="n">request</span><span class="p">,</span>
+    <span class="n">eval</span> <span class="o">=</span> <span class="k">function</span> <span class="p">(</span><span class="n">http</span><span class="p">,</span> <span class="n">request</span><span class="p">)</span>
+        <span class="n">dump_request</span><span class="p">(</span><span class="n">request</span><span class="p">)</span>
+
+        <span class="kd">local</span> <span class="n">score</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="kd">local</span> <span class="n">uri</span> <span class="o">=</span> <span class="n">request</span><span class="p">.</span><span class="n">uri</span>
+
+        <span class="c1">-- Apply all decoding functions on uri (percent-decode, uncomments, etc.)</span>
+        <span class="n">uri</span> <span class="o">=</span> <span class="n">decode_all</span><span class="p">(</span><span class="n">uri</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">key</span> <span class="k">in</span> <span class="nb">ipairs</span><span class="p">(</span><span class="n">keywords</span><span class="p">)</span> <span class="k">do</span>
+            <span class="k">if</span> <span class="n">uri</span><span class="p">:</span><span class="n">find</span><span class="p">(</span><span class="n">key</span><span class="p">)</span> <span class="k">then</span>
+                <span class="n">score</span> <span class="o">=</span> <span class="n">score</span> <span class="o">+</span> <span class="mi">4</span>
+            <span class="k">end</span>
+        <span class="k">end</span>
+
+        <span class="k">if</span> <span class="n">score</span> <span class="o">&gt;=</span> <span class="mi">8</span> <span class="k">then</span>
+            <span class="n">haka</span><span class="p">.</span><span class="n">alert</span><span class="p">{</span>
+                <span class="n">description</span> <span class="o">=</span> <span class="nb">string.format</span><span class="p">(</span><span class="s2">&quot;</span><span class="s">SQLi attack detected with score %d&quot;</span><span class="p">,</span> <span class="n">score</span><span class="p">),</span>
+                <span class="n">severity</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="s">high&#39;</span><span class="p">,</span>
+                <span class="n">confidence</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="s">low&#39;</span><span class="p">,</span>
+            <span class="p">}</span>
+            <span class="n">http</span><span class="p">:</span><span class="n">drop</span><span class="p">()</span>
+        <span class="k">end</span>
+    <span class="k">end</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="fine-grained-analysis">
+<h2>6.4.6. Fine-grained analysis<a class="headerlink" href="#fine-grained-analysis" title="Permalink to this headline">¶</a></h2>
+<p>All the above rules check the malicious patterns against the whole uri. The purpose of this scenario (<tt class="docutils literal"><span class="pre">sqli-fine-grained.lua</span></tt>) is to leverage the <a class="reference internal" href="../../../modules/protocol/http/doc/http.html#haka-module.http" title="http"><tt class="xref haka haka-mod docutils literal"><span class="pre">http</span></tt></a> api in order to check the patterns against only subparts of the http request (query&#8217;s argument, list of cookies).</p>
+<div class="highlight-lua"><div class="highlight"><pre><span class="nb">require</span><span class="p">(</span><span class="s1">&#39;</span><span class="s">httpconfig&#39;</span><span class="p">)</span>
+<span class="nb">require</span><span class="p">(</span><span class="s1">&#39;</span><span class="s">httpdecode&#39;</span><span class="p">)</span>
+
+<span class="c1">------------------------------------</span>
+<span class="c1">-- Malicious Patterns</span>
+<span class="c1">------------------------------------</span>
+
+<span class="kd">local</span> <span class="n">keywords</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;</span><span class="s">select&#39;</span><span class="p">,</span> <span class="s1">&#39;</span><span class="s">insert&#39;</span><span class="p">,</span> <span class="s1">&#39;</span><span class="s">update&#39;</span><span class="p">,</span> <span class="s1">&#39;</span><span class="s">delete&#39;</span><span class="p">,</span> <span class="s1">&#39;</span><span class="s">union&#39;</span>
+<span class="p">}</span>
+
+<span class="c1">------------------------------------</span>
+<span class="c1">-- A Better Naive Rule ...</span>
+<span class="c1">------------------------------------</span>
+
+<span class="n">haka</span><span class="p">.</span><span class="n">rule</span><span class="p">{</span>
+    <span class="n">hook</span> <span class="o">=</span> <span class="n">httplib</span><span class="p">.</span><span class="n">events</span><span class="p">.</span><span class="n">request</span><span class="p">,</span>
+    <span class="n">eval</span> <span class="o">=</span> <span class="k">function</span> <span class="p">(</span><span class="n">http</span><span class="p">,</span> <span class="n">request</span><span class="p">)</span>
+        <span class="n">dump_request</span><span class="p">(</span><span class="n">request</span><span class="p">)</span>
+
+        <span class="kd">local</span> <span class="n">uri</span> <span class="o">=</span> <span class="n">request</span><span class="p">.</span><span class="n">uri</span>
+        <span class="kd">local</span> <span class="n">ck</span> <span class="o">=</span> <span class="n">request</span><span class="p">.</span><span class="n">headers</span><span class="p">[</span><span class="s1">&#39;</span><span class="s">Cookie&#39;</span><span class="p">]</span>
+
+        <span class="c1">-- Initialize the score for query&#39;s argument and cookies list</span>
+        <span class="c1">-- Could be extended to check patterns in other http fields</span>
+        <span class="kd">local</span> <span class="n">where</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="n">args</span> <span class="o">=</span> <span class="p">{</span>
+                <span class="c1">-- Split query into list of (param-name, param-value) pairs</span>
+                <span class="n">value</span> <span class="o">=</span> <span class="n">httplib</span><span class="p">.</span><span class="n">uri</span><span class="p">.</span><span class="n">split</span><span class="p">(</span><span class="n">uri</span><span class="p">).</span><span class="n">args</span><span class="p">,</span>
+                <span class="n">score</span> <span class="o">=</span> <span class="mi">0</span>
+            <span class="p">},</span>
+            <span class="n">cookies</span> <span class="o">=</span> <span class="p">{</span>
+                <span class="c1">-- Split comma-separated cookies into a list of (key, value)</span>
+                <span class="c1">-- pairs</span>
+                <span class="n">value</span> <span class="o">=</span> <span class="n">httplib</span><span class="p">.</span><span class="n">cookies</span><span class="p">.</span><span class="n">split</span><span class="p">(</span><span class="n">ck</span><span class="p">),</span>
+                <span class="n">score</span> <span class="o">=</span> <span class="mi">0</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+
+        <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="k">in</span> <span class="nb">pairs</span><span class="p">(</span><span class="n">where</span><span class="p">)</span> <span class="k">do</span>
+            <span class="k">if</span> <span class="n">v</span><span class="p">.</span><span class="n">value</span> <span class="k">then</span>
+                <span class="c1">-- Loop on each query param | cookie value</span>
+                <span class="k">for</span> <span class="n">param</span><span class="p">,</span> <span class="n">value</span> <span class="k">in</span> <span class="nb">pairs</span><span class="p">(</span><span class="n">v</span><span class="p">.</span><span class="n">value</span><span class="p">)</span> <span class="k">do</span>
+                    <span class="kd">local</span> <span class="n">decoded</span> <span class="o">=</span> <span class="n">decode_all</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+                    <span class="k">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">key</span> <span class="k">in</span> <span class="nb">ipairs</span><span class="p">(</span><span class="n">keywords</span><span class="p">)</span> <span class="k">do</span>
+                        <span class="k">if</span> <span class="n">decoded</span><span class="p">:</span><span class="n">find</span><span class="p">(</span><span class="n">key</span><span class="p">)</span> <span class="k">then</span>
+                            <span class="n">v</span><span class="p">.</span><span class="n">score</span> <span class="o">=</span> <span class="n">v</span><span class="p">.</span><span class="n">score</span> <span class="o">+</span> <span class="mi">4</span>
+                        <span class="k">end</span>
+                    <span class="k">end</span>
+                <span class="k">end</span>
+            <span class="k">end</span>
+
+            <span class="k">if</span> <span class="n">v</span><span class="p">.</span><span class="n">score</span> <span class="o">&gt;=</span> <span class="mi">8</span> <span class="k">then</span>
+                <span class="c1">-- Report an alert (more info in alert)</span>
+                <span class="n">haka</span><span class="p">.</span><span class="n">alert</span><span class="p">{</span>
+                    <span class="n">description</span> <span class="o">=</span> <span class="nb">string.format</span><span class="p">(</span><span class="s2">&quot;</span><span class="s">SQLi attack detected in %s with score %d&quot;</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span><span class="p">.</span><span class="n">score</span><span class="p">),</span>
+                    <span class="n">severity</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="s">high&#39;</span><span class="p">,</span>
+                    <span class="n">confidence</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="s">medium&#39;</span><span class="p">,</span>
+                    <span class="n">sources</span> <span class="o">=</span> <span class="n">haka</span><span class="p">.</span><span class="n">alert</span><span class="p">.</span><span class="n">address</span><span class="p">(</span><span class="n">http</span><span class="p">.</span><span class="n">flow</span><span class="p">.</span><span class="n">srcip</span><span class="p">),</span>
+                    <span class="n">targets</span> <span class="o">=</span> <span class="p">{</span>
+                        <span class="n">haka</span><span class="p">.</span><span class="n">alert</span><span class="p">.</span><span class="n">address</span><span class="p">(</span><span class="n">http</span><span class="p">.</span><span class="n">flow</span><span class="p">.</span><span class="n">dstip</span><span class="p">),</span>
+                        <span class="n">haka</span><span class="p">.</span><span class="n">alert</span><span class="p">.</span><span class="n">service</span><span class="p">(</span><span class="nb">string.format</span><span class="p">(</span><span class="s2">&quot;</span><span class="s">tcp/%d&quot;</span><span class="p">,</span> <span class="n">http</span><span class="p">.</span><span class="n">flow</span><span class="p">.</span><span class="n">dstport</span><span class="p">),</span> <span class="s2">&quot;</span><span class="s">http&quot;</span><span class="p">)</span>
+                    <span class="p">},</span>
+                <span class="p">}</span>
+                <span class="n">http</span><span class="p">:</span><span class="n">drop</span><span class="p">()</span>
+                <span class="k">return</span>
+            <span class="k">end</span>
+        <span class="k">end</span>
+    <span class="k">end</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="mutliple-rules">
+<h2>6.4.7. Mutliple rules<a class="headerlink" href="#mutliple-rules" title="Permalink to this headline">¶</a></h2>
+<p>This script file (<tt class="docutils literal"><span class="pre">sqli-groups.lua</span></tt>) introduces additional malicious patterns and use the <cite>rule_group</cite> feature to define multiple anti-sqli security rules. Each rule focus on the detection of a particular pattern (sql keywords, sql comments, etc.)</p>
+<div class="highlight-lua"><div class="highlight"><pre><span class="nb">require</span><span class="p">(</span><span class="s1">&#39;</span><span class="s">httpconfig&#39;</span><span class="p">)</span>
+<span class="nb">require</span><span class="p">(</span><span class="s1">&#39;</span><span class="s">httpdecode&#39;</span><span class="p">)</span>
+
+<span class="c1">------------------------------------</span>
+<span class="c1">-- Malicious patterns</span>
+<span class="c1">------------------------------------</span>
+
+<span class="kd">local</span> <span class="n">sql_comments</span> <span class="o">=</span> <span class="p">{</span> <span class="s1">&#39;</span><span class="s">%-%-&#39;</span><span class="p">,</span> <span class="s1">&#39;</span><span class="s">#&#39;</span><span class="p">,</span> <span class="s1">&#39;</span><span class="s">%z&#39;</span><span class="p">,</span> <span class="s1">&#39;</span><span class="s">/%*.-%*/&#39;</span> <span class="p">}</span>
+
+<span class="c1">-- Common patterns used in initial attack stage to check for SQLi vulnerabilities</span>
+<span class="kd">local</span> <span class="n">probing</span> <span class="o">=</span> <span class="p">{</span> <span class="s2">&quot;</span><span class="s">^[</span><span class="se">\&quot;</span><span class="s">&#39;`´’‘;]&quot;</span><span class="p">,</span> <span class="s2">&quot;</span><span class="s">[</span><span class="se">\&quot;</span><span class="s">&#39;`´’‘;]$&quot;</span> <span class="p">}</span>
+
+<span class="kd">local</span> <span class="n">sql_keywords</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;</span><span class="s">select&#39;</span><span class="p">,</span> <span class="s1">&#39;</span><span class="s">insert&#39;</span><span class="p">,</span> <span class="s1">&#39;</span><span class="s">update&#39;</span><span class="p">,</span> <span class="s1">&#39;</span><span class="s">delete&#39;</span><span class="p">,</span> <span class="s1">&#39;</span><span class="s">union&#39;</span><span class="p">,</span>
+    <span class="c1">-- You can extent this list with other sql keywords</span>
+<span class="p">}</span>
+
+<span class="kd">local</span> <span class="n">sql_functions</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;</span><span class="s">ascii&#39;</span><span class="p">,</span> <span class="s1">&#39;</span><span class="s">char&#39;</span><span class="p">,</span> <span class="s1">&#39;</span><span class="s">length&#39;</span><span class="p">,</span> <span class="s1">&#39;</span><span class="s">concat&#39;</span><span class="p">,</span> <span class="s1">&#39;</span><span class="s">substring&#39;</span><span class="p">,</span>
+    <span class="c1">-- You can extend this list with other sql functions</span>
+<span class="p">}</span>
+
+<span class="c1">------------------------------------</span>
+<span class="c1">-- SQLi Rule Group</span>
+<span class="c1">------------------------------------</span>
+
+<span class="c1">-- Define a security rule group related to SQLi attacks</span>
+<span class="n">sqli</span> <span class="o">=</span> <span class="n">haka</span><span class="p">.</span><span class="n">rule_group</span><span class="p">{</span>
+    <span class="n">hook</span> <span class="o">=</span> <span class="n">httplib</span><span class="p">.</span><span class="n">events</span><span class="p">.</span><span class="n">request</span><span class="p">,</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="s">sqli&#39;</span><span class="p">,</span>
+    <span class="c1">-- Initialize some values before evaluating any security rule</span>
+    <span class="n">init</span> <span class="o">=</span> <span class="k">function</span> <span class="p">(</span><span class="n">http</span><span class="p">,</span> <span class="n">request</span><span class="p">)</span>
+        <span class="n">dump_request</span><span class="p">(</span><span class="n">request</span><span class="p">)</span>
+
+        <span class="c1">-- Another way to split cookie header value and query&#39;s arguments</span>
+        <span class="n">http</span><span class="p">.</span><span class="n">sqli</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="n">cookies</span> <span class="o">=</span> <span class="p">{</span>
+                <span class="n">value</span> <span class="o">=</span> <span class="n">request</span><span class="p">.</span><span class="n">split_cookies</span><span class="p">,</span>
+                <span class="n">score</span> <span class="o">=</span> <span class="mi">0</span>
+            <span class="p">},</span>
+            <span class="n">args</span> <span class="o">=</span> <span class="p">{</span>
+                <span class="n">value</span> <span class="o">=</span> <span class="n">request</span><span class="p">.</span><span class="n">split_uri</span><span class="p">.</span><span class="n">args</span><span class="p">,</span>
+                <span class="n">score</span> <span class="o">=</span> <span class="mi">0</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="k">end</span><span class="p">,</span>
+<span class="p">}</span>
+
+<span class="kd">local</span> <span class="k">function</span> <span class="nf">check_sqli</span><span class="p">(</span><span class="n">patterns</span><span class="p">,</span> <span class="n">score</span><span class="p">,</span> <span class="n">trans</span><span class="p">)</span>
+    <span class="n">sqli</span><span class="p">:</span><span class="n">rule</span><span class="p">{</span>
+        <span class="n">eval</span> <span class="o">=</span> <span class="k">function</span> <span class="p">(</span><span class="n">http</span><span class="p">,</span> <span class="n">request</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="k">in</span> <span class="nb">pairs</span><span class="p">(</span><span class="n">http</span><span class="p">.</span><span class="n">sqli</span><span class="p">)</span> <span class="k">do</span>
+                <span class="k">if</span> <span class="n">v</span><span class="p">.</span><span class="n">value</span> <span class="k">then</span>
+                    <span class="k">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">val</span> <span class="k">in</span> <span class="nb">pairs</span><span class="p">(</span><span class="n">v</span><span class="p">.</span><span class="n">value</span><span class="p">)</span> <span class="k">do</span>
+                        <span class="k">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">f</span> <span class="k">in</span> <span class="nb">ipairs</span><span class="p">(</span><span class="n">trans</span><span class="p">)</span> <span class="k">do</span>
+                            <span class="n">val</span> <span class="o">=</span> <span class="n">f</span><span class="p">(</span><span class="n">val</span><span class="p">)</span>
+                        <span class="k">end</span>
+
+                        <span class="k">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">pattern</span> <span class="k">in</span> <span class="nb">ipairs</span><span class="p">(</span><span class="n">patterns</span><span class="p">)</span> <span class="k">do</span>
+                            <span class="k">if</span> <span class="n">val</span><span class="p">:</span><span class="n">find</span><span class="p">(</span><span class="n">pattern</span><span class="p">)</span> <span class="k">then</span>
+                                <span class="n">v</span><span class="p">.</span><span class="n">score</span> <span class="o">=</span> <span class="n">v</span><span class="p">.</span><span class="n">score</span> <span class="o">+</span> <span class="n">score</span>
+                            <span class="k">end</span>
+                        <span class="k">end</span>
+                    <span class="k">end</span>
+
+                    <span class="k">if</span> <span class="n">v</span><span class="p">.</span><span class="n">score</span> <span class="o">&gt;=</span> <span class="mi">8</span> <span class="k">then</span>
+                        <span class="n">haka</span><span class="p">.</span><span class="n">alert</span><span class="p">{</span>
+                            <span class="n">description</span> <span class="o">=</span> <span class="nb">string.format</span><span class="p">(</span><span class="s2">&quot;</span><span class="s">SQLi attack detected in %s with score %d&quot;</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span><span class="p">.</span><span class="n">score</span><span class="p">),</span>
+                            <span class="n">severity</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="s">high&#39;</span><span class="p">,</span>
+                            <span class="n">confidence</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="s">medium&#39;</span><span class="p">,</span>
+                            <span class="n">sources</span> <span class="o">=</span> <span class="n">haka</span><span class="p">.</span><span class="n">alert</span><span class="p">.</span><span class="n">address</span><span class="p">(</span><span class="n">http</span><span class="p">.</span><span class="n">flow</span><span class="p">.</span><span class="n">srcip</span><span class="p">),</span>
+                            <span class="n">targets</span> <span class="o">=</span> <span class="p">{</span>
+                                <span class="n">haka</span><span class="p">.</span><span class="n">alert</span><span class="p">.</span><span class="n">address</span><span class="p">(</span><span class="n">http</span><span class="p">.</span><span class="n">flow</span><span class="p">.</span><span class="n">dstip</span><span class="p">),</span>
+                                <span class="n">haka</span><span class="p">.</span><span class="n">alert</span><span class="p">.</span><span class="n">service</span><span class="p">(</span><span class="nb">string.format</span><span class="p">(</span><span class="s2">&quot;</span><span class="s">tcp/%d&quot;</span><span class="p">,</span> <span class="n">http</span><span class="p">.</span><span class="n">flow</span><span class="p">.</span><span class="n">dstport</span><span class="p">),</span> <span class="s2">&quot;</span><span class="s">http&quot;</span><span class="p">)</span>
+                            <span class="p">},</span>
+                        <span class="p">}</span>
+
+                        <span class="n">http</span><span class="p">:</span><span class="n">drop</span><span class="p">()</span>
+                        <span class="k">return</span>
+                    <span class="k">end</span>
+                <span class="k">end</span>
+            <span class="k">end</span>
+        <span class="k">end</span>
+    <span class="p">}</span>
+<span class="k">end</span>
+
+<span class="c1">-- Generate a security rule for each malicious pattern class</span>
+<span class="c1">-- (sql_keywords, sql_functions, etc.)</span>
+<span class="n">check_sqli</span><span class="p">(</span><span class="n">sql_comments</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="p">{</span> <span class="n">decode</span><span class="p">,</span> <span class="n">lower</span> <span class="p">})</span>
+<span class="n">check_sqli</span><span class="p">(</span><span class="n">probing</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="p">{</span> <span class="n">decode</span><span class="p">,</span> <span class="n">lower</span> <span class="p">})</span>
+<span class="n">check_sqli</span><span class="p">(</span><span class="n">sql_keywords</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="p">{</span> <span class="n">decode</span><span class="p">,</span> <span class="n">lower</span><span class="p">,</span> <span class="n">uncomments</span><span class="p">,</span> <span class="n">nospaces</span> <span class="p">})</span>
+<span class="n">check_sqli</span><span class="p">(</span><span class="n">sql_functions</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="p">{</span> <span class="n">decode</span><span class="p">,</span> <span class="n">lower</span><span class="p">,</span> <span class="n">uncomments</span><span class="p">,</span> <span class="n">nospaces</span> <span class="p">})</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Decoding functions are applied depending on the pattern. It is obvious to not apply uncomment function when we are looking for comments.</p>
+</div>
+</div>
+<div class="section" id="white-list">
+<h2>6.4.8. White list<a class="headerlink" href="#white-list" title="Permalink to this headline">¶</a></h2>
+<p>All the defined rules are too general and will therefore raise many alerts. In the example given hereafter,
+we show how we could skip evaluation of rules if the uri matches some conditions (for instance, do not evaluate
+anti-sqli rules when the requested resource is equal to <cite>/foo/bar/safepage.php</cite>). This shows another advantage
+of using rules group feature.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The check is done after uri normalisation</p>
+</div>
+<div class="highlight-lua"><div class="highlight"><pre><span class="nb">require</span><span class="p">(</span><span class="s1">&#39;</span><span class="s">httpconfig&#39;</span><span class="p">)</span>
+<span class="nb">require</span><span class="p">(</span><span class="s1">&#39;</span><span class="s">httpdecode&#39;</span><span class="p">)</span>
+
+<span class="c1">------------------------------------</span>
+<span class="c1">-- Malicious patterns</span>
+<span class="c1">------------------------------------</span>
+
+<span class="kd">local</span> <span class="n">sql_comments</span> <span class="o">=</span> <span class="p">{</span> <span class="s1">&#39;</span><span class="s">%-%-&#39;</span><span class="p">,</span> <span class="s1">&#39;</span><span class="s">#&#39;</span><span class="p">,</span> <span class="s1">&#39;</span><span class="s">%z&#39;</span><span class="p">,</span> <span class="s1">&#39;</span><span class="s">/%*.-%*/&#39;</span> <span class="p">}</span>
+
+<span class="kd">local</span> <span class="n">probing</span> <span class="o">=</span> <span class="p">{</span> <span class="s2">&quot;</span><span class="s">^[</span><span class="se">\&quot;</span><span class="s">&#39;`´’‘;]&quot;</span><span class="p">,</span> <span class="s2">&quot;</span><span class="s">[</span><span class="se">\&quot;</span><span class="s">&#39;`´’‘;]$&quot;</span> <span class="p">}</span>
+
+<span class="kd">local</span> <span class="n">sql_keywords</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;</span><span class="s">select&#39;</span><span class="p">,</span> <span class="s1">&#39;</span><span class="s">insert&#39;</span><span class="p">,</span> <span class="s1">&#39;</span><span class="s">update&#39;</span><span class="p">,</span> <span class="s1">&#39;</span><span class="s">delete&#39;</span><span class="p">,</span> <span class="s1">&#39;</span><span class="s">union&#39;</span><span class="p">,</span>
+    <span class="c1">-- You can extend this list with other sql keywords</span>
+<span class="p">}</span>
+
+<span class="kd">local</span> <span class="n">sql_functions</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;</span><span class="s">ascii&#39;</span><span class="p">,</span> <span class="s1">&#39;</span><span class="s">char&#39;</span><span class="p">,</span> <span class="s1">&#39;</span><span class="s">length&#39;</span><span class="p">,</span> <span class="s1">&#39;</span><span class="s">concat&#39;</span><span class="p">,</span> <span class="s1">&#39;</span><span class="s">substring&#39;</span><span class="p">,</span>
+    <span class="c1">-- You can extend this list with other sql functions</span>
+<span class="p">}</span>
+
+<span class="c1">------------------------------------</span>
+<span class="c1">-- White List resources</span>
+<span class="c1">------------------------------------</span>
+
+<span class="kd">local</span> <span class="n">safe_resources</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;</span><span class="s">/foo/bar/safepage.php&#39;</span><span class="p">,</span> <span class="s1">&#39;</span><span class="s">/action.php&#39;</span><span class="p">,</span>
+    <span class="c1">-- You can extend this list with other white list resources</span>
+<span class="p">}</span>
+
+<span class="c1">------------------------------------</span>
+<span class="c1">-- SQLi Rule Group</span>
+<span class="c1">------------------------------------</span>
+
+<span class="n">sqli</span> <span class="o">=</span> <span class="n">haka</span><span class="p">.</span><span class="n">rule_group</span><span class="p">{</span>
+    <span class="n">hook</span> <span class="o">=</span> <span class="n">httplib</span><span class="p">.</span><span class="n">events</span><span class="p">.</span><span class="n">request</span><span class="p">,</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="s">sqli&#39;</span><span class="p">,</span>
+    <span class="c1">-- Initialisation</span>
+    <span class="n">init</span> <span class="o">=</span> <span class="k">function</span> <span class="p">(</span><span class="n">http</span><span class="p">,</span> <span class="n">request</span><span class="p">)</span>
+        <span class="n">dump_request</span><span class="p">(</span><span class="n">request</span><span class="p">)</span>
+
+        <span class="c1">-- Another way to split cookie header value and query&#39;s arguments</span>
+        <span class="n">http</span><span class="p">.</span><span class="n">sqli</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="n">cookies</span> <span class="o">=</span> <span class="p">{</span>
+                <span class="n">value</span> <span class="o">=</span> <span class="n">request</span><span class="p">.</span><span class="n">split_cookies</span><span class="p">,</span>
+                <span class="n">score</span> <span class="o">=</span> <span class="mi">0</span>
+            <span class="p">},</span>
+            <span class="n">args</span> <span class="o">=</span> <span class="p">{</span>
+                <span class="n">value</span> <span class="o">=</span> <span class="n">request</span><span class="p">.</span><span class="n">split_uri</span><span class="p">.</span><span class="n">args</span><span class="p">,</span>
+                <span class="n">score</span> <span class="o">=</span> <span class="mi">0</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="k">end</span><span class="p">,</span>
+
+    <span class="c1">-- Continue will be executed after evaluation of</span>
+    <span class="c1">-- each security rule.</span>
+    <span class="c1">-- Here we check the return value ret to decide</span>
+    <span class="c1">-- if we skip the evaluation of the rest of the</span>
+    <span class="c1">-- rule.</span>
+    <span class="n">continue</span> <span class="o">=</span> <span class="k">function</span> <span class="p">(</span><span class="n">ret</span><span class="p">)</span>
+        <span class="k">return</span> <span class="ow">not</span> <span class="n">ret</span>
+    <span class="k">end</span>
+<span class="p">}</span>
+
+<span class="c1">------------------------------------</span>
+<span class="c1">-- SQLi White List Rule</span>
+<span class="c1">------------------------------------</span>
+
+<span class="n">sqli</span><span class="p">:</span><span class="n">rule</span><span class="p">{</span>
+    <span class="n">eval</span> <span class="o">=</span> <span class="k">function</span> <span class="p">(</span><span class="n">http</span><span class="p">,</span> <span class="n">request</span><span class="p">)</span>
+        <span class="c1">-- Split uri into subparts and normalize it</span>
+        <span class="kd">local</span> <span class="n">splitted_uri</span> <span class="o">=</span> <span class="n">request</span><span class="p">.</span><span class="n">split_uri</span><span class="p">:</span><span class="n">normalize</span><span class="p">()</span>
+        <span class="k">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">res</span> <span class="k">in</span> <span class="nb">ipairs</span><span class="p">(</span><span class="n">safe_resources</span><span class="p">)</span> <span class="k">do</span>
+            <span class="c1">-- Skip evaluation if the normalized path (without dot-segments)</span>
+            <span class="c1">-- is in the list of safe resources</span>
+            <span class="k">if</span> <span class="n">splitted_uri</span><span class="p">.</span><span class="n">path</span> <span class="o">==</span> <span class="n">res</span> <span class="k">then</span>
+                <span class="n">haka</span><span class="p">.</span><span class="n">log</span><span class="p">(</span><span class="s2">&quot;</span><span class="s">sqli&quot;</span><span class="p">,</span> <span class="s2">&quot;</span><span class="s">skip SQLi detection (white list rule)&quot;</span><span class="p">)</span>
+                <span class="k">return</span> <span class="kc">true</span>
+            <span class="k">end</span>
+        <span class="k">end</span>
+    <span class="k">end</span>
+<span class="p">}</span>
+
+<span class="c1">------------------------------------</span>
+<span class="c1">-- SQLi Rules</span>
+<span class="c1">------------------------------------</span>
+
+<span class="kd">local</span> <span class="k">function</span> <span class="nf">check_sqli</span><span class="p">(</span><span class="n">patterns</span><span class="p">,</span> <span class="n">score</span><span class="p">,</span> <span class="n">trans</span><span class="p">)</span>
+    <span class="n">sqli</span><span class="p">:</span><span class="n">rule</span><span class="p">{</span>
+        <span class="n">eval</span> <span class="o">=</span> <span class="k">function</span> <span class="p">(</span><span class="n">http</span><span class="p">,</span> <span class="n">request</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="k">in</span> <span class="nb">pairs</span><span class="p">(</span><span class="n">http</span><span class="p">.</span><span class="n">sqli</span><span class="p">)</span> <span class="k">do</span>
+                <span class="k">if</span> <span class="n">v</span><span class="p">.</span><span class="n">value</span> <span class="k">then</span>
+                    <span class="k">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">val</span> <span class="k">in</span> <span class="nb">pairs</span><span class="p">(</span><span class="n">v</span><span class="p">.</span><span class="n">value</span><span class="p">)</span> <span class="k">do</span>
+                        <span class="k">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">f</span> <span class="k">in</span> <span class="nb">ipairs</span><span class="p">(</span><span class="n">trans</span><span class="p">)</span> <span class="k">do</span>
+                            <span class="n">val</span> <span class="o">=</span> <span class="n">f</span><span class="p">(</span><span class="n">val</span><span class="p">)</span>
+                        <span class="k">end</span>
+
+                        <span class="k">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">pattern</span> <span class="k">in</span> <span class="nb">ipairs</span><span class="p">(</span><span class="n">patterns</span><span class="p">)</span> <span class="k">do</span>
+                            <span class="k">if</span> <span class="n">val</span><span class="p">:</span><span class="n">find</span><span class="p">(</span><span class="n">pattern</span><span class="p">)</span> <span class="k">then</span>
+                                <span class="n">v</span><span class="p">.</span><span class="n">score</span> <span class="o">=</span> <span class="n">v</span><span class="p">.</span><span class="n">score</span> <span class="o">+</span> <span class="n">score</span>
+                            <span class="k">end</span>
+                        <span class="k">end</span>
+                    <span class="k">end</span>
+
+                    <span class="k">if</span> <span class="n">v</span><span class="p">.</span><span class="n">score</span> <span class="o">&gt;=</span> <span class="mi">8</span> <span class="k">then</span>
+                        <span class="c1">-- Report an alert (long format)</span>
+                        <span class="n">haka</span><span class="p">.</span><span class="n">alert</span><span class="p">{</span>
+                            <span class="n">description</span> <span class="o">=</span> <span class="nb">string.format</span><span class="p">(</span><span class="s2">&quot;</span><span class="s">SQLi attack detected in %s with score %d&quot;</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span><span class="p">.</span><span class="n">score</span><span class="p">),</span>
+                            <span class="n">severity</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="s">high&#39;</span><span class="p">,</span>
+                            <span class="n">confidence</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="s">high&#39;</span><span class="p">,</span>
+                            <span class="n">method</span> <span class="o">=</span> <span class="p">{</span>
+                                <span class="n">description</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="s">SQL Injection Attack&quot;</span><span class="p">,</span>
+                                <span class="n">ref</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="s">cwe-89&quot;</span>
+                            <span class="p">},</span>
+                            <span class="n">sources</span> <span class="o">=</span> <span class="n">haka</span><span class="p">.</span><span class="n">alert</span><span class="p">.</span><span class="n">address</span><span class="p">(</span><span class="n">http</span><span class="p">.</span><span class="n">flow</span><span class="p">.</span><span class="n">srcip</span><span class="p">),</span>
+                            <span class="n">targets</span> <span class="o">=</span> <span class="p">{</span>
+                                <span class="n">haka</span><span class="p">.</span><span class="n">alert</span><span class="p">.</span><span class="n">address</span><span class="p">(</span><span class="n">http</span><span class="p">.</span><span class="n">flow</span><span class="p">.</span><span class="n">dstip</span><span class="p">),</span>
+                                <span class="n">haka</span><span class="p">.</span><span class="n">alert</span><span class="p">.</span><span class="n">service</span><span class="p">(</span><span class="nb">string.format</span><span class="p">(</span><span class="s2">&quot;</span><span class="s">tcp/%d&quot;</span><span class="p">,</span> <span class="n">http</span><span class="p">.</span><span class="n">flow</span><span class="p">.</span><span class="n">dstport</span><span class="p">),</span> <span class="s2">&quot;</span><span class="s">http&quot;</span><span class="p">)</span>
+                            <span class="p">},</span>
+                        <span class="p">}</span>
+                        <span class="n">http</span><span class="p">:</span><span class="n">drop</span><span class="p">()</span>
+                        <span class="k">return</span>
+                    <span class="k">end</span>
+                <span class="k">end</span>
+            <span class="k">end</span>
+        <span class="k">end</span>
+    <span class="p">}</span>
+<span class="k">end</span>
+
+<span class="n">check_sqli</span><span class="p">(</span><span class="n">sql_comments</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="p">{</span> <span class="n">decode</span><span class="p">,</span> <span class="n">lower</span> <span class="p">})</span>
+<span class="n">check_sqli</span><span class="p">(</span><span class="n">probing</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="p">{</span> <span class="n">decode</span><span class="p">,</span> <span class="n">lower</span> <span class="p">})</span>
+<span class="n">check_sqli</span><span class="p">(</span><span class="n">sql_keywords</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="p">{</span> <span class="n">decode</span><span class="p">,</span> <span class="n">lower</span><span class="p">,</span> <span class="n">uncomments</span><span class="p">,</span> <span class="n">nospaces</span> <span class="p">})</span>
+<span class="n">check_sqli</span><span class="p">(</span><span class="n">sql_functions</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="p">{</span> <span class="n">decode</span><span class="p">,</span> <span class="n">lower</span><span class="p">,</span> <span class="n">uncomments</span><span class="p">,</span> <span class="n">nospaces</span> <span class="p">})</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="going-further">
+<h2>6.4.9. Going further<a class="headerlink" href="#going-further" title="Permalink to this headline">¶</a></h2>
+<p>As mentioned at the top of this tutorial, our aim is not to block all SQLi attacks. To improve detection rate, one could extend the malicious patterns given throughout these examples.</p>
+</div>
+</div>
+
+
+		</div>
+	</div>
+</div>
+
+
+
+<footer id="footer">
+	<div class="row" role="complementary">
+		<div class="medium-12 columns">
+			&copy; Copyright 2014, Arkoon Network Security, OpenWide and Telecom ParisTech.
+		</div>
+	</div>
+</footer>
+<script>
+	  $(document).foundation();
+</script>
+
+
+
+<script type="text/javascript" src="http://www.haka-security.org/js/track.js"></script>
+
+
+  </body>
+</html>

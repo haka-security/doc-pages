@@ -1,0 +1,241 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>3.7. Parameters &mdash; Haka runtime 0.2.2 documentation</title>
+    
+    <link rel="stylesheet" href="../../../_static/haka.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/breathe.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../',
+        VERSION:     '0.2.2',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../../_static/js/scripts.js"></script>
+    <script type="text/javascript" src="../../../_static/js/vendor/modernizr.js"></script>
+    <script type="text/javascript" src="../../../_static/js/foundation/foundation.js"></script>
+    <script type="text/javascript" src="../../../_static/js/foundation/foundation.topbar.js"></script>
+    <link rel="top" title="Haka runtime 0.2.2 documentation" href="../../../index.html" />
+    <link rel="up" title="3. Developer reference guide" href="../devref.html" />
+    <link rel="next" title="3.8. Modules" href="module.html" />
+    <link rel="prev" title="3.6. Packet" href="packet.html" /> 
+  </head>
+  <body>
+
+
+<header id="header" role="banner">
+	<div class="row">
+		<div class="medium-6 columns">
+			<h1 class="title"><a rel="home" title="Haka" href="http://www.haka-security.org">Haka</a></h1>
+			<h2 class="description">Software Defined Security</h2>
+		</div>
+		<div class="medium-6 columns">
+			<div id="version">Version 0.2.2</div>
+		</div>
+	</div>
+</header>
+
+<div class="contain-to-grid sticky">
+	
+
+<nav id="navbar" class="top-bar" data-topbar>
+	<ul class="title-area">
+		<!-- This is required for toggle-topbar to work -->
+		<li class="name"></li>
+		<li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
+	</ul>
+	<section class="top-bar-section">
+		<ul class="left">
+			<li class=" ">
+				<a href="../../user/userindex.html">Users</a>
+			</li>
+			<li class=" ">
+				<a href="../../ref/refindex.html" class="../../ref/refindex.html">References</a>
+			</li>
+			<li class=" active">
+				<a href="../devindex.html" class="">Developers</a>
+			</li>
+			<li class=" ">
+				<a href="../../faq.html" class="">Faq</a>
+			</li>
+			<li class="has-form">
+
+
+	<form class="search" action="../../../search.html" method="get" id="searchbox" style="display: none">
+		<input type="hidden" name="area" value="default" />
+		<input type="hidden" name="check_keywords" value="yes" />
+		<div class="row collapse">
+			<div class="medium-11 columns">
+				<input type="text" name="q" placeholder="Search" />
+			</div>
+			<div class="medium-1 columns" id="clean-search-highlight">
+			</div>
+		</div>
+	</form>
+	<script type="text/javascript">$('#searchbox').show(0);</script>
+</li>
+		</ul>
+		<ul class="right">
+				<li class="right"><a href="module.html" title="3.8. Modules">Next &rarr;</a></li>
+				<li class="right"><a href="packet.html" title="3.6. Packet">&larr; Prev</a></li>
+				<li class="right"><a href="../devref.html" title="3. Developer reference guide">Up &uarr;</a></li>
+
+			<li class=" right"><a href="../../../genindex.html">Index</a></li>
+			<li class=" right"><a href="../../../haka-modindex.html">Modules</a></li>
+		</ul>
+	</section>
+</nav>
+</div>
+<div id="content">
+	<div class="row">
+		<ul id="breadcrumb" class="breadcrumbs medium-12 columns">
+			
+			<li><a href="../devindex.html">Welcome to Haka&#8217;s Developer Guide!</a></li>
+			
+			<li><a href="../devref.html">3. Developer reference guide</a></li>
+			
+			<li class="current"><a href="#">3.7. Parameters</a></li>
+		</ul>
+	</div>
+	<div class="row">
+		<div class="medium-12 columns">
+			
+  <div class="section" id="parameters">
+<h1>3.7. Parameters<a class="headerlink" href="#parameters" title="Permalink to this headline">¶</a></h1>
+<p></p>
+<p><p>Abstract parameters utilities.</p>
+<p>It is mainly used to give generic parameters to modules. </p>
+</p>
+<em>Functions</em><blockquote>
+<div><p><span class="target" id="project0parameters_8h_1acbc6d9e7b0d510545fcc80f1efdf85fd"></span><div class="line-block">
+<div class="line">struct parameters * <strong>parameters_open</strong>(const char * file)</div>
+</div>
+</p>
+<blockquote>
+<div><p></p>
+<p>Opaque structures. Load the parameters from a file. The file must follow the ini file format. </p>
+</div></blockquote>
+<p><span class="target" id="project0parameters_8h_1a96d39b3639f09ba94f57a30e45b0dd8c"></span><div class="line-block">
+<div class="line">struct parameters * <strong>parameters_create</strong>()</div>
+</div>
+</p>
+<blockquote>
+<div><p></p>
+<p>Create an empty parameter list. </p>
+</div></blockquote>
+<p><span class="target" id="project0parameters_8h_1a911a28ed99c857fe2ca5eb23be52c170"></span><div class="line-block">
+<div class="line">void <strong>parameters_free</strong>(struct parameters * params)</div>
+</div>
+</p>
+<blockquote>
+<div><p></p>
+<p>Release a paramerter list. </p>
+</div></blockquote>
+<p><span class="target" id="project0parameters_8h_1abae8aba6751372f7fd9782e99dc6da56"></span><div class="line-block">
+<div class="line">int <strong>parameters_open_section</strong>(struct parameters * params, const char * section)</div>
+</div>
+</p>
+<blockquote>
+<div><p></p>
+<p>Select a section in the parameter list. </p>
+</div></blockquote>
+<p><span class="target" id="project0parameters_8h_1a202e04fa91f95bea3893bf754093ac8d"></span><div class="line-block">
+<div class="line">int <strong>parameters_close_section</strong>(struct parameters * params)</div>
+</div>
+</p>
+<blockquote>
+<div><p></p>
+<p>Close the section. </p>
+</div></blockquote>
+<p><span class="target" id="project0parameters_8h_1ae580fde2ac963d1a6e89ba0cd0d174f6"></span><div class="line-block">
+<div class="line">const char * <strong>parameters_get_string</strong>(struct parameters * params, const char * key, const char * def)</div>
+</div>
+</p>
+<blockquote>
+<div><p></p>
+<p>Get the parameter value as a string. </p>
+</div></blockquote>
+<p><span class="target" id="project0parameters_8h_1a0ef7e37650c4c4ab07e2474f84557c51"></span><div class="line-block">
+<div class="line"><a class="reference internal" href="utils.html#project0types_8h_1a97a80ca1602ebf2303258971a2c938e2"><em>bool</em></a> <strong>parameters_get_boolean</strong>(struct parameters * params, const char * key, <a class="reference internal" href="utils.html#project0types_8h_1a97a80ca1602ebf2303258971a2c938e2"><em>bool</em></a> def)</div>
+</div>
+</p>
+<blockquote>
+<div><p></p>
+<p>Get the parameter value as a boolean. </p>
+</div></blockquote>
+<p><span class="target" id="project0parameters_8h_1a7148c0bd3d7b329ea20ff0b0706d3e88"></span><div class="line-block">
+<div class="line">int <strong>parameters_get_integer</strong>(struct parameters * params, const char * key, int def)</div>
+</div>
+</p>
+<blockquote>
+<div><p></p>
+<p>Get the parameter value as an integer. </p>
+</div></blockquote>
+<p><span class="target" id="project0parameters_8h_1a2e32c38752a3c7f7c32963e325bbf352"></span><div class="line-block">
+<div class="line"><a class="reference internal" href="utils.html#project0types_8h_1a97a80ca1602ebf2303258971a2c938e2"><em>bool</em></a> <strong>parameters_set_string</strong>(struct parameters * params, const char * key, const char * value)</div>
+</div>
+</p>
+<blockquote>
+<div><p></p>
+<p>Set or add a string parameter. </p>
+</div></blockquote>
+<p><span class="target" id="project0parameters_8h_1a9e928575123f8a9c1d1591424e7772f5"></span><div class="line-block">
+<div class="line"><a class="reference internal" href="utils.html#project0types_8h_1a97a80ca1602ebf2303258971a2c938e2"><em>bool</em></a> <strong>parameters_set_boolean</strong>(struct parameters * params, const char * key, <a class="reference internal" href="utils.html#project0types_8h_1a97a80ca1602ebf2303258971a2c938e2"><em>bool</em></a> value)</div>
+</div>
+</p>
+<blockquote>
+<div><p></p>
+<p>Set or add a boolean parameter. </p>
+</div></blockquote>
+<p><span class="target" id="project0parameters_8h_1a03ffbb2af8170cd49d6aef5d76e7aea8"></span><div class="line-block">
+<div class="line"><a class="reference internal" href="utils.html#project0types_8h_1a97a80ca1602ebf2303258971a2c938e2"><em>bool</em></a> <strong>parameters_set_integer</strong>(struct parameters * params, const char * key, int value)</div>
+</div>
+</p>
+<blockquote>
+<div><p></p>
+<p>Set or add a integer parameter. </p>
+</div></blockquote>
+</div></blockquote>
+</div>
+
+
+		</div>
+	</div>
+</div>
+
+
+
+<footer id="footer">
+	<div class="row" role="complementary">
+		<div class="medium-12 columns">
+			&copy; Copyright 2014, Arkoon Network Security, OpenWide and Telecom ParisTech.
+		</div>
+	</div>
+</footer>
+<script>
+	  $(document).foundation();
+</script>
+
+
+
+<script type="text/javascript" src="http://www.haka-security.org/js/track.js"></script>
+
+
+  </body>
+</html>

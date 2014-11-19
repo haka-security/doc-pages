@@ -1,0 +1,289 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Grammar building blocks &mdash; Haka runtime 0.2.2 documentation</title>
+    
+    <link rel="stylesheet" href="../../../../_static/haka.css" type="text/css" />
+    <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../../../_static/breathe.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../../',
+        VERSION:     '0.2.2',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../../../_static/js/scripts.js"></script>
+    <script type="text/javascript" src="../../../../_static/js/vendor/modernizr.js"></script>
+    <script type="text/javascript" src="../../../../_static/js/foundation/foundation.js"></script>
+    <script type="text/javascript" src="../../../../_static/js/foundation/foundation.topbar.js"></script>
+    <link rel="top" title="Haka runtime 0.2.2 documentation" href="../../../../index.html" />
+    <link rel="up" title="6.6. SMTP Protocol dissection" href="../smtp_dissector.html" />
+    <link rel="next" title="Registering events" href="event.html" />
+    <link rel="prev" title="Loading required modules" href="dissector.html" /> 
+  </head>
+  <body>
+
+
+<header id="header" role="banner">
+	<div class="row">
+		<div class="medium-6 columns">
+			<h1 class="title"><a rel="home" title="Haka" href="http://www.haka-security.org">Haka</a></h1>
+			<h2 class="description">Software Defined Security</h2>
+		</div>
+		<div class="medium-6 columns">
+			<div id="version">Version 0.2.2</div>
+		</div>
+	</div>
+</header>
+
+<div class="contain-to-grid sticky">
+	
+
+<nav id="navbar" class="top-bar" data-topbar>
+	<ul class="title-area">
+		<!-- This is required for toggle-topbar to work -->
+		<li class="name"></li>
+		<li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
+	</ul>
+	<section class="top-bar-section">
+		<ul class="left">
+			<li class=" active">
+				<a href="../../userindex.html">Users</a>
+			</li>
+			<li class=" ">
+				<a href="../../../ref/refindex.html" class="../../../ref/refindex.html">References</a>
+			</li>
+			<li class=" ">
+				<a href="../../../developer/devindex.html" class="">Developers</a>
+			</li>
+			<li class=" ">
+				<a href="../../../faq.html" class="">Faq</a>
+			</li>
+			<li class="has-form">
+
+
+	<form class="search" action="../../../../search.html" method="get" id="searchbox" style="display: none">
+		<input type="hidden" name="area" value="default" />
+		<input type="hidden" name="check_keywords" value="yes" />
+		<div class="row collapse">
+			<div class="medium-11 columns">
+				<input type="text" name="q" placeholder="Search" />
+			</div>
+			<div class="medium-1 columns" id="clean-search-highlight">
+			</div>
+		</div>
+	</form>
+	<script type="text/javascript">$('#searchbox').show(0);</script>
+</li>
+		</ul>
+		<ul class="right">
+				<li class="right"><a href="event.html" title="Registering events">Next &rarr;</a></li>
+				<li class="right"><a href="dissector.html" title="Loading required modules">&larr; Prev</a></li>
+				<li class="right"><a href="../smtp_dissector.html" title="6.6. SMTP Protocol dissection">Up &uarr;</a></li>
+
+			<li class=" right"><a href="../../../../genindex.html">Index</a></li>
+			<li class=" right"><a href="../../../../haka-modindex.html">Modules</a></li>
+		</ul>
+	</section>
+</nav>
+</div>
+<div id="content">
+	<div class="row">
+		<ul id="breadcrumb" class="breadcrumbs medium-12 columns">
+			
+			<li><a href="../../userindex.html">Welcome to Haka&#8217;s User Guide!</a></li>
+			
+			<li><a href="../../tutorial.html">6. Tutorials</a></li>
+			
+			<li><a href="../smtp_dissector.html">6.6. SMTP Protocol dissection</a></li>
+			
+			<li class="current"><a href="#">Grammar building blocks</a></li>
+		</ul>
+	</div>
+	<div class="row">
+		<div class="medium-12 columns">
+			
+  <div class="section" id="grammar-building-blocks">
+<h1>Grammar building blocks<a class="headerlink" href="#grammar-building-blocks" title="Permalink to this headline">¶</a></h1>
+<p>Haka grammar is made of basic blocks and coumpound blocks. The former enables
+parsing of basic elements such as booleans (<a class="reference internal" href="../../../ref/grammar.html#haka-data.flag" title="flag"><tt class="xref haka haka-func docutils literal"><span class="pre">flag()</span></tt></a>), bytes
+(<a class="reference internal" href="../../../ref/grammar.html#haka-function.bytes" title="bytes"><tt class="xref haka haka-func docutils literal"><span class="pre">bytes()</span></tt></a>), number (<a class="reference internal" href="../../../ref/grammar.html#haka-function.number" title="number"><tt class="xref haka haka-func docutils literal"><span class="pre">number()</span></tt></a>), regular expression
+(<a class="reference internal" href="../../../ref/grammar.html#haka-function.token" title="token"><tt class="xref haka haka-func docutils literal"><span class="pre">token()</span></tt></a>), etc. The latter allows to form complex blocks by combining
+basic and compound blocks. For instance, the <cite>record</cite> block (<a class="reference internal" href="../../../ref/grammar.html#haka-function.record" title="record"><tt class="xref haka haka-func docutils literal"><span class="pre">record()</span></tt></a>)
+is used to define a structure of elements.</p>
+</div>
+<div class="section" id="creating-the-grammar">
+<h1>Creating the grammar<a class="headerlink" href="#creating-the-grammar" title="Permalink to this headline">¶</a></h1>
+<p>Smtp protocol grammar is defined through the following skeleton where we define
+protocol messages syntax. Then, we can export the root elements of our grammar
+in order to compile them and make them ready to be parsed:</p>
+<div class="highlight-lua"><div class="highlight"><pre><span class="n">SmtpDissector</span><span class="p">.</span><span class="n">grammar</span> <span class="o">=</span> <span class="n">haka</span><span class="p">.</span><span class="n">grammar</span><span class="p">.</span><span class="n">new</span><span class="p">(</span><span class="s2">&quot;</span><span class="s">smtp&quot;</span><span class="p">,</span> <span class="k">function</span> <span class="p">()</span>
+
+    <span class="o">...</span><span class="p">.</span>
+
+    <span class="n">smtp_command</span> <span class="o">=</span> <span class="n">entity</span><span class="p">{</span>
+        <span class="o">...</span>
+    <span class="p">}</span>
+
+    <span class="n">smtp_reponse</span> <span class="o">=</span> <span class="n">entity</span><span class="p">{</span>
+        <span class="o">...</span>
+    <span class="p">}</span>
+
+    <span class="n">smtp_data</span> <span class="o">=</span> <span class="n">entity</span><span class="p">{</span>
+        <span class="o">...</span>
+    <span class="p">}</span>
+
+    <span class="n">export</span><span class="p">(</span><span class="n">smtp_command</span><span class="p">,</span> <span class="n">smtp_response</span><span class="p">,</span> <span class="n">smtp_data</span><span class="p">)</span>
+<span class="k">end</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="specifying-terminal-enitites">
+<h1>Specifying terminal enitites<a class="headerlink" href="#specifying-terminal-enitites" title="Permalink to this headline">¶</a></h1>
+<p>Here, we give the definition of terminal entities that will be used to specify
+smtp messages structure:</p>
+<div class="highlight-lua"><div class="highlight"><pre><span class="n">WS</span> <span class="o">=</span> <span class="n">token</span><span class="p">(</span><span class="s1">&#39;</span><span class="s">[[:blank:]]+&#39;</span><span class="p">)</span>
+<span class="n">CRLF</span> <span class="o">=</span> <span class="n">token</span><span class="p">(</span><span class="s1">&#39;</span><span class="s">[%r]?[%n]&#39;</span><span class="p">)</span>
+
+<span class="n">SEP</span> <span class="o">=</span> <span class="n">token</span><span class="p">(</span><span class="s1">&#39;</span><span class="s">[- ]&#39;</span><span class="p">))</span>
+<span class="n">COMMAND</span> <span class="o">=</span> <span class="n">token</span><span class="p">(</span><span class="s1">&#39;</span><span class="s">[[:alpha:]]+&#39;</span><span class="p">))</span>
+<span class="n">MESSAGE</span> <span class="o">=</span> <span class="n">token</span><span class="p">(</span><span class="s1">&#39;</span><span class="s">[^%r%n]*&#39;</span><span class="p">))</span>
+<span class="n">CODE</span> <span class="o">=</span> <span class="n">token</span><span class="p">(</span><span class="s1">&#39;</span><span class="s">[0-9]{3}&#39;</span><span class="p">))</span>
+
+<span class="n">PARAM</span> <span class="o">=</span> <span class="n">record</span><span class="p">{</span>
+    <span class="n">WS</span><span class="p">,</span>
+    <span class="n">field</span><span class="p">(</span><span class="s1">&#39;</span><span class="s">parameter&#39;</span><span class="p">,</span> <span class="n">MESSAGE</span><span class="p">)</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>The first ones are self explanatory. <cite>PARAM</cite> is defined using the <cite>record</cite>
+keyword wich represents consecutive elements.</p>
+</div>
+<div class="section" id="specifying-protocol-message-syntax">
+<h1>Specifying protocol message syntax<a class="headerlink" href="#specifying-protocol-message-syntax" title="Permalink to this headline">¶</a></h1>
+<p>We distinguish three SMTP messages: commands, responses and data (mail content). Hereafter, we give their specification using the Haka grammar.</p>
+<div class="section" id="smtp-commands">
+<h2>SMTP commands<a class="headerlink" href="#smtp-commands" title="Permalink to this headline">¶</a></h2>
+<p>Following RFC 2821, smtp command messages are alphabetic chars terminated by a CRLF. Command themselves are followed by white space(s) if paramters are present. These parameters could be required (MAIL, RCPT), optional (HELP) or not permitted at all (DATA, QUIT). These information is stored in the following table which will be used later by the grammar to adapt dissection according to parsed smtp commands:</p>
+<div class="highlight-lua"><div class="highlight"><pre><span class="kd">local</span> <span class="n">CMD</span> <span class="o">=</span> <span class="p">{</span>
+      <span class="p">[</span><span class="s1">&#39;</span><span class="s">HELO&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="s">required&#39;</span><span class="p">,</span>
+      <span class="p">[</span><span class="s1">&#39;</span><span class="s">EHLO&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="s">required&#39;</span><span class="p">,</span>
+      <span class="p">[</span><span class="s1">&#39;</span><span class="s">MAIL&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="s">required&#39;</span><span class="p">,</span>
+      <span class="p">[</span><span class="s1">&#39;</span><span class="s">RCPT&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="s">required&#39;</span><span class="p">,</span>
+      <span class="p">[</span><span class="s1">&#39;</span><span class="s">DATA&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="s">none&#39;</span><span class="p">,</span>
+     <span class="p">[</span><span class="s1">&#39;</span><span class="s">RESET&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="s">none&#39;</span><span class="p">,</span>
+    <span class="p">[</span><span class="s1">&#39;</span><span class="s">VERIFY&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="s">required&#39;</span><span class="p">,</span>
+    <span class="p">[</span><span class="s1">&#39;</span><span class="s">EXPAND&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="s">required&#39;</span><span class="p">,</span>
+      <span class="p">[</span><span class="s1">&#39;</span><span class="s">HELP&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="s">optional&#39;</span><span class="p">,</span>
+      <span class="p">[</span><span class="s1">&#39;</span><span class="s">NOOP&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="s">optional&#39;</span><span class="p">,</span>
+      <span class="p">[</span><span class="s1">&#39;</span><span class="s">QUIT&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="s">none&#39;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>The syntax of smtp command messages is defined as a <cite>record</cite> starting with a command name (defined previusouly as terminal token) and ending with a CRLF. We use the <cite>branch</cite> entity to distinguish between the three configuration cases:</p>
+<ul class="simple">
+<li>Parameters must follow.</li>
+<li>Parameters may be present.</li>
+<li>No parameters follow.</li>
+</ul>
+<p>The <cite>branch</cite> entity is endowed with a selection function allowing to select the branch to follow depending on the command name. Note that the grammar has a special element <cite>optional</cite> allowing to handle cases where messages may be present or not. In our case, we detect if paramteres are present by looking one byte further if CRLF is present. This is done thanks to the <cite>lookahead</cite> function (see <a class="reference internal" href="../../../ref/grammar.html"><em>Grammar</em></a>)</p>
+<div class="highlight-lua"><div class="highlight"><pre><span class="n">smtp_command</span> <span class="o">=</span> <span class="n">record</span> <span class="p">{</span>
+    <span class="n">field</span><span class="p">(</span><span class="s1">&#39;</span><span class="s">command&#39;</span><span class="p">,</span> <span class="n">COMMAND</span><span class="p">),</span>
+    <span class="n">branch</span><span class="p">(</span>
+        <span class="p">{</span>
+            <span class="n">required</span> <span class="o">=</span> <span class="n">PARAM</span><span class="p">,</span>
+            <span class="n">optional</span> <span class="o">=</span> <span class="n">optional</span><span class="p">(</span><span class="n">PARAM</span><span class="p">,</span>
+                <span class="k">function</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">ctx</span><span class="p">)</span>
+                    <span class="kd">local</span> <span class="n">la</span> <span class="o">=</span> <span class="n">ctx</span><span class="p">:</span><span class="n">lookahead</span><span class="p">()</span>
+                    <span class="k">return</span> <span class="ow">not</span> <span class="p">(</span><span class="n">la</span> <span class="o">==</span> <span class="mh">0xa</span> <span class="ow">or</span> <span class="n">la</span> <span class="o">==</span> <span class="mh">0xd</span><span class="p">)</span>
+                <span class="k">end</span>
+            <span class="p">),</span>
+            <span class="n">none</span> <span class="o">=</span> <span class="n">empty</span><span class="p">()</span>
+        <span class="p">},</span>
+        <span class="k">function</span> <span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">ctx</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">CMD</span><span class="p">[</span><span class="n">self</span><span class="p">.</span><span class="n">command</span><span class="p">]</span>
+        <span class="k">end</span>
+    <span class="p">),</span>
+    <span class="n">CRLF</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="smtp-responses">
+<h2>SMTP responses<a class="headerlink" href="#smtp-responses" title="Permalink to this headline">¶</a></h2>
+<p>A smtp response message is defined as a status code followed by a separator, a comprehensive message and a trailing CRLF:</p>
+<div class="highlight-lua"><div class="highlight"><pre><span class="n">smtp_response</span> <span class="o">=</span> <span class="n">record</span> <span class="p">{</span>
+    <span class="n">field</span><span class="p">(</span><span class="s1">&#39;</span><span class="s">code&#39;</span><span class="p">,</span> <span class="n">CODE</span><span class="p">),</span>
+    <span class="n">field</span><span class="p">(</span><span class="s1">&#39;</span><span class="s">sep&#39;</span><span class="p">,</span> <span class="n">SEP</span><span class="p">),</span>
+    <span class="n">field</span><span class="p">(</span><span class="s1">&#39;</span><span class="s">parameter&#39;</span><span class="p">,</span> <span class="n">MESSAGE</span><span class="p">),</span>
+    <span class="n">CRLF</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Smtp server may respond by a sequence of response messages which are captured in Haka grammar using an <cite>array</cite> entity. The array size is determined thanks to the <cite>untilcond</cite> option (i.e. hyphen is missing in the last response message):</p>
+<div class="highlight-lua"><div class="highlight"><pre><span class="n">smtp_responses</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span><span class="s1">&#39;</span><span class="s">responses&#39;</span><span class="p">,</span>
+        <span class="n">array</span><span class="p">(</span><span class="n">smtp_response</span><span class="p">)</span>
+                <span class="p">:</span><span class="n">untilcond</span><span class="p">(</span><span class="k">function</span> <span class="p">(</span><span class="n">elem</span><span class="p">,</span> <span class="n">ctx</span><span class="p">)</span>
+                        <span class="k">return</span> <span class="n">elem</span> <span class="ow">and</span> <span class="n">elem</span><span class="p">.</span><span class="n">sep</span> <span class="o">==</span> <span class="s1">&#39;</span><span class="s"> &#39;</span>
+                <span class="k">end</span><span class="p">)</span>
+        <span class="p">)</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last"><cite>untilcond</cite> is an array option that returns true to indicate that we have reached the end of the array. See <a class="reference internal" href="../../../ref/grammar.html"><em>Grammar</em></a> to get the list of available options.</p>
+</div>
+</div>
+<div class="section" id="smtp-data">
+<h2>SMTP data<a class="headerlink" href="#smtp-data" title="Permalink to this headline">¶</a></h2>
+<p>Finally, data content is defined as following:</p>
+<div class="highlight-lua"><div class="highlight"><pre><span class="n">smtp_data</span> <span class="o">=</span> <span class="n">record</span> <span class="p">{</span>
+    <span class="n">field</span><span class="p">(</span><span class="s1">&#39;</span><span class="s">data&#39;</span><span class="p">,</span> <span class="n">bytes</span><span class="p">()</span>
+        <span class="p">:</span><span class="n">untiltoken</span><span class="p">(</span><span class="s2">&quot;</span><span class="s">%r?%n%.%r?%n&quot;</span><span class="p">)),</span>
+    <span class="n">token</span><span class="p">(</span><span class="s2">&quot;</span><span class="s">%r?%n%.%r?%n&quot;</span><span class="p">)</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+		</div>
+	</div>
+</div>
+
+
+
+<footer id="footer">
+	<div class="row" role="complementary">
+		<div class="medium-12 columns">
+			&copy; Copyright 2014, Arkoon Network Security, OpenWide and Telecom ParisTech.
+		</div>
+	</div>
+</footer>
+<script>
+	  $(document).foundation();
+</script>
+
+
+
+<script type="text/javascript" src="http://www.haka-security.org/js/track.js"></script>
+
+
+  </body>
+</html>

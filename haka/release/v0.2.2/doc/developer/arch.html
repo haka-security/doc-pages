@@ -1,0 +1,186 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>2. Haka architecture &mdash; Haka runtime 0.2.2 documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/haka.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/breathe.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '0.2.2',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../_static/js/scripts.js"></script>
+    <script type="text/javascript" src="../../_static/js/vendor/modernizr.js"></script>
+    <script type="text/javascript" src="../../_static/js/foundation/foundation.js"></script>
+    <script type="text/javascript" src="../../_static/js/foundation/foundation.topbar.js"></script>
+    <link rel="top" title="Haka runtime 0.2.2 documentation" href="../../index.html" />
+    <link rel="up" title="Welcome to Haka’s Developer Guide!" href="devindex.html" />
+    <link rel="next" title="3. Developer reference guide" href="devref.html" />
+    <link rel="prev" title="1. Build" href="build.html" /> 
+  </head>
+  <body>
+
+
+<header id="header" role="banner">
+	<div class="row">
+		<div class="medium-6 columns">
+			<h1 class="title"><a rel="home" title="Haka" href="http://www.haka-security.org">Haka</a></h1>
+			<h2 class="description">Software Defined Security</h2>
+		</div>
+		<div class="medium-6 columns">
+			<div id="version">Version 0.2.2</div>
+		</div>
+	</div>
+</header>
+
+<div class="contain-to-grid sticky">
+	
+
+<nav id="navbar" class="top-bar" data-topbar>
+	<ul class="title-area">
+		<!-- This is required for toggle-topbar to work -->
+		<li class="name"></li>
+		<li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
+	</ul>
+	<section class="top-bar-section">
+		<ul class="left">
+			<li class=" ">
+				<a href="../user/userindex.html">Users</a>
+			</li>
+			<li class=" ">
+				<a href="../ref/refindex.html" class="../ref/refindex.html">References</a>
+			</li>
+			<li class=" active">
+				<a href="devindex.html" class="">Developers</a>
+			</li>
+			<li class=" ">
+				<a href="../faq.html" class="">Faq</a>
+			</li>
+			<li class="has-form">
+
+
+	<form class="search" action="../../search.html" method="get" id="searchbox" style="display: none">
+		<input type="hidden" name="area" value="default" />
+		<input type="hidden" name="check_keywords" value="yes" />
+		<div class="row collapse">
+			<div class="medium-11 columns">
+				<input type="text" name="q" placeholder="Search" />
+			</div>
+			<div class="medium-1 columns" id="clean-search-highlight">
+			</div>
+		</div>
+	</form>
+	<script type="text/javascript">$('#searchbox').show(0);</script>
+</li>
+		</ul>
+		<ul class="right">
+				<li class="right"><a href="devref.html" title="3. Developer reference guide">Next &rarr;</a></li>
+				<li class="right"><a href="build.html" title="1. Build">&larr; Prev</a></li>
+				<li class="right"><a href="devindex.html" title="Welcome to Haka&#8217;s Developer Guide!">Up &uarr;</a></li>
+
+			<li class=" right"><a href="../../genindex.html">Index</a></li>
+			<li class=" right"><a href="../../haka-modindex.html">Modules</a></li>
+		</ul>
+	</section>
+</nav>
+</div>
+<div id="content">
+	<div class="row">
+		<ul id="breadcrumb" class="breadcrumbs medium-12 columns">
+			
+			<li><a href="devindex.html">Welcome to Haka&#8217;s Developer Guide!</a></li>
+			
+			<li class="current"><a href="#">2. Haka architecture</a></li>
+		</ul>
+	</div>
+	<div class="row">
+		<div class="medium-12 columns">
+			
+  <div class="section" id="haka-architecture">
+<h1>2. Haka architecture<a class="headerlink" href="#haka-architecture" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="general-architecture">
+<h2>2.1. General architecture<a class="headerlink" href="#general-architecture" title="Permalink to this headline">¶</a></h2>
+<p>This graphic present a high level view of the Haka architecture.</p>
+<img alt="../../_images/arch.png" class="align-center" src="../../_images/arch.png" />
+</div>
+<div class="section" id="flow">
+<h2>2.2. Flow<a class="headerlink" href="#flow" title="Permalink to this headline">¶</a></h2>
+<p>The flows that go on the network and through Haka are named using the following conventions:</p>
+<img alt="../../_images/flow.png" class="align-center" src="../../_images/flow.png" />
+<ul class="simple">
+<li><em>Up</em>/<em>Down</em>: Direction of the flow from the client to the server.</li>
+<li><em>In</em>/<em>Out</em>: Direction of the flow regarding the Haka router.</li>
+</ul>
+</div>
+<div class="section" id="packet-capture-and-filtering">
+<h2>2.3. Packet capture and filtering<a class="headerlink" href="#packet-capture-and-filtering" title="Permalink to this headline">¶</a></h2>
+<p>Haka will call the capture module and wait for an incoming packet. Once a
+packet is received, it is filtered by calling the dissectors and the rules
+setup by the user in the configuration file. At some point, one dissector
+will <cite>accept/drop</cite> the packet to make it <cite>continue/stop</cite> its
+journey on the network.</p>
+<img alt="../../_images/capture.png" class="align-center" src="../../_images/capture.png" />
+</div>
+<div class="section" id="packet-dissectors">
+<h2>2.4. Packet dissectors<a class="headerlink" href="#packet-dissectors" title="Permalink to this headline">¶</a></h2>
+<p>Haka threads will wait for the capture module to receive a packet. When one
+is available, the module will pass it to the correct dissector.</p>
+<p>The next image shows the work-flow of a received packet.</p>
+<img alt="../../_images/dissector.png" class="align-center" src="../../_images/dissector.png" />
+<p>The same process is also true for the comunication between one dissector and
+the next dissector. By calling the <em>receive</em> function, the ownership is given
+to the called dissector. This means that the packet will never be send on the
+network unless this dissector accept the packet.</p>
+</div>
+<div class="section" id="flow-and-context">
+<h2>2.5. Flow and context<a class="headerlink" href="#flow-and-context" title="Permalink to this headline">¶</a></h2>
+<p>When a flow need to be created (for TCP or UDP for instance), a context need
+to be created by the dissector that do the transition from state-less to
+state-full.</p>
+<img alt="../../_images/flowdiss.png" class="align-center" src="../../_images/flowdiss.png" />
+</div>
+</div>
+
+
+		</div>
+	</div>
+</div>
+
+
+
+<footer id="footer">
+	<div class="row" role="complementary">
+		<div class="medium-12 columns">
+			&copy; Copyright 2014, Arkoon Network Security, OpenWide and Telecom ParisTech.
+		</div>
+	</div>
+</footer>
+<script>
+	  $(document).foundation();
+</script>
+
+
+
+<script type="text/javascript" src="http://www.haka-security.org/js/track.js"></script>
+
+
+  </body>
+</html>

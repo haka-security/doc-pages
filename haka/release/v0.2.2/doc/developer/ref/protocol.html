@@ -1,0 +1,496 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>3.13. IPv4 &mdash; Haka runtime 0.2.2 documentation</title>
+    
+    <link rel="stylesheet" href="../../../_static/haka.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/breathe.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../',
+        VERSION:     '0.2.2',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../../_static/js/scripts.js"></script>
+    <script type="text/javascript" src="../../../_static/js/vendor/modernizr.js"></script>
+    <script type="text/javascript" src="../../../_static/js/foundation/foundation.js"></script>
+    <script type="text/javascript" src="../../../_static/js/foundation/foundation.topbar.js"></script>
+    <link rel="top" title="Haka runtime 0.2.2 documentation" href="../../../index.html" />
+    <link rel="up" title="3. Developer reference guide" href="../devref.html" />
+    <link rel="next" title="4. Writing Haka extensions" href="../tutorials.html" />
+    <link rel="prev" title="3.12.2. Buffer stream" href="buffer_vbuffer_stream.html" /> 
+  </head>
+  <body>
+
+
+<header id="header" role="banner">
+	<div class="row">
+		<div class="medium-6 columns">
+			<h1 class="title"><a rel="home" title="Haka" href="http://www.haka-security.org">Haka</a></h1>
+			<h2 class="description">Software Defined Security</h2>
+		</div>
+		<div class="medium-6 columns">
+			<div id="version">Version 0.2.2</div>
+		</div>
+	</div>
+</header>
+
+<div class="contain-to-grid sticky">
+	
+
+<nav id="navbar" class="top-bar" data-topbar>
+	<ul class="title-area">
+		<!-- This is required for toggle-topbar to work -->
+		<li class="name"></li>
+		<li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
+	</ul>
+	<section class="top-bar-section">
+		<ul class="left">
+			<li class=" ">
+				<a href="../../user/userindex.html">Users</a>
+			</li>
+			<li class=" ">
+				<a href="../../ref/refindex.html" class="../../ref/refindex.html">References</a>
+			</li>
+			<li class=" active">
+				<a href="../devindex.html" class="">Developers</a>
+			</li>
+			<li class=" ">
+				<a href="../../faq.html" class="">Faq</a>
+			</li>
+			<li class="has-form">
+
+
+	<form class="search" action="../../../search.html" method="get" id="searchbox" style="display: none">
+		<input type="hidden" name="area" value="default" />
+		<input type="hidden" name="check_keywords" value="yes" />
+		<div class="row collapse">
+			<div class="medium-11 columns">
+				<input type="text" name="q" placeholder="Search" />
+			</div>
+			<div class="medium-1 columns" id="clean-search-highlight">
+			</div>
+		</div>
+	</form>
+	<script type="text/javascript">$('#searchbox').show(0);</script>
+</li>
+		</ul>
+		<ul class="right">
+				<li class="right"><a href="../tutorials.html" title="4. Writing Haka extensions">Next &rarr;</a></li>
+				<li class="right"><a href="buffer_vbuffer_stream.html" title="3.12.2. Buffer stream">&larr; Prev</a></li>
+				<li class="right"><a href="../devref.html" title="3. Developer reference guide">Up &uarr;</a></li>
+
+			<li class=" right"><a href="../../../genindex.html">Index</a></li>
+			<li class=" right"><a href="../../../haka-modindex.html">Modules</a></li>
+		</ul>
+	</section>
+</nav>
+</div>
+<div id="content">
+	<div class="row">
+		<ul id="breadcrumb" class="breadcrumbs medium-12 columns">
+			
+			<li><a href="../devindex.html">Welcome to Haka&#8217;s Developer Guide!</a></li>
+			
+			<li><a href="../devref.html">3. Developer reference guide</a></li>
+			
+			<li class="current"><a href="#">3.13. IPv4</a></li>
+		</ul>
+	</div>
+	<div class="row">
+		<div class="medium-12 columns">
+			
+  <div class="section" id="ipv4">
+<h1>3.13. IPv4<a class="headerlink" href="#ipv4" title="Permalink to this headline">¶</a></h1>
+<p></p>
+<p>IPv4 protocol API. </p>
+<p><p id="project0structipv4"><em>class</em> <strong>ipv4</strong></p>
+<blockquote>
+<div><p></p>
+<p>IPv4 opaque structure </p>
+<em>Public Members</em><blockquote>
+<div><p><span class="target" id="project0structipv4_1a424a760c6a3ca88bd395e5242b40a501"></span>struct  <a class="reference internal" href="packet.html#project0structpacket"><em>packet</em></a>  * <strong>packet</strong></p>
+<blockquote>
+<div><p></p>
+<p></p>
+</div></blockquote>
+<p><span class="target" id="project0structipv4_1ab8579657583504caaa30a52b7c220038"></span>struct lua_object <strong>lua_object</strong></p>
+<blockquote>
+<div><p></p>
+<p></p>
+</div></blockquote>
+<p><span class="target" id="project0structipv4_1a14e904efaa59490a25ad5d61722cfad9"></span>struct list2_elem <strong>frag_list</strong></p>
+<blockquote>
+<div><p></p>
+<p></p>
+</div></blockquote>
+<p><span class="target" id="project0structipv4_1a91fcb7177ef41bdfc94a5dcc09738d76"></span>struct  <a class="reference internal" href="buffer_vbuffer.html#project0structvbuffer__iterator"><em>vbuffer_iterator</em></a> <strong>select</strong></p>
+<blockquote>
+<div><p></p>
+<p></p>
+</div></blockquote>
+<p><span class="target" id="project0structipv4_1ab368053198d26fb9ab0ee3b0a01173ec"></span>struct  <a class="reference internal" href="buffer_vbuffer.html#project0structvbuffer"><em>vbuffer</em></a>  * <strong>payload</strong></p>
+<blockquote>
+<div><p></p>
+<p></p>
+</div></blockquote>
+<p><span class="target" id="project0structipv4_1af25ddfb39156fde273d0259f0b573cfe"></span>struct  <a class="reference internal" href="buffer_vbuffer.html#project0structvbuffer"><em>vbuffer</em></a> <strong>packet_payload</strong></p>
+<blockquote>
+<div><p></p>
+<p></p>
+</div></blockquote>
+<p><span class="target" id="project0structipv4_1a36daf2b2abeea53741c87517764199e2"></span>struct  <a class="reference internal" href="buffer_vbuffer_stream.html#project0structvbuffer__stream"><em>vbuffer_stream</em></a> <strong>reassembled_payload</strong></p>
+<blockquote>
+<div><p></p>
+<p></p>
+</div></blockquote>
+<p><span class="target" id="project0structipv4_1ae7abdba3d3341d46ba10c69cbbaea20d"></span>size_t <strong>reassembled_offset</strong></p>
+<blockquote>
+<div><p></p>
+<p></p>
+</div></blockquote>
+<p><span class="target" id="project0structipv4_1a09d2b7bae81828364c20f42992db6826"></span><a class="reference internal" href="utils.html#project0types_8h_1a97a80ca1602ebf2303258971a2c938e2"><em>bool</em></a> <strong>invalid_checksum</strong></p>
+<blockquote>
+<div><p></p>
+<p></p>
+</div></blockquote>
+<p><span class="target" id="project0structipv4_1adad14a38c206d4197625b3046a3ec6b2"></span><a class="reference internal" href="utils.html#project0types_8h_1a97a80ca1602ebf2303258971a2c938e2"><em>bool</em></a> <strong>reassembled</strong></p>
+<blockquote>
+<div><p></p>
+<p></p>
+</div></blockquote>
+</div></blockquote>
+</div></blockquote>
+</p>
+<p></p>
+<p>IPv4 address API. </p>
+<em>Defines</em><blockquote>
+<div><p><span class="target" id="project0ipv4-addr_8h_1a66a817155ea7f7e09082012200f904d0"></span><strong>IPV4_ADDR_STRING_MAXLEN</strong></p>
+<blockquote>
+<div><p></p>
+<p>String max size for converting ipv4addr to string. </p>
+</div></blockquote>
+</div></blockquote>
+<em>Typedefs</em><blockquote>
+<div><p><span class="target" id="project0ipv4-addr_8h_1ab80aa62b8d409ac6d896674519dfeedb"></span>typedef <a class="reference internal" href="utils.html#project0types_8h_1a8949da768e2857b8f602a69c5b68828a"><em>uint32</em></a> <strong>ipv4addr</strong></p>
+<blockquote>
+<div><p></p>
+<p>IPv4 address type. </p>
+</div></blockquote>
+</div></blockquote>
+<em>Functions</em><blockquote>
+<div><p><span class="target" id="project0ipv4-addr_8h_1a9d958f98e0c2621949a3ba9c711ffe0a"></span><div class="line-block">
+<div class="line">void <strong>ipv4_addr_to_string</strong>(<a class="reference internal" href="#project0ipv4-addr_8h_1ab80aa62b8d409ac6d896674519dfeedb"><em>ipv4addr</em></a> addr, char * string, size_t size)</div>
+</div>
+</p>
+<blockquote>
+<div><p></p>
+<p>Convert IP from ipv4addr to string. </p>
+</div></blockquote>
+<p><span class="target" id="project0ipv4-addr_8h_1a2409547a73923f09c6cba65ec2e0990b"></span><div class="line-block">
+<div class="line"><a class="reference internal" href="#project0ipv4-addr_8h_1ab80aa62b8d409ac6d896674519dfeedb"><em>ipv4addr</em></a> <strong>ipv4_addr_from_string</strong>(const char * string)</div>
+</div>
+</p>
+<blockquote>
+<div><p></p>
+<p>Convert IP from string to ipv4addr structure. </p>
+</div></blockquote>
+<p><span class="target" id="project0ipv4-addr_8h_1a4cc9547b088ef78da3666d21e2bcf4ce"></span><div class="line-block">
+<div class="line"><a class="reference internal" href="#project0ipv4-addr_8h_1ab80aa62b8d409ac6d896674519dfeedb"><em>ipv4addr</em></a> <strong>ipv4_addr_from_bytes</strong>(<a class="reference internal" href="utils.html#project0types_8h_1adde6aaee8457bee49c2a92621fe22b79"><em>uint8</em></a> a, <a class="reference internal" href="utils.html#project0types_8h_1adde6aaee8457bee49c2a92621fe22b79"><em>uint8</em></a> b, <a class="reference internal" href="utils.html#project0types_8h_1adde6aaee8457bee49c2a92621fe22b79"><em>uint8</em></a> c, <a class="reference internal" href="utils.html#project0types_8h_1adde6aaee8457bee49c2a92621fe22b79"><em>uint8</em></a> d)</div>
+</div>
+</p>
+<blockquote>
+<div><p></p>
+<p>Convert IP from bytes to ipv4addr. </p>
+</div></blockquote>
+</div></blockquote>
+<p></p>
+<p>IPv4 network API. </p>
+<em>Defines</em><blockquote>
+<div><p><span class="target" id="project0ipv4-network_8h_1a90a72e96a7cf6a1277c99dd73d550b67"></span><strong>IPV4_NETWORK_STRING_MAXLEN</strong></p>
+<blockquote>
+<div><p></p>
+<p>String max size for converting <a class="reference internal" href="#project0structipv4network"><em>ipv4network</em></a> to string. </p>
+</div></blockquote>
+</div></blockquote>
+<em>Functions</em><blockquote>
+<div><p><span class="target" id="project0ipv4-network_8h_1a359fdba69521a7b0c09b090530ef7d48"></span><div class="line-block">
+<div class="line">void <strong>ipv4_network_to_string</strong>(<a class="reference internal" href="#project0structipv4network"><em>ipv4network</em></a> net, char * string, size_t size)</div>
+</div>
+</p>
+<blockquote>
+<div><p></p>
+<p>Convert network address from <a class="reference internal" href="#project0structipv4network"><em>ipv4network</em></a> to string. </p>
+</div></blockquote>
+<p><span class="target" id="project0ipv4-network_8h_1a3915cdcd5415c0ce1f47123f3d7df9f2"></span><div class="line-block">
+<div class="line"><a class="reference internal" href="#project0structipv4network"><em>ipv4network</em></a> <strong>ipv4_network_from_string</strong>(const char * string)</div>
+</div>
+</p>
+<blockquote>
+<div><p></p>
+<p>Convert network address from string to <a class="reference internal" href="#project0structipv4network"><em>ipv4network</em></a> structure. </p>
+</div></blockquote>
+<p><span class="target" id="project0ipv4-network_8h_1ad79164c19f64edfd0ee23917d3a4cb51"></span><div class="line-block">
+<div class="line"><a class="reference internal" href="utils.html#project0types_8h_1adde6aaee8457bee49c2a92621fe22b79"><em>uint8</em></a> <strong>ipv4_network_contains</strong>(<a class="reference internal" href="#project0structipv4network"><em>ipv4network</em></a> network, <a class="reference internal" href="#project0ipv4-addr_8h_1ab80aa62b8d409ac6d896674519dfeedb"><em>ipv4addr</em></a> addr)</div>
+</div>
+</p>
+<blockquote>
+<div><p></p>
+<p><p>Checks if IPv4 address is in network range.</p>
+<p><dl class="docutils">
+<dt><strong>Return</strong></dt>
+<dd>True if ip address is in network range and False otherwise. </dd>
+</dl>
+</p>
+</p>
+</div></blockquote>
+</div></blockquote>
+<em>Variables</em><blockquote>
+<div><p><span class="target" id="project0ipv4-network_8h_1aa21ef85565d2a078c511713de85d9538"></span>const  <a class="reference internal" href="#project0structipv4network"><em>ipv4network</em></a> <strong>ipv4_network_zero</strong></p>
+<blockquote>
+<div><p></p>
+<p>IPv4 network initializer. </p>
+</div></blockquote>
+</div></blockquote>
+<p><p id="project0structipv4network"><em>class</em> <strong>ipv4network</strong></p>
+<blockquote>
+<div><p></p>
+<p>IPv4 network. </p>
+<em>Public Members</em><blockquote>
+<div><p><span class="target" id="project0structipv4network_1ad6ec1a43e6ffb88b1873d6f552b0a33b"></span><a class="reference internal" href="#project0ipv4-addr_8h_1ab80aa62b8d409ac6d896674519dfeedb"><em>ipv4addr</em></a> <strong>net</strong></p>
+<blockquote>
+<div><p></p>
+<p></p>
+</div></blockquote>
+<p><span class="target" id="project0structipv4network_1a460de978af5569264530e6ec842fee0d"></span><a class="reference internal" href="utils.html#project0types_8h_1adde6aaee8457bee49c2a92621fe22b79"><em>uint8</em></a> <strong>mask</strong></p>
+<blockquote>
+<div><p></p>
+<p></p>
+</div></blockquote>
+</div></blockquote>
+</div></blockquote>
+</p>
+</div>
+<div class="section" id="tcp">
+<h1>3.14. TCP<a class="headerlink" href="#tcp" title="Permalink to this headline">¶</a></h1>
+<p></p>
+<p></p>
+<p><p id="project0structtcp"><em>class</em> <strong>tcp</strong></p>
+<blockquote>
+<div><p></p>
+<p>Opaque TCP dissector data. </p>
+<em>Public Members</em><blockquote>
+<div><p><span class="target" id="project0structtcp_1aa3133f566f20c886b23a743894aace66"></span>struct  <a class="reference internal" href="#project0structipv4"><em>ipv4</em></a>  * <strong>packet</strong></p>
+<blockquote>
+<div><p></p>
+<p></p>
+</div></blockquote>
+<p><span class="target" id="project0structtcp_1a7582171a1ded4bd049531c4973a94fb3"></span>struct lua_object <strong>lua_object</strong></p>
+<blockquote>
+<div><p></p>
+<p></p>
+</div></blockquote>
+<p><span class="target" id="project0structtcp_1afe3e533f3d8f330b2a84d312f232fc80"></span>struct  <a class="reference internal" href="buffer_vbuffer.html#project0structvbuffer"><em>vbuffer</em></a> <strong>payload</strong></p>
+<blockquote>
+<div><p></p>
+<p></p>
+</div></blockquote>
+<p><span class="target" id="project0structtcp_1aaebf263a7eab8819789398779eb3b222"></span>struct  <a class="reference internal" href="buffer_vbuffer.html#project0structvbuffer__iterator"><em>vbuffer_iterator</em></a> <strong>select</strong></p>
+<blockquote>
+<div><p></p>
+<p></p>
+</div></blockquote>
+<p><span class="target" id="project0structtcp_1ae050939e743dcc90be7e064fdc1722b0"></span><a class="reference internal" href="utils.html#project0types_8h_1a97a80ca1602ebf2303258971a2c938e2"><em>bool</em></a> <strong>modified</strong></p>
+<blockquote>
+<div><p></p>
+<p></p>
+</div></blockquote>
+<p><span class="target" id="project0structtcp_1a9ae900ef6df1dcf0052a438a4c3fce85"></span><a class="reference internal" href="utils.html#project0types_8h_1a97a80ca1602ebf2303258971a2c938e2"><em>bool</em></a> <strong>invalid_checksum</strong></p>
+<blockquote>
+<div><p></p>
+<p></p>
+</div></blockquote>
+</div></blockquote>
+</div></blockquote>
+</p>
+<p></p>
+<p></p>
+<em>Functions</em><blockquote>
+<div><p><span class="target" id="project0tcp-stream_8h_1aa7a7fcfdd8c27297c428a99c637b2f23"></span><div class="line-block">
+<div class="line"><a class="reference internal" href="utils.html#project0types_8h_1a97a80ca1602ebf2303258971a2c938e2"><em>bool</em></a> <strong>tcp_stream_create</strong>(struct  <a class="reference internal" href="#project0structtcp__stream"><em>tcp_stream</em></a>  * stream)</div>
+</div>
+</p>
+<blockquote>
+<div><p></p>
+<p>Create a new tcp stream. </p>
+</div></blockquote>
+<p><span class="target" id="project0tcp-stream_8h_1a10ef1da86c578019ef2dfc2d3fb7f7c0"></span><div class="line-block">
+<div class="line">void <strong>tcp_stream_clear</strong>(struct  <a class="reference internal" href="#project0structtcp__stream"><em>tcp_stream</em></a>  * stream)</div>
+</div>
+</p>
+<blockquote>
+<div><p></p>
+<p></p>
+</div></blockquote>
+<p><span class="target" id="project0tcp-stream_8h_1a4e1df5dde7d4f3195bed54d678bb3920"></span><div class="line-block">
+<div class="line">void <strong>tcp_stream_init</strong>(struct  <a class="reference internal" href="#project0structtcp__stream"><em>tcp_stream</em></a>  * stream, <a class="reference internal" href="utils.html#project0types_8h_1a8949da768e2857b8f602a69c5b68828a"><em>uint32</em></a> seq)</div>
+</div>
+</p>
+<blockquote>
+<div><p></p>
+<p>Initialize the stream sequence number. This function must be called before starting pushing packet into the stream. </p>
+</div></blockquote>
+<p><span class="target" id="project0tcp-stream_8h_1a1801e5103a80f9d6e3e39836fae67f5d"></span><div class="line-block">
+<div class="line"><a class="reference internal" href="utils.html#project0types_8h_1a97a80ca1602ebf2303258971a2c938e2"><em>bool</em></a> <strong>tcp_stream_push</strong>(struct  <a class="reference internal" href="#project0structtcp__stream"><em>tcp_stream</em></a>  * stream, struct  <a class="reference internal" href="#project0structtcp"><em>tcp</em></a>  * tcp, struct  <a class="reference internal" href="buffer_vbuffer.html#project0structvbuffer__iterator"><em>vbuffer_iterator</em></a>  * current)</div>
+</div>
+</p>
+<blockquote>
+<div><p></p>
+<p><p>Push data into a tcp stream.</p>
+<p><dl class="docutils">
+<dt><strong>Return</strong></dt>
+<dd><tt class="docutils literal"><span class="pre">true</span></tt> if successful, <tt class="docutils literal"><span class="pre">false</span></tt> otherwise (see <a class="reference internal" href="utils.html#project0error_8h_1a3c048f257f31d45b023a3b2cc08e5a40"><em>clear_error()</em></a> to get more details about the error). </dd>
+</dl>
+</p>
+</p>
+</div></blockquote>
+<p><span class="target" id="project0tcp-stream_8h_1a05af8a620ad13ff5c65c25b3d83cbbbd"></span><div class="line-block">
+<div class="line">struct  <a class="reference internal" href="#project0structtcp"><em>tcp</em></a>  * <strong>tcp_stream_pop</strong>(struct  <a class="reference internal" href="#project0structtcp__stream"><em>tcp_stream</em></a>  * stream)</div>
+</div>
+</p>
+<blockquote>
+<div><p></p>
+<p><p>Pop data from a tcp stream.</p>
+<p><dl class="docutils">
+<dt><strong>Return</strong></dt>
+<dd>A tcp packet if available. This function will pop all packets that have data before the current position in the stream. </dd>
+</dl>
+</p>
+</p>
+</div></blockquote>
+<p><span class="target" id="project0tcp-stream_8h_1a8109274a020609acf0ad7d8f6d407b67"></span><div class="line-block">
+<div class="line">void <strong>tcp_stream_ack</strong>(struct  <a class="reference internal" href="#project0structtcp__stream"><em>tcp_stream</em></a>  * stream, struct  <a class="reference internal" href="#project0structtcp"><em>tcp</em></a>  * tcp)</div>
+</div>
+</p>
+<blockquote>
+<div><p></p>
+<p>Offset the ack number of the packet. </p>
+</div></blockquote>
+<p><span class="target" id="project0tcp-stream_8h_1ae04d85382e51fe9d8a8ceb42c4b5f566"></span><div class="line-block">
+<div class="line">void <strong>tcp_stream_seq</strong>(struct  <a class="reference internal" href="#project0structtcp__stream"><em>tcp_stream</em></a>  * stream, struct  <a class="reference internal" href="#project0structtcp"><em>tcp</em></a>  * tcp)</div>
+</div>
+</p>
+<blockquote>
+<div><p></p>
+<p>Offset the seq number of the packet. </p>
+</div></blockquote>
+<p><span class="target" id="project0tcp-stream_8h_1a255125160eef975981d61306848f30a0"></span><div class="line-block">
+<div class="line"><a class="reference internal" href="utils.html#project0types_8h_1a8949da768e2857b8f602a69c5b68828a"><em>uint32</em></a> <strong>tcp_stream_lastseq</strong>(struct  <a class="reference internal" href="#project0structtcp__stream"><em>tcp_stream</em></a>  * stream)</div>
+</div>
+</p>
+<blockquote>
+<div><p></p>
+<p>Get last sequence number for this tcp stream. </p>
+</div></blockquote>
+</div></blockquote>
+<p><p id="project0structtcp__stream"><em>class</em> <strong>tcp_stream</strong></p>
+<blockquote>
+<div><p></p>
+<p>TCP stream structure. </p>
+<em>Public Members</em><blockquote>
+<div><p><span class="target" id="project0structtcp__stream_1a84e2b8b2cce77d59b2014b2496474027"></span>struct lua_object <strong>lua_object</strong></p>
+<blockquote>
+<div><p></p>
+<p></p>
+</div></blockquote>
+<p><span class="target" id="project0structtcp__stream_1ac648647cc5bf1d00499108c025d70a20"></span><a class="reference internal" href="utils.html#project0types_8h_1a8949da768e2857b8f602a69c5b68828a"><em>uint32</em></a> <strong>start_seq</strong></p>
+<blockquote>
+<div><p></p>
+<p></p>
+</div></blockquote>
+<p><span class="target" id="project0structtcp__stream_1a26ff812d5964627f235e503f42fdb0fe"></span><a class="reference internal" href="utils.html#project0types_8h_1a6861bed95d73703b3730053f3a6065bf"><em>uint64</em></a> <strong>last_seq</strong></p>
+<blockquote>
+<div><p></p>
+<p></p>
+</div></blockquote>
+<p><span class="target" id="project0structtcp__stream_1a45c1379f9e5c40ffc1154b42583aa676"></span><a class="reference internal" href="utils.html#project0types_8h_1a6861bed95d73703b3730053f3a6065bf"><em>uint64</em></a> <strong>last_sent_seq</strong></p>
+<blockquote>
+<div><p></p>
+<p></p>
+</div></blockquote>
+<p><span class="target" id="project0structtcp__stream_1adcaec3c9be23394509b20e3f8520912d"></span><a class="reference internal" href="utils.html#project0types_8h_1a3bc2ce57f28d8946459a84ac306b9ddb"><em>int64</em></a> <strong>first_offset_seq</strong></p>
+<blockquote>
+<div><p></p>
+<p></p>
+</div></blockquote>
+<p><span class="target" id="project0structtcp__stream_1a5dc837deb63686c94816bfdaffbcd3aa"></span><a class="reference internal" href="utils.html#project0types_8h_1a6861bed95d73703b3730053f3a6065bf"><em>uint64</em></a> <strong>sent_offset_seq</strong></p>
+<blockquote>
+<div><p></p>
+<p></p>
+</div></blockquote>
+<p><span class="target" id="project0structtcp__stream_1affb1b8f8d27c8d0729f6623b014fb1e7"></span>struct list2 <strong>current</strong></p>
+<blockquote>
+<div><p></p>
+<p></p>
+</div></blockquote>
+<p><span class="target" id="project0structtcp__stream_1a107af3eacbf2dccf793e7ff0568aeb42"></span>struct list2 <strong>queued</strong></p>
+<blockquote>
+<div><p></p>
+<p></p>
+</div></blockquote>
+<p><span class="target" id="project0structtcp__stream_1a1fbc753d102776c774f5d515a66780c1"></span>struct list2 <strong>sent</strong></p>
+<blockquote>
+<div><p></p>
+<p></p>
+</div></blockquote>
+<p><span class="target" id="project0structtcp__stream_1ae1ffedc8f11418c12e0489b7b800ac38"></span>struct  <a class="reference internal" href="buffer_vbuffer_stream.html#project0structvbuffer__stream"><em>vbuffer_stream</em></a> <strong>stream</strong></p>
+<blockquote>
+<div><p></p>
+<p></p>
+</div></blockquote>
+</div></blockquote>
+</div></blockquote>
+</p>
+</div>
+
+
+		</div>
+	</div>
+</div>
+
+
+
+<footer id="footer">
+	<div class="row" role="complementary">
+		<div class="medium-12 columns">
+			&copy; Copyright 2014, Arkoon Network Security, OpenWide and Telecom ParisTech.
+		</div>
+	</div>
+</footer>
+<script>
+	  $(document).foundation();
+</script>
+
+
+
+<script type="text/javascript" src="http://www.haka-security.org/js/track.js"></script>
+
+
+  </body>
+</html>

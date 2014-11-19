@@ -1,0 +1,456 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>5. SMTP protocol dissection &mdash; Haka runtime 0.2.2 documentation</title>
+    
+    <link rel="stylesheet" href="../../../_static/haka.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/breathe.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../',
+        VERSION:     '0.2.2',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../../_static/js/scripts.js"></script>
+    <script type="text/javascript" src="../../../_static/js/vendor/modernizr.js"></script>
+    <script type="text/javascript" src="../../../_static/js/foundation/foundation.js"></script>
+    <script type="text/javascript" src="../../../_static/js/foundation/foundation.topbar.js"></script>
+    <link rel="top" title="Haka runtime 0.2.2 documentation" href="../../../index.html" />
+    <link rel="up" title="7. Workshop" href="../workshop.html" />
+    <link rel="next" title="6. Hakabana" href="hakabana.html" />
+    <link rel="prev" title="4. On-the-fly modifications" href="modif.html" /> 
+  </head>
+  <body>
+
+
+<header id="header" role="banner">
+	<div class="row">
+		<div class="medium-6 columns">
+			<h1 class="title"><a rel="home" title="Haka" href="http://www.haka-security.org">Haka</a></h1>
+			<h2 class="description">Software Defined Security</h2>
+		</div>
+		<div class="medium-6 columns">
+			<div id="version">Version 0.2.2</div>
+		</div>
+	</div>
+</header>
+
+<div class="contain-to-grid sticky">
+	
+
+<nav id="navbar" class="top-bar" data-topbar>
+	<ul class="title-area">
+		<!-- This is required for toggle-topbar to work -->
+		<li class="name"></li>
+		<li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
+	</ul>
+	<section class="top-bar-section">
+		<ul class="left">
+			<li class=" active">
+				<a href="../userindex.html">Users</a>
+			</li>
+			<li class=" ">
+				<a href="../../ref/refindex.html" class="../../ref/refindex.html">References</a>
+			</li>
+			<li class=" ">
+				<a href="../../developer/devindex.html" class="">Developers</a>
+			</li>
+			<li class=" ">
+				<a href="../../faq.html" class="">Faq</a>
+			</li>
+			<li class="has-form">
+
+
+	<form class="search" action="../../../search.html" method="get" id="searchbox" style="display: none">
+		<input type="hidden" name="area" value="default" />
+		<input type="hidden" name="check_keywords" value="yes" />
+		<div class="row collapse">
+			<div class="medium-11 columns">
+				<input type="text" name="q" placeholder="Search" />
+			</div>
+			<div class="medium-1 columns" id="clean-search-highlight">
+			</div>
+		</div>
+	</form>
+	<script type="text/javascript">$('#searchbox').show(0);</script>
+</li>
+		</ul>
+		<ul class="right">
+				<li class="right"><a href="hakabana.html" title="6. Hakabana">Next &rarr;</a></li>
+				<li class="right"><a href="modif.html" title="4. On-the-fly modifications">&larr; Prev</a></li>
+				<li class="right"><a href="../workshop.html" title="7. Workshop">Up &uarr;</a></li>
+
+			<li class=" right"><a href="../../../genindex.html">Index</a></li>
+			<li class=" right"><a href="../../../haka-modindex.html">Modules</a></li>
+		</ul>
+	</section>
+</nav>
+</div>
+<div id="content">
+	<div class="row">
+		<ul id="breadcrumb" class="breadcrumbs medium-12 columns">
+			
+			<li><a href="../userindex.html">Welcome to Haka&#8217;s User Guide!</a></li>
+			
+			<li><a href="../workshop.html">7. Workshop</a></li>
+			
+			<li class="current"><a href="#">5. SMTP protocol dissection</a></li>
+		</ul>
+	</div>
+	<div class="row">
+		<div class="medium-12 columns">
+			
+  <div class="section" id="smtp-protocol-dissection">
+<h1>5. SMTP protocol dissection<a class="headerlink" href="#smtp-protocol-dissection" title="Permalink to this headline">¶</a></h1>
+<p>This tutorial covers the specification of smtp protocol using Haka. For those who are not
+familiar with this protocol, please refer to <a class="reference internal" href="#smtp-appendix"><em>Appendix</em></a>.</p>
+<p>In smtp protcol, we distinguish three smtp messages: <em>commands</em>, <em>responses</em> and <em>data</em> (mail
+content). We provide here a partial specification <a class="reference download internal" href="../../../_downloads/smtp2.lua"><tt class="xref download docutils literal"><span class="pre">smtp.lua</span></tt></a> that manages
+only smtp commands and mail data. Your overall goal is to complete this specification by
+managing also smtp responses.</p>
+<div class="section" id="grammar">
+<h2>5.1. Grammar<a class="headerlink" href="#grammar" title="Permalink to this headline">¶</a></h2>
+<p>Haka features a <a class="reference external" href="../../ref/grammar.html">grammar</a> allowing to specify
+protocol message synatx. Use this grammar to complete the partial specification
+with smtp responses support:</p>
+<p>A smtp response message is defined as:</p>
+<blockquote>
+<div><ul class="simple">
+<li>a status code followed by a separator (&#8220;- &#8221;)</li>
+<li>a comprehensive message</li>
+<li>a trailing CRLF</li>
+</ul>
+</div></blockquote>
+<div class="admonition-exercise admonition">
+<p class="first admonition-title">Exercise</p>
+<p>Given the following skeleton, write the missing grammar to complete our
+dissector.</p>
+<div class="highlight-lua"><div class="highlight"><pre><span class="n">smtp_response</span> <span class="o">=</span> <span class="n">record</span><span class="p">{</span>
+    <span class="n">CODE</span><span class="p">,</span>
+    <span class="n">SEP</span><span class="p">,</span>
+    <span class="n">MESSAGE</span><span class="p">,</span>
+    <span class="n">CRLF</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Test your configuration. We provide a sample security file
+<a class="reference download internal" href="../../../_downloads/smtp_test.lua"><tt class="xref download docutils literal"><span class="pre">smtp_test.lua</span></tt></a> that loads the partial configuration script and
+activates the dissector on port 25:</p>
+<ul>
+<li><p class="first">open a new window and start haka:</p>
+<blockquote>
+<div><div class="highlight-console"><div class="highlight"><pre><span class="go">haka -c haka.conf -r smtp_test.lua --no-daemon</span>
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+<li><p class="first">open a new window and connect to the smtp server</p>
+<blockquote>
+<div><div class="highlight-console"><div class="highlight"><pre><span class="go">nc 127.0.0.1 25</span>
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+</ul>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">haka will warn that some states are never reached which is
+expected result since we haven&#8217;t defined yet a <cite>response</cite> state in the state
+machine.</p>
+</div>
+<p>You can also use a pcap file that contains an smtp transaction: <a class="reference download internal" href="../../../_downloads/smtp.pcap"><tt class="xref download docutils literal"><span class="pre">smtp.pcap</span></tt></a>.</p>
+<div class="last admonition tip">
+<p class="first admonition-title">Tip</p>
+<p class="last">You can also the use the <tt class="docutils literal"><span class="pre">-d</span></tt> option to <tt class="docutils literal"><span class="pre">haka</span></tt> or <tt class="docutils literal"><span class="pre">hakapcap</span></tt> to get a lot
+of debugging messages for the grammar parsing and the state machine execution.</p>
+</div>
+</div>
+<p>Smtp server may respond with a sequence of response messages. You can rely on the
+<cite>array</cite> grammar entity to represent a list of smtp responses.</p>
+<div class="admonition-exercise admonition">
+<p class="first admonition-title">Exercise</p>
+<p>Complete your dissector to support sequence of response messages.</p>
+<div class="highlight-lua"><div class="highlight"><pre><span class="n">smtp_responses</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span><span class="s1">&#39;</span><span class="s">responses&#39;</span><span class="p">,</span>
+    <span class="n">array</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>
+        <span class="p">:</span><span class="n">untilcond</span><span class="p">(</span><span class="k">function</span> <span class="p">(</span><span class="n">elem</span><span class="p">,</span> <span class="n">ctx</span><span class="p">)</span>
+            <span class="p">[</span><span class="o">...</span><span class="p">]</span>
+        <span class="k">end</span><span class="p">)</span>
+    <span class="p">)</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last"><cite>untilcond</cite> is an array option that returns true to indicate that
+we have reached the end of the array.</p>
+</div>
+<p class="last">Test you new grammar.</p>
+</div>
+<div class="admonition-see-also admonition seealso">
+<p class="first admonition-title">See also</p>
+<p class="last"><a class="reference external" href="../../ref/grammar.html">Grammar</a> full documentation.</p>
+</div>
+</div>
+<div class="section" id="events">
+<span id="smtp-events"></span><h2>5.2. Events<a class="headerlink" href="#events" title="Permalink to this headline">¶</a></h2>
+<p>Events are the glue between dissectors and security rules. Dissectors create
+events and then trigger them. As a result, all security rules hooking to that
+events will be evaluated. Non stream-based events are created by invoking
+<tt class="docutils literal"><span class="pre">register_event()</span></tt> method which takes an event name as first argument.</p>
+<div class="highlight-lua"><div class="highlight"><pre><span class="n">SmtpDissector</span><span class="p">:</span><span class="n">register_event</span><span class="p">(</span><span class="o">&lt;</span><span class="n">name</span><span class="o">&gt;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="admonition-exercise admonition">
+<p class="first admonition-title">Exercise</p>
+<p class="last">Update the partial specification by creating an event named <tt class="docutils literal"><span class="pre">response</span></tt>.</p>
+</div>
+<p>We are going to trigger this event later inside the state machine code.</p>
+</div>
+<div class="section" id="state-machine">
+<h2>5.3. State machine<a class="headerlink" href="#state-machine" title="Permalink to this headline">¶</a></h2>
+<p>Smtp <a class="reference external" href="../../ref/state_machine.html">state machine</a> is created through
+the following skeleton. The first step is to set the type of the states. In our
+case, we select a bidirectional type in order to handle data parsing in both
+direction: <em>up</em> (from client to server) and <em>down</em> (from server to client).
+Then, we create the required states and transitions between states. Finally, we
+select the initial state.</p>
+<div class="highlight-lua"><div class="highlight"><pre><span class="n">SmtpDissector</span><span class="p">.</span><span class="n">states</span> <span class="o">=</span> <span class="n">haka</span><span class="p">.</span><span class="n">state_machine</span><span class="p">.</span><span class="n">new</span><span class="p">(</span><span class="s2">&quot;</span><span class="s">smtp&quot;</span><span class="p">,</span> <span class="k">function</span> <span class="p">()</span>
+    <span class="c1">-- setting the type of the states</span>
+    <span class="n">state_type</span><span class="p">(</span><span class="n">BidirectionalState</span><span class="p">)</span>
+
+    <span class="p">[</span><span class="o">...</span><span class="p">]</span>
+
+    <span class="n">initial</span><span class="p">(</span><span class="o">&lt;</span><span class="n">first</span> <span class="n">state</span><span class="o">&gt;</span><span class="p">)</span>
+<span class="k">end</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The partial specification <a class="reference download internal" href="../../../_downloads/smtp2.lua"><tt class="xref download docutils literal"><span class="pre">smtp.lua</span></tt></a> defines four steps to handle
+<em>session initiation</em>, <em>client_initiation</em>, <em>commands</em>, and <em>data transmission</em>.
+Your goal is to complete this specification by adding a new state <em>response</em>
+along with his transitions.</p>
+<p>In a bidirectional setting, we create a new state by passing the expected
+compiled grammar for each direction (<tt class="docutils literal"><span class="pre">'up'</span></tt> and <tt class="docutils literal"><span class="pre">'down'</span></tt>):</p>
+<div class="admonition-exercise admonition">
+<p class="first admonition-title">Exercise</p>
+<p class="last">Create a new state <tt class="docutils literal"><span class="pre">response</span></tt>.</p>
+</div>
+<p>Next step is to set the transition for this state. A transition is created
+through the following skeleton. A transition consists of:</p>
+<blockquote>
+<div><ul class="simple">
+<li><tt class="docutils literal"><span class="pre">event</span></tt>: an event to attach to. Do not confuse with user defined
+dissector event. Those are built-in events specific to the state machine type.</li>
+<li><tt class="docutils literal"><span class="pre">when</span></tt>: a checking function that takes the decision if we should switch to
+another state and/or perform a specific action. By default (i.e. missing
+when function), the action is taken and the jump is followed.</li>
+<li><tt class="docutils literal"><span class="pre">execute</span></tt>: an action to perform.</li>
+<li><tt class="docutils literal"><span class="pre">jump</span></tt>: a state to jump to.</li>
+</ul>
+</div></blockquote>
+<div class="highlight-lua"><div class="highlight"><pre><span class="n">some_state</span><span class="p">:</span><span class="n">on</span><span class="p">{</span>
+    <span class="n">event</span> <span class="o">=</span> <span class="o">...</span><span class="p">,</span>
+    <span class="n">when</span> <span class="o">=</span> <span class="k">function</span> <span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">res</span><span class="p">)</span> <span class="o">...</span> <span class="k">end</span><span class="p">,</span>
+    <span class="n">execute</span> <span class="o">=</span> <span class="k">function</span> <span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">res</span><span class="p">)</span> <span class="o">...</span> <span class="k">end</span><span class="p">,</span>
+    <span class="n">jump</span> <span class="o">=</span> <span class="n">another_state</span><span class="p">,</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<div class="admonition-exercise admonition">
+<p class="first admonition-title">Exercise</p>
+<p>Create a first transition on <tt class="docutils literal"><span class="pre">response</span></tt> attached to
+<tt class="docutils literal"><span class="pre">events.down</span></tt> event (remember that we are expecting data from server to
+client) that jump to state <tt class="docutils literal"><span class="pre">data_transmission</span></tt> when the state code is
+equal to 354. Parsing results are available through the <tt class="docutils literal"><span class="pre">res</span></tt> variable.</p>
+<div class="last admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Do not forget to trigger the <tt class="docutils literal"><span class="pre">response</span></tt> event in the <tt class="docutils literal"><span class="pre">execute</span></tt>
+reserved field.</p>
+</div>
+</div>
+<div class="admonition-exercise admonition">
+<p class="first admonition-title">Exercise</p>
+<p class="last">Similarly, create a second transition on <cite>response</cite> attached to
+<tt class="docutils literal"><span class="pre">events.down</span></tt> event that switch to a termination state (<cite>jump = finish</cite>)
+if the status code is equal to 221.</p>
+</div>
+<div class="admonition-exercise admonition">
+<p class="first admonition-title">Exercise</p>
+<p class="last">Create a third transition that switch to <tt class="docutils literal"><span class="pre">command</span></tt> state if the above
+conditions are not met.</p>
+</div>
+<p>There is one more case to handle, if the parsing of the grammar fails, this need to be
+reported.</p>
+<div class="admonition-exercise admonition">
+<p class="first admonition-title">Exercise</p>
+<p class="last">Define a transition attached to <tt class="docutils literal"><span class="pre">events.parse_error</span></tt> to report errors when
+response messages do not comply to their specification.</p>
+</div>
+<div class="admonition-exercise admonition">
+<p class="first admonition-title">Exercise</p>
+<p>Now, we are ready to test the whole specification:</p>
+<ul>
+<li><p class="first">Start haka</p>
+<blockquote>
+<div><div class="highlight-console"><div class="highlight"><pre><span class="go">haka -c haka.conf -r smtp_test.lua --no-daemon</span>
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+<li><p class="first">Start a transaction mail</p>
+<blockquote>
+<div><div class="highlight-console"><div class="highlight"><pre><span class="go">nc 127.0.0.1 25</span>
+<span class="go">HELO &lt;some_domain&gt;</span>
+<span class="go">...</span>
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+</ul>
+<div class="last admonition tip">
+<p class="first admonition-title">Tip</p>
+<p>you can update your specification by adding debug output in order to dump the parsing result:</p>
+<div class="last highlight-lua"><div class="highlight"><pre><span class="n">debug</span><span class="p">.</span><span class="n">pprint</span><span class="p">(</span><span class="n">some_table</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="security-rules">
+<h2>5.4. Security rules<a class="headerlink" href="#security-rules" title="Permalink to this headline">¶</a></h2>
+<p>The purpose of these security rules is to show how to use the previously defined
+events (<a class="reference internal" href="#smtp-events"><em>Events</em></a>) and how to filter smtp packets based on fields
+extracted from parsing results.</p>
+<div class="section" id="filtering-spam">
+<h3>5.4.1. Filtering spam<a class="headerlink" href="#filtering-spam" title="Permalink to this headline">¶</a></h3>
+<p>In order to filter spam we create a security rule that hooks to the <tt class="docutils literal"><span class="pre">command</span></tt>
+event in order to filter the banned domain &#8216;suspicious.org&#8217;. We can react to this
+by raising an alert and by dropping the connection.</p>
+<div class="admonition-exercise admonition">
+<p class="first admonition-title">Exercise</p>
+<p>Create this security rule and test it against <a class="reference download internal" href="../../../_downloads/smtp.pcap"><tt class="xref download docutils literal"><span class="pre">smtp.pcap</span></tt></a>.</p>
+<div class="highlight-console"><div class="highlight"><pre><span class="gp">$</span> hakapcap spam_filter.lua smtp.pcap
+</pre></div>
+</div>
+<div class="last admonition tip">
+<p class="first admonition-title">Tip</p>
+<p class="last">Load the <tt class="docutils literal"><span class="pre">regexp/pcre</span></tt> pattern matching engine to check the parameter
+of the <tt class="docutils literal"><span class="pre">mail</span></tt> command.</p>
+</div>
+</div>
+<p>You can get the full code here <a class="reference download internal" href="../../../_downloads/spam_filter.lua"><tt class="xref download docutils literal"><span class="pre">spam_filter.lua</span></tt></a>.</p>
+</div>
+<div class="section" id="dump-mail-content">
+<h3>5.4.2. Dump mail content<a class="headerlink" href="#dump-mail-content" title="Permalink to this headline">¶</a></h3>
+<p>It is also possible to dump the content of the mail. To do so, we create a
+second security rule that hooks to the <tt class="docutils literal"><span class="pre">mail_content</span></tt> event.</p>
+<div class="highlight-lua"><div class="highlight"><pre><span class="n">haka</span><span class="p">.</span><span class="n">rule</span><span class="p">{</span>
+    <span class="n">hook</span> <span class="o">=</span> <span class="o">...</span><span class="p">,</span>
+    <span class="n">options</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="n">streamed</span> <span class="o">=</span> <span class="kc">true</span><span class="p">,</span>
+    <span class="p">},</span>
+    <span class="n">eval</span> <span class="o">=</span> <span class="k">function</span> <span class="p">(</span><span class="n">flow</span><span class="p">,</span> <span class="n">iter</span><span class="p">)</span>
+        <span class="p">[</span><span class="o">...</span><span class="p">]</span>
+    <span class="k">end</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<div class="admonition-exercise admonition">
+<p class="first admonition-title">Exercise</p>
+<p>Create this security rule and test it against <a class="reference download internal" href="../../../_downloads/smtp.pcap"><tt class="xref download docutils literal"><span class="pre">smtp.pcap</span></tt></a>.</p>
+<div class="last highlight-console"><div class="highlight"><pre><span class="gp">$</span> hakapcap mail_content.lua smtp.pcap
+</pre></div>
+</div>
+</div>
+<p>We provide the full code of the above script here <a class="reference download internal" href="../../../_downloads/mail_content.lua"><tt class="xref download docutils literal"><span class="pre">mail_content.lua</span></tt></a>.</p>
+</div>
+</div>
+<div class="section" id="full-dissector">
+<h2>5.5. Full dissector<a class="headerlink" href="#full-dissector" title="Permalink to this headline">¶</a></h2>
+<p>The full dissector code can be downloaded here: <a class="reference download internal" href="../../../_downloads/smtp_final.lua"><tt class="xref download docutils literal"><span class="pre">smtp_final.lua</span></tt></a></p>
+<p>It is possible to generate the graph related to the state-machine and the
+grammar (you need graphviz for this):</p>
+<div class="highlight-console"><div class="highlight"><pre><span class="gp">$</span> hakapcap smtp_test.lua smtp.pcap --dump-dissector-graph
+<span class="gp">$</span> dot -Tpdf -o smtp.pdf smtp-state-machine.dot
+</pre></div>
+</div>
+</div>
+<div class="section" id="appendix">
+<span id="smtp-appendix"></span><h2>5.6. Appendix<a class="headerlink" href="#appendix" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="smtp-protocol">
+<h3>5.6.1. SMTP protocol<a class="headerlink" href="#smtp-protocol" title="Permalink to this headline">¶</a></h3>
+<p>SMTP stands for Simple Mail Transfer Protocol and was designed to deliver mail
+reliability. It is a command/reponses protocol that starts with a session initiation
+during which the server sends first a welcoming message together with a status
+code indicating if the transaction has succeed (2XX) or not (5XX). Then, the
+client identifies himself using the commands EHLO or HELO and awaits for server
+response to proceed:</p>
+<div class="highlight-python"><pre>S: 220 foo.com Simple Mail Transfer Service Ready
+C: EHLO bar.com
+S: 250-foo.com greets bar.com
+S: 250-8BITMIME
+S: 250-SIZE
+S: 250-DSN</pre>
+</div>
+<p>Mail transaction starts after the above initiation phase. At each step, the
+client sends a smtp command and receives one or multiple response messages
+from the server. At least three steps are required to transfer a mail, namely, through
+MAIL, RCPT and DATA commands:</p>
+<div class="highlight-python"><pre>C: MAIL FROM:&lt;Smith@bar.com&gt;
+S: 250 OK
+C: RCPT TO:&lt;Jones@foo.com&gt;
+S: 250 OK
+C: DATA
+S: 354 Start mail input; end with &lt;CRLF&gt;.&lt;CRLF&gt;
+C: some data...
+C: ...etc. etc. etc.
+C: .
+S: 250 OK</pre>
+</div>
+<p>Finally, the connection ends with a QUIT message:</p>
+<div class="highlight-python"><pre>C: QUIT
+S: 221 foo.com Service closing transmission channel</pre>
+</div>
+</div>
+</div>
+</div>
+
+
+		</div>
+	</div>
+</div>
+
+
+
+<footer id="footer">
+	<div class="row" role="complementary">
+		<div class="medium-12 columns">
+			&copy; Copyright 2014, Arkoon Network Security, OpenWide and Telecom ParisTech.
+		</div>
+	</div>
+</footer>
+<script>
+	  $(document).foundation();
+</script>
+
+
+
+<script type="text/javascript" src="http://www.haka-security.org/js/track.js"></script>
+
+
+  </body>
+</html>

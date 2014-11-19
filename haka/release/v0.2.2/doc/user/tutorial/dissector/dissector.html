@@ -1,0 +1,209 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Loading required modules &mdash; Haka runtime 0.2.2 documentation</title>
+    
+    <link rel="stylesheet" href="../../../../_static/haka.css" type="text/css" />
+    <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../../../_static/breathe.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../../',
+        VERSION:     '0.2.2',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../../../_static/js/scripts.js"></script>
+    <script type="text/javascript" src="../../../../_static/js/vendor/modernizr.js"></script>
+    <script type="text/javascript" src="../../../../_static/js/foundation/foundation.js"></script>
+    <script type="text/javascript" src="../../../../_static/js/foundation/foundation.topbar.js"></script>
+    <link rel="top" title="Haka runtime 0.2.2 documentation" href="../../../../index.html" />
+    <link rel="up" title="6.6. SMTP Protocol dissection" href="../smtp_dissector.html" />
+    <link rel="next" title="Grammar building blocks" href="grammar.html" />
+    <link rel="prev" title="6.6. SMTP Protocol dissection" href="../smtp_dissector.html" /> 
+  </head>
+  <body>
+
+
+<header id="header" role="banner">
+	<div class="row">
+		<div class="medium-6 columns">
+			<h1 class="title"><a rel="home" title="Haka" href="http://www.haka-security.org">Haka</a></h1>
+			<h2 class="description">Software Defined Security</h2>
+		</div>
+		<div class="medium-6 columns">
+			<div id="version">Version 0.2.2</div>
+		</div>
+	</div>
+</header>
+
+<div class="contain-to-grid sticky">
+	
+
+<nav id="navbar" class="top-bar" data-topbar>
+	<ul class="title-area">
+		<!-- This is required for toggle-topbar to work -->
+		<li class="name"></li>
+		<li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
+	</ul>
+	<section class="top-bar-section">
+		<ul class="left">
+			<li class=" active">
+				<a href="../../userindex.html">Users</a>
+			</li>
+			<li class=" ">
+				<a href="../../../ref/refindex.html" class="../../../ref/refindex.html">References</a>
+			</li>
+			<li class=" ">
+				<a href="../../../developer/devindex.html" class="">Developers</a>
+			</li>
+			<li class=" ">
+				<a href="../../../faq.html" class="">Faq</a>
+			</li>
+			<li class="has-form">
+
+
+	<form class="search" action="../../../../search.html" method="get" id="searchbox" style="display: none">
+		<input type="hidden" name="area" value="default" />
+		<input type="hidden" name="check_keywords" value="yes" />
+		<div class="row collapse">
+			<div class="medium-11 columns">
+				<input type="text" name="q" placeholder="Search" />
+			</div>
+			<div class="medium-1 columns" id="clean-search-highlight">
+			</div>
+		</div>
+	</form>
+	<script type="text/javascript">$('#searchbox').show(0);</script>
+</li>
+		</ul>
+		<ul class="right">
+				<li class="right"><a href="grammar.html" title="Grammar building blocks">Next &rarr;</a></li>
+				<li class="right"><a href="../smtp_dissector.html" title="6.6. SMTP Protocol dissection">&larr; Prev</a></li>
+				<li class="right"><a href="../smtp_dissector.html" title="6.6. SMTP Protocol dissection">Up &uarr;</a></li>
+
+			<li class=" right"><a href="../../../../genindex.html">Index</a></li>
+			<li class=" right"><a href="../../../../haka-modindex.html">Modules</a></li>
+		</ul>
+	</section>
+</nav>
+</div>
+<div id="content">
+	<div class="row">
+		<ul id="breadcrumb" class="breadcrumbs medium-12 columns">
+			
+			<li><a href="../../userindex.html">Welcome to Haka&#8217;s User Guide!</a></li>
+			
+			<li><a href="../../tutorial.html">6. Tutorials</a></li>
+			
+			<li><a href="../smtp_dissector.html">6.6. SMTP Protocol dissection</a></li>
+			
+			<li class="current"><a href="#">Loading required modules</a></li>
+		</ul>
+	</div>
+	<div class="row">
+		<div class="medium-12 columns">
+			
+  <div class="section" id="loading-required-modules">
+<h1>Loading required modules<a class="headerlink" href="#loading-required-modules" title="Permalink to this headline">¶</a></h1>
+<p>In order to create a smtp dissector, we create a new file (<cite>smtp.lua</cite>) and save it in a
+location that will be used later as a path for all Haka scripts requiring this
+dissector.</p>
+<p>The first step it to load the required packages and initialize the dissector module:</p>
+<div class="highlight-lua"><div class="highlight"><pre><span class="kd">local</span> <span class="n">class</span> <span class="o">=</span> <span class="nb">require</span><span class="p">(</span><span class="s1">&#39;</span><span class="s">class&#39;</span><span class="p">)</span>
+<span class="kd">local</span> <span class="n">tcp_connection</span> <span class="o">=</span> <span class="nb">require</span><span class="p">(</span><span class="s1">&#39;</span><span class="s">protocol/tcp_connection&#39;</span><span class="p">)</span>
+
+<span class="kd">local</span> <span class="nb">module</span> <span class="o">=</span> <span class="p">{}</span>
+</pre></div>
+</div>
+<p>Note that we load the <cite>tcp_connection</cite> module since we built a smtp dissector over
+tcp protocol.</p>
+</div>
+<div class="section" id="creating-the-dissector">
+<h1>Creating the dissector<a class="headerlink" href="#creating-the-dissector" title="Permalink to this headline">¶</a></h1>
+<p>Next, we create the dissector by specifying its name and its type:</p>
+<div class="highlight-lua"><div class="highlight"><pre><span class="kd">local</span> <span class="n">SmtpDissector</span> <span class="o">=</span> <span class="n">haka</span><span class="p">.</span><span class="n">dissector</span><span class="p">.</span><span class="n">new</span><span class="p">{</span>
+    <span class="nb">type</span> <span class="o">=</span> <span class="n">tcp_connection</span><span class="p">.</span><span class="n">helper</span><span class="p">.</span><span class="n">TcpFlowDissector</span><span class="p">,</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="s">smtp&#39;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>We select a <a class="reference internal" href="../../../../modules/protocol/tcp/doc/tcp_connection.html#haka-object.tcp_connection.helper.TcpFlowDissector" title="tcp_connection.helper.TcpFlowDissector"><tt class="xref haka haka-class docutils literal"><span class="pre">tcp_connection.helper.TcpFlowDissector</span></tt></a> type since smtp
+communications are flow-based (i.e. multiple packets are exchanged
+during a smtp session).</p>
+</div>
+<div class="section" id="initializing-the-dissector">
+<h1>Initializing the dissector<a class="headerlink" href="#initializing-the-dissector" title="Permalink to this headline">¶</a></h1>
+<p>The created dissector, namely <cite>SmtpDissector</cite>, is a particular class.</p>
+<p>Before instanciating it, we could define a constructor if needed:</p>
+<div class="highlight-lua"><div class="highlight"><pre><span class="k">function</span> <span class="nc">SmtpDissector</span><span class="p">.</span><span class="nf">method</span><span class="p">:</span><span class="n">__init</span><span class="p">(</span><span class="n">flow</span><span class="p">)</span>
+    <span class="n">class</span><span class="p">.</span><span class="n">super</span><span class="p">(</span><span class="n">SmtpDissector</span><span class="p">).</span><span class="n">__init</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">flow</span><span class="p">)</span>
+    <span class="p">[</span><span class="o">...</span><span class="p">]</span>
+<span class="k">end</span>
+</pre></div>
+</div>
+<p>This constructor function passes its input flow to the dissector type. It will
+also automatically instanciates our state machine.</p>
+</div>
+<div class="section" id="selecting-smtp-dissector">
+<h1>Selecting SMTP dissector<a class="headerlink" href="#selecting-smtp-dissector" title="Permalink to this headline">¶</a></h1>
+<p>At this point, the dissector is created but not yet instaciated. Here, we
+define two rules which are made available on the dissector module. The former
+is in fact a security rule which selects, at connection establishment, the
+dissector to use. The latter, allow a user rule to activate our dissector.</p>
+<div class="highlight-lua"><div class="highlight"><pre><span class="k">function</span> <span class="nc">module</span><span class="p">.</span><span class="nf">install_tcp_rule</span><span class="p">(</span><span class="n">port</span><span class="p">)</span>
+    <span class="n">SmtpDissector</span><span class="p">:</span><span class="n">install_tcp_rule</span><span class="p">(</span><span class="n">port</span><span class="p">)</span>
+<span class="k">end</span>
+
+<span class="k">function</span> <span class="nc">module</span><span class="p">.</span><span class="nf">dissect</span><span class="p">(</span><span class="n">flow</span><span class="p">)</span>
+    <span class="n">SmtpDissector</span><span class="p">:</span><span class="n">dissect</span><span class="p">(</span><span class="n">flow</span><span class="p">)</span>
+<span class="k">end</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="adding-extras-properties-and-functions">
+<span id="smtpdissector"></span><h1>Adding extras properties and functions<a class="headerlink" href="#adding-extras-properties-and-functions" title="Permalink to this headline">¶</a></h1>
+<p>As stated above, <cite>SmtpDissector</cite> is a particular class (see <a class="reference internal" href="../../../ref/class.html"><em>Class</em></a>)
+on which you can add extra methods and properties. You can refer to this section to get
+details about how this could be achieved.</p>
+</div>
+
+
+		</div>
+	</div>
+</div>
+
+
+
+<footer id="footer">
+	<div class="row" role="complementary">
+		<div class="medium-12 columns">
+			&copy; Copyright 2014, Arkoon Network Security, OpenWide and Telecom ParisTech.
+		</div>
+	</div>
+</footer>
+<script>
+	  $(document).foundation();
+</script>
+
+
+
+<script type="text/javascript" src="http://www.haka-security.org/js/track.js"></script>
+
+
+  </body>
+</html>

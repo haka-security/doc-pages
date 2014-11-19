@@ -1,0 +1,661 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>14. Dissector &mdash; Haka runtime 0.2.2 documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/haka.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/breathe.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '0.2.2',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../_static/js/scripts.js"></script>
+    <script type="text/javascript" src="../../_static/js/vendor/modernizr.js"></script>
+    <script type="text/javascript" src="../../_static/js/foundation/foundation.js"></script>
+    <script type="text/javascript" src="../../_static/js/foundation/foundation.topbar.js"></script>
+    <link rel="top" title="Haka runtime 0.2.2 documentation" href="../../index.html" />
+    <link rel="up" title="Welcome to Haka’s User Reference Guide!" href="refindex.html" />
+    <link rel="next" title="15. Misc" href="misc.html" />
+    <link rel="prev" title="13. Context" href="context.html" /> 
+  </head>
+  <body>
+
+
+<header id="header" role="banner">
+	<div class="row">
+		<div class="medium-6 columns">
+			<h1 class="title"><a rel="home" title="Haka" href="http://www.haka-security.org">Haka</a></h1>
+			<h2 class="description">Software Defined Security</h2>
+		</div>
+		<div class="medium-6 columns">
+			<div id="version">Version 0.2.2</div>
+		</div>
+	</div>
+</header>
+
+<div class="contain-to-grid sticky">
+	
+
+<nav id="navbar" class="top-bar" data-topbar>
+	<ul class="title-area">
+		<!-- This is required for toggle-topbar to work -->
+		<li class="name"></li>
+		<li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
+	</ul>
+	<section class="top-bar-section">
+		<ul class="left">
+			<li class=" ">
+				<a href="../user/userindex.html">Users</a>
+			</li>
+			<li class=" active">
+				<a href="refindex.html" class="refindex.html">References</a>
+			</li>
+			<li class=" ">
+				<a href="../developer/devindex.html" class="">Developers</a>
+			</li>
+			<li class=" ">
+				<a href="../faq.html" class="">Faq</a>
+			</li>
+			<li class="has-form">
+
+
+	<form class="search" action="../../search.html" method="get" id="searchbox" style="display: none">
+		<input type="hidden" name="area" value="default" />
+		<input type="hidden" name="check_keywords" value="yes" />
+		<div class="row collapse">
+			<div class="medium-11 columns">
+				<input type="text" name="q" placeholder="Search" />
+			</div>
+			<div class="medium-1 columns" id="clean-search-highlight">
+			</div>
+		</div>
+	</form>
+	<script type="text/javascript">$('#searchbox').show(0);</script>
+</li>
+		</ul>
+		<ul class="right">
+				<li class="right"><a href="misc.html" title="15. Misc">Next &rarr;</a></li>
+				<li class="right"><a href="context.html" title="13. Context">&larr; Prev</a></li>
+				<li class="right"><a href="refindex.html" title="Welcome to Haka&#8217;s User Reference Guide!">Up &uarr;</a></li>
+
+			<li class=" right"><a href="../../genindex.html">Index</a></li>
+			<li class=" right"><a href="../../haka-modindex.html">Modules</a></li>
+		</ul>
+	</section>
+</nav>
+</div>
+<div id="content">
+	<div class="row">
+		<ul id="breadcrumb" class="breadcrumbs medium-12 columns">
+			
+			<li><a href="refindex.html">Welcome to Haka&#8217;s User Reference Guide!</a></li>
+			
+			<li class="current"><a href="#">14. Dissector</a></li>
+		</ul>
+	</div>
+	<div class="row">
+		<div class="medium-12 columns">
+			
+  <div class="section" id="dissector">
+<h1>14. Dissector<a class="headerlink" href="#dissector" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="haka-module.haka.dissector">
+<span id="utilities"></span><h2>14.1. Utilities<a class="headerlink" href="#haka-module.haka.dissector" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="haka-function.haka.dissector.new">
+<em class="property"> </em><tt class="descclassname">haka.dissector.</tt><tt class="descname">new</tt><big>{</big><em>...</em><big>}</big> &rarr; dissector<a class="headerlink" href="#haka-function.haka.dissector.new" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>name</strong> (<em>string</em>) &#8211; Dissector name.</li>
+<li><strong>type</strong> (<a class="reference internal" href="#haka-object.Dissector" title="Dissector"><tt class="xref haka haka-class docutils literal"><span class="pre">Dissector</span></tt></a>) &#8211; Dissector type</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><ul class="first last simple">
+<li><strong>dissector</strong> (<a class="reference internal" href="class.html#haka-object.Class" title="Class"><tt class="xref haka haka-class docutils literal"><span class="pre">Class</span></tt></a>) &#8211; Created dissector. This object is a class that can be extended to implements the needed
+functions and properties.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p>Create a new dissector.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="haka-function.haka.dissector.pcall">
+<em class="property"> </em><tt class="descclassname">haka.dissector.</tt><tt class="descname">pcall</tt><big>(</big><em>dissector</em>, <em>f</em><big>)</big><a class="headerlink" href="#haka-function.haka.dissector.pcall" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>dissector</strong> (<a class="reference internal" href="#haka-object.Dissector" title="Dissector"><tt class="xref haka haka-class docutils literal"><span class="pre">Dissector</span></tt></a>) &#8211; Dissector to protect.</li>
+<li><strong>f</strong> (<em>function</em>) &#8211; Function to call.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p>Protected call for a function inside a dissector context.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="haka-function.haka.dissector.opposite_direction">
+<em class="property"> </em><tt class="descclassname">haka.dissector.</tt><tt class="descname">opposite_direction</tt><big>(</big><em>dir</em><big>)</big> &rarr; other_dir<a class="headerlink" href="#haka-function.haka.dissector.opposite_direction" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>dir</strong> (<em>string</em>) &#8211; Direction <tt class="docutils literal"><span class="pre">'up'</span></tt> or <tt class="docutils literal"><span class="pre">'down'</span></tt>.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><ul class="first last simple">
+<li><strong>other_dir</strong> (<em>string</em>) &#8211; Other direction.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p>Utility function to get the other direction.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="haka-module.haka.helper">
+<span id="dissector-types"></span><h2>14.2. Dissector types<a class="headerlink" href="#haka-module.haka.helper" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="haka-object.Dissector">
+<em class="property">object </em><tt class="descname">Dissector</tt><a class="headerlink" href="#haka-object.Dissector" title="Permalink to this definition">¶</a></dt>
+<dd><p>Dissector object.</p>
+<dl class="attribute">
+<dt id="haka-attribute.&lt;Dissector&gt;.state">
+<em class="property"> </em><tt class="descclassname">&lt;Dissector&gt;.</tt><tt class="descname">state</tt><a class="headerlink" href="#haka-attribute.<Dissector>.state" title="Permalink to this definition">¶</a></dt>
+<dd><p>Instance of the state machine. This field is only present if the dissector sub-class
+has a field named <cite>state_machine</cite> and another one named <cite>auto_state_machine</cite> which
+evaluate to <cite>true</cite>.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="haka-function.Dissector.register_event">
+<em class="property"> </em><tt class="descclassname">Dissector:</tt><tt class="descname">register_event</tt><big>(</big><em>name</em>, <em>continue</em><span class="optional">[</span>, <em>signal</em><span class="optional">[</span>, <em>options</em><span class="optional">]</span><span class="optional">]</span><big>)</big><a class="headerlink" href="#haka-function.Dissector.register_event" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>name</strong> (<em>string</em>) &#8211; Name of the event.</li>
+<li><strong>continue</strong> (<em>function</em>) &#8211; Continuation function.</li>
+<li><strong>signal</strong> (<em>function</em>) &#8211; Signaling function.</li>
+<li><strong>options</strong> (<em>table</em>) &#8211; List of options.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p>Register a new event for the dissector.</p>
+<dl class="function">
+<dt>
+<em class="property"> </em><tt class="descname">continue</tt><big>(</big><em>self</em><big>)</big> &rarr; valid</dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>self</strong> (<a class="reference internal" href="#haka-object.Dissector" title="Dissector"><tt class="xref haka haka-class docutils literal"><span class="pre">Dissector</span></tt></a>) &#8211; Current dissecteur.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><ul class="first last simple">
+<li><strong>valid</strong> (<em>boolean</em>) &#8211; Should the event trigger continue.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p>This function tests if the other listener on this events should be
+evaluated.</p>
+</dd></dl>
+
+<dl class="function">
+<dt>
+<em class="property"> </em><tt class="descname">signal</tt><big>(</big><em>f</em>, <em>options</em>, <em>...</em><big>)</big></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>f</strong> (<em>function</em>) &#8211; Listener function.</li>
+<li><strong>options</strong> (<em>table</em>) &#8211; List of options from the event.</li>
+<li><strong>...</strong> &#8211; Extra parameters that should be passed to the listener.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p>Signaling function used when a listener need to be called.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="attribute">
+<dt id="haka-attribute.&lt;Dissector&gt;.name">
+<em class="property"> </em><tt class="descclassname">&lt;Dissector&gt;.</tt><tt class="descname">name</tt><a class="headerlink" href="#haka-attribute.<Dissector>.name" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">string</td>
+</tr>
+</tbody>
+</table>
+<p>Name of the dissector.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="haka-function.&lt;Dissector&gt;.trigger">
+<em class="property"> </em><tt class="descclassname">&lt;Dissector&gt;:</tt><tt class="descname">trigger</tt><big>(</big><em>event</em>, <em>...</em><big>)</big><a class="headerlink" href="#haka-function.<Dissector>.trigger" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>event</strong> (<em>string</em>) &#8211; Event name to trigger.</li>
+<li><strong>...</strong> &#8211; Parameters to pass to the event.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p>Trigger an event.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="haka-function.&lt;Dissector&gt;.drop">
+<em class="property">abstract  </em><tt class="descclassname">&lt;Dissector&gt;:</tt><tt class="descname">drop</tt><big>(</big><big>)</big><a class="headerlink" href="#haka-function.<Dissector>.drop" title="Permalink to this definition">¶</a></dt>
+<dd><p>Drop the dissector instance. It can be a packet or an flow depending on the
+dissector type.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="haka-function.&lt;Dissector&gt;.error">
+<em class="property">abstract  </em><tt class="descclassname">&lt;Dissector&gt;:</tt><tt class="descname">error</tt><big>(</big><big>)</big><a class="headerlink" href="#haka-function.<Dissector>.error" title="Permalink to this definition">¶</a></dt>
+<dd><p>Called whenever an error is raised when inside the context of this dissector. The default
+implementation will do a <a class="reference internal" href="#haka-function.&lt;Dissector&gt;.drop" title="&amp;lt;Dissector&amp;gt;.drop"><tt class="xref haka haka-func docutils literal"><span class="pre">&lt;Dissector&gt;.drop()</span></tt></a>.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="haka-function.&lt;Dissector&gt;.continue">
+<em class="property"> </em><tt class="descclassname">&lt;Dissector&gt;:</tt><tt class="descname">continue</tt><big>(</big><big>)</big><a class="headerlink" href="#haka-function.<Dissector>.continue" title="Permalink to this definition">¶</a></dt>
+<dd><p>Function that abort if the dissector no longer requires processing.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="haka-function.&lt;Dissector&gt;.can_continue">
+<em class="property">abstract  </em><tt class="descclassname">&lt;Dissector&gt;:</tt><tt class="descname">can_continue</tt><big>(</big><big>)</big> &rarr; continue<a class="headerlink" href="#haka-function.<Dissector>.can_continue" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"><ul class="first last simple">
+<li><strong>continue</strong> (<em>boolean</em>) &#8211; <tt class="docutils literal"><span class="pre">false</span></tt> is the dissector no longer requires processing.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p>Function that check if the dissector no longer requires processing.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="haka-function.&lt;Dissector&gt;.next_dissector">
+<em class="property">abstract  </em><tt class="descclassname">&lt;Dissector&gt;:</tt><tt class="descname">next_dissector</tt><big>(</big><big>)</big><a class="headerlink" href="#haka-function.<Dissector>.next_dissector" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the next dissector to use.</p>
+</dd></dl>
+
+</dd></dl>
+
+<div class="section" id="packet">
+<h3>14.2.1. Packet<a class="headerlink" href="#packet" title="Permalink to this headline">¶</a></h3>
+<dl class="class">
+<dt id="haka-object.haka.helper.PacketDissector">
+<em class="property">dissector </em><tt class="descclassname">haka.helper.</tt><tt class="descname">PacketDissector</tt><a class="headerlink" href="#haka-object.haka.helper.PacketDissector" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Extends:</th><td class="field-body"><a class="reference internal" href="#haka-object.Dissector" title="Dissector"><tt class="xref haka haka-class docutils literal"><span class="pre">Dissector</span></tt></a>&nbsp;</td>
+</tr>
+</tbody>
+</table>
+<p>Basic packet dissector.</p>
+<dl class="function">
+<dt id="haka-function.PacketDissector.receive_packet">
+<em class="property">event </em><tt class="descclassname">PacketDissector.</tt><tt class="descname">receive_packet</tt><big>(</big><em>pkt</em><big>)</big><a class="headerlink" href="#haka-function.PacketDissector.receive_packet" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>pkt</strong> (<a class="reference internal" href="#haka-object.haka.helper.PacketDissector" title="haka.helper.PacketDissector"><tt class="xref haka haka-class docutils literal"><span class="pre">PacketDissector</span></tt></a>) &#8211; Packet representation.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p>Event that is triggered whenever a new packet is received.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="haka-function.PacketDissector.send_packet">
+<em class="property">event </em><tt class="descclassname">PacketDissector.</tt><tt class="descname">send_packet</tt><big>(</big><em>pkt</em><big>)</big><a class="headerlink" href="#haka-function.PacketDissector.send_packet" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>pkt</strong> (<a class="reference internal" href="#haka-object.haka.helper.PacketDissector" title="haka.helper.PacketDissector"><tt class="xref haka haka-class docutils literal"><span class="pre">PacketDissector</span></tt></a>) &#8211; Packet representation.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p>Event that is triggered just before sending the packet to the upper layer.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="haka-function.PacketDissector.receive">
+<em class="property"> </em><tt class="descclassname">PacketDissector.</tt><tt class="descname">receive</tt><big>(</big><em>prev</em><big>)</big><a class="headerlink" href="#haka-function.PacketDissector.receive" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>prev</strong> (<a class="reference internal" href="#haka-object.Dissector" title="Dissector"><tt class="xref haka haka-class docutils literal"><span class="pre">Dissector</span></tt></a>) &#8211; Previous dissector object.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p>Function called to dissect a packet from data comming from another dissector.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="haka-function.&lt;PacketDissector&gt;.send">
+<em class="property">abstract  </em><tt class="descclassname">&lt;PacketDissector&gt;:</tt><tt class="descname">send</tt><big>(</big><big>)</big><a class="headerlink" href="#haka-function.<PacketDissector>.send" title="Permalink to this definition">¶</a></dt>
+<dd><p>Send the packet.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="haka-function.&lt;PacketDissector&gt;.inject">
+<em class="property">abstract  </em><tt class="descclassname">&lt;PacketDissector&gt;:</tt><tt class="descname">inject</tt><big>(</big><big>)</big><a class="headerlink" href="#haka-function.<PacketDissector>.inject" title="Permalink to this definition">¶</a></dt>
+<dd><p>Inject the packet.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="encapsulated-packet">
+<h3>14.2.2. Encapsulated packet<a class="headerlink" href="#encapsulated-packet" title="Permalink to this headline">¶</a></h3>
+<dl class="class">
+<dt id="haka-object.haka.helper.EncapsulatedPacketDissector">
+<em class="property">dissector </em><tt class="descclassname">haka.helper.</tt><tt class="descname">EncapsulatedPacketDissector</tt><a class="headerlink" href="#haka-object.haka.helper.EncapsulatedPacketDissector" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Extends:</th><td class="field-body"><a class="reference internal" href="#haka-object.haka.helper.PacketDissector" title="haka.helper.PacketDissector"><tt class="xref haka haka-class docutils literal"><span class="pre">PacketDissector</span></tt></a>&nbsp;</td>
+</tr>
+</tbody>
+</table>
+<p>Packet dissector that is build above another packet payload (ICMP over IP for instance).</p>
+<dl class="method">
+<dt id="haka-function.&lt;EncapsulatedPacketDissector&gt;.parse_payload">
+<em class="property">abstract  </em><tt class="descclassname">&lt;EncapsulatedPacketDissector&gt;:</tt><tt class="descname">parse_payload</tt><big>(</big><em>pkt</em>, <em>payload</em><big>)</big><a class="headerlink" href="#haka-function.<EncapsulatedPacketDissector>.parse_payload" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>pkt</strong> (<a class="reference internal" href="#haka-object.Dissector" title="Dissector"><tt class="xref haka haka-class docutils literal"><span class="pre">Dissector</span></tt></a>) &#8211; Parent dissector packet.</li>
+<li><strong>payload</strong> (<a class="reference internal" href="vbuffer.html#haka-object.vbuffer" title="vbuffer"><tt class="xref haka haka-class docutils literal"><span class="pre">vbuffer</span></tt></a>) &#8211; Payload to be parsed by this dissector.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p>Parse the payload coming from the previous dissector packet.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="haka-function.&lt;EncapsulatedPacketDissector&gt;.create_payload">
+<em class="property">abstract  </em><tt class="descclassname">&lt;EncapsulatedPacketDissector&gt;:</tt><tt class="descname">create_payload</tt><big>(</big><em>pkt</em>, <em>payload</em>, <em>init</em><big>)</big><a class="headerlink" href="#haka-function.<EncapsulatedPacketDissector>.create_payload" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>pkt</strong> (<a class="reference internal" href="#haka-object.Dissector" title="Dissector"><tt class="xref haka haka-class docutils literal"><span class="pre">Dissector</span></tt></a>) &#8211; Parent dissector packet.</li>
+<li><strong>payload</strong> (<a class="reference internal" href="vbuffer.html#haka-object.vbuffer" title="vbuffer"><tt class="xref haka haka-class docutils literal"><span class="pre">vbuffer</span></tt></a>) &#8211; Payload to be parsed by this dissector.</li>
+<li><strong>init</strong> &#8211; Initialization field for the packet.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p>Build a new payload.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="haka-function.&lt;EncapsulatedPacketDissector&gt;.forge_payload">
+<em class="property">abstract  </em><tt class="descclassname">&lt;EncapsulatedPacketDissector&gt;:</tt><tt class="descname">forge_payload</tt><big>(</big><em>pkt</em>, <em>payload</em><big>)</big><a class="headerlink" href="#haka-function.<EncapsulatedPacketDissector>.forge_payload" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>pkt</strong> (<a class="reference internal" href="#haka-object.Dissector" title="Dissector"><tt class="xref haka haka-class docutils literal"><span class="pre">Dissector</span></tt></a>) &#8211; Parent dissector packet.</li>
+<li><strong>payload</strong> (<a class="reference internal" href="vbuffer.html#haka-object.vbuffer" title="vbuffer"><tt class="xref haka haka-class docutils literal"><span class="pre">vbuffer</span></tt></a>) &#8211; Payload to be parsed by this dissector.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p>Called when the packet is about to be send.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="flow">
+<h3>14.2.3. Flow<a class="headerlink" href="#flow" title="Permalink to this headline">¶</a></h3>
+<dl class="class">
+<dt id="haka-object.haka.helper.FlowDissector">
+<em class="property">dissector </em><tt class="descclassname">haka.helper.</tt><tt class="descname">FlowDissector</tt><a class="headerlink" href="#haka-object.haka.helper.FlowDissector" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Extends:</th><td class="field-body"><a class="reference internal" href="#haka-object.Dissector" title="Dissector"><tt class="xref haka haka-class docutils literal"><span class="pre">Dissector</span></tt></a>&nbsp;</td>
+</tr>
+</tbody>
+</table>
+<p>Dissector for a flow (multiple packets). An example is HTTP for instance.</p>
+<dl class="function">
+<dt id="haka-function.Dissector.register_streamed_event">
+<em class="property"> </em><tt class="descclassname">Dissector:</tt><tt class="descname">register_streamed_event</tt><big>(</big><em>name</em>, <em>continue</em><span class="optional">[</span>, <em>options</em><span class="optional">]</span><big>)</big><a class="headerlink" href="#haka-function.Dissector.register_streamed_event" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>name</strong> (<em>string</em>) &#8211; Name of the event.</li>
+<li><strong>continue</strong> (<em>function</em>) &#8211; Continuation function.</li>
+<li><strong>signal</strong> (<em>function</em>) &#8211; Signaling function.</li>
+<li><strong>options</strong> (<em>table</em>) &#8211; List of options.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p>Register a new event for the dissector. This event will support the <em>streamed</em>
+option (see <a class="reference internal" href="#haka-function.FlowDissector.stream_wrapper" title="FlowDissector.stream_wrapper"><tt class="xref haka haka-func docutils literal"><span class="pre">FlowDissector.stream_wrapper()</span></tt></a>).</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="haka-data.FlowDissector.connections">
+<em class="property"> </em><tt class="descclassname">FlowDissector.</tt><tt class="descname">connections</tt><a class="headerlink" href="#haka-data.FlowDissector.connections" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">table</td>
+</tr>
+</tbody>
+</table>
+<p>Table of connections to instanciate when the dissector is created.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="haka-function.&lt;FlowDissector&gt;.streamed">
+<em class="property"> </em><tt class="descclassname">&lt;FlowDissector&gt;:</tt><tt class="descname">streamed</tt><big>(</big><em>f</em>, <em>stream</em>, <em>current</em>, <em>...</em><big>)</big><a class="headerlink" href="#haka-function.<FlowDissector>.streamed" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>f</strong> (<em>function</em>) &#8211; Function to execute.</li>
+<li><strong>stream</strong> (<a class="reference internal" href="vbuffer.html#haka-object.vbuffer_stream" title="vbuffer_stream"><tt class="xref haka haka-class docutils literal"><span class="pre">vbuffer_stream</span></tt></a>) &#8211; Stream.</li>
+<li><strong>current</strong> (<a class="reference internal" href="vbuffer.html#haka-object.vbuffer_iterator" title="vbuffer_iterator"><tt class="xref haka haka-class docutils literal"><span class="pre">vbuffer_iterator</span></tt></a>) &#8211; Current position in the stream.</li>
+<li><strong>...</strong> &#8211; Parameters that are given to <em>f</em>.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p>Execute a function in streamed mode. In this mode, Haka will use coroutine to
+execute it in a thread like environement. It allows the function to block waiting
+for available data on the stream.</p>
+<p>This function is mainly used as the signal function for event based on stream.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="haka-function.FlowDissector.stream_wrapper">
+<em class="property"> </em><tt class="descclassname">FlowDissector.</tt><tt class="descname">stream_wrapper</tt><big>(</big><em>f</em>, <em>options</em>, <em>self</em>, <em>stream</em>, <em>current</em>, <em>...</em><big>)</big><a class="headerlink" href="#haka-function.FlowDissector.stream_wrapper" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>f</strong> (<em>function</em>) &#8211; Listener function.</li>
+<li><strong>options</strong> (<em>table</em>) &#8211; List of options from the event.</li>
+<li><strong>self</strong> (<a class="reference internal" href="#haka-object.haka.helper.FlowDissector" title="haka.helper.FlowDissector"><tt class="xref haka haka-class docutils literal"><span class="pre">FlowDissector</span></tt></a>) &#8211; Current dissector</li>
+<li><strong>stream</strong> (<a class="reference internal" href="vbuffer.html#haka-object.vbuffer_stream" title="vbuffer_stream"><tt class="xref haka haka-class docutils literal"><span class="pre">vbuffer_stream</span></tt></a>) &#8211; Stream.</li>
+<li><strong>current</strong> (<a class="reference internal" href="vbuffer.html#haka-object.vbuffer_iterator" title="vbuffer_iterator"><tt class="xref haka haka-class docutils literal"><span class="pre">vbuffer_iterator</span></tt></a>) &#8211; Current position in the stream.</li>
+<li><strong>...</strong> &#8211; Parameters that are given to <em>f</em>.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Usage:</strong></p>
+<div class="highlight-lua"><div class="highlight"><pre><span class="n">HttpDissector</span><span class="p">:</span><span class="n">register_event</span><span class="p">(</span><span class="s1">&#39;</span><span class="s">request_data&#39;</span><span class="p">,</span> <span class="kc">nil</span><span class="p">,</span> <span class="n">haka</span><span class="p">.</span><span class="n">dissector</span><span class="p">.</span><span class="n">FlowDissector</span><span class="p">.</span><span class="n">stream_wrapper</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="haka-function.&lt;FlowDissector&gt;.get_comanager">
+<em class="property"> </em><tt class="descclassname">&lt;FlowDissector&gt;:</tt><tt class="descname">get_comanager</tt><big>(</big><em>stream</em><big>)</big> &rarr; manager<a class="headerlink" href="#haka-function.<FlowDissector>.get_comanager" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>stream</strong> (<a class="reference internal" href="vbuffer.html#haka-object.vbuffer_stream" title="vbuffer_stream"><tt class="xref haka haka-class docutils literal"><span class="pre">vbuffer_stream</span></tt></a>) &#8211; Stream used as the key.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><ul class="first last simple">
+<li><strong>manager</strong> (<a class="reference internal" href="vbuffer.html#haka-object.vbuffer_stream_comanager" title="vbuffer_stream_comanager"><tt class="xref haka haka-class docutils literal"><span class="pre">vbuffer_stream_comanager</span></tt></a>) &#8211; Coroutine manager.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p>Retreived the stream coroutine manager for a given stream.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="haka-function.&lt;FlowDissector&gt;.select_next_dissector">
+<em class="property"> </em><tt class="descclassname">&lt;FlowDissector&gt;:</tt><tt class="descname">select_next_dissector</tt><big>(</big><em>dissector</em><big>)</big><a class="headerlink" href="#haka-function.<FlowDissector>.select_next_dissector" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>dissector</strong> (<a class="reference internal" href="#haka-object.haka.helper.FlowDissector" title="haka.helper.FlowDissector"><tt class="xref haka haka-class docutils literal"><span class="pre">FlowDissector</span></tt></a>) &#8211; Dissector to install.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p>Enable a dissector on the current flow.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+<div class="section" id="examples">
+<h2>14.3. Examples<a class="headerlink" href="#examples" title="Permalink to this headline">¶</a></h2>
+<p>For dissector examples, check the supported <a class="reference internal" href="hakadissector.html"><em>Haka dissectors</em></a>.</p>
+</div>
+</div>
+
+
+		</div>
+	</div>
+</div>
+
+
+
+<footer id="footer">
+	<div class="row" role="complementary">
+		<div class="medium-12 columns">
+			&copy; Copyright 2014, Arkoon Network Security, OpenWide and Telecom ParisTech.
+		</div>
+	</div>
+</footer>
+<script>
+	  $(document).foundation();
+</script>
+
+
+
+<script type="text/javascript" src="http://www.haka-security.org/js/track.js"></script>
+
+
+  </body>
+</html>

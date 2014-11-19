@@ -1,0 +1,209 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Pcap packet/pcap &mdash; Haka runtime 0.2.2 documentation</title>
+    
+    <link rel="stylesheet" href="../../../../_static/haka.css" type="text/css" />
+    <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../../../_static/breathe.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../../',
+        VERSION:     '0.2.2',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../../../_static/js/scripts.js"></script>
+    <script type="text/javascript" src="../../../../_static/js/vendor/modernizr.js"></script>
+    <script type="text/javascript" src="../../../../_static/js/foundation/foundation.js"></script>
+    <script type="text/javascript" src="../../../../_static/js/foundation/foundation.topbar.js"></script>
+    <link rel="top" title="Haka runtime 0.2.2 documentation" href="../../../../index.html" />
+    <link rel="up" title="4.4. Modules" href="../../../../doc/user/tool_suite_modules.html" />
+    <link rel="next" title="Elasticsearch alert alert/elasticsearch" href="../../../alert/elasticsearch/doc/module.html" />
+    <link rel="prev" title="Netfilter queue packet/nfqueue" href="../../nfqueue/doc/module.html" /> 
+  </head>
+  <body>
+
+
+<header id="header" role="banner">
+	<div class="row">
+		<div class="medium-6 columns">
+			<h1 class="title"><a rel="home" title="Haka" href="http://www.haka-security.org">Haka</a></h1>
+			<h2 class="description">Software Defined Security</h2>
+		</div>
+		<div class="medium-6 columns">
+			<div id="version">Version 0.2.2</div>
+		</div>
+	</div>
+</header>
+
+<div class="contain-to-grid sticky">
+	
+
+<nav id="navbar" class="top-bar" data-topbar>
+	<ul class="title-area">
+		<!-- This is required for toggle-topbar to work -->
+		<li class="name"></li>
+		<li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
+	</ul>
+	<section class="top-bar-section">
+		<ul class="left">
+			<li class=" active">
+				<a href="../../../../doc/user/userindex.html">Users</a>
+			</li>
+			<li class=" ">
+				<a href="../../../../doc/ref/refindex.html" class="../../../../doc/ref/refindex.html">References</a>
+			</li>
+			<li class=" ">
+				<a href="../../../../doc/developer/devindex.html" class="">Developers</a>
+			</li>
+			<li class=" ">
+				<a href="../../../../doc/faq.html" class="">Faq</a>
+			</li>
+			<li class="has-form">
+
+
+	<form class="search" action="../../../../search.html" method="get" id="searchbox" style="display: none">
+		<input type="hidden" name="area" value="default" />
+		<input type="hidden" name="check_keywords" value="yes" />
+		<div class="row collapse">
+			<div class="medium-11 columns">
+				<input type="text" name="q" placeholder="Search" />
+			</div>
+			<div class="medium-1 columns" id="clean-search-highlight">
+			</div>
+		</div>
+	</form>
+	<script type="text/javascript">$('#searchbox').show(0);</script>
+</li>
+		</ul>
+		<ul class="right">
+				<li class="right"><a href="../../../alert/elasticsearch/doc/module.html" title="Elasticsearch alert <cite>alert/elasticsearch</cite>">Next &rarr;</a></li>
+				<li class="right"><a href="../../nfqueue/doc/module.html" title="Netfilter queue <cite>packet/nfqueue</cite>">&larr; Prev</a></li>
+				<li class="right"><a href="../../../../doc/user/tool_suite_modules.html" title="4.4. Modules">Up &uarr;</a></li>
+
+			<li class=" right"><a href="../../../../genindex.html">Index</a></li>
+			<li class=" right"><a href="../../../../haka-modindex.html">Modules</a></li>
+		</ul>
+	</section>
+</nav>
+</div>
+<div id="content">
+	<div class="row">
+		<ul id="breadcrumb" class="breadcrumbs medium-12 columns">
+			
+			<li><a href="../../../../doc/user/userindex.html">Welcome to Haka&#8217;s User Guide!</a></li>
+			
+			<li><a href="../../../../doc/user/tool_suite.html">4. Haka tool suite</a></li>
+			
+			<li><a href="../../../../doc/user/tool_suite_modules.html">4.4. Modules</a></li>
+			
+			<li class="current"><a href="#">Pcap  <cite>packet/pcap</cite></a></li>
+		</ul>
+	</div>
+	<div class="row">
+		<div class="medium-12 columns">
+			
+  <div class="section" id="pcap-packet-pcap">
+<h1>Pcap  <cite>packet/pcap</cite><a class="headerlink" href="#pcap-packet-pcap" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="description">
+<h2>Description<a class="headerlink" href="#description" title="Permalink to this headline">¶</a></h2>
+<p>The module uses the <cite>pcap</cite> library to read packets from a pcap file or from a network interface.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">To be able to capture packets on a real interface, the process need to be launched with
+the proper permissions.</p>
+</div>
+</div>
+<div class="section" id="parameters">
+<h2>Parameters<a class="headerlink" href="#parameters" title="Permalink to this headline">¶</a></h2>
+<dl class="describe">
+<dt>
+<tt class="descname">interfaces</tt></dt>
+<dd><p>Comma-separated list of interfaces or the <tt class="docutils literal"><span class="pre">any</span></tt> keyword.</p>
+<p>Example of possible values:</p>
+<div class="highlight-ini"><div class="highlight"><pre><span class="c"># Capture loopback traffic</span>
+<span class="na">interfaces</span> <span class="o">=</span> <span class="s">&quot;lo&quot;</span>
+<span class="c"># Capture loopback traffic and eth0</span>
+<span class="c"># interfaces = &quot;lo, eth0&quot;</span>
+<span class="c"># Capture on all interfaces</span>
+<span class="c"># interfaces = &quot;any&quot;</span>
+</pre></div>
+</div>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">If the module capture on multiple interfaces and is doing forwarding,
+the packet will be received duplicated by haka. It will create problems
+with the state-full connection tracking.</p>
+</div>
+</dd></dl>
+
+<dl class="describe">
+<dt>
+<tt class="descname">file</tt></dt>
+<dd><p>Read packets from a pcap file.</p>
+</dd></dl>
+
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Only one of <strong>interfaces</strong> or <strong>file</strong> can be defined.</p>
+</div>
+<dl class="describe">
+<dt>
+<tt class="descname">output=`file`</tt></dt>
+<dd><p>Save accepted packets to the specified pcap output file.</p>
+<p>Example of capturing packets from a pcap file and saving accepted ones in a pcap output file:</p>
+<div class="highlight-ini"><div class="highlight"><pre><span class="na">file</span> <span class="o">=</span> <span class="s">&quot;/tmp/input.pcap&quot;</span>
+<span class="na">output</span> <span class="o">=</span> <span class="s">&quot;/tmp/output.pcap&quot;</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="describe">
+<dt>
+<tt class="descname">dump_input=`file`</tt></dt>
+<dd><p>Save the received packets to the specified pcap file.</p>
+</dd></dl>
+
+</div>
+</div>
+
+
+		</div>
+	</div>
+</div>
+
+
+
+<footer id="footer">
+	<div class="row" role="complementary">
+		<div class="medium-12 columns">
+			&copy; Copyright 2014, Arkoon Network Security, OpenWide and Telecom ParisTech.
+		</div>
+	</div>
+</footer>
+<script>
+	  $(document).foundation();
+</script>
+
+
+
+<script type="text/javascript" src="http://www.haka-security.org/js/track.js"></script>
+
+
+  </body>
+</html>

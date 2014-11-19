@@ -1,0 +1,1026 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>3.12.1. Buffer &mdash; Haka runtime 0.2.2 documentation</title>
+    
+    <link rel="stylesheet" href="../../../_static/haka.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/breathe.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../',
+        VERSION:     '0.2.2',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../../_static/js/scripts.js"></script>
+    <script type="text/javascript" src="../../../_static/js/vendor/modernizr.js"></script>
+    <script type="text/javascript" src="../../../_static/js/foundation/foundation.js"></script>
+    <script type="text/javascript" src="../../../_static/js/foundation/foundation.topbar.js"></script>
+    <link rel="top" title="Haka runtime 0.2.2 documentation" href="../../../index.html" />
+    <link rel="up" title="3.12. Buffer" href="buffer.html" />
+    <link rel="next" title="3.12.2. Buffer stream" href="buffer_vbuffer_stream.html" />
+    <link rel="prev" title="3.12. Buffer" href="buffer.html" /> 
+  </head>
+  <body>
+
+
+<header id="header" role="banner">
+	<div class="row">
+		<div class="medium-6 columns">
+			<h1 class="title"><a rel="home" title="Haka" href="http://www.haka-security.org">Haka</a></h1>
+			<h2 class="description">Software Defined Security</h2>
+		</div>
+		<div class="medium-6 columns">
+			<div id="version">Version 0.2.2</div>
+		</div>
+	</div>
+</header>
+
+<div class="contain-to-grid sticky">
+	
+
+<nav id="navbar" class="top-bar" data-topbar>
+	<ul class="title-area">
+		<!-- This is required for toggle-topbar to work -->
+		<li class="name"></li>
+		<li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
+	</ul>
+	<section class="top-bar-section">
+		<ul class="left">
+			<li class=" ">
+				<a href="../../user/userindex.html">Users</a>
+			</li>
+			<li class=" ">
+				<a href="../../ref/refindex.html" class="../../ref/refindex.html">References</a>
+			</li>
+			<li class=" active">
+				<a href="../devindex.html" class="">Developers</a>
+			</li>
+			<li class=" ">
+				<a href="../../faq.html" class="">Faq</a>
+			</li>
+			<li class="has-form">
+
+
+	<form class="search" action="../../../search.html" method="get" id="searchbox" style="display: none">
+		<input type="hidden" name="area" value="default" />
+		<input type="hidden" name="check_keywords" value="yes" />
+		<div class="row collapse">
+			<div class="medium-11 columns">
+				<input type="text" name="q" placeholder="Search" />
+			</div>
+			<div class="medium-1 columns" id="clean-search-highlight">
+			</div>
+		</div>
+	</form>
+	<script type="text/javascript">$('#searchbox').show(0);</script>
+</li>
+		</ul>
+		<ul class="right">
+				<li class="right"><a href="buffer_vbuffer_stream.html" title="3.12.2. Buffer stream">Next &rarr;</a></li>
+				<li class="right"><a href="buffer.html" title="3.12. Buffer">&larr; Prev</a></li>
+				<li class="right"><a href="buffer.html" title="3.12. Buffer">Up &uarr;</a></li>
+
+			<li class=" right"><a href="../../../genindex.html">Index</a></li>
+			<li class=" right"><a href="../../../haka-modindex.html">Modules</a></li>
+		</ul>
+	</section>
+</nav>
+</div>
+<div id="content">
+	<div class="row">
+		<ul id="breadcrumb" class="breadcrumbs medium-12 columns">
+			
+			<li><a href="../devindex.html">Welcome to Haka&#8217;s Developer Guide!</a></li>
+			
+			<li><a href="../devref.html">3. Developer reference guide</a></li>
+			
+			<li><a href="buffer.html">3.12. Buffer</a></li>
+			
+			<li class="current"><a href="#">3.12.1. Buffer</a></li>
+		</ul>
+	</div>
+	<div class="row">
+		<div class="medium-12 columns">
+			
+  <div class="section" id="buffer">
+<h1>3.12.1. Buffer<a class="headerlink" href="#buffer" title="Permalink to this headline">¶</a></h1>
+<p></p>
+<p>Virtual buffer abstraction. </p>
+<em>Defines</em><blockquote>
+<div><p><span class="target" id="project0include_2haka_2vbuffer_8h_1a1edd1ea8bddaf4d9c5eb3eae1ee1726a"></span><strong>ALL</strong></p>
+<blockquote>
+<div><p></p>
+<p>Define for vbuffer size. </p>
+</div></blockquote>
+</div></blockquote>
+<em>Typedefs</em><blockquote>
+<div><p><span class="target" id="project0include_2haka_2vbuffer_8h_1aa275285e738ac151389c14375bfc717b"></span>typedef <a class="reference internal" href="utils.html#project0types_8h_1a8949da768e2857b8f602a69c5b68828a"><em>uint32</em></a> <strong>vbsize_t</strong></p>
+<blockquote>
+<div><p></p>
+<p>vbuffer size type. </p>
+</div></blockquote>
+</div></blockquote>
+<em>Enums</em><blockquote>
+<div><p><span class="target" id="project0include_2haka_2vbuffer_8h_1a92ae8feaa6736559e85022c24decc317"></span><strong>clone_mode enum</strong></p>
+<blockquote>
+<div><p></p>
+<p>Clone mode. </p>
+<p><em>Values:</em></p>
+<ul class="breatheenumvalues">
+<li><tt class="first docutils literal"><span class="pre">CLONE_COPY</span></tt> - <p>Copy the buffer. </p>
+</li>
+<li><tt class="first docutils literal"><span class="pre">CLONE_RW</span></tt> - <p>Clone the buffer keeping the writable flag. </p>
+</li>
+<li><tt class="first docutils literal"><span class="pre">CLONE_RO_ORIG</span></tt> - <p>Clone the buffer and mark the original buffer as read-only. </p>
+</li>
+<li><tt class="first docutils literal"><span class="pre">CLONE_RO_CLONE</span></tt> - <p>Clone the buffer in read-only mode. </p>
+</li>
+</ul>
+</div></blockquote>
+</div></blockquote>
+<em>Functions</em><blockquote>
+<div><p><span class="target" id="project0include_2haka_2vbuffer_8h_1a0ba68e286a0df7db8d62283a6060d494"></span><div class="line-block">
+<div class="line"><a class="reference internal" href="utils.html#project0types_8h_1a97a80ca1602ebf2303258971a2c938e2"><em>bool</em></a> <strong>vbuffer_isvalid</strong>(const struct  <a class="reference internal" href="#project0structvbuffer"><em>vbuffer</em></a>  * buf)</div>
+</div>
+</p>
+<blockquote>
+<div><p></p>
+<p>Check if a vbuffer is valid. </p>
+</div></blockquote>
+<p><span class="target" id="project0include_2haka_2vbuffer_8h_1aba849206aea60c87e8a8a4848964ed0a"></span><div class="line-block">
+<div class="line"><a class="reference internal" href="utils.html#project0types_8h_1a97a80ca1602ebf2303258971a2c938e2"><em>bool</em></a> <strong>vbuffer_isempty</strong>(const struct  <a class="reference internal" href="#project0structvbuffer"><em>vbuffer</em></a>  * buf)</div>
+</div>
+</p>
+<blockquote>
+<div><p></p>
+<p>Check if a vbuffer is empty. </p>
+</div></blockquote>
+<p><span class="target" id="project0include_2haka_2vbuffer_8h_1a9169d8975a9ab693f1a62c477c6d69a6"></span><div class="line-block">
+<div class="line"><a class="reference internal" href="utils.html#project0types_8h_1a97a80ca1602ebf2303258971a2c938e2"><em>bool</em></a> <strong>vbuffer_create_empty</strong>(struct  <a class="reference internal" href="#project0structvbuffer"><em>vbuffer</em></a>  * buf)</div>
+</div>
+</p>
+<blockquote>
+<div><p></p>
+<p>Create a new empty vbuffer. </p>
+</div></blockquote>
+<p><span class="target" id="project0include_2haka_2vbuffer_8h_1a7901e6f728f342dbeaa2091d3c1b9459"></span><div class="line-block">
+<div class="line"><a class="reference internal" href="utils.html#project0types_8h_1a97a80ca1602ebf2303258971a2c938e2"><em>bool</em></a> <strong>vbuffer_create_new</strong>(struct  <a class="reference internal" href="#project0structvbuffer"><em>vbuffer</em></a>  * buf, size_t size, <a class="reference internal" href="utils.html#project0types_8h_1a97a80ca1602ebf2303258971a2c938e2"><em>bool</em></a> zero)</div>
+</div>
+</p>
+<blockquote>
+<div><p></p>
+<p>Create a new vbuffer and allocate a block of memory for it. </p>
+</div></blockquote>
+<p><span class="target" id="project0include_2haka_2vbuffer_8h_1a66e77b17656bde4344b58f6b763e106b"></span><div class="line-block">
+<div class="line"><a class="reference internal" href="utils.html#project0types_8h_1a97a80ca1602ebf2303258971a2c938e2"><em>bool</em></a> <strong>vbuffer_create_from</strong>(struct  <a class="reference internal" href="#project0structvbuffer"><em>vbuffer</em></a>  * buf, const char * str, size_t len)</div>
+</div>
+</p>
+<blockquote>
+<div><p></p>
+<p>Create a new vbuffer from a memory block. The memory will be copied. </p>
+</div></blockquote>
+<p><span class="target" id="project0include_2haka_2vbuffer_8h_1a099023abeaaa327cc02df2408000bdc1"></span><div class="line-block">
+<div class="line">void <strong>vbuffer_clear</strong>(struct  <a class="reference internal" href="#project0structvbuffer"><em>vbuffer</em></a>  * buf)</div>
+</div>
+</p>
+<blockquote>
+<div><p></p>
+<p>Clean all data in the vbuffer. </p>
+</div></blockquote>
+<p><span class="target" id="project0include_2haka_2vbuffer_8h_1a34b38586717ee418b3532a800194eb9c"></span><div class="line-block">
+<div class="line">void <strong>vbuffer_release</strong>(struct  <a class="reference internal" href="#project0structvbuffer"><em>vbuffer</em></a>  * buf)</div>
+</div>
+</p>
+<blockquote>
+<div><p></p>
+<p>Release the vbuffer internal memory. </p>
+</div></blockquote>
+<p><span class="target" id="project0include_2haka_2vbuffer_8h_1a9a8851279c5f72da07c0b904fd3cedb8"></span><div class="line-block">
+<div class="line">void <strong>vbuffer_position</strong>(const struct  <a class="reference internal" href="#project0structvbuffer"><em>vbuffer</em></a>  * buf, struct  <a class="reference internal" href="#project0structvbuffer__iterator"><em>vbuffer_iterator</em></a>  * position, size_t offset)</div>
+</div>
+</p>
+<blockquote>
+<div><p></p>
+<p>Get an iterator at the given offset. </p>
+</div></blockquote>
+<p><span class="target" id="project0include_2haka_2vbuffer_8h_1a7b1a2bcdd7d8e7c9edd1626b206f4b84"></span><div class="line-block">
+<div class="line">INLINE void <strong>vbuffer_begin</strong>(const struct  <a class="reference internal" href="#project0structvbuffer"><em>vbuffer</em></a>  * buf, struct  <a class="reference internal" href="#project0structvbuffer__iterator"><em>vbuffer_iterator</em></a>  * position)</div>
+</div>
+</p>
+<blockquote>
+<div><p></p>
+<p>Get an iterator at the beginning. </p>
+</div></blockquote>
+<p><span class="target" id="project0include_2haka_2vbuffer_8h_1afbef3b5bf2ebce4fb0aa376ba8de8bb4"></span><div class="line-block">
+<div class="line">INLINE void <strong>vbuffer_end</strong>(const struct  <a class="reference internal" href="#project0structvbuffer"><em>vbuffer</em></a>  * buf, struct  <a class="reference internal" href="#project0structvbuffer__iterator"><em>vbuffer_iterator</em></a>  * position)</div>
+</div>
+</p>
+<blockquote>
+<div><p></p>
+<p>Get an iterator at the end. </p>
+</div></blockquote>
+<p><span class="target" id="project0include_2haka_2vbuffer_8h_1a2648f7a2e85f3298c84806d98e1c0e7d"></span><div class="line-block">
+<div class="line">void <strong>vbuffer_last</strong>(const struct  <a class="reference internal" href="#project0structvbuffer"><em>vbuffer</em></a>  * buf, struct  <a class="reference internal" href="#project0structvbuffer__iterator"><em>vbuffer_iterator</em></a>  * position)</div>
+</div>
+</p>
+<blockquote>
+<div><p></p>
+<p>Get an iterator at tha last position of the buffer. This iterator will be different if the vbuffer is not empty. The end is always at the end even if some data are appended, but the last position is attached to the last byte in the buffer. So if some data are added, those data will be after this last position. </p>
+</div></blockquote>
+<p><span class="target" id="project0include_2haka_2vbuffer_8h_1ac24b0d58b169acbe9c1445f4d6c745ea"></span><div class="line-block">
+<div class="line">void <strong>vbuffer_setwritable</strong>(struct  <a class="reference internal" href="#project0structvbuffer"><em>vbuffer</em></a>  * buf, <a class="reference internal" href="utils.html#project0types_8h_1a97a80ca1602ebf2303258971a2c938e2"><em>bool</em></a> writable)</div>
+</div>
+</p>
+<blockquote>
+<div><p></p>
+<p>Change the writable flag on the whole buffer. </p>
+</div></blockquote>
+<p><span class="target" id="project0include_2haka_2vbuffer_8h_1a46098196e32a97d5e51ed8905692a4d7"></span><div class="line-block">
+<div class="line"><a class="reference internal" href="utils.html#project0types_8h_1a97a80ca1602ebf2303258971a2c938e2"><em>bool</em></a> <strong>vbuffer_iswritable</strong>(struct  <a class="reference internal" href="#project0structvbuffer"><em>vbuffer</em></a>  * buf)</div>
+</div>
+</p>
+<blockquote>
+<div><p></p>
+<p>Check if the buffer is writable. <dl class="docutils">
+<dt><strong>Note</strong></dt>
+<dd>This function does not check that every memory block are writable. </dd>
+</dl>
+</p>
+</div></blockquote>
+<p><span class="target" id="project0include_2haka_2vbuffer_8h_1aafcca8a17672899d424fd8efedd3eaf2"></span><div class="line-block">
+<div class="line"><a class="reference internal" href="utils.html#project0types_8h_1a97a80ca1602ebf2303258971a2c938e2"><em>bool</em></a> <strong>vbuffer_ismodified</strong>(struct  <a class="reference internal" href="#project0structvbuffer"><em>vbuffer</em></a>  * buf)</div>
+</div>
+</p>
+<blockquote>
+<div><p></p>
+<p>Check if some memory blocks have been modified. </p>
+</div></blockquote>
+<p><span class="target" id="project0include_2haka_2vbuffer_8h_1a932368a3e3d9c501997a539cd5b636f2"></span><div class="line-block">
+<div class="line">void <strong>vbuffer_clearmodified</strong>(struct  <a class="reference internal" href="#project0structvbuffer"><em>vbuffer</em></a>  * buf)</div>
+</div>
+</p>
+<blockquote>
+<div><p></p>
+<p>Clear the modified flag on the whole buffer. </p>
+</div></blockquote>
+<p><span class="target" id="project0include_2haka_2vbuffer_8h_1a3a8d9dbd916b7a6dc9cd29abbcfeaf09"></span><div class="line-block">
+<div class="line"><a class="reference internal" href="utils.html#project0types_8h_1a97a80ca1602ebf2303258971a2c938e2"><em>bool</em></a> <strong>vbuffer_append</strong>(struct  <a class="reference internal" href="#project0structvbuffer"><em>vbuffer</em></a>  * buf, struct  <a class="reference internal" href="#project0structvbuffer"><em>vbuffer</em></a>  * buffer)</div>
+</div>
+</p>
+<blockquote>
+<div><p></p>
+<p>Insert some data at the end of the buffer. </p>
+</div></blockquote>
+<p><span class="target" id="project0include_2haka_2vbuffer_8h_1af2723365a3f5b5e1a70eb852ccd2d2ff"></span><div class="line-block">
+<div class="line">INLINE size_t <strong>vbuffer_size</strong>(struct  <a class="reference internal" href="#project0structvbuffer"><em>vbuffer</em></a>  * buf)</div>
+</div>
+</p>
+<blockquote>
+<div><p></p>
+<p>Compute the size of the buffer. <dl class="docutils">
+<dt><strong>Note</strong></dt>
+<dd>This function needs to process all memory block. </dd>
+</dl>
+</p>
+</div></blockquote>
+<p><span class="target" id="project0include_2haka_2vbuffer_8h_1a2ccd0478b5df01f408d1a9206a46b44b"></span><div class="line-block">
+<div class="line">INLINE  <a class="reference internal" href="utils.html#project0types_8h_1a97a80ca1602ebf2303258971a2c938e2"><em>bool</em></a> <strong>vbuffer_check_size</strong>(struct  <a class="reference internal" href="#project0structvbuffer"><em>vbuffer</em></a>  * buf, size_t minsize, size_t * size)</div>
+</div>
+</p>
+<blockquote>
+<div><p></p>
+<p>Check if the buffer is larger than a given size. </p>
+</div></blockquote>
+<p><span class="target" id="project0include_2haka_2vbuffer_8h_1ade523378abe6dff063bb8b3665196fd5"></span><div class="line-block">
+<div class="line">INLINE  <a class="reference internal" href="utils.html#project0types_8h_1a97a80ca1602ebf2303258971a2c938e2"><em>bool</em></a> <strong>vbuffer_isflat</strong>(struct  <a class="reference internal" href="#project0structvbuffer"><em>vbuffer</em></a>  * buf)</div>
+</div>
+</p>
+<blockquote>
+<div><p></p>
+<p>Check if the buffer is only made of contiguous memory block. </p>
+</div></blockquote>
+<p><span class="target" id="project0include_2haka_2vbuffer_8h_1a9eaf1b048276e2c44b6faf985d389dbd"></span><div class="line-block">
+<div class="line">INLINE const  <a class="reference internal" href="utils.html#project0types_8h_1adde6aaee8457bee49c2a92621fe22b79"><em>uint8</em></a>  * <strong>vbuffer_flatten</strong>(struct  <a class="reference internal" href="#project0structvbuffer"><em>vbuffer</em></a>  * buf, size_t * size)</div>
+</div>
+</p>
+<blockquote>
+<div><p></p>
+<p>Flatten a buffer if needed. </p>
+</div></blockquote>
+<p><span class="target" id="project0include_2haka_2vbuffer_8h_1af7d81de1073d63a85403a3af70aced9e"></span><div class="line-block">
+<div class="line">INLINE  <a class="reference internal" href="utils.html#project0types_8h_1a97a80ca1602ebf2303258971a2c938e2"><em>bool</em></a> <strong>vbuffer_clone</strong>(struct  <a class="reference internal" href="#project0structvbuffer"><em>vbuffer</em></a>  * data, struct  <a class="reference internal" href="#project0structvbuffer"><em>vbuffer</em></a>  * buffer, <a class="reference internal" href="utils.html#project0types_8h_1a97a80ca1602ebf2303258971a2c938e2"><em>bool</em></a> copy)</div>
+</div>
+</p>
+<blockquote>
+<div><p></p>
+<p>Create a clone of the buffer. </p>
+</div></blockquote>
+<p><span class="target" id="project0include_2haka_2vbuffer_8h_1a19f64264cdab74ca9b2810efa17dcc04"></span><div class="line-block">
+<div class="line">void <strong>vbuffer_swap</strong>(struct  <a class="reference internal" href="#project0structvbuffer"><em>vbuffer</em></a>  * a, struct  <a class="reference internal" href="#project0structvbuffer"><em>vbuffer</em></a>  * b)</div>
+</div>
+</p>
+<blockquote>
+<div><p></p>
+<p>Swap the content of two buffers. </p>
+</div></blockquote>
+<p><span class="target" id="project0include_2haka_2vbuffer_8h_1a414cccfd1cce718126bb8a8a48648813"></span><div class="line-block">
+<div class="line"><a class="reference internal" href="utils.html#project0types_8h_1a97a80ca1602ebf2303258971a2c938e2"><em>bool</em></a> <strong>vbuffer_iterator_isvalid</strong>(const struct  <a class="reference internal" href="#project0structvbuffer__iterator"><em>vbuffer_iterator</em></a>  * position)</div>
+</div>
+</p>
+<blockquote>
+<div><p></p>
+<p>Check if an iterator is valid. </p>
+</div></blockquote>
+<p><span class="target" id="project0include_2haka_2vbuffer_8h_1a1b2514d873253eb60cf410ba2d7026ac"></span><div class="line-block">
+<div class="line">void <strong>vbuffer_iterator_copy</strong>(const struct  <a class="reference internal" href="#project0structvbuffer__iterator"><em>vbuffer_iterator</em></a>  * src, struct  <a class="reference internal" href="#project0structvbuffer__iterator"><em>vbuffer_iterator</em></a>  * dst)</div>
+</div>
+</p>
+<blockquote>
+<div><p></p>
+<p>Create a copy of an iterator. </p>
+</div></blockquote>
+<p><span class="target" id="project0include_2haka_2vbuffer_8h_1a7eca2370c234da1e85115be88eaa202d"></span><div class="line-block">
+<div class="line">void <strong>vbuffer_iterator_clear</strong>(struct  <a class="reference internal" href="#project0structvbuffer__iterator"><em>vbuffer_iterator</em></a>  * position)</div>
+</div>
+</p>
+<blockquote>
+<div><p></p>
+<p>Clear an iterator. </p>
+</div></blockquote>
+<p><span class="target" id="project0include_2haka_2vbuffer_8h_1a5203b8fdd96b999ed30ea83b76badd44"></span><div class="line-block">
+<div class="line">size_t <strong>vbuffer_iterator_available</strong>(struct  <a class="reference internal" href="#project0structvbuffer__iterator"><em>vbuffer_iterator</em></a>  * position)</div>
+</div>
+</p>
+<blockquote>
+<div><p></p>
+<p>Get the available byte from this iterator. <dl class="docutils">
+<dt><strong>Note</strong></dt>
+<dd>This function needs to process all memory block. </dd>
+</dl>
+</p>
+</div></blockquote>
+<p><span class="target" id="project0include_2haka_2vbuffer_8h_1a8b00cafe71673ed0d1694a583a894196"></span><div class="line-block">
+<div class="line"><a class="reference internal" href="utils.html#project0types_8h_1a97a80ca1602ebf2303258971a2c938e2"><em>bool</em></a> <strong>vbuffer_iterator_check_available</strong>(struct  <a class="reference internal" href="#project0structvbuffer__iterator"><em>vbuffer_iterator</em></a>  * position, size_t minsize, size_t * size)</div>
+</div>
+</p>
+<blockquote>
+<div><p></p>
+<p>Check if the available bytes are larger than a minimal size. </p>
+</div></blockquote>
+<p><span class="target" id="project0include_2haka_2vbuffer_8h_1a465f31c99936593734f27415b03428c0"></span><div class="line-block">
+<div class="line"><a class="reference internal" href="utils.html#project0types_8h_1a97a80ca1602ebf2303258971a2c938e2"><em>bool</em></a> <strong>vbuffer_iterator_register</strong>(struct  <a class="reference internal" href="#project0structvbuffer__iterator"><em>vbuffer_iterator</em></a>  * position)</div>
+</div>
+</p>
+<blockquote>
+<div><p></p>
+<p>Register the iterator to make it safe. When this is done, if the buffer behind the iterator is released, the iterator will raise an error when trying to do operations with it. If it is not registered, the program will probably segfault. </p>
+</div></blockquote>
+<p><span class="target" id="project0include_2haka_2vbuffer_8h_1ac365875fbc3ec702b389836064069f0c"></span><div class="line-block">
+<div class="line"><a class="reference internal" href="utils.html#project0types_8h_1a97a80ca1602ebf2303258971a2c938e2"><em>bool</em></a> <strong>vbuffer_iterator_unregister</strong>(struct  <a class="reference internal" href="#project0structvbuffer__iterator"><em>vbuffer_iterator</em></a>  * position)</div>
+</div>
+</p>
+<blockquote>
+<div><p></p>
+<p>Unregister an iterator. </p>
+</div></blockquote>
+<p><span class="target" id="project0include_2haka_2vbuffer_8h_1a830c5675a85b9fa182cade2c3d16e70f"></span><div class="line-block">
+<div class="line"><a class="reference internal" href="utils.html#project0types_8h_1a97a80ca1602ebf2303258971a2c938e2"><em>bool</em></a> <strong>vbuffer_iterator_insert</strong>(struct  <a class="reference internal" href="#project0structvbuffer__iterator"><em>vbuffer_iterator</em></a>  * position, struct  <a class="reference internal" href="#project0structvbuffer"><em>vbuffer</em></a>  * buffer, struct  <a class="reference internal" href="#project0structvbuffer__sub"><em>vbuffer_sub</em></a>  * sub)</div>
+</div>
+</p>
+<blockquote>
+<div><p></p>
+<p>Insert some data at the iterator position. </p>
+</div></blockquote>
+<p><span class="target" id="project0include_2haka_2vbuffer_8h_1a1617b628c55375f24324efb3b5cf0139"></span><div class="line-block">
+<div class="line">size_t <strong>vbuffer_iterator_advance</strong>(struct  <a class="reference internal" href="#project0structvbuffer__iterator"><em>vbuffer_iterator</em></a>  * position, size_t len)</div>
+</div>
+</p>
+<blockquote>
+<div><p></p>
+<p>Advance the iterator on the data. <dl class="docutils">
+<dt><strong>Return</strong></dt>
+<dd>The number of bytes advanced. This value might be lower than the given length if the buffer does not have enough data. </dd>
+</dl>
+</p>
+</div></blockquote>
+<p><span class="target" id="project0include_2haka_2vbuffer_8h_1ab43eaa776ddaca99b12679a1b654946c"></span><div class="line-block">
+<div class="line">void <strong>vbuffer_iterator_skip_empty</strong>(struct  <a class="reference internal" href="#project0structvbuffer__iterator"><em>vbuffer_iterator</em></a>  * position)</div>
+</div>
+</p>
+<blockquote>
+<div><p></p>
+<p>Skip empty vbuffer chunk at the iterator position. </p>
+</div></blockquote>
+<p><span class="target" id="project0include_2haka_2vbuffer_8h_1abf37e3ff403d9f40b46d214c0e171acc"></span><div class="line-block">
+<div class="line"><a class="reference internal" href="utils.html#project0types_8h_1a97a80ca1602ebf2303258971a2c938e2"><em>bool</em></a> <strong>vbuffer_iterator_isend</strong>(struct  <a class="reference internal" href="#project0structvbuffer__iterator"><em>vbuffer_iterator</em></a>  * position)</div>
+</div>
+</p>
+<blockquote>
+<div><p></p>
+<p>Check if the iterator is at the end of the buffer. </p>
+</div></blockquote>
+<p><span class="target" id="project0include_2haka_2vbuffer_8h_1a9f030abaa2327183448341cafe52558f"></span><div class="line-block">
+<div class="line"><a class="reference internal" href="utils.html#project0types_8h_1a97a80ca1602ebf2303258971a2c938e2"><em>bool</em></a> <strong>vbuffer_iterator_iseof</strong>(struct  <a class="reference internal" href="#project0structvbuffer__iterator"><em>vbuffer_iterator</em></a>  * position)</div>
+</div>
+</p>
+<blockquote>
+<div><p></p>
+<p>Check if the iterator is at the end of the buffer and that this end is marked as <tt class="docutils literal"><span class="pre">eof</span></tt>. This is used by <a class="reference internal" href="buffer_vbuffer_stream.html#project0structvbuffer__stream"><em>vbuffer_stream</em></a>. </p>
+</div></blockquote>
+<p><span class="target" id="project0include_2haka_2vbuffer_8h_1a1ac684ac53959f83cef99a8435249716"></span><div class="line-block">
+<div class="line"><a class="reference internal" href="utils.html#project0types_8h_1a97a80ca1602ebf2303258971a2c938e2"><em>bool</em></a> <strong>vbuffer_iterator_split</strong>(struct  <a class="reference internal" href="#project0structvbuffer__iterator"><em>vbuffer_iterator</em></a>  * position)</div>
+</div>
+</p>
+<blockquote>
+<div><p></p>
+<p><p>Split the current memory block at the iterator position.</p>
+<p>Starting from an iterator on the buffer:</p>
+<p><img alt="../../../_images/vbuffer_iterator.png" src="../../../_images/vbuffer_iterator.png" /></p>
+<p>The chunk pointed by the iterator will be split into two parts like this:</p>
+<p><img alt="../../../_images/vbuffer_split.png" src="../../../_images/vbuffer_split.png" /></p>
+</p>
+</div></blockquote>
+<p><span class="target" id="project0include_2haka_2vbuffer_8h_1a6fcf30f00605a85bb0a82a327968eeed"></span><div class="line-block">
+<div class="line">size_t <strong>vbuffer_iterator_sub</strong>(struct  <a class="reference internal" href="#project0structvbuffer__iterator"><em>vbuffer_iterator</em></a>  * position, size_t len, struct  <a class="reference internal" href="#project0structvbuffer__sub"><em>vbuffer_sub</em></a>  * sub, <a class="reference internal" href="utils.html#project0types_8h_1a97a80ca1602ebf2303258971a2c938e2"><em>bool</em></a> split)</div>
+</div>
+</p>
+<blockquote>
+<div><p></p>
+<p>Create a sub buffer from the iterator position. The iterator will advance accordingly. </p>
+</div></blockquote>
+<p><span class="target" id="project0include_2haka_2vbuffer_8h_1a05bc76171458d1779f289a791c18e1a1"></span><div class="line-block">
+<div class="line"><a class="reference internal" href="utils.html#project0types_8h_1adde6aaee8457bee49c2a92621fe22b79"><em>uint8</em></a> <strong>vbuffer_iterator_getbyte</strong>(struct  <a class="reference internal" href="#project0structvbuffer__iterator"><em>vbuffer_iterator</em></a>  * position)</div>
+</div>
+</p>
+<blockquote>
+<div><p></p>
+<p>Get the current byte. <dl class="docutils">
+<dt><strong>Note</strong></dt>
+<dd>The iterator will not move. </dd>
+</dl>
+</p>
+</div></blockquote>
+<p><span class="target" id="project0include_2haka_2vbuffer_8h_1a31270ed1dec7f817f6af9221274b9d6c"></span><div class="line-block">
+<div class="line"><a class="reference internal" href="utils.html#project0types_8h_1a97a80ca1602ebf2303258971a2c938e2"><em>bool</em></a> <strong>vbuffer_iterator_setbyte</strong>(struct  <a class="reference internal" href="#project0structvbuffer__iterator"><em>vbuffer_iterator</em></a>  * position, <a class="reference internal" href="utils.html#project0types_8h_1adde6aaee8457bee49c2a92621fe22b79"><em>uint8</em></a> byte)</div>
+</div>
+</p>
+<blockquote>
+<div><p></p>
+<p>Set the current byte. <dl class="docutils">
+<dt><strong>Note</strong></dt>
+<dd>The iterator will not move. </dd>
+</dl>
+</p>
+</div></blockquote>
+<p><span class="target" id="project0include_2haka_2vbuffer_8h_1a920bca6e81f56fd496d510c16888b98d"></span><div class="line-block">
+<div class="line"><a class="reference internal" href="utils.html#project0types_8h_1adde6aaee8457bee49c2a92621fe22b79"><em>uint8</em></a>  * <strong>vbuffer_iterator_mmap</strong>(struct  <a class="reference internal" href="#project0structvbuffer__iterator"><em>vbuffer_iterator</em></a>  * position, size_t maxsize, size_t * size, <a class="reference internal" href="utils.html#project0types_8h_1a97a80ca1602ebf2303258971a2c938e2"><em>bool</em></a> write)</div>
+</div>
+</p>
+<blockquote>
+<div><p></p>
+<p>Mmap each block one by one. </p>
+</div></blockquote>
+<p><span class="target" id="project0include_2haka_2vbuffer_8h_1a711fd3eca34c49023559d16311300947"></span><div class="line-block">
+<div class="line"><a class="reference internal" href="utils.html#project0types_8h_1a97a80ca1602ebf2303258971a2c938e2"><em>bool</em></a> <strong>vbuffer_iterator_mark</strong>(struct  <a class="reference internal" href="#project0structvbuffer__iterator"><em>vbuffer_iterator</em></a>  * position, <a class="reference internal" href="utils.html#project0types_8h_1a97a80ca1602ebf2303258971a2c938e2"><em>bool</em></a> readonly)</div>
+</div>
+</p>
+<blockquote>
+<div><p></p>
+<p><p>Insert a mark at the iterator position.</p>
+<p>The resulting buffer will look like this:</p>
+<p><img alt="../../../_images/vbuffer_mark.png" src="../../../_images/vbuffer_mark.png" /></p>
+</p>
+</div></blockquote>
+<p><span class="target" id="project0include_2haka_2vbuffer_8h_1a6792516b37a15b05316df6018f79a5b3"></span><div class="line-block">
+<div class="line"><a class="reference internal" href="utils.html#project0types_8h_1a97a80ca1602ebf2303258971a2c938e2"><em>bool</em></a> <strong>vbuffer_iterator_unmark</strong>(struct  <a class="reference internal" href="#project0structvbuffer__iterator"><em>vbuffer_iterator</em></a>  * position)</div>
+</div>
+</p>
+<blockquote>
+<div><p></p>
+<p>Unmark the buffer. <dl class="docutils">
+<dt><strong>Note</strong></dt>
+<dd>The iterator must be placed on a mark created with <a class="reference internal" href="#project0include_2haka_2vbuffer_8h_1a711fd3eca34c49023559d16311300947"><em>vbuffer_iterator_mark()</em></a> </dd>
+</dl>
+</p>
+</div></blockquote>
+<p><span class="target" id="project0include_2haka_2vbuffer_8h_1a206731daebe5f760357ee5d5266424ba"></span><div class="line-block">
+<div class="line"><a class="reference internal" href="utils.html#project0types_8h_1a97a80ca1602ebf2303258971a2c938e2"><em>bool</em></a> <strong>vbuffer_iterator_isinsertable</strong>(struct  <a class="reference internal" href="#project0structvbuffer__iterator"><em>vbuffer_iterator</em></a>  * position, struct  <a class="reference internal" href="#project0structvbuffer"><em>vbuffer</em></a>  * buffer)</div>
+</div>
+</p>
+<blockquote>
+<div><p></p>
+<p>Check if a buffer could be inserted. This verify that the insert will not create loops. </p>
+</div></blockquote>
+<p><span class="target" id="project0include_2haka_2vbuffer_8h_1aa8da55137d9c2c2e83ac27d6bc44d5ef"></span><div class="line-block">
+<div class="line">void <strong>vbuffer_sub_clear</strong>(struct  <a class="reference internal" href="#project0structvbuffer__sub"><em>vbuffer_sub</em></a>  * data)</div>
+</div>
+</p>
+<blockquote>
+<div><p></p>
+<p>Clear a sub buffer. </p>
+</div></blockquote>
+<p><span class="target" id="project0include_2haka_2vbuffer_8h_1a139933bc66a91b9daa796b84c264588f"></span><div class="line-block">
+<div class="line"><a class="reference internal" href="utils.html#project0types_8h_1a97a80ca1602ebf2303258971a2c938e2"><em>bool</em></a> <strong>vbuffer_sub_register</strong>(struct  <a class="reference internal" href="#project0structvbuffer__sub"><em>vbuffer_sub</em></a>  * data)</div>
+</div>
+</p>
+<blockquote>
+<div><p></p>
+<p>Register a sub buffer. <dl class="docutils">
+<dt><strong>See</strong></dt>
+<dd><a class="reference internal" href="#project0include_2haka_2vbuffer_8h_1a465f31c99936593734f27415b03428c0"><em>vbuffer_iterator_register()</em></a> </dd>
+</dl>
+</p>
+</div></blockquote>
+<p><span class="target" id="project0include_2haka_2vbuffer_8h_1a0f2479eeecb244d1e28a4a5e98d1c394"></span><div class="line-block">
+<div class="line"><a class="reference internal" href="utils.html#project0types_8h_1a97a80ca1602ebf2303258971a2c938e2"><em>bool</em></a> <strong>vbuffer_sub_unregister</strong>(struct  <a class="reference internal" href="#project0structvbuffer__sub"><em>vbuffer_sub</em></a>  * data)</div>
+</div>
+</p>
+<blockquote>
+<div><p></p>
+<p>Unregister a sub buffer. </p>
+</div></blockquote>
+<p><span class="target" id="project0include_2haka_2vbuffer_8h_1a0345109e44ce155eadd9e69e9c110ee1"></span><div class="line-block">
+<div class="line">void <strong>vbuffer_sub_create</strong>(struct  <a class="reference internal" href="#project0structvbuffer__sub"><em>vbuffer_sub</em></a>  * data, struct  <a class="reference internal" href="#project0structvbuffer"><em>vbuffer</em></a>  * buffer, size_t offset, size_t length)</div>
+</div>
+</p>
+<blockquote>
+<div><p></p>
+<p>Create a new sub buffer. </p>
+</div></blockquote>
+<p><span class="target" id="project0include_2haka_2vbuffer_8h_1acb28c1ee5da2714f5ac0e408d6ef9901"></span><div class="line-block">
+<div class="line"><a class="reference internal" href="utils.html#project0types_8h_1a97a80ca1602ebf2303258971a2c938e2"><em>bool</em></a> <strong>vbuffer_sub_create_from_position</strong>(struct  <a class="reference internal" href="#project0structvbuffer__sub"><em>vbuffer_sub</em></a>  * data, struct  <a class="reference internal" href="#project0structvbuffer__iterator"><em>vbuffer_iterator</em></a>  * position, size_t length)</div>
+</div>
+</p>
+<blockquote>
+<div><p></p>
+<p>Create a new sub buffer from an iterator position. </p>
+</div></blockquote>
+<p><span class="target" id="project0include_2haka_2vbuffer_8h_1a22eb389f2a7cf3269d03dd6d84f3c4e1"></span><div class="line-block">
+<div class="line"><a class="reference internal" href="utils.html#project0types_8h_1a97a80ca1602ebf2303258971a2c938e2"><em>bool</em></a> <strong>vbuffer_sub_create_between_position</strong>(struct  <a class="reference internal" href="#project0structvbuffer__sub"><em>vbuffer_sub</em></a>  * data, struct  <a class="reference internal" href="#project0structvbuffer__iterator"><em>vbuffer_iterator</em></a>  * begin, struct  <a class="reference internal" href="#project0structvbuffer__iterator"><em>vbuffer_iterator</em></a>  * end)</div>
+</div>
+</p>
+<blockquote>
+<div><p></p>
+<p>Create a new sub buffer between two iterator positions. </p>
+</div></blockquote>
+<p><span class="target" id="project0include_2haka_2vbuffer_8h_1a7f3dd2ee35e7ffa9fdb88dbddf3c3909"></span><div class="line-block">
+<div class="line">void <strong>vbuffer_sub_begin</strong>(struct  <a class="reference internal" href="#project0structvbuffer__sub"><em>vbuffer_sub</em></a>  * data, struct  <a class="reference internal" href="#project0structvbuffer__iterator"><em>vbuffer_iterator</em></a>  * begin)</div>
+</div>
+</p>
+<blockquote>
+<div><p></p>
+<p>Get an iterator at the beginning of the sub buffer. </p>
+</div></blockquote>
+<p><span class="target" id="project0include_2haka_2vbuffer_8h_1a6d1857405122cd90fa9e81725d7db096"></span><div class="line-block">
+<div class="line">void <strong>vbuffer_sub_end</strong>(struct  <a class="reference internal" href="#project0structvbuffer__sub"><em>vbuffer_sub</em></a>  * data, struct  <a class="reference internal" href="#project0structvbuffer__iterator"><em>vbuffer_iterator</em></a>  * end)</div>
+</div>
+</p>
+<blockquote>
+<div><p></p>
+<p>Get an iterator at the end of the sub buffer. </p>
+</div></blockquote>
+<p><span class="target" id="project0include_2haka_2vbuffer_8h_1a363e61f740db26a39c79cb36c6bd5e30"></span><div class="line-block">
+<div class="line"><a class="reference internal" href="utils.html#project0types_8h_1a97a80ca1602ebf2303258971a2c938e2"><em>bool</em></a> <strong>vbuffer_sub_position</strong>(struct  <a class="reference internal" href="#project0structvbuffer__sub"><em>vbuffer_sub</em></a>  * data, struct  <a class="reference internal" href="#project0structvbuffer__iterator"><em>vbuffer_iterator</em></a>  * iter, size_t offset)</div>
+</div>
+</p>
+<blockquote>
+<div><p></p>
+<p>Get an iterator at the given offset. </p>
+</div></blockquote>
+<p><span class="target" id="project0include_2haka_2vbuffer_8h_1a33fac33f9d3dced6e1c8121e6b1037b2"></span><div class="line-block">
+<div class="line"><a class="reference internal" href="utils.html#project0types_8h_1a97a80ca1602ebf2303258971a2c938e2"><em>bool</em></a> <strong>vbuffer_sub_sub</strong>(struct  <a class="reference internal" href="#project0structvbuffer__sub"><em>vbuffer_sub</em></a>  * data, size_t offset, size_t length, struct  <a class="reference internal" href="#project0structvbuffer__sub"><em>vbuffer_sub</em></a>  * buffer)</div>
+</div>
+</p>
+<blockquote>
+<div><p></p>
+<p>Create a new sub buffer. </p>
+</div></blockquote>
+<p><span class="target" id="project0include_2haka_2vbuffer_8h_1a7daa20a00014d04beea8ff10ea12a732"></span><div class="line-block">
+<div class="line">size_t <strong>vbuffer_sub_size</strong>(struct  <a class="reference internal" href="#project0structvbuffer__sub"><em>vbuffer_sub</em></a>  * data)</div>
+</div>
+</p>
+<blockquote>
+<div><p></p>
+<p>Compute the size of the sub buffer. <dl class="docutils">
+<dt><strong>Note</strong></dt>
+<dd>This function needs to process all memory block. </dd>
+</dl>
+</p>
+</div></blockquote>
+<p><span class="target" id="project0include_2haka_2vbuffer_8h_1ac3ec490aac7cdfd2e86f47dc1a6b7e22"></span><div class="line-block">
+<div class="line"><a class="reference internal" href="utils.html#project0types_8h_1a97a80ca1602ebf2303258971a2c938e2"><em>bool</em></a> <strong>vbuffer_sub_check_size</strong>(struct  <a class="reference internal" href="#project0structvbuffer__sub"><em>vbuffer_sub</em></a>  * data, size_t minsize, size_t * size)</div>
+</div>
+</p>
+<blockquote>
+<div><p></p>
+<p>Check if the sub buffer is larger than a given minimal size. </p>
+</div></blockquote>
+<p><span class="target" id="project0include_2haka_2vbuffer_8h_1aadebbc768e7f98ef934dfa35c63d7201"></span><div class="line-block">
+<div class="line">size_t <strong>vbuffer_sub_read</strong>(struct  <a class="reference internal" href="#project0structvbuffer__sub"><em>vbuffer_sub</em></a>  * data, <a class="reference internal" href="utils.html#project0types_8h_1adde6aaee8457bee49c2a92621fe22b79"><em>uint8</em></a>  * ptr, size_t size)</div>
+</div>
+</p>
+<blockquote>
+<div><p></p>
+<p>Copy the data in the sub buffer. </p>
+</div></blockquote>
+<p><span class="target" id="project0include_2haka_2vbuffer_8h_1a0d45be067866729be574d53c576506fa"></span><div class="line-block">
+<div class="line">size_t <strong>vbuffer_sub_write</strong>(struct  <a class="reference internal" href="#project0structvbuffer__sub"><em>vbuffer_sub</em></a>  * data, const  <a class="reference internal" href="utils.html#project0types_8h_1adde6aaee8457bee49c2a92621fe22b79"><em>uint8</em></a>  * ptr, size_t size)</div>
+</div>
+</p>
+<blockquote>
+<div><p></p>
+<p>Copy and replace the data in the sub buffer. </p>
+</div></blockquote>
+<p><span class="target" id="project0include_2haka_2vbuffer_8h_1a6c75fc8026fcc838ae765926d79727d7"></span><div class="line-block">
+<div class="line">const  <a class="reference internal" href="utils.html#project0types_8h_1adde6aaee8457bee49c2a92621fe22b79"><em>uint8</em></a>  * <strong>vbuffer_sub_flatten</strong>(struct  <a class="reference internal" href="#project0structvbuffer__sub"><em>vbuffer_sub</em></a>  * data, size_t * size)</div>
+</div>
+</p>
+<blockquote>
+<div><p></p>
+<p>Flatten the sub buffer if needed. </p>
+</div></blockquote>
+<p><span class="target" id="project0include_2haka_2vbuffer_8h_1ae3e13bb1a13361c9aeb45a5136a8e1ab"></span><div class="line-block">
+<div class="line"><a class="reference internal" href="utils.html#project0types_8h_1a97a80ca1602ebf2303258971a2c938e2"><em>bool</em></a> <strong>vbuffer_sub_compact</strong>(struct  <a class="reference internal" href="#project0structvbuffer__sub"><em>vbuffer_sub</em></a>  * data)</div>
+</div>
+</p>
+<blockquote>
+<div><p></p>
+<p>Compact the sub buffer by aggregating memory blocks when possible. </p>
+</div></blockquote>
+<p><span class="target" id="project0include_2haka_2vbuffer_8h_1ad54c27a344f075aac1022e7b01d8a81b"></span><div class="line-block">
+<div class="line"><a class="reference internal" href="utils.html#project0types_8h_1a97a80ca1602ebf2303258971a2c938e2"><em>bool</em></a> <strong>vbuffer_sub_isflat</strong>(struct  <a class="reference internal" href="#project0structvbuffer__sub"><em>vbuffer_sub</em></a>  * data)</div>
+</div>
+</p>
+<blockquote>
+<div><p></p>
+<p>Check if the sub buffer is only made of one memory block. </p>
+</div></blockquote>
+<p><span class="target" id="project0include_2haka_2vbuffer_8h_1a38983d055492cc38126efa8015a3d66c"></span><div class="line-block">
+<div class="line"><a class="reference internal" href="utils.html#project0types_8h_1a97a80ca1602ebf2303258971a2c938e2"><em>bool</em></a> <strong>vbuffer_sub_clone</strong>(struct  <a class="reference internal" href="#project0structvbuffer__sub"><em>vbuffer_sub</em></a>  * data, struct  <a class="reference internal" href="#project0structvbuffer"><em>vbuffer</em></a>  * buffer, <a class="reference internal" href="#project0include_2haka_2vbuffer_8h_1a92ae8feaa6736559e85022c24decc317"><em>clone_mode</em></a> mode)</div>
+</div>
+</p>
+<blockquote>
+<div><p></p>
+<p>Clone the content of the sub buffer. </p>
+</div></blockquote>
+<p><span class="target" id="project0include_2haka_2vbuffer_8h_1ab38b27b407fee0f2fd858bffe307dc94"></span><div class="line-block">
+<div class="line"><a class="reference internal" href="utils.html#project0types_8h_1adde6aaee8457bee49c2a92621fe22b79"><em>uint8</em></a>  * <strong>vbuffer_mmap</strong>(struct  <a class="reference internal" href="#project0structvbuffer__sub"><em>vbuffer_sub</em></a>  * data, size_t * len, <a class="reference internal" href="utils.html#project0types_8h_1a97a80ca1602ebf2303258971a2c938e2"><em>bool</em></a> write, struct  <a class="reference internal" href="#project0structvbuffer__sub__mmap"><em>vbuffer_sub_mmap</em></a>  * mmap_iter, struct  <a class="reference internal" href="#project0structvbuffer__iterator"><em>vbuffer_iterator</em></a>  * iter)</div>
+</div>
+</p>
+<blockquote>
+<div><p></p>
+<p>Mmap every memory block of the buffer. </p>
+</div></blockquote>
+<p><span class="target" id="project0include_2haka_2vbuffer_8h_1adabc0bf4273246ec23af7ff9b1c633a4"></span><div class="line-block">
+<div class="line"><a class="reference internal" href="utils.html#project0types_8h_1a97a80ca1602ebf2303258971a2c938e2"><em>bool</em></a> <strong>vbuffer_zero</strong>(struct  <a class="reference internal" href="#project0structvbuffer__sub"><em>vbuffer_sub</em></a>  * data)</div>
+</div>
+</p>
+<blockquote>
+<div><p></p>
+<p>Set each byte of the buffer to zero. </p>
+</div></blockquote>
+<p><span class="target" id="project0include_2haka_2vbuffer_8h_1aaa111619327185adf8b4bcdbc1e3a38d"></span><div class="line-block">
+<div class="line"><a class="reference internal" href="utils.html#project0types_8h_1a97a80ca1602ebf2303258971a2c938e2"><em>bool</em></a> <strong>vbuffer_extract</strong>(struct  <a class="reference internal" href="#project0structvbuffer__sub"><em>vbuffer_sub</em></a>  * data, struct  <a class="reference internal" href="#project0structvbuffer"><em>vbuffer</em></a>  * buffer)</div>
+</div>
+</p>
+<blockquote>
+<div><p></p>
+<p>Extract part of a buffer. The data are removed from the original buffer and moved to a new vbuffer. </p>
+</div></blockquote>
+<p><span class="target" id="project0include_2haka_2vbuffer_8h_1a9eb13a11b583a13eba5e06cf616b110b"></span><div class="line-block">
+<div class="line"><a class="reference internal" href="utils.html#project0types_8h_1a97a80ca1602ebf2303258971a2c938e2"><em>bool</em></a> <strong>vbuffer_select</strong>(struct  <a class="reference internal" href="#project0structvbuffer__sub"><em>vbuffer_sub</em></a>  * data, struct  <a class="reference internal" href="#project0structvbuffer"><em>vbuffer</em></a>  * buffer, struct  <a class="reference internal" href="#project0structvbuffer__iterator"><em>vbuffer_iterator</em></a>  * ref)</div>
+</div>
+</p>
+<blockquote>
+<div><p></p>
+<p>Extract part of a buffer. The data are removed from the original buffer and moved to a new vbuffer. Unlike <a class="reference internal" href="#project0include_2haka_2vbuffer_8h_1aaa111619327185adf8b4bcdbc1e3a38d"><em>vbuffer_extract()</em></a>, this operator does not mark the buffer as modified. It is needed to restore the data using the function <a class="reference internal" href="#project0include_2haka_2vbuffer_8h_1a79a8fd997780523a8917718f1265e93c"><em>vbuffer_restore()</em></a>. </p>
+</div></blockquote>
+<p><span class="target" id="project0include_2haka_2vbuffer_8h_1a79a8fd997780523a8917718f1265e93c"></span><div class="line-block">
+<div class="line"><a class="reference internal" href="utils.html#project0types_8h_1a97a80ca1602ebf2303258971a2c938e2"><em>bool</em></a> <strong>vbuffer_restore</strong>(struct  <a class="reference internal" href="#project0structvbuffer__iterator"><em>vbuffer_iterator</em></a>  * position, struct  <a class="reference internal" href="#project0structvbuffer"><em>vbuffer</em></a>  * data, <a class="reference internal" href="utils.html#project0types_8h_1a97a80ca1602ebf2303258971a2c938e2"><em>bool</em></a> clone)</div>
+</div>
+</p>
+<blockquote>
+<div><p></p>
+<p>Restore data extracted using <a class="reference internal" href="#project0include_2haka_2vbuffer_8h_1a9eb13a11b583a13eba5e06cf616b110b"><em>vbuffer_select()</em></a>. </p>
+</div></blockquote>
+<p><span class="target" id="project0include_2haka_2vbuffer_8h_1ae1af6556ccfe30f1446624cf9418a43d"></span><div class="line-block">
+<div class="line"><a class="reference internal" href="utils.html#project0types_8h_1a97a80ca1602ebf2303258971a2c938e2"><em>bool</em></a> <strong>vbuffer_erase</strong>(struct  <a class="reference internal" href="#project0structvbuffer__sub"><em>vbuffer_sub</em></a>  * data)</div>
+</div>
+</p>
+<blockquote>
+<div><p></p>
+<p>Erase the data in the sub buffer. </p>
+</div></blockquote>
+<p><span class="target" id="project0include_2haka_2vbuffer_8h_1aee33bc5195f99c7c3b2926421deb7a79"></span><div class="line-block">
+<div class="line"><a class="reference internal" href="utils.html#project0types_8h_1a97a80ca1602ebf2303258971a2c938e2"><em>bool</em></a> <strong>vbuffer_replace</strong>(struct  <a class="reference internal" href="#project0structvbuffer__sub"><em>vbuffer_sub</em></a>  * data, struct  <a class="reference internal" href="#project0structvbuffer"><em>vbuffer</em></a>  * buffer)</div>
+</div>
+</p>
+<blockquote>
+<div><p></p>
+<p>Replace the data in the sub buffer. </p>
+</div></blockquote>
+<p><span class="target" id="project0include_2haka_2vbuffer_8h_1a0715c965f6cac296a26a436435b4632b"></span><div class="line-block">
+<div class="line"><a class="reference internal" href="utils.html#project0types_8h_1a3bc2ce57f28d8946459a84ac306b9ddb"><em>int64</em></a> <strong>vbuffer_asnumber</strong>(struct  <a class="reference internal" href="#project0structvbuffer__sub"><em>vbuffer_sub</em></a>  * data, <a class="reference internal" href="utils.html#project0types_8h_1a97a80ca1602ebf2303258971a2c938e2"><em>bool</em></a> bigendian)</div>
+</div>
+</p>
+<blockquote>
+<div><p></p>
+<p>Convert the content of the buffer to a number. <dl class="docutils">
+<dt><strong>Note</strong></dt>
+<dd>The function will raise an error if the buffer size is not supported. </dd>
+</dl>
+</p>
+</div></blockquote>
+<p><span class="target" id="project0include_2haka_2vbuffer_8h_1a96db9926d679a5bf841f498613ba2255"></span><div class="line-block">
+<div class="line"><a class="reference internal" href="utils.html#project0types_8h_1a97a80ca1602ebf2303258971a2c938e2"><em>bool</em></a> <strong>vbuffer_setnumber</strong>(struct  <a class="reference internal" href="#project0structvbuffer__sub"><em>vbuffer_sub</em></a>  * data, <a class="reference internal" href="utils.html#project0types_8h_1a97a80ca1602ebf2303258971a2c938e2"><em>bool</em></a> bigendian, <a class="reference internal" href="utils.html#project0types_8h_1a3bc2ce57f28d8946459a84ac306b9ddb"><em>int64</em></a> num)</div>
+</div>
+</p>
+<blockquote>
+<div><p></p>
+<p>Set the content of the buffer from a number. <dl class="docutils">
+<dt><strong>Note</strong></dt>
+<dd>The function will raise an error if the buffer size is not supported. </dd>
+</dl>
+</p>
+</div></blockquote>
+<p><span class="target" id="project0include_2haka_2vbuffer_8h_1a8019ba35e4a2c8058770804393339041"></span><div class="line-block">
+<div class="line"><a class="reference internal" href="utils.html#project0types_8h_1a3bc2ce57f28d8946459a84ac306b9ddb"><em>int64</em></a> <strong>vbuffer_asbits</strong>(struct  <a class="reference internal" href="#project0structvbuffer__sub"><em>vbuffer_sub</em></a>  * data, size_t offset, size_t bits, <a class="reference internal" href="utils.html#project0types_8h_1a97a80ca1602ebf2303258971a2c938e2"><em>bool</em></a> bigendian)</div>
+</div>
+</p>
+<blockquote>
+<div><p></p>
+<p>Convert bits of the content of the buffer to a number. <dl class="docutils">
+<dt><strong>Note</strong></dt>
+<dd>The function will raise an error if the buffer size is not supported. </dd>
+</dl>
+</p>
+</div></blockquote>
+<p><span class="target" id="project0include_2haka_2vbuffer_8h_1aab967bb5a89d5b934fb4799c32b8d972"></span><div class="line-block">
+<div class="line"><a class="reference internal" href="utils.html#project0types_8h_1a97a80ca1602ebf2303258971a2c938e2"><em>bool</em></a> <strong>vbuffer_setbits</strong>(struct  <a class="reference internal" href="#project0structvbuffer__sub"><em>vbuffer_sub</em></a>  * data, size_t offset, size_t bits, <a class="reference internal" href="utils.html#project0types_8h_1a97a80ca1602ebf2303258971a2c938e2"><em>bool</em></a> bigendian, <a class="reference internal" href="utils.html#project0types_8h_1a3bc2ce57f28d8946459a84ac306b9ddb"><em>int64</em></a> num)</div>
+</div>
+</p>
+<blockquote>
+<div><p></p>
+<p>Set bits of the content of the buffer from a number. <dl class="docutils">
+<dt><strong>Note</strong></dt>
+<dd>The function will raise an error if the buffer size is not supported. </dd>
+</dl>
+</p>
+</div></blockquote>
+<p><span class="target" id="project0include_2haka_2vbuffer_8h_1a99f0c9a0c616d4c288335a2f485b80fb"></span><div class="line-block">
+<div class="line">size_t <strong>vbuffer_asstring</strong>(struct  <a class="reference internal" href="#project0structvbuffer__sub"><em>vbuffer_sub</em></a>  * data, char * str, size_t len)</div>
+</div>
+</p>
+<blockquote>
+<div><p></p>
+<p>Convert the content of the buffer to a string. </p>
+</div></blockquote>
+<p><span class="target" id="project0include_2haka_2vbuffer_8h_1ad3b9ece743e07714fda545f271e28349"></span><div class="line-block">
+<div class="line">size_t <strong>vbuffer_setfixedstring</strong>(struct  <a class="reference internal" href="#project0structvbuffer__sub"><em>vbuffer_sub</em></a>  * data, const char * str, size_t len)</div>
+</div>
+</p>
+<blockquote>
+<div><p></p>
+<p>Set the content of the buffer from a string. This function will change the data inplace without modifying the buffer size. </p>
+</div></blockquote>
+<p><span class="target" id="project0include_2haka_2vbuffer_8h_1a2e070d1d85ea4ff67149180281206682"></span><div class="line-block">
+<div class="line"><a class="reference internal" href="utils.html#project0types_8h_1a97a80ca1602ebf2303258971a2c938e2"><em>bool</em></a> <strong>vbuffer_setstring</strong>(struct  <a class="reference internal" href="#project0structvbuffer__sub"><em>vbuffer_sub</em></a>  * data, const char * str, size_t len)</div>
+</div>
+</p>
+<blockquote>
+<div><p></p>
+<p>Set the content of the buffer from a string. This function will change the size of the buffer to match the one given by the arguments. </p>
+</div></blockquote>
+<p><span class="target" id="project0include_2haka_2vbuffer_8h_1a91a14ba7b2124a4e7927244d587849fd"></span><div class="line-block">
+<div class="line"><a class="reference internal" href="utils.html#project0types_8h_1adde6aaee8457bee49c2a92621fe22b79"><em>uint8</em></a> <strong>vbuffer_getbyte</strong>(struct  <a class="reference internal" href="#project0structvbuffer__sub"><em>vbuffer_sub</em></a>  * data, size_t offset)</div>
+</div>
+</p>
+<blockquote>
+<div><p></p>
+<p>Get the value of a byte at the given position in the buffer. </p>
+</div></blockquote>
+<p><span class="target" id="project0include_2haka_2vbuffer_8h_1a3d521da24ed81c4e46317e27b08bb191"></span><div class="line-block">
+<div class="line"><a class="reference internal" href="utils.html#project0types_8h_1a97a80ca1602ebf2303258971a2c938e2"><em>bool</em></a> <strong>vbuffer_setbyte</strong>(struct  <a class="reference internal" href="#project0structvbuffer__sub"><em>vbuffer_sub</em></a>  * data, size_t offset, <a class="reference internal" href="utils.html#project0types_8h_1adde6aaee8457bee49c2a92621fe22b79"><em>uint8</em></a> byte)</div>
+</div>
+</p>
+<blockquote>
+<div><p></p>
+<p>Set the value of a byte at the given position in the buffer. </p>
+</div></blockquote>
+</div></blockquote>
+<em>Variables</em><blockquote>
+<div><p><span class="target" id="project0include_2haka_2vbuffer_8h_1a88eea5764c0bf3b9ae83a9955bfb43c7"></span>struct  <a class="reference internal" href="#project0structvbuffer"><em>vbuffer</em></a> <strong>vbuffer_init</strong></p>
+<blockquote>
+<div><p></p>
+<p>Initializer for vbuffer. </p>
+</div></blockquote>
+<p><span class="target" id="project0include_2haka_2vbuffer_8h_1a9b1a64545f4d2b3fd50d76b1649334f1"></span>struct  <a class="reference internal" href="#project0structvbuffer__iterator"><em>vbuffer_iterator</em></a> <strong>vbuffer_iterator_init</strong></p>
+<blockquote>
+<div><p></p>
+<p>Initializer for <a class="reference internal" href="#project0structvbuffer__iterator"><em>vbuffer_iterator</em></a>. </p>
+</div></blockquote>
+<p><span class="target" id="project0include_2haka_2vbuffer_8h_1a843f316fc3b64df459efbdcd46651335"></span>struct  <a class="reference internal" href="#project0structvbuffer__sub"><em>vbuffer_sub</em></a> <strong>vbuffer_sub_init</strong></p>
+<blockquote>
+<div><p></p>
+<p>Initializer for <a class="reference internal" href="#project0structvbuffer__sub"><em>vbuffer_sub</em></a>. </p>
+</div></blockquote>
+<p><span class="target" id="project0include_2haka_2vbuffer_8h_1aea42176a0eefb8b71794ae3032891101"></span>struct  <a class="reference internal" href="#project0structvbuffer__sub__mmap"><em>vbuffer_sub_mmap</em></a> <strong>vbuffer_mmap_init</strong></p>
+<blockquote>
+<div><p></p>
+<p>Initializer for <a class="reference internal" href="#project0structvbuffer__sub__mmap"><em>vbuffer_sub_mmap</em></a>. </p>
+</div></blockquote>
+</div></blockquote>
+<p><p id="project0structvbuffer__data__ops"><em>class</em> <strong>vbuffer_data_ops</strong></p>
+<blockquote>
+<div><p></p>
+<p>vbuffer data function table. </p>
+<em>Public Members</em><blockquote>
+<div><p><span class="target" id="project0structvbuffer__data__ops_1a729dbad185e1ba2673a1c87645f73f11"></span>void(* <strong>free</strong>)(struct vbuffer_data *data)</p>
+<blockquote>
+<div><p></p>
+<p></p>
+</div></blockquote>
+<p><span class="target" id="project0structvbuffer__data__ops_1ae7f5a20193350797fdfde4caefd2dfc1"></span>void(* <strong>addref</strong>)(struct vbuffer_data *data)</p>
+<blockquote>
+<div><p></p>
+<p></p>
+</div></blockquote>
+<p><span class="target" id="project0structvbuffer__data__ops_1a236aa5c66bee228fc34d4745b82276e1"></span><a class="reference internal" href="utils.html#project0types_8h_1a97a80ca1602ebf2303258971a2c938e2"><em>bool</em></a> (* <strong>release</strong>)(struct vbuffer_data *data)</p>
+<blockquote>
+<div><p></p>
+<p></p>
+</div></blockquote>
+<p><span class="target" id="project0structvbuffer__data__ops_1a6abddca70fd7a451a0b19c4f26347b87"></span><a class="reference internal" href="utils.html#project0types_8h_1adde6aaee8457bee49c2a92621fe22b79"><em>uint8</em></a>  *(* <strong>get</strong>)(struct vbuffer_data *data, bool write)</p>
+<blockquote>
+<div><p></p>
+<p></p>
+</div></blockquote>
+</div></blockquote>
+</div></blockquote>
+</p>
+<p><p id="project0structvbuffer__data"><em>class</em> <strong>vbuffer_data</strong></p>
+<blockquote>
+<div><p></p>
+<p>Abstract vbuffer data structure. </p>
+<em>Public Members</em><blockquote>
+<div><p><span class="target" id="project0structvbuffer__data_1a8a215e3ce364fe0e780b41a9d2f3c349"></span>struct  <a class="reference internal" href="#project0structvbuffer__data__ops"><em>vbuffer_data_ops</em></a>  * <strong>ops</strong></p>
+<blockquote>
+<div><p></p>
+<p></p>
+</div></blockquote>
+</div></blockquote>
+</div></blockquote>
+</p>
+<p><p id="project0structvbuffer"><em>class</em> <strong>vbuffer</strong></p>
+<blockquote>
+<div><p></p>
+<p><p>Virtual buffer structure. It abstracts the memory representation using a scatter list of memory block and allows easy and efficient modifications to the memory.</p>
+<p><img alt="../../../_images/vbuffer.png" src="../../../_images/vbuffer.png" /></p>
+</p>
+<em>Public Members</em><blockquote>
+<div><p><span class="target" id="project0structvbuffer_1a586388755dd0ef03efaa7a9cd03e16ff"></span>struct lua_object <strong>lua_object</strong></p>
+<blockquote>
+<div><p></p>
+<p></p>
+</div></blockquote>
+<p><span class="target" id="project0structvbuffer_1a2197a220763f5aa0b644e7dbf1950b05"></span>struct vbuffer_chunk * <strong>chunks</strong></p>
+<blockquote>
+<div><p></p>
+<p></p>
+</div></blockquote>
+</div></blockquote>
+</div></blockquote>
+</p>
+<p><p id="project0structvbuffer__iterator"><em>class</em> <strong>vbuffer_iterator</strong></p>
+<blockquote>
+<div><p></p>
+<p><p>Iterator on a virtual buffer.</p>
+<p><img alt="../../../_images/vbuffer_iterator.png" src="../../../_images/vbuffer_iterator.png" /></p>
+</p>
+<em>Private Members</em><blockquote>
+<div><p><span class="target" id="project0structvbuffer__iterator_1aebb4f3694034cf79b3cb45f8d88b6473"></span>struct vbuffer_chunk * <strong>chunk</strong></p>
+<blockquote>
+<div><p></p>
+<p></p>
+</div></blockquote>
+<p><span class="target" id="project0structvbuffer__iterator_1ab4119b731bdc2560027807fbd503e1d6"></span><a class="reference internal" href="#project0include_2haka_2vbuffer_8h_1aa275285e738ac151389c14375bfc717b"><em>vbsize_t</em></a> <strong>offset</strong></p>
+<blockquote>
+<div><p></p>
+<p></p>
+</div></blockquote>
+<p><span class="target" id="project0structvbuffer__iterator_1a88f7a18fab17d52d572d6e0feb426ff4"></span><a class="reference internal" href="#project0include_2haka_2vbuffer_8h_1aa275285e738ac151389c14375bfc717b"><em>vbsize_t</em></a> <strong>meter</strong></p>
+<blockquote>
+<div><p></p>
+<p></p>
+</div></blockquote>
+<p><span class="target" id="project0structvbuffer__iterator_1a3ba8a3a16a3e8b5063e1c3c6022f7327"></span><a class="reference internal" href="utils.html#project0types_8h_1a97a80ca1602ebf2303258971a2c938e2"><em>bool</em></a> <strong>registered</strong></p>
+<blockquote>
+<div><p></p>
+<p></p>
+</div></blockquote>
+</div></blockquote>
+</div></blockquote>
+</p>
+<p><p id="project0structvbuffer__sub"><em>class</em> <strong>vbuffer_sub</strong></p>
+<blockquote>
+<div><p></p>
+<p><p>Sub part of a virtual buffer.</p>
+<p><img alt="../../../_images/vbuffer_sub.png" src="../../../_images/vbuffer_sub.png" /></p>
+</p>
+<em>Public Members</em><blockquote>
+<div><p><span class="target" id="project0structvbuffer__sub_1a4443b4af1083273d9058a4b7637dc1c3"></span>union vbuffer_sub::&#64;0 <strong>&#64;1</strong></p>
+<blockquote>
+<div><p></p>
+<p></p>
+</div></blockquote>
+</div></blockquote>
+<em>Private Members</em><blockquote>
+<div><p><span class="target" id="project0structvbuffer__sub_1a4b38a03a088b89a2d39238b8eb44af98"></span>struct  <a class="reference internal" href="#project0structvbuffer__iterator"><em>vbuffer_iterator</em></a> <strong>begin</strong></p>
+<blockquote>
+<div><p></p>
+<p></p>
+</div></blockquote>
+<p><span class="target" id="project0structvbuffer__sub_1a908bd45f77974d81bed08926cadae9ab"></span><a class="reference internal" href="utils.html#project0types_8h_1a97a80ca1602ebf2303258971a2c938e2"><em>bool</em></a> <strong>use_size</strong></p>
+<blockquote>
+<div><p></p>
+<p></p>
+</div></blockquote>
+<p><span class="target" id="project0structvbuffer__sub_1afdf3941517a136b756de649006cb1db1"></span>struct  <a class="reference internal" href="#project0structvbuffer__iterator"><em>vbuffer_iterator</em></a> <strong>end</strong></p>
+<blockquote>
+<div><p></p>
+<p></p>
+</div></blockquote>
+<p><span class="target" id="project0structvbuffer__sub_1a24c43700331f908166f63be5995a8dc4"></span><a class="reference internal" href="#project0include_2haka_2vbuffer_8h_1aa275285e738ac151389c14375bfc717b"><em>vbsize_t</em></a> <strong>length</strong></p>
+<blockquote>
+<div><p></p>
+<p></p>
+</div></blockquote>
+</div></blockquote>
+</div></blockquote>
+</p>
+<p><p id="project0structvbuffer__sub__mmap"><em>class</em> <strong>vbuffer_sub_mmap</strong></p>
+<blockquote>
+<div><p></p>
+<p>Opaque data used when mmapping some data. </p>
+<em>Private Members</em><blockquote>
+<div><p><span class="target" id="project0structvbuffer__sub__mmap_1acbc3972400286644eccc3e1fcd1686d1"></span>struct vbuffer_chunk * <strong>data</strong></p>
+<blockquote>
+<div><p></p>
+<p></p>
+</div></blockquote>
+<p><span class="target" id="project0structvbuffer__sub__mmap_1a4c95965f5276010b2837e9d823ca8cbc"></span><a class="reference internal" href="#project0include_2haka_2vbuffer_8h_1aa275285e738ac151389c14375bfc717b"><em>vbsize_t</em></a> <strong>len</strong></p>
+<blockquote>
+<div><p></p>
+<p></p>
+</div></blockquote>
+<p><span class="target" id="project0structvbuffer__sub__mmap_1ad990c0ee954fe84b4bed8c229ed02385"></span><a class="reference internal" href="#project0include_2haka_2vbuffer_8h_1aa275285e738ac151389c14375bfc717b"><em>vbsize_t</em></a> <strong>meter</strong></p>
+<blockquote>
+<div><p></p>
+<p></p>
+</div></blockquote>
+</div></blockquote>
+</div></blockquote>
+</p>
+</div>
+
+
+		</div>
+	</div>
+</div>
+
+
+
+<footer id="footer">
+	<div class="row" role="complementary">
+		<div class="medium-12 columns">
+			&copy; Copyright 2014, Arkoon Network Security, OpenWide and Telecom ParisTech.
+		</div>
+	</div>
+</footer>
+<script>
+	  $(document).foundation();
+</script>
+
+
+
+<script type="text/javascript" src="http://www.haka-security.org/js/track.js"></script>
+
+
+  </body>
+</html>

@@ -1,0 +1,514 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>3.5. Alert &mdash; Haka runtime 0.2.2 documentation</title>
+    
+    <link rel="stylesheet" href="../../../_static/haka.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/breathe.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../',
+        VERSION:     '0.2.2',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../../_static/js/scripts.js"></script>
+    <script type="text/javascript" src="../../../_static/js/vendor/modernizr.js"></script>
+    <script type="text/javascript" src="../../../_static/js/foundation/foundation.js"></script>
+    <script type="text/javascript" src="../../../_static/js/foundation/foundation.topbar.js"></script>
+    <link rel="top" title="Haka runtime 0.2.2 documentation" href="../../../index.html" />
+    <link rel="up" title="3. Developer reference guide" href="../devref.html" />
+    <link rel="next" title="3.6. Packet" href="packet.html" />
+    <link rel="prev" title="3.4. Log" href="log.html" /> 
+  </head>
+  <body>
+
+
+<header id="header" role="banner">
+	<div class="row">
+		<div class="medium-6 columns">
+			<h1 class="title"><a rel="home" title="Haka" href="http://www.haka-security.org">Haka</a></h1>
+			<h2 class="description">Software Defined Security</h2>
+		</div>
+		<div class="medium-6 columns">
+			<div id="version">Version 0.2.2</div>
+		</div>
+	</div>
+</header>
+
+<div class="contain-to-grid sticky">
+	
+
+<nav id="navbar" class="top-bar" data-topbar>
+	<ul class="title-area">
+		<!-- This is required for toggle-topbar to work -->
+		<li class="name"></li>
+		<li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
+	</ul>
+	<section class="top-bar-section">
+		<ul class="left">
+			<li class=" ">
+				<a href="../../user/userindex.html">Users</a>
+			</li>
+			<li class=" ">
+				<a href="../../ref/refindex.html" class="../../ref/refindex.html">References</a>
+			</li>
+			<li class=" active">
+				<a href="../devindex.html" class="">Developers</a>
+			</li>
+			<li class=" ">
+				<a href="../../faq.html" class="">Faq</a>
+			</li>
+			<li class="has-form">
+
+
+	<form class="search" action="../../../search.html" method="get" id="searchbox" style="display: none">
+		<input type="hidden" name="area" value="default" />
+		<input type="hidden" name="check_keywords" value="yes" />
+		<div class="row collapse">
+			<div class="medium-11 columns">
+				<input type="text" name="q" placeholder="Search" />
+			</div>
+			<div class="medium-1 columns" id="clean-search-highlight">
+			</div>
+		</div>
+	</form>
+	<script type="text/javascript">$('#searchbox').show(0);</script>
+</li>
+		</ul>
+		<ul class="right">
+				<li class="right"><a href="packet.html" title="3.6. Packet">Next &rarr;</a></li>
+				<li class="right"><a href="log.html" title="3.4. Log">&larr; Prev</a></li>
+				<li class="right"><a href="../devref.html" title="3. Developer reference guide">Up &uarr;</a></li>
+
+			<li class=" right"><a href="../../../genindex.html">Index</a></li>
+			<li class=" right"><a href="../../../haka-modindex.html">Modules</a></li>
+		</ul>
+	</section>
+</nav>
+</div>
+<div id="content">
+	<div class="row">
+		<ul id="breadcrumb" class="breadcrumbs medium-12 columns">
+			
+			<li><a href="../devindex.html">Welcome to Haka&#8217;s Developer Guide!</a></li>
+			
+			<li><a href="../devref.html">3. Developer reference guide</a></li>
+			
+			<li class="current"><a href="#">3.5. Alert</a></li>
+		</ul>
+	</div>
+	<div class="row">
+		<div class="medium-12 columns">
+			
+  <div class="section" id="alert">
+<h1>3.5. Alert<a class="headerlink" href="#alert" title="Permalink to this headline">¶</a></h1>
+<p></p>
+<p>Security alerts. </p>
+<em>Defines</em><blockquote>
+<div><p><span class="target" id="project0alert_8h_1a980384e274651baa9d9b3cf0095a724c"></span><strong>ALERT</strong>(name, nsrc, ntgt)</p>
+<blockquote>
+<div><p></p>
+<p><p>Utility macro to create a new alert.</p>
+<p><dl class="docutils">
+<dt><strong>Parameters</strong></dt>
+<dd><ul class="breatheparameterlist first last">
+<li><tt class="first docutils literal"><span class="pre">name</span></tt> - <p>Name of the variable that will be created. </p>
+</li>
+<li><tt class="first docutils literal"><span class="pre">nsrc</span></tt> - <p>Number of sources. </p>
+</li>
+<li><tt class="first docutils literal"><span class="pre">ntgt</span></tt> - <p>Number of targets. </p>
+</li>
+</ul>
+</dd>
+</dl>
+</p>
+</p>
+</div></blockquote>
+<p><span class="target" id="project0alert_8h_1ab2574a4ae85515d7babfc0ad91ce8d49"></span><strong>ENDALERT</strong></p>
+<blockquote>
+<div><p></p>
+<p>Finish the alert creation. </p>
+</div></blockquote>
+<p><span class="target" id="project0alert_8h_1a851ff1ab703a418b7bea6f3fb0d6053b"></span><strong>ALERT_NODE</strong>(alert, name, index, type, ...)</p>
+<blockquote>
+<div><p></p>
+<p><p>Create an alert node.</p>
+<p><dl class="docutils">
+<dt><strong>Parameters</strong></dt>
+<dd><ul class="breatheparameterlist first last">
+<li><tt class="first docutils literal"><span class="pre">alert</span></tt> - <p>Alert name. </p>
+</li>
+<li><tt class="first docutils literal"><span class="pre">name</span></tt> - <p><tt class="docutils literal"><span class="pre">sources</span></tt> or <tt class="docutils literal"><span class="pre">target</span></tt>. </p>
+</li>
+<li><tt class="first docutils literal"><span class="pre">index</span></tt> - <p>Index of the node. </p>
+</li>
+<li><tt class="first docutils literal"><span class="pre">type</span></tt> - <p>Type of node (see :c:type:<tt class="docutils literal"><span class="pre">alert_node_type</span></tt>). </p>
+</li>
+<li><tt class="first docutils literal"><span class="pre">...</span></tt> - <p>List of strings. </p>
+</li>
+</ul>
+</dd>
+</dl>
+</p>
+</p>
+</div></blockquote>
+<p><span class="target" id="project0alert_8h_1a7e6ef463f621d3a074bfa57d5389b264"></span><strong>ALERT_REF</strong>(alert, count, ...)</p>
+<blockquote>
+<div><p></p>
+<p><p>Add alert references.</p>
+<p><dl class="docutils">
+<dt><strong>Parameters</strong></dt>
+<dd><ul class="breatheparameterlist first last">
+<li><tt class="first docutils literal"><span class="pre">alert</span></tt> - <p>Alert name. </p>
+</li>
+<li><tt class="first docutils literal"><span class="pre">count</span></tt> - <p>Number of references. </p>
+</li>
+<li><tt class="first docutils literal"><span class="pre">...</span></tt> - <p>List of alert ids. </p>
+</li>
+</ul>
+</dd>
+</dl>
+</p>
+</p>
+</div></blockquote>
+<p><span class="target" id="project0alert_8h_1af88ba9f22144cdbe39acbbc5a4bde5c2"></span><strong>ALERT_METHOD_REF</strong>(alert, ...)</p>
+<blockquote>
+<div><p></p>
+<p><p>Add method references.</p>
+<p><dl class="docutils">
+<dt><strong>Parameters</strong></dt>
+<dd><ul class="breatheparameterlist first last">
+<li><tt class="first docutils literal"><span class="pre">alert</span></tt> - <p>Alert name. </p>
+</li>
+<li><tt class="first docutils literal"><span class="pre">...</span></tt> - <p>List of strings. </p>
+</li>
+</ul>
+</dd>
+</dl>
+</p>
+</p>
+</div></blockquote>
+</div></blockquote>
+<em>Enums</em><blockquote>
+<div><p><span class="target" id="project0alert_8h_1ac35a6d6a8d40b7560847c2e727731071"></span><strong>alert_level enum</strong></p>
+<blockquote>
+<div><p></p>
+<p>Alert level. </p>
+<p><em>Values:</em></p>
+<ul class="breatheenumvalues">
+<li><tt class="first docutils literal"><span class="pre">HAKA_ALERT_LEVEL_NONE</span></tt> - <p>Unset value. </p>
+</li>
+<li><tt class="first docutils literal"><span class="pre">HAKA_ALERT_LOW</span></tt> - <p>Low level. </p>
+</li>
+<li><tt class="first docutils literal"><span class="pre">HAKA_ALERT_MEDIUM</span></tt> - <p>Medium level. </p>
+</li>
+<li><tt class="first docutils literal"><span class="pre">HAKA_ALERT_HIGH</span></tt> - <p>High level. </p>
+</li>
+<li><tt class="first docutils literal"><span class="pre">HAKA_ALERT_NUMERIC</span></tt> - <p>Numeric level stored in the alert structure. </p>
+</li>
+<li><tt class="first docutils literal"><span class="pre">HAKA_ALERT_LEVEL_LAST</span></tt> - <p>Last alert level. </p>
+</li>
+</ul>
+</div></blockquote>
+<p><span class="target" id="project0alert_8h_1ad4a1517f0ec78f1036e82e1ff978610c"></span><strong>alert_completion enum</strong></p>
+<blockquote>
+<div><p></p>
+<p>Alert completion. </p>
+<p><em>Values:</em></p>
+<ul class="breatheenumvalues">
+<li><tt class="first docutils literal"><span class="pre">HAKA_ALERT_COMPLETION_NONE</span></tt> - <p>Unset value. </p>
+</li>
+<li><tt class="first docutils literal"><span class="pre">HAKA_ALERT_FAILED</span></tt> - <p>The attack failed. </p>
+</li>
+<li><tt class="first docutils literal"><span class="pre">HAKA_ALERT_SUCCESSFUL</span></tt> - <p>The attach was successful. </p>
+</li>
+<li><tt class="first docutils literal"><span class="pre">HAKA_ALERT_COMPLETION_LAST</span></tt> - <p>Last alert completion value. </p>
+</li>
+</ul>
+</div></blockquote>
+<p><span class="target" id="project0alert_8h_1aa987dc803f54470faf710d381f721db4"></span><strong>alert_node_type enum</strong></p>
+<blockquote>
+<div><p></p>
+<p>Alert node type. </p>
+<p><em>Values:</em></p>
+<ul class="breatheenumvalues">
+<li><tt class="first docutils literal"><span class="pre">HAKA_ALERT_NODE_ADDRESS</span></tt> - <p>Address node. </p>
+</li>
+<li><tt class="first docutils literal"><span class="pre">HAKA_ALERT_NODE_SERVICE</span></tt> - <p>Service node. </p>
+</li>
+<li><tt class="first docutils literal"><span class="pre">HAKA_ALERT_NODE_LAST</span></tt> - <p>Last alert node type. </p>
+</li>
+</ul>
+</div></blockquote>
+</div></blockquote>
+<em>Functions</em><blockquote>
+<div><p><span class="target" id="project0alert_8h_1a2201dedc30e7a9802a976d7cc3864c8c"></span><div class="line-block">
+<div class="line"><a class="reference internal" href="utils.html#project0types_8h_1a6861bed95d73703b3730053f3a6065bf"><em>uint64</em></a> <strong>alert</strong>(const struct  <a class="reference internal" href="#project0structalert"><em>alert</em></a>  * alert)</div>
+</div>
+</p>
+<blockquote>
+<div><p></p>
+<p><p>Raise a new alert.</p>
+<p><dl class="docutils">
+<dt><strong>Return</strong></dt>
+<dd>The alert unique id. </dd>
+</dl>
+</p>
+</p>
+</div></blockquote>
+<p><span class="target" id="project0alert_8h_1a4758b9f37518020488492b8ec5759fb7"></span><div class="line-block">
+<div class="line"><a class="reference internal" href="utils.html#project0types_8h_1a97a80ca1602ebf2303258971a2c938e2"><em>bool</em></a> <strong>alert_update</strong>(<a class="reference internal" href="utils.html#project0types_8h_1a6861bed95d73703b3730053f3a6065bf"><em>uint64</em></a> id, const struct  <a class="reference internal" href="#project0structalert"><em>alert</em></a>  * alert)</div>
+</div>
+</p>
+<blockquote>
+<div><p></p>
+<p>Update an existing alert. </p>
+</div></blockquote>
+<p><span class="target" id="project0alert_8h_1a784bc5349ad796daef40ab47c518308c"></span><div class="line-block">
+<div class="line">const char * <strong>alert_level_to_str</strong>(<a class="reference internal" href="#project0alert_8h_1ac35a6d6a8d40b7560847c2e727731071"><em>alert_level</em></a> level)</div>
+</div>
+</p>
+<blockquote>
+<div><p></p>
+<p>Convert alert level to human readable string. </p>
+</div></blockquote>
+<p><span class="target" id="project0alert_8h_1ad06816ff96aa5fdb1a9dc6c4ca388695"></span><div class="line-block">
+<div class="line">const char * <strong>alert_completion_to_str</strong>(<a class="reference internal" href="#project0alert_8h_1ad4a1517f0ec78f1036e82e1ff978610c"><em>alert_completion</em></a> completion)</div>
+</div>
+</p>
+<blockquote>
+<div><p></p>
+<p>Convert alert completion to human readable string. </p>
+</div></blockquote>
+<p><span class="target" id="project0alert_8h_1ab93ee914283813f28c68b3e3263f4ec2"></span><div class="line-block">
+<div class="line">const char * <strong>alert_node_to_str</strong>(<a class="reference internal" href="#project0alert_8h_1aa987dc803f54470faf710d381f721db4"><em>alert_node_type</em></a> type)</div>
+</div>
+</p>
+<blockquote>
+<div><p></p>
+<p>Convert alert node to human readable string. </p>
+</div></blockquote>
+<p><span class="target" id="project0alert_8h_1a4b67e5e6ce57af2036d13feb509eb77d"></span><div class="line-block">
+<div class="line">const char * <strong>alert_tostring</strong>(<a class="reference internal" href="utils.html#project0types_8h_1a6861bed95d73703b3730053f3a6065bf"><em>uint64</em></a> id, const struct  <a class="reference internal" href="time.html#project0structtime"><em>time</em></a>  * time, const struct  <a class="reference internal" href="#project0structalert"><em>alert</em></a>  * alert, const char * header, const char * indent, <a class="reference internal" href="utils.html#project0types_8h_1a97a80ca1602ebf2303258971a2c938e2"><em>bool</em></a> color)</div>
+</div>
+</p>
+<blockquote>
+<div><p></p>
+<p>Convert an alert to a string. </p>
+</div></blockquote>
+<p><span class="target" id="project0alert_8h_1a5a0f575133f2934e3686cdd84d12fcf7"></span><div class="line-block">
+<div class="line">void <strong>enable_stdout_alert</strong>(<a class="reference internal" href="utils.html#project0types_8h_1a97a80ca1602ebf2303258971a2c938e2"><em>bool</em></a> enable)</div>
+</div>
+</p>
+<blockquote>
+<div><p></p>
+<p>Enable display of alerts on stdout. </p>
+</div></blockquote>
+<p><span class="target" id="project0alert_8h_1a239405a72377d34f1c56519ca5540c5d"></span><div class="line-block">
+<div class="line"><a class="reference internal" href="utils.html#project0types_8h_1a97a80ca1602ebf2303258971a2c938e2"><em>bool</em></a> <strong>add_alerter</strong>(struct  <a class="reference internal" href="#project0structalerter"><em>alerter</em></a>  * alerter)</div>
+</div>
+</p>
+<blockquote>
+<div><p></p>
+<p>Add an alert listener. </p>
+</div></blockquote>
+<p><span class="target" id="project0alert_8h_1a5cf16bc3562cfa153d863ddc5c3f3575"></span><div class="line-block">
+<div class="line"><a class="reference internal" href="utils.html#project0types_8h_1a97a80ca1602ebf2303258971a2c938e2"><em>bool</em></a> <strong>remove_alerter</strong>(struct  <a class="reference internal" href="#project0structalerter"><em>alerter</em></a>  * alerter)</div>
+</div>
+</p>
+<blockquote>
+<div><p></p>
+<p>Remove an alert listener. </p>
+</div></blockquote>
+<p><span class="target" id="project0alert_8h_1a756e3564912fe94f6fc905e7b6981e9a"></span><div class="line-block">
+<div class="line">void <strong>remove_all_alerter</strong>()</div>
+</div>
+</p>
+<blockquote>
+<div><p></p>
+<p>Remove all alert listener. </p>
+</div></blockquote>
+</div></blockquote>
+<p><p id="project0structalert__node"><em>class</em> <strong>alert_node</strong></p>
+<blockquote>
+<div><p></p>
+<p>Alert node. </p>
+<em>Public Members</em><blockquote>
+<div><p><span class="target" id="project0structalert__node_1a5f84d761cd84de44aee3d6168e287fc2"></span><a class="reference internal" href="#project0alert_8h_1aa987dc803f54470faf710d381f721db4"><em>alert_node_type</em></a> <strong>type</strong></p>
+<blockquote>
+<div><p></p>
+<p>Alert node type. </p>
+</div></blockquote>
+<p><span class="target" id="project0structalert__node_1a22445cf489549e5293185d86eed9585b"></span>char ** <strong>list</strong></p>
+<blockquote>
+<div><p></p>
+<p>NULL terminated array of strings. </p>
+</div></blockquote>
+</div></blockquote>
+</div></blockquote>
+</p>
+<p><p id="project0structalert"><em>class</em> <strong>alert</strong></p>
+<blockquote>
+<div><p></p>
+<p>Alert. </p>
+<em>Public Members</em><blockquote>
+<div><p><span class="target" id="project0structalert_1acbecb0c540fe76619fa491aa292e7616"></span>struct  <a class="reference internal" href="time.html#project0structtime"><em>time</em></a> <strong>start_time</strong></p>
+<blockquote>
+<div><p></p>
+<p>Alert time. </p>
+</div></blockquote>
+<p><span class="target" id="project0structalert_1a41d7f92bea7617c69c024f28b833a4e5"></span>struct  <a class="reference internal" href="time.html#project0structtime"><em>time</em></a> <strong>end_time</strong></p>
+<blockquote>
+<div><p></p>
+<p>Alert time. </p>
+</div></blockquote>
+<p><span class="target" id="project0structalert_1a49b58a0c29c0a05bdd8f6825046fb549"></span>char * <strong>description</strong></p>
+<blockquote>
+<div><p></p>
+<p>Alert description. </p>
+</div></blockquote>
+<p><span class="target" id="project0structalert_1afddc196caaf25dc8e84b7e0ba8098663"></span><a class="reference internal" href="#project0alert_8h_1ac35a6d6a8d40b7560847c2e727731071"><em>alert_level</em></a> <strong>severity</strong></p>
+<blockquote>
+<div><p></p>
+<p>Alert severity (HAKA_ALERT_NUMERIC is not a valid value here). </p>
+</div></blockquote>
+<p><span class="target" id="project0structalert_1aeade4ff01d90a5720a9bc411fd701f3f"></span><a class="reference internal" href="#project0alert_8h_1ac35a6d6a8d40b7560847c2e727731071"><em>alert_level</em></a> <strong>confidence</strong></p>
+<blockquote>
+<div><p></p>
+<p>Alert confidence. </p>
+</div></blockquote>
+<p><span class="target" id="project0structalert_1a04c88dfe563e33923cbe4730249a338e"></span>double <strong>confidence_num</strong></p>
+<blockquote>
+<div><p></p>
+<p>Alert confidence numeric value if confidence == HAKA_ALERT_NUMERIC. </p>
+</div></blockquote>
+<p><span class="target" id="project0structalert_1a00e0d6fa4b95df610f7215fee0d21777"></span><a class="reference internal" href="#project0alert_8h_1ad4a1517f0ec78f1036e82e1ff978610c"><em>alert_completion</em></a> <strong>completion</strong></p>
+<blockquote>
+<div><p></p>
+<p>Alert completion. </p>
+</div></blockquote>
+<p><span class="target" id="project0structalert_1ae658d76b930610227e1f929d0cd3b714"></span>char * <strong>method_description</strong></p>
+<blockquote>
+<div><p></p>
+<p>Alert method description. </p>
+</div></blockquote>
+<p><span class="target" id="project0structalert_1aebd200ad3a1617b85ec5c6aa8a0ae970"></span>char ** <strong>method_ref</strong></p>
+<blockquote>
+<div><p></p>
+<p>Alert method references (NULL terminated array). </p>
+</div></blockquote>
+<p><span class="target" id="project0structalert_1aee92b851559ffdb2b0303a0456ba426c"></span>struct  <a class="reference internal" href="#project0structalert__node"><em>alert_node</em></a>  ** <strong>sources</strong></p>
+<blockquote>
+<div><p></p>
+<p>Alert sources (NULL terminated array of nodes). </p>
+</div></blockquote>
+<p><span class="target" id="project0structalert_1a09c376c9f226ee9a4f12d84074e19894"></span>struct  <a class="reference internal" href="#project0structalert__node"><em>alert_node</em></a>  ** <strong>targets</strong></p>
+<blockquote>
+<div><p></p>
+<p>Alert targets (NULL terminated array of nodes). </p>
+</div></blockquote>
+<p><span class="target" id="project0structalert_1a0adaa48b4b8d0ff6090d45fa4abb07a1"></span>size_t <strong>alert_ref_count</strong></p>
+<blockquote>
+<div><p></p>
+<p>Reference count. </p>
+</div></blockquote>
+<p><span class="target" id="project0structalert_1a1cf3a9b828231e7cb69158630a0626f2"></span><a class="reference internal" href="utils.html#project0types_8h_1a6861bed95d73703b3730053f3a6065bf"><em>uint64</em></a>  * <strong>alert_ref</strong></p>
+<blockquote>
+<div><p></p>
+<p>Array of references. </p>
+</div></blockquote>
+</div></blockquote>
+</div></blockquote>
+</p>
+<p><p id="project0structalerter"><em>class</em> <strong>alerter</strong></p>
+<blockquote>
+<div><p></p>
+<p>Alert listener object. </p>
+<em>Public Members</em><blockquote>
+<div><p><span class="target" id="project0structalerter_1a568db4c5cab41e017720d14f4c71ee7d"></span>struct list <strong>list</strong></p>
+<blockquote>
+<div><p></p>
+<p></p>
+</div></blockquote>
+<p><span class="target" id="project0structalerter_1a620ba7f528407ead3ff444068e3e8f7d"></span>void(* <strong>destroy</strong>)(struct alerter *state)</p>
+<blockquote>
+<div><p></p>
+<p></p>
+</div></blockquote>
+<p><span class="target" id="project0structalerter_1a31419aaec00eefc90acc6885856fe6f2"></span><a class="reference internal" href="utils.html#project0types_8h_1a97a80ca1602ebf2303258971a2c938e2"><em>bool</em></a> (* <strong>alert</strong>)(struct alerter *state, uint64 id, const struct time *time, const struct alert *alert)</p>
+<blockquote>
+<div><p></p>
+<p></p>
+</div></blockquote>
+<p><span class="target" id="project0structalerter_1ae25a7fc9beedfb1eb18d800c2d49635d"></span><a class="reference internal" href="utils.html#project0types_8h_1a97a80ca1602ebf2303258971a2c938e2"><em>bool</em></a> (* <strong>update</strong>)(struct alerter *state, uint64 id, const struct time *time, const struct alert *alert)</p>
+<blockquote>
+<div><p></p>
+<p></p>
+</div></blockquote>
+</div></blockquote>
+<em>Private Members</em><blockquote>
+<div><p><span class="target" id="project0structalerter_1a0e5714ddc1b8674d0636d90e53a693ef"></span><a class="reference internal" href="utils.html#project0types_8h_1a97a80ca1602ebf2303258971a2c938e2"><em>bool</em></a> <strong>mark_for_remove</strong></p>
+<blockquote>
+<div><p></p>
+<p></p>
+</div></blockquote>
+</div></blockquote>
+</div></blockquote>
+</p>
+<div class="section" id="example">
+<h2>3.5.1. Example<a class="headerlink" href="#example" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-c"><div class="highlight"><pre><span class="n">ALERT</span><span class="p">(</span><span class="n">invalid_packet</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="nl">description:</span> <span class="s">L&quot;invalid tcp packet, size is too small&quot;</span><span class="p">,</span>
+    <span class="nl">severity:</span> <span class="n">HAKA_ALERT_LOW</span><span class="p">,</span>
+<span class="n">ENDALERT</span>
+
+<span class="n">ALERT_NODE</span><span class="p">(</span><span class="n">invalid_packet</span><span class="p">,</span> <span class="n">sources</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">HAKA_ALERT_NODE_ADDRESS</span><span class="p">,</span> <span class="s">&quot;127.0.0.1&quot;</span><span class="p">);</span>
+<span class="n">ALERT_NODE</span><span class="p">(</span><span class="n">invalid_packet</span><span class="p">,</span> <span class="n">targets</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">HAKA_ALERT_NODE_ADDRESS</span><span class="p">,</span> <span class="s">&quot;127.0.0.1&quot;</span><span class="p">);</span>
+
+<span class="n">alert</span><span class="p">(</span><span class="n">invalid_packet</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+		</div>
+	</div>
+</div>
+
+
+
+<footer id="footer">
+	<div class="row" role="complementary">
+		<div class="medium-12 columns">
+			&copy; Copyright 2014, Arkoon Network Security, OpenWide and Telecom ParisTech.
+		</div>
+	</div>
+</footer>
+<script>
+	  $(document).foundation();
+</script>
+
+
+
+<script type="text/javascript" src="http://www.haka-security.org/js/track.js"></script>
+
+
+  </body>
+</html>

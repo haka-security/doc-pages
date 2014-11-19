@@ -1,0 +1,286 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>3.12.2. Buffer stream &mdash; Haka runtime 0.2.2 documentation</title>
+    
+    <link rel="stylesheet" href="../../../_static/haka.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/breathe.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../',
+        VERSION:     '0.2.2',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../../_static/js/scripts.js"></script>
+    <script type="text/javascript" src="../../../_static/js/vendor/modernizr.js"></script>
+    <script type="text/javascript" src="../../../_static/js/foundation/foundation.js"></script>
+    <script type="text/javascript" src="../../../_static/js/foundation/foundation.topbar.js"></script>
+    <link rel="top" title="Haka runtime 0.2.2 documentation" href="../../../index.html" />
+    <link rel="up" title="3.12. Buffer" href="buffer.html" />
+    <link rel="next" title="3.13. IPv4" href="protocol.html" />
+    <link rel="prev" title="3.12.1. Buffer" href="buffer_vbuffer.html" /> 
+  </head>
+  <body>
+
+
+<header id="header" role="banner">
+	<div class="row">
+		<div class="medium-6 columns">
+			<h1 class="title"><a rel="home" title="Haka" href="http://www.haka-security.org">Haka</a></h1>
+			<h2 class="description">Software Defined Security</h2>
+		</div>
+		<div class="medium-6 columns">
+			<div id="version">Version 0.2.2</div>
+		</div>
+	</div>
+</header>
+
+<div class="contain-to-grid sticky">
+	
+
+<nav id="navbar" class="top-bar" data-topbar>
+	<ul class="title-area">
+		<!-- This is required for toggle-topbar to work -->
+		<li class="name"></li>
+		<li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
+	</ul>
+	<section class="top-bar-section">
+		<ul class="left">
+			<li class=" ">
+				<a href="../../user/userindex.html">Users</a>
+			</li>
+			<li class=" ">
+				<a href="../../ref/refindex.html" class="../../ref/refindex.html">References</a>
+			</li>
+			<li class=" active">
+				<a href="../devindex.html" class="">Developers</a>
+			</li>
+			<li class=" ">
+				<a href="../../faq.html" class="">Faq</a>
+			</li>
+			<li class="has-form">
+
+
+	<form class="search" action="../../../search.html" method="get" id="searchbox" style="display: none">
+		<input type="hidden" name="area" value="default" />
+		<input type="hidden" name="check_keywords" value="yes" />
+		<div class="row collapse">
+			<div class="medium-11 columns">
+				<input type="text" name="q" placeholder="Search" />
+			</div>
+			<div class="medium-1 columns" id="clean-search-highlight">
+			</div>
+		</div>
+	</form>
+	<script type="text/javascript">$('#searchbox').show(0);</script>
+</li>
+		</ul>
+		<ul class="right">
+				<li class="right"><a href="protocol.html" title="3.13. IPv4">Next &rarr;</a></li>
+				<li class="right"><a href="buffer_vbuffer.html" title="3.12.1. Buffer">&larr; Prev</a></li>
+				<li class="right"><a href="buffer.html" title="3.12. Buffer">Up &uarr;</a></li>
+
+			<li class=" right"><a href="../../../genindex.html">Index</a></li>
+			<li class=" right"><a href="../../../haka-modindex.html">Modules</a></li>
+		</ul>
+	</section>
+</nav>
+</div>
+<div id="content">
+	<div class="row">
+		<ul id="breadcrumb" class="breadcrumbs medium-12 columns">
+			
+			<li><a href="../devindex.html">Welcome to Haka&#8217;s Developer Guide!</a></li>
+			
+			<li><a href="../devref.html">3. Developer reference guide</a></li>
+			
+			<li><a href="buffer.html">3.12. Buffer</a></li>
+			
+			<li class="current"><a href="#">3.12.2. Buffer stream</a></li>
+		</ul>
+	</div>
+	<div class="row">
+		<div class="medium-12 columns">
+			
+  <div class="section" id="buffer-stream">
+<h1>3.12.2. Buffer stream<a class="headerlink" href="#buffer-stream" title="Permalink to this headline">¶</a></h1>
+<p></p>
+<p>Stream based on vbuffer. </p>
+<em>Functions</em><blockquote>
+<div><p><span class="target" id="project0vbuffer__stream_8h_1aeba415d2624bf4d40ccf6a5b13812d04"></span><div class="line-block">
+<div class="line"><a class="reference internal" href="utils.html#project0types_8h_1a97a80ca1602ebf2303258971a2c938e2"><em>bool</em></a> <strong>vbuffer_stream_init</strong>(struct  <a class="reference internal" href="#project0structvbuffer__stream"><em>vbuffer_stream</em></a>  * stream, void(*)(void *) userdata_cleanup)</div>
+</div>
+</p>
+<blockquote>
+<div><p></p>
+<p>Initialize a new stream. </p>
+</div></blockquote>
+<p><span class="target" id="project0vbuffer__stream_8h_1a45f350d9ef7dff5941ad495d0a5e2aa5"></span><div class="line-block">
+<div class="line">void <strong>vbuffer_stream_clear</strong>(struct  <a class="reference internal" href="#project0structvbuffer__stream"><em>vbuffer_stream</em></a>  * stream)</div>
+</div>
+</p>
+<blockquote>
+<div><p></p>
+<p>Clear a stream. </p>
+</div></blockquote>
+<p><span class="target" id="project0vbuffer__stream_8h_1a6f3fa1137e830cadde6bf220527801d5"></span><div class="line-block">
+<div class="line"><a class="reference internal" href="utils.html#project0types_8h_1a97a80ca1602ebf2303258971a2c938e2"><em>bool</em></a> <strong>vbuffer_stream_push</strong>(struct  <a class="reference internal" href="#project0structvbuffer__stream"><em>vbuffer_stream</em></a>  * stream, struct  <a class="reference internal" href="buffer_vbuffer.html#project0structvbuffer"><em>vbuffer</em></a>  * buffer, void * userdata, struct  <a class="reference internal" href="buffer_vbuffer.html#project0structvbuffer__iterator"><em>vbuffer_iterator</em></a>  * current)</div>
+</div>
+</p>
+<blockquote>
+<div><p></p>
+<p>Push some data in the stream. Fill the iterator <tt class="docutils literal"><span class="pre">current</span></tt> with the position right before the data just added. </p>
+</div></blockquote>
+<p><span class="target" id="project0vbuffer__stream_8h_1ab8755e96695788bb78a75ceed646205a"></span><div class="line-block">
+<div class="line">void <strong>vbuffer_stream_finish</strong>(struct  <a class="reference internal" href="#project0structvbuffer__stream"><em>vbuffer_stream</em></a>  * stream)</div>
+</div>
+</p>
+<blockquote>
+<div><p></p>
+<p>Finish the stream and mark the end as the eof. It is not possible to push any more data after calling this function. </p>
+</div></blockquote>
+<p><span class="target" id="project0vbuffer__stream_8h_1af466e0d1aeee06cc12db42db273a28ab"></span><div class="line-block">
+<div class="line"><a class="reference internal" href="utils.html#project0types_8h_1a97a80ca1602ebf2303258971a2c938e2"><em>bool</em></a> <strong>vbuffer_stream_isfinished</strong>(struct  <a class="reference internal" href="#project0structvbuffer__stream"><em>vbuffer_stream</em></a>  * stream)</div>
+</div>
+</p>
+<blockquote>
+<div><p></p>
+<p>Check if the stream has been finished. </p>
+</div></blockquote>
+<p><span class="target" id="project0vbuffer__stream_8h_1a11a24a4230a1cf5a89db84a334dccabf"></span><div class="line-block">
+<div class="line"><a class="reference internal" href="utils.html#project0types_8h_1a97a80ca1602ebf2303258971a2c938e2"><em>bool</em></a> <strong>vbuffer_stream_pop</strong>(struct  <a class="reference internal" href="#project0structvbuffer__stream"><em>vbuffer_stream</em></a>  * stream, struct  <a class="reference internal" href="buffer_vbuffer.html#project0structvbuffer"><em>vbuffer</em></a>  * buffer, void ** userdata)</div>
+</div>
+</p>
+<blockquote>
+<div><p></p>
+<p>Get some data out of the stream. The data are only extracted if no mark have been inserted in the buffer. Otherwise, the mark will need to be removed before calling this function again. </p>
+</div></blockquote>
+<p><span class="target" id="project0vbuffer__stream_8h_1ae191199248e4fa5ae32d12980a1479cf"></span><div class="line-block">
+<div class="line">struct  <a class="reference internal" href="buffer_vbuffer.html#project0structvbuffer"><em>vbuffer</em></a>  * <strong>vbuffer_stream_data</strong>(struct  <a class="reference internal" href="#project0structvbuffer__stream"><em>vbuffer_stream</em></a>  * stream)</div>
+</div>
+</p>
+<blockquote>
+<div><p></p>
+<p>Get the buffer inside the stream. </p>
+</div></blockquote>
+</div></blockquote>
+<p><p id="project0structvbuffer__stream"><em>class</em> <strong>vbuffer_stream</strong></p>
+<blockquote>
+<div><p></p>
+<p>Stream based on vbuffer. This object will create a view of the data as a continuous buffer thanks to vbuffer. </p>
+<em>Private Members</em><blockquote>
+<div><p><span class="target" id="project0structvbuffer__stream_1a55d2c30369df39dab9e56c15c272464b"></span>struct lua_object <strong>lua_object</strong></p>
+<blockquote>
+<div><p></p>
+<p></p>
+</div></blockquote>
+<p><span class="target" id="project0structvbuffer__stream_1aa2fa4f4a5a6c81b28fa65238604d1900"></span>struct  <a class="reference internal" href="buffer_vbuffer.html#project0structvbuffer"><em>vbuffer</em></a> <strong>data</strong></p>
+<blockquote>
+<div><p></p>
+<p></p>
+</div></blockquote>
+<p><span class="target" id="project0structvbuffer__stream_1a0a2dcbc6ea81ed8240da81c3d1104438"></span>struct list2 <strong>chunks</strong></p>
+<blockquote>
+<div><p></p>
+<p></p>
+</div></blockquote>
+<p><span class="target" id="project0structvbuffer__stream_1ad117d34174c6a49ec5eef3579d2bce74"></span>struct list2 <strong>read_chunks</strong></p>
+<blockquote>
+<div><p></p>
+<p></p>
+</div></blockquote>
+<p><span class="target" id="project0structvbuffer__stream_1a49b12175bc6f5c590f94838fc7f9fbac"></span>void(* <strong>userdata_cleanup</strong>)(void *)</p>
+<blockquote>
+<div><p></p>
+<p></p>
+</div></blockquote>
+</div></blockquote>
+</div></blockquote>
+</p>
+</div>
+<div class="section" id="sub-buffer-stream">
+<h1>3.12.3. Sub buffer stream<a class="headerlink" href="#sub-buffer-stream" title="Permalink to this headline">¶</a></h1>
+<p></p>
+<p>Sub buffer stream. </p>
+<em>Functions</em><blockquote>
+<div><p><span class="target" id="project0vbuffer__sub__stream_8h_1a03c8bd13d3aabf998a9da5af31a5970d"></span><div class="line-block">
+<div class="line"><a class="reference internal" href="utils.html#project0types_8h_1a97a80ca1602ebf2303258971a2c938e2"><em>bool</em></a> <strong>vbuffer_sub_stream_init</strong>(struct  <a class="reference internal" href="#project0structvbuffer__sub__stream"><em>vbuffer_sub_stream</em></a>  * stream)</div>
+</div>
+</p>
+<blockquote>
+<div><p></p>
+<p>Initialize a sub buffer stream. </p>
+</div></blockquote>
+<p><span class="target" id="project0vbuffer__sub__stream_8h_1a028c66d524d249d6daa3b7b68d02487e"></span><div class="line-block">
+<div class="line"><a class="reference internal" href="utils.html#project0types_8h_1a97a80ca1602ebf2303258971a2c938e2"><em>bool</em></a> <strong>vbuffer_sub_stream_push</strong>(struct  <a class="reference internal" href="#project0structvbuffer__sub__stream"><em>vbuffer_sub_stream</em></a>  * stream, struct  <a class="reference internal" href="buffer_vbuffer.html#project0structvbuffer__sub"><em>vbuffer_sub</em></a>  * buffer, struct  <a class="reference internal" href="buffer_vbuffer.html#project0structvbuffer__iterator"><em>vbuffer_iterator</em></a>  * current)</div>
+</div>
+</p>
+<blockquote>
+<div><p></p>
+<p>Push some data into the stream. The data are selected using <a class="reference internal" href="buffer_vbuffer.html#project0include_2haka_2vbuffer_8h_1a9eb13a11b583a13eba5e06cf616b110b"><em>vbuffer_select()</em></a>. </p>
+</div></blockquote>
+<p><span class="target" id="project0vbuffer__sub__stream_8h_1a85562299ae55a65ecc7ba1edc67bc2bb"></span><div class="line-block">
+<div class="line"><a class="reference internal" href="utils.html#project0types_8h_1a97a80ca1602ebf2303258971a2c938e2"><em>bool</em></a> <strong>vbuffer_sub_stream_pop</strong>(struct  <a class="reference internal" href="#project0structvbuffer__sub__stream"><em>vbuffer_sub_stream</em></a>  * stream, struct  <a class="reference internal" href="buffer_vbuffer.html#project0structvbuffer__sub"><em>vbuffer_sub</em></a>  * sub)</div>
+</div>
+</p>
+<blockquote>
+<div><p></p>
+<p>Pop available data from the stream and automatically do a <a class="reference internal" href="buffer_vbuffer.html#project0include_2haka_2vbuffer_8h_1a79a8fd997780523a8917718f1265e93c"><em>vbuffer_restore()</em></a>. </p>
+</div></blockquote>
+</div></blockquote>
+<p><p id="project0structvbuffer__sub__stream"><em>class</em> <strong>vbuffer_sub_stream</strong></p>
+<blockquote>
+<div><p></p>
+<p>Stream of sub buffer. </p>
+<em>Private Members</em><blockquote>
+<div><p><span class="target" id="project0structvbuffer__sub__stream_1acd0f466a22f5f0cd97565fc3e1337dfd"></span>struct  <a class="reference internal" href="#project0structvbuffer__stream"><em>vbuffer_stream</em></a> <strong>stream</strong></p>
+<blockquote>
+<div><p></p>
+<p></p>
+</div></blockquote>
+</div></blockquote>
+</div></blockquote>
+</p>
+</div>
+
+
+		</div>
+	</div>
+</div>
+
+
+
+<footer id="footer">
+	<div class="row" role="complementary">
+		<div class="medium-12 columns">
+			&copy; Copyright 2014, Arkoon Network Security, OpenWide and Telecom ParisTech.
+		</div>
+	</div>
+</footer>
+<script>
+	  $(document).foundation();
+</script>
+
+
+
+<script type="text/javascript" src="http://www.haka-security.org/js/track.js"></script>
+
+
+  </body>
+</html>
