@@ -1,0 +1,184 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>6.5. Rule set example &mdash; Haka runtime 0.3.0 documentation</title>
+    
+    <link rel="stylesheet" href="../../../_static/haka.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/breathe.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../',
+        VERSION:     '0.3.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../../_static/js/scripts.js"></script>
+    <script type="text/javascript" src="../../../_static/js/vendor/modernizr.js"></script>
+    <script type="text/javascript" src="../../../_static/js/foundation/foundation.js"></script>
+    <script type="text/javascript" src="../../../_static/js/foundation/foundation.topbar.js"></script>
+    <link rel="top" title="Haka runtime 0.3.0 documentation" href="../../../index.html" />
+    <link rel="up" title="6. Tutorials" href="../tutorial.html" />
+    <link rel="next" title="6.6. SMTP Protocol dissection" href="smtp_dissector.html" />
+    <link rel="prev" title="6.4. SQLi attack detection" href="sqli.html" /> 
+  </head>
+  <body>
+
+
+<header id="header" role="banner">
+	<div class="row">
+		<div class="medium-6 columns">
+			<h1 class="title"><a rel="home" title="Haka" href="http://www.haka-security.org">Haka</a></h1>
+			<h2 class="description">Software Defined Security</h2>
+		</div>
+		<div class="medium-6 columns">
+			<div id="version">Version 0.3.0</div>
+		</div>
+	</div>
+</header>
+
+<div class="contain-to-grid sticky">
+	
+
+<nav id="navbar" class="top-bar" data-topbar>
+	<ul class="title-area">
+		<!-- This is required for toggle-topbar to work -->
+		<li class="name"></li>
+		<li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
+	</ul>
+	<section class="top-bar-section">
+		<ul class="left">
+			<li class=" active">
+				<a href="../userindex.html">Users</a>
+			</li>
+			<li class=" ">
+				<a href="../../ref/refindex.html" class="../../ref/refindex.html">References</a>
+			</li>
+			<li class=" ">
+				<a href="../../developer/devindex.html" class="">Developers</a>
+			</li>
+			<li class=" ">
+				<a href="../../faq.html" class="">Faq</a>
+			</li>
+			<li class="has-form">
+
+
+	<form class="search" action="../../../search.html" method="get" id="searchbox" style="display: none">
+		<input type="hidden" name="area" value="default" />
+		<input type="hidden" name="check_keywords" value="yes" />
+		<div class="row collapse">
+			<div class="medium-11 columns">
+				<input type="text" name="q" placeholder="Search" />
+			</div>
+			<div class="medium-1 columns" id="clean-search-highlight">
+			</div>
+		</div>
+	</form>
+	<script type="text/javascript">$('#searchbox').show(0);</script>
+</li>
+		</ul>
+		<ul class="right">
+				<li class="right"><a href="smtp_dissector.html" title="6.6. SMTP Protocol dissection">Next &rarr;</a></li>
+				<li class="right"><a href="sqli.html" title="6.4. SQLi attack detection">&larr; Prev</a></li>
+				<li class="right"><a href="../tutorial.html" title="6. Tutorials">Up &uarr;</a></li>
+
+			<li class=" right"><a href="../../../genindex.html">Index</a></li>
+			<li class=" right"><a href="../../../haka-modindex.html">Modules</a></li>
+		</ul>
+	</section>
+</nav>
+</div>
+<div id="content">
+	<div class="row">
+		<ul id="breadcrumb" class="breadcrumbs medium-12 columns">
+			
+			<li><a href="../userindex.html">Welcome to Haka&#8217;s User Guide!</a></li>
+			
+			<li><a href="../tutorial.html">6. Tutorials</a></li>
+			
+			<li class="current"><a href="#">6.5. Rule set example</a></li>
+		</ul>
+	</div>
+	<div class="row">
+		<div class="medium-12 columns">
+			
+  <div class="section" id="rule-set-example">
+<h1>6.5. Rule set example<a class="headerlink" href="#rule-set-example" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="introduction">
+<h2>6.5.1. Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
+<p>This tutorial introduces a set of Haka script files located at <tt class="docutils literal"><span class="pre">&lt;haka_install_path&gt;/share/haka/sample/ruleset</span></tt> and which could be ran using the <tt class="docutils literal"><span class="pre">hakapcap</span></tt> tool and a capture.pcap file:</p>
+<div class="highlight-console"><div class="highlight"><pre><span class="gp">$</span> <span class="nb">cd</span> &lt;haka_install_path&gt;/share/haka/sample/ruleset
+<span class="gp">$</span> hakapcap config.lua capture.pcap
+</pre></div>
+</div>
+<p>This rule set can also be used for live analysis of traffic with <tt class="docutils literal"><span class="pre">haka</span></tt> tool,
+but it&#8217;s preferable to adjust some rules or config first.</p>
+</div>
+<div class="section" id="config-lua-main-file">
+<h2>6.5.2. config.lua main file<a class="headerlink" href="#config-lua-main-file" title="Permalink to this headline">¶</a></h2>
+<p>This script is just a placeholder to include all other relevants files.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">require</span><span class="p">(</span><span class="s">&quot;functions&quot;</span><span class="p">)</span>
+
+<span class="n">require</span><span class="p">(</span><span class="s">&quot;ipv4/dissector&quot;</span><span class="p">)</span>
+<span class="n">require</span><span class="p">(</span><span class="s">&quot;ipv4/security&quot;</span><span class="p">)</span>
+<span class="n">require</span><span class="p">(</span><span class="s">&quot;ipv4/compliance&quot;</span><span class="p">)</span>
+
+<span class="n">require</span><span class="p">(</span><span class="s">&quot;tcp/dissector&quot;</span><span class="p">)</span>
+<span class="n">require</span><span class="p">(</span><span class="s">&quot;tcp/security&quot;</span><span class="p">)</span>
+<span class="n">require</span><span class="p">(</span><span class="s">&quot;tcp/rules&quot;</span><span class="p">)</span>
+
+<span class="n">require</span><span class="p">(</span><span class="s">&quot;http/dissector&quot;</span><span class="p">)</span>
+<span class="n">require</span><span class="p">(</span><span class="s">&quot;http/security&quot;</span><span class="p">)</span>
+<span class="n">require</span><span class="p">(</span><span class="s">&quot;http/compliance&quot;</span><span class="p">)</span>
+<span class="n">require</span><span class="p">(</span><span class="s">&quot;http/policy&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The <cite>functions.lua</cite> file is a placeholder to put all Lua utils functions.</p>
+</div>
+<div class="section" id="protocol-directories">
+<h2>6.5.3. Protocol directories<a class="headerlink" href="#protocol-directories" title="Permalink to this headline">¶</a></h2>
+<p>A directory has been created for ipv4, tcp, dns and http protocols.
+Each directory contains one or more Haka policy files. Each one contains a mandatory <cite>dissector.lua</cite> file which loads the required dissectors. There is some other files to enforce protocols controls and security/rules files.
+Every file will be used as long as it&#8217;s called from the main Haka file. You can read those file as an example of how to make a ruleset made of security, filtering and compliance rules.</p>
+</div>
+</div>
+
+
+		</div>
+	</div>
+</div>
+
+
+
+<footer id="footer">
+	<div class="row" role="complementary">
+		<div class="medium-12 columns">
+			&copy; Copyright 2014, Arkoon Network Security, OpenWide and Telecom ParisTech.
+		</div>
+	</div>
+</footer>
+<script>
+	  $(document).foundation();
+</script>
+
+
+
+<script type="text/javascript" src="http://www.haka-security.org/js/track.js"></script>
+
+
+  </body>
+</html>

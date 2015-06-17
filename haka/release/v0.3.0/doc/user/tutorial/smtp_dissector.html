@@ -1,0 +1,283 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>6.6. SMTP Protocol dissection &mdash; Haka runtime 0.3.0 documentation</title>
+    
+    <link rel="stylesheet" href="../../../_static/haka.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/breathe.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../',
+        VERSION:     '0.3.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../../_static/js/scripts.js"></script>
+    <script type="text/javascript" src="../../../_static/js/vendor/modernizr.js"></script>
+    <script type="text/javascript" src="../../../_static/js/foundation/foundation.js"></script>
+    <script type="text/javascript" src="../../../_static/js/foundation/foundation.topbar.js"></script>
+    <link rel="top" title="Haka runtime 0.3.0 documentation" href="../../../index.html" />
+    <link rel="up" title="6. Tutorials" href="../tutorial.html" />
+    <link rel="next" title="Loading required modules" href="dissector/dissector.html" />
+    <link rel="prev" title="6.5. Rule set example" href="ruleset.html" /> 
+  </head>
+  <body>
+
+
+<header id="header" role="banner">
+	<div class="row">
+		<div class="medium-6 columns">
+			<h1 class="title"><a rel="home" title="Haka" href="http://www.haka-security.org">Haka</a></h1>
+			<h2 class="description">Software Defined Security</h2>
+		</div>
+		<div class="medium-6 columns">
+			<div id="version">Version 0.3.0</div>
+		</div>
+	</div>
+</header>
+
+<div class="contain-to-grid sticky">
+	
+
+<nav id="navbar" class="top-bar" data-topbar>
+	<ul class="title-area">
+		<!-- This is required for toggle-topbar to work -->
+		<li class="name"></li>
+		<li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
+	</ul>
+	<section class="top-bar-section">
+		<ul class="left">
+			<li class=" active">
+				<a href="../userindex.html">Users</a>
+			</li>
+			<li class=" ">
+				<a href="../../ref/refindex.html" class="../../ref/refindex.html">References</a>
+			</li>
+			<li class=" ">
+				<a href="../../developer/devindex.html" class="">Developers</a>
+			</li>
+			<li class=" ">
+				<a href="../../faq.html" class="">Faq</a>
+			</li>
+			<li class="has-form">
+
+
+	<form class="search" action="../../../search.html" method="get" id="searchbox" style="display: none">
+		<input type="hidden" name="area" value="default" />
+		<input type="hidden" name="check_keywords" value="yes" />
+		<div class="row collapse">
+			<div class="medium-11 columns">
+				<input type="text" name="q" placeholder="Search" />
+			</div>
+			<div class="medium-1 columns" id="clean-search-highlight">
+			</div>
+		</div>
+	</form>
+	<script type="text/javascript">$('#searchbox').show(0);</script>
+</li>
+		</ul>
+		<ul class="right">
+				<li class="right"><a href="dissector/dissector.html" title="Loading required modules">Next &rarr;</a></li>
+				<li class="right"><a href="ruleset.html" title="6.5. Rule set example">&larr; Prev</a></li>
+				<li class="right"><a href="../tutorial.html" title="6. Tutorials">Up &uarr;</a></li>
+
+			<li class=" right"><a href="../../../genindex.html">Index</a></li>
+			<li class=" right"><a href="../../../haka-modindex.html">Modules</a></li>
+		</ul>
+	</section>
+</nav>
+</div>
+<div id="content">
+	<div class="row">
+		<ul id="breadcrumb" class="breadcrumbs medium-12 columns">
+			
+			<li><a href="../userindex.html">Welcome to Haka&#8217;s User Guide!</a></li>
+			
+			<li><a href="../tutorial.html">6. Tutorials</a></li>
+			
+			<li class="current"><a href="#">6.6. SMTP Protocol dissection</a></li>
+		</ul>
+	</div>
+	<div class="row">
+		<div class="medium-12 columns">
+			
+  <div class="section" id="smtp-protocol-dissection">
+<h1>6.6. SMTP Protocol dissection<a class="headerlink" href="#smtp-protocol-dissection" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="introduction">
+<h2>6.6.1. Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
+<p>It is well known established that hard coding network protocol parsers in
+low-level language such as C is error-prone, time-consuming and tedious. Haka features a
+new API enabling the specification of network protocols and their underliying
+state machine. The resulting specification process leads to a protocol dissector
+managing transitions between protocol states and enabling read/write access to
+all protocol fields.</p>
+<p>Haka grammar covers the specification of text-based (e.g. http) as well as
+binary-based protocols (e.g. dns). Thanks to this grammar, we successfully built
+several protocol dissectors: ipv4 (with option support), icmp, udp (stateless
+and stateful), tcp (stateless and stateful), http (with chunked mode support),
+dns. These dissectors are available under <tt class="docutils literal"><span class="pre">modules/protocol</span></tt> folder in the
+source tree.</p>
+<p>In this tutorial we will cover the specification of smtp protocol using the Haka
+grammar. Note that for a sake of convenience, we do not cover all features of
+smtp specification but give a guidance on how to write protocol dissectors.</p>
+</div>
+<div class="section" id="smtp-protocol">
+<h2>6.6.2. SMTP protocol<a class="headerlink" href="#smtp-protocol" title="Permalink to this headline">¶</a></h2>
+<p>SMTP stands for Simple Mail Transfer Protocol and was designed to deliver mail
+reliabily. It is a command/reponses protocol that starts with a session initiation
+during which the server sends first a welcoming message together with a status
+code indicating if the transaction (220) has succeed or not (554). Then, the
+client identifies himself using the commands EHLO ot HELO and awaits for server
+response to proceed:</p>
+<div class="highlight-lua"><div class="highlight"><pre><span class="n">S</span><span class="p">:</span> <span class="mi">220</span> <span class="n">foo</span><span class="p">.</span><span class="n">com</span> <span class="n">Simple</span> <span class="n">Mail</span> <span class="n">Transfer</span> <span class="n">Service</span> <span class="n">Ready</span>
+<span class="n">C</span><span class="p">:</span> <span class="n">EHLO</span> <span class="n">bar</span><span class="p">.</span><span class="n">com</span>
+<span class="n">S</span><span class="p">:</span> <span class="mi">250</span><span class="o">-</span><span class="n">foo</span><span class="p">.</span><span class="n">com</span> <span class="n">greets</span> <span class="n">bar</span><span class="p">.</span><span class="n">com</span>
+<span class="n">S</span><span class="p">:</span> <span class="mi">250</span><span class="o">-</span><span class="mi">8</span><span class="n">BITMIME</span>
+<span class="n">S</span><span class="p">:</span> <span class="mi">250</span><span class="o">-</span><span class="n">SIZE</span>
+<span class="n">S</span><span class="p">:</span> <span class="mi">250</span><span class="o">-</span><span class="n">DSN</span>
+</pre></div>
+</div>
+<p>Mail transaction starts after the above initiation phase. At each step, the
+client sends a smtp command and receives one or multiple response messages
+from the server. Three steps are required to transfert a mail, namely, through
+MAIL, RCPT and DATA commands:</p>
+<div class="highlight-lua"><pre>C: MAIL FROM:&lt;Smith@bar.com&gt;
+S: 250 OK
+C: RCPT TO:&lt;Jones@foo.com&gt;
+S: 250 OK
+C: DATA
+S: 354 Start mail input; end with &lt;CRLF&gt;.&lt;CRLF&gt;
+C: some data...
+C: ...etc. etc. etc.
+C: .
+S: 250 OK</pre>
+</div>
+<p>Finally, the connection ends with a QUIT message:</p>
+<div class="highlight-lua"><div class="highlight"><pre><span class="n">C</span><span class="p">:</span> <span class="n">QUIT</span>
+<span class="n">S</span><span class="p">:</span> <span class="mi">221</span> <span class="n">foo</span><span class="p">.</span><span class="n">com</span> <span class="n">Service</span> <span class="n">closing</span> <span class="n">transmission</span> <span class="n">channel</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="dissector">
+<span id="smtp-dissector"></span><h2>6.6.3. Dissector<a class="headerlink" href="#dissector" title="Permalink to this headline">¶</a></h2>
+<p>In this section, we dive into the dissector module creation.</p>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="dissector/dissector.html">Loading required modules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dissector/dissector.html#creating-the-dissector">Creating the dissector</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dissector/dissector.html#initializing-the-dissector">Initializing the dissector</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dissector/dissector.html#selecting-smtp-dissector">Selecting SMTP dissector</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dissector/dissector.html#adding-extras-properties-and-functions">Adding extras properties and functions</a></li>
+</ul>
+</div>
+</div>
+<div class="section" id="grammar">
+<span id="smtp-grammar"></span><h2>6.6.4. Grammar<a class="headerlink" href="#grammar" title="Permalink to this headline">¶</a></h2>
+<p>Haka is featured with grammar allowing to specify both text-based as well as
+binary-based protcols. In this section, we give the specification of smtp
+protcol using Haka grammar.</p>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="dissector/grammar.html">Grammar building blocks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dissector/grammar.html#creating-the-grammar">Creating the grammar</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dissector/grammar.html#specifying-terminal-enitites">Specifying terminal enitites</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dissector/grammar.html#specifying-protocol-message-syntax">Specifying protocol message syntax</a><ul class="simple">
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div class="section" id="events">
+<span id="smtp-event"></span><h2>6.6.5. Events<a class="headerlink" href="#events" title="Permalink to this headline">¶</a></h2>
+<p>Events are the glue between dissectors and security rules. Dissectors create
+events and then trigger them. As a result, all security rules hooking to that
+events will be evaluated.</p>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="dissector/event.html">Registering events</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dissector/event.html#triggering-events">Triggering events</a></li>
+</ul>
+</div>
+</div>
+<div class="section" id="state-machine">
+<span id="smtp-state-machine"></span><h2>6.6.6. State machine<a class="headerlink" href="#state-machine" title="Permalink to this headline">¶</a></h2>
+<p>Haka allows to specify network protocols and their underlying state machine. A
+state machine is defined as a collection of states and transition between these
+states.</p>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="dissector/state_machine.html">Creating the state machine</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dissector/state_machine.html#creating-new-states">Creating new states</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dissector/state_machine.html#creating-transitions">Creating transitions</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="dissector/state_machine.html#setting-default-transitions">Setting default transitions</a></li>
+</ul>
+</div>
+</div>
+<div class="section" id="security-rules">
+<span id="smtp-security"></span><h2>6.6.7. Security rules<a class="headerlink" href="#security-rules" title="Permalink to this headline">¶</a></h2>
+<p>The purpose of these security rules is to show how use the previously defined
+events and how to filter smtp packets based on fields extracted from parsing
+results.</p>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="dissector/security_rule.html">Filtering spam</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dissector/security_rule.html#dumping-mail-content">Dumping mail content</a></li>
+</ul>
+</div>
+</div>
+<div class="section" id="full-smtp-code">
+<h2>6.6.8. Full SMTP code<a class="headerlink" href="#full-smtp-code" title="Permalink to this headline">¶</a></h2>
+<p>As a reference, the full specification of the smtp protocol built in this tutorial
+can be download here: <a class="reference download internal" href="../../../_downloads/smtp1.lua"><tt class="xref download docutils literal"><span class="pre">smtp.lua</span></tt></a>.</p>
+</div>
+<div class="section" id="going-further">
+<h2>6.6.9. Going further<a class="headerlink" href="#going-further" title="Permalink to this headline">¶</a></h2>
+<p>In this tutorial, we covered the specification of a text-based protocol with Haka.
+Interested readers could find in <tt class="docutils literal"><span class="pre">modules/protocol</span></tt> folder (package sources) the
+specification of several protocols such as dns which involve other useful grammar
+entities.</p>
+</div>
+</div>
+
+
+		</div>
+	</div>
+</div>
+
+
+
+<footer id="footer">
+	<div class="row" role="complementary">
+		<div class="medium-12 columns">
+			&copy; Copyright 2014, Arkoon Network Security, OpenWide and Telecom ParisTech.
+		</div>
+	</div>
+</footer>
+<script>
+	  $(document).foundation();
+</script>
+
+
+
+<script type="text/javascript" src="http://www.haka-security.org/js/track.js"></script>
+
+
+  </body>
+</html>

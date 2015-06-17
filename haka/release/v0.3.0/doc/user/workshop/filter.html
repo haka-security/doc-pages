@@ -1,0 +1,394 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>3. Filtering with Haka &mdash; Haka runtime 0.3.0 documentation</title>
+    
+    <link rel="stylesheet" href="../../../_static/haka.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/breathe.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../',
+        VERSION:     '0.3.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../../_static/js/scripts.js"></script>
+    <script type="text/javascript" src="../../../_static/js/vendor/modernizr.js"></script>
+    <script type="text/javascript" src="../../../_static/js/foundation/foundation.js"></script>
+    <script type="text/javascript" src="../../../_static/js/foundation/foundation.topbar.js"></script>
+    <link rel="top" title="Haka runtime 0.3.0 documentation" href="../../../index.html" />
+    <link rel="up" title="7. Workshop" href="../workshop.html" />
+    <link rel="next" title="4. On-the-fly modifications" href="modif.html" />
+    <link rel="prev" title="2. Hellopacket" href="hellopacket.html" /> 
+  </head>
+  <body>
+
+
+<header id="header" role="banner">
+	<div class="row">
+		<div class="medium-6 columns">
+			<h1 class="title"><a rel="home" title="Haka" href="http://www.haka-security.org">Haka</a></h1>
+			<h2 class="description">Software Defined Security</h2>
+		</div>
+		<div class="medium-6 columns">
+			<div id="version">Version 0.3.0</div>
+		</div>
+	</div>
+</header>
+
+<div class="contain-to-grid sticky">
+	
+
+<nav id="navbar" class="top-bar" data-topbar>
+	<ul class="title-area">
+		<!-- This is required for toggle-topbar to work -->
+		<li class="name"></li>
+		<li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
+	</ul>
+	<section class="top-bar-section">
+		<ul class="left">
+			<li class=" active">
+				<a href="../userindex.html">Users</a>
+			</li>
+			<li class=" ">
+				<a href="../../ref/refindex.html" class="../../ref/refindex.html">References</a>
+			</li>
+			<li class=" ">
+				<a href="../../developer/devindex.html" class="">Developers</a>
+			</li>
+			<li class=" ">
+				<a href="../../faq.html" class="">Faq</a>
+			</li>
+			<li class="has-form">
+
+
+	<form class="search" action="../../../search.html" method="get" id="searchbox" style="display: none">
+		<input type="hidden" name="area" value="default" />
+		<input type="hidden" name="check_keywords" value="yes" />
+		<div class="row collapse">
+			<div class="medium-11 columns">
+				<input type="text" name="q" placeholder="Search" />
+			</div>
+			<div class="medium-1 columns" id="clean-search-highlight">
+			</div>
+		</div>
+	</form>
+	<script type="text/javascript">$('#searchbox').show(0);</script>
+</li>
+		</ul>
+		<ul class="right">
+				<li class="right"><a href="modif.html" title="4. On-the-fly modifications">Next &rarr;</a></li>
+				<li class="right"><a href="hellopacket.html" title="2. Hellopacket">&larr; Prev</a></li>
+				<li class="right"><a href="../workshop.html" title="7. Workshop">Up &uarr;</a></li>
+
+			<li class=" right"><a href="../../../genindex.html">Index</a></li>
+			<li class=" right"><a href="../../../haka-modindex.html">Modules</a></li>
+		</ul>
+	</section>
+</nav>
+</div>
+<div id="content">
+	<div class="row">
+		<ul id="breadcrumb" class="breadcrumbs medium-12 columns">
+			
+			<li><a href="../userindex.html">Welcome to Haka&#8217;s User Guide!</a></li>
+			
+			<li><a href="../workshop.html">7. Workshop</a></li>
+			
+			<li class="current"><a href="#">3. Filtering with Haka</a></li>
+		</ul>
+	</div>
+	<div class="row">
+		<div class="medium-12 columns">
+			
+  <div class="section" id="filtering-with-haka">
+<h1>3. Filtering with Haka<a class="headerlink" href="#filtering-with-haka" title="Permalink to this headline">¶</a></h1>
+<p>In this section you will learn how to define a security policy in Haka. To do
+so, you will be led to use the IP, TCP and HTTP dissector.</p>
+<div class="section" id="basic-ip-filtering">
+<h2>3.1. Basic IP filtering<a class="headerlink" href="#basic-ip-filtering" title="Permalink to this headline">¶</a></h2>
+<p>In the previous section we wrote a simple rule to log every IP packet. This
+time, we want to block IP packet originating from a forbidden network.  To do so
+we need to be able to check that an IP packet is originating from a given
+network, let say <tt class="docutils literal"><span class="pre">192.168.10.0/27</span></tt>.</p>
+<p>Haka provide some facilities for this kind of IP manipulation. You can see a
+full list of IP tools in ipv4 module documentation. Especially you can see that
+it is possible to build a network object:</p>
+<div class="highlight-lua"><div class="highlight"><pre><span class="kd">local</span> <span class="n">bad_network</span> <span class="o">=</span> <span class="n">ipv4</span><span class="p">.</span><span class="n">network</span><span class="p">(</span><span class="s2">&quot;</span><span class="s">192.168.10.0/27&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>And that you can simply check if an IP belongs to this network:</p>
+<div class="highlight-lua"><div class="highlight"><pre><span class="n">bad_network</span><span class="p">:</span><span class="n">contains</span><span class="p">(</span><span class="n">ipv4</span><span class="p">.</span><span class="n">addr</span><span class="p">(</span><span class="s2">&quot;</span><span class="s">192.168.10.30&quot;</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>Finally, you will notice in the documentation that Haka also provide the usual
+<tt class="docutils literal"><span class="pre">drop</span></tt> function on every IP packet.</p>
+<div class="highlight-lua"><div class="highlight"><pre><span class="n">pkt</span><span class="p">:</span><span class="n">drop</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="admonition-exercise admonition">
+<p class="first admonition-title">Exercise</p>
+<p>Now you have all what you need to create a rule to block IP packet originating
+from a forbidden network. Create a script named <cite>ipfilter.lua</cite> and run it against
+the provided pcap file <a class="reference download internal" href="../../../_downloads/ipfilter.pcap"><tt class="xref download docutils literal"><span class="pre">ipfilter.pcap</span></tt></a>.</p>
+<div class="highlight-console"><div class="highlight"><pre><span class="gp">$</span> hakapcap ipfilter.lua ipfilter.pcap
+</pre></div>
+</div>
+<p>In order to check that your script correctly block some IP packets you can save
+the output to a new pcap.</p>
+<div class="highlight-console"><div class="highlight"><pre><span class="gp">$</span> hakapcap ipfilter.lua ipfilter.pcap -o output.pcap
+</pre></div>
+</div>
+<p class="last">The resulting pcap file can simply be opened with wireshark.</p>
+</div>
+<div class="section" id="full-script">
+<h3>3.1.1. Full script<a class="headerlink" href="#full-script" title="Permalink to this headline">¶</a></h3>
+<p>You will find a full script for it here <a class="reference download internal" href="../../../_downloads/ipfilter.lua"><tt class="xref download docutils literal"><span class="pre">ipfilter.lua</span></tt></a>.</p>
+</div>
+</div>
+<div class="section" id="tcp-filtering">
+<h2>3.2. TCP&nbsp;filtering<a class="headerlink" href="#tcp-filtering" title="Permalink to this headline">¶</a></h2>
+<p>The aim of this section is to be able to block all TCP traffic except the one
+directed to port 22 (ssh) and 80 (http).</p>
+<p>Obviously, Haka provide a TCP dissector module named <tt class="docutils literal"><span class="pre">protocol/tcp_connection</span></tt>.
+You can load it with the usual <tt class="docutils literal"><span class="pre">require</span></tt> keyword.</p>
+<p>As you can see in the corresponding documentation, <tt class="docutils literal"><span class="pre">tcp_connection</span></tt> provide an
+interesting event: <tt class="docutils literal"><span class="pre">tcp_connection.events.new_connection</span></tt>.</p>
+<p>This event pass 2 arguments to the <tt class="docutils literal"><span class="pre">eval</span></tt> function:</p>
+<blockquote>
+<div><ul class="simple">
+<li>flow (TcpConnectionDissector) – TCP flow.</li>
+<li>tcp (TcpDissector) – TCP packet.</li>
+</ul>
+</div></blockquote>
+<div class="admonition-exercise admonition">
+<p class="first admonition-title">Exercise</p>
+<p>Write a new rule that check the TCP connection port and block it if port
+doesn&#8217;t match 22 or 80.</p>
+<p class="last">You can then test your configuration against the pcap <a class="reference download internal" href="../../../_downloads/tcpfilter.pcap"><tt class="xref download docutils literal"><span class="pre">tcpfilter.pcap</span></tt></a>.</p>
+</div>
+<div class="section" id="id1">
+<h3>3.2.1. Full script<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<p>You can download the full script at <a class="reference download internal" href="../../../_downloads/tcpfilter.lua"><tt class="xref download docutils literal"><span class="pre">tcpfilter.lua</span></tt></a>.</p>
+</div>
+</div>
+<div class="section" id="filtering-with-nfqueue">
+<h2>3.3. Filtering with NFQueue<a class="headerlink" href="#filtering-with-nfqueue" title="Permalink to this headline">¶</a></h2>
+<p>All the examples so far have used <tt class="docutils literal"><span class="pre">hakapcap</span></tt> to test some recorded packets.</p>
+<p>Haka can also use nfqueue to capture packets from a live interface. The
+following examples will illustrate how to do that.</p>
+<p>When configured to use nfqueue, Haka will hook itself up to the <cite>raw</cite> nfqueue
+table in order to inspect, modify, create and delete packets in real time.</p>
+<p>The rest of this tutorial assumes that the Haka package is installed on a host
+which has a network interface named eth0.</p>
+<p>The configuration file for the daemon is given below (<a class="reference download internal" href="../../../_downloads/haka.conf"><tt class="xref download docutils literal"><span class="pre">haka.conf</span></tt></a>):</p>
+<div class="highlight-ini"><div class="highlight"><pre><span class="k">[general]</span>
+<span class="c"># Select the haka configuration file to use</span>
+<span class="na">configuration</span> <span class="o">=</span> <span class="s">&quot;tcpfilter.lua&quot;</span>
+
+<span class="c"># Optionally select the number of thread to use. </span>
+<span class="c">#thread = 4</span>
+
+<span class="c"># Pass-through mode</span>
+<span class="c"># If yes, haka will only inspect packet</span>
+<span class="c"># If no, it means that haka can also modify and create packet</span>
+<span class="na">pass-through</span> <span class="o">=</span> <span class="s">no</span>
+
+<span class="k">[packet]</span>
+<span class="c"># Select the capture model, nfqueue or pcap</span>
+<span class="na">module</span> <span class="o">=</span> <span class="s">&quot;packet/nfqueue&quot;</span>
+
+<span class="c"># Select the interfaces to listen to</span>
+<span class="na">interfaces</span> <span class="o">=</span> <span class="s">&quot;lo&quot;</span>
+<span class="c">#interfaces = &quot;eth0&quot;</span>
+
+<span class="c"># Select packet dumping for nfqueue</span>
+<span class="c">#dump = yes</span>
+<span class="c">#dump_input = &quot;/tmp/input.pcap&quot;</span>
+<span class="c">#dump_output = &quot;/tmp/output.pcap&quot;</span>
+
+<span class="k">[log]</span>
+<span class="c"># Select the log module</span>
+<span class="na">module</span> <span class="o">=</span> <span class="s">&quot;log/syslog&quot;</span>
+
+<span class="k">[alert]</span>
+<span class="c"># Select the alert module</span>
+<span class="na">module</span> <span class="o">=</span> <span class="s">&quot;alert/syslog&quot;</span>
+</pre></div>
+</div>
+<p>In order to be able to capture packets, the <cite>haka</cite> daemon needs to be run as
+root. The <tt class="docutils literal"><span class="pre">--no-daemon</span></tt> option will prevent <cite>haka</cite> from detaching from the
+controlling terminal and will force <cite>haka</cite> to send its outputs to <tt class="docutils literal"><span class="pre">stdout</span></tt>
+instead of syslog.</p>
+<div class="highlight-console"><div class="highlight"><pre><span class="gp">$</span> sudo haka -c haka.conf --no-daemon
+</pre></div>
+</div>
+<div class="admonition-exercise admonition">
+<p class="first admonition-title">Exercise</p>
+<p>The Haka script file used here is the one from the previous exercise. This filter
+will only allow connection to the ports 22 and 80.</p>
+<p>The configuration put Haka on the loopback interface, check using ssh and http
+(wget or iceweasel) that those connections are allowed toward 127.0.0.1.</p>
+<p class="last">You can also change the listening interface to <em>eth0</em> to check haka on some
+real servers.</p>
+</div>
+</div>
+<div class="section" id="optional-interactive-rule-debugging">
+<h2>3.4. Optional: Interactive rule debugging<a class="headerlink" href="#optional-interactive-rule-debugging" title="Permalink to this headline">¶</a></h2>
+<p>Haka allows to interactively debug Haka script file. A script containing a lua error
+is provided as <a class="reference download internal" href="../../../_downloads/erroneousrule.lua"><tt class="xref download docutils literal"><span class="pre">erroneousrule.lua</span></tt></a>.</p>
+<p>This script will authorize only packets from/to port 80.</p>
+<div class="highlight-lua"><div class="highlight"><pre><span class="c1">-- This Source Code Form is subject to the terms of the Mozilla Public</span>
+<span class="c1">-- License, v. 2.0. If a copy of the MPL was not distributed with this</span>
+<span class="c1">-- file, You can obtain one at http://mozilla.org/MPL/2.0/.</span>
+
+<span class="c1">------------------------------------</span>
+<span class="c1">-- Loading dissectors</span>
+<span class="c1">------------------------------------</span>
+
+<span class="nb">require</span><span class="p">(</span><span class="s1">&#39;</span><span class="s">protocol/ipv4&#39;</span><span class="p">)</span>
+<span class="kd">local</span> <span class="n">tcp</span> <span class="o">=</span> <span class="nb">require</span><span class="p">(</span><span class="s1">&#39;</span><span class="s">protocol/tcp&#39;</span><span class="p">)</span>
+
+<span class="c1">-- Allow only packets to/from port 80</span>
+<span class="n">haka</span><span class="p">.</span><span class="n">rule</span><span class="p">{</span>
+    <span class="n">hook</span> <span class="o">=</span> <span class="n">tcp</span><span class="p">.</span><span class="n">events</span><span class="p">.</span><span class="n">receive_packet</span><span class="p">,</span>
+    <span class="n">eval</span> <span class="o">=</span> <span class="k">function</span> <span class="p">(</span><span class="n">pkt</span><span class="p">)</span>
+        <span class="c1">-- The next line will generate a lua error:</span>
+        <span class="c1">-- there is no &#39;destport&#39; field. Replace &#39;destport&#39; by &#39;dstport&#39;</span>
+        <span class="k">if</span> <span class="n">pkt</span><span class="p">.</span><span class="n">destport</span> <span class="o">==</span> <span class="mi">80</span> <span class="ow">or</span> <span class="n">pkt</span><span class="p">.</span><span class="n">srcport</span> <span class="o">==</span> <span class="mi">80</span> <span class="k">then</span>
+            <span class="n">haka</span><span class="p">.</span><span class="n">log</span><span class="p">(</span><span class="s2">&quot;</span><span class="s">Authorizing trafic on port 80&quot;</span><span class="p">)</span>
+        <span class="k">else</span>
+            <span class="n">haka</span><span class="p">.</span><span class="n">log</span><span class="p">(</span><span class="s2">&quot;</span><span class="s">Trafic not authorized on port %d&quot;</span><span class="p">,</span> <span class="n">pkt</span><span class="p">.</span><span class="n">dstport</span><span class="p">)</span>
+            <span class="n">pkt</span><span class="p">:</span><span class="n">drop</span><span class="p">()</span>
+        <span class="k">end</span>
+    <span class="k">end</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>To run this example, use the following commands:</p>
+<div class="highlight-console"><div class="highlight"><pre><span class="gp">$</span> hakapcap erroneousrule.lua tcpfilter.pcap
+</pre></div>
+</div>
+<p>When running this script, Haka will output a high number of errors, complaining
+that the field <tt class="docutils literal"><span class="pre">destport</span></tt> doesn&#8217;t exist. We will use Haka&#8217;s debug facilities
+to find out precisely where the error occurs.</p>
+<div class="admonition-see-also admonition seealso">
+<p class="first admonition-title">See also</p>
+<p class="last"><a class="reference external" href="../debug.html">Debugging</a> contains documentation on Haka&#8217;s debugging facilities.</p>
+</div>
+<p>To start Haka in debugging mode, add <tt class="docutils literal"><span class="pre">--debug-lua</span></tt> at the end of the command line:</p>
+<div class="highlight-console"><div class="highlight"><pre><span class="gp">$</span> hakapcap erroneousrule.lua tcpfilter.pcap --debug-lua
+</pre></div>
+</div>
+<p>When a Lua error code occurs, the debugger breaks and outputs the error and a backtrace.</p>
+<pre class="ansi-block literal-block">
+   <span class="ansi-green">entering debugger</span>: unknown field 'destport'
+    thread: 0
+    Backtrace
+    <span class="ansi-red"></span><span class="ansi-bold">=&gt;</span>0     <span class="ansi-cyan">[C]</span>: in function '<span class="ansi-magenta">(null)</span>'
+      #1    <span class="ansi-cyan">[C]</span>: in function '<span class="ansi-magenta">(null)</span>'
+      #2    <span class="ansi-cyan">[C]</span>: in function '<span class="ansi-magenta">__index</span>'
+      #3    <span class="ansi-cyan">erroneousrule.lua:18</span>: in function '<span class="ansi-magenta">signal</span>'
+      #4    <span class="ansi-cyan">/usr/share/haka/core/events.bc:0</span>: in the main chunk
+      #5    <span class="ansi-cyan">/usr/share/haka/core/events.bc:0</span>: in the main chunk
+      #6    <span class="ansi-cyan">/usr/share/haka/core/context.bc:0</span>: in the main chunk
+      #7    <span class="ansi-cyan">[string &quot;tcp&quot;]:14</span>: in function '<span class="ansi-magenta">receive</span>'
+      #8    <span class="ansi-cyan">/usr/share/haka/core/dissector.bc:0</span>: in the main chunk
+      #9    <span class="ansi-cyan">[C]</span>: in function '<span class="ansi-magenta">xpcall</span>'
+     ...
+</pre>
+<p>The general syntax of the debugger is close to the syntax of gdb.</p>
+<p>Here we are interested in the third frame which is the one in the Lua script itself.</p>
+<p>To set the debugger to focus on that particular frame, type <tt class="docutils literal"><span class="pre">frame</span> <span class="pre">3</span></tt>. We can now use the <tt class="docutils literal"><span class="pre">list</span></tt> command to display the faulty source code:</p>
+<pre class="ansi-block literal-block">
+<span class="ansi-green">debug</span><span class="ansi-bold">&gt;  </span>list
+    <span class="ansi-yellow">  14:  </span>    hook = haka.event('tcp', 'receive_packet'),
+    <span class="ansi-yellow">  15:  </span>    eval = function (pkt)
+    <span class="ansi-yellow">  16:  </span>        -- The next line will generate a lua error:
+    <span class="ansi-yellow">  17:  </span>        -- there is no 'destport' field. replace 'destport' by 'dstport'
+    <span class="ansi-red">  18</span><span class="ansi-bold">=&gt; </span>        if pkt.destport == 80 or pkt.srcport == 80 then
+    <span class="ansi-yellow">  19:  </span>            haka.log(&quot;Filter&quot;, &quot;Authorizing trafic on port 80&quot;)
+    <span class="ansi-yellow">  20:  </span>        else
+    <span class="ansi-yellow">  21:  </span>            haka.log(&quot;Filter&quot;, &quot;Trafic not authorized on port %d&quot;, pkt.dstport)
+    <span class="ansi-yellow">  22:  </span>            pkt:drop()
+    <span class="ansi-yellow">  23:  </span>        end
+</pre>
+<p>We now see that Lua is complaining about an unknown field <tt class="docutils literal"><span class="pre">destport</span></tt> on the line testing the destination port of the packet.</p>
+<p>Packets, like all structures provided by Haka, can be printed easily using the debugger.</p>
+<p>To see the content of the packet, type <tt class="docutils literal"><span class="pre">print</span> <span class="pre">pkt</span></tt>:</p>
+<pre class="ansi-block literal-block">
+<span class="ansi-green">debug</span><span class="ansi-bold">&gt;  </span>print pkt
+      #1    <span class="ansi-cyan ansi-bold">userdata</span> tcp {
+              <span class="ansi-blue ansi-bold">ack_seq</span> : 0
+              <span class="ansi-blue ansi-bold">checksum</span> : 417
+              <span class="ansi-blue ansi-bold">dstport</span> : 80
+              <span class="ansi-blue ansi-bold">flags</span> : <span class="ansi-cyan ansi-bold">userdata</span> tcp_flags {
+                <span class="ansi-blue ansi-bold">ack</span> : <span class="ansi-magenta ansi-bold">false</span>
+                <span class="ansi-blue ansi-bold">all</span> : 2
+                <span class="ansi-blue ansi-bold">cwr</span> : <span class="ansi-magenta ansi-bold">false</span>
+                <span class="ansi-blue ansi-bold">ecn</span> : <span class="ansi-magenta ansi-bold">false</span>
+                <span class="ansi-blue ansi-bold">fin</span> : <span class="ansi-magenta ansi-bold">false</span>
+                <span class="ansi-blue ansi-bold">psh</span> : <span class="ansi-magenta ansi-bold">false</span>
+                <span class="ansi-blue ansi-bold">rst</span> : <span class="ansi-magenta ansi-bold">false</span>
+                <span class="ansi-blue ansi-bold">syn</span> : <span class="ansi-magenta ansi-bold">true</span>
+                <span class="ansi-blue ansi-bold">urg</span> : <span class="ansi-magenta ansi-bold">false</span>
+              }
+              <span class="ansi-blue ansi-bold">hdr_len</span> : 40
+              <span class="ansi-blue ansi-bold">ip</span> : <span class="ansi-cyan ansi-bold">userdata</span> ipv4 {
+                  ...
+              }
+              ...
+              <span class="ansi-blue ansi-bold">srcport</span> : 37542
+              <span class="ansi-blue ansi-bold">urgent_pointer</span> : 0
+              <span class="ansi-blue ansi-bold">window_size</span> : 14600
+            }
+</pre>
+<p>You can notice that there is no field called <tt class="docutils literal"><span class="pre">destport</span></tt>. The correct name for the field is <tt class="docutils literal"><span class="pre">dstport</span></tt>. Once this typo is corrected, the script will run properly</p>
+<p>Press CTRL-C to quit or type <tt class="docutils literal"><span class="pre">help</span></tt> to get the list of available commands.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">You can use <cite>tab</cite> to auto-complete your commands</p>
+</div>
+</div>
+</div>
+
+
+		</div>
+	</div>
+</div>
+
+
+
+<footer id="footer">
+	<div class="row" role="complementary">
+		<div class="medium-12 columns">
+			&copy; Copyright 2014, Arkoon Network Security, OpenWide and Telecom ParisTech.
+		</div>
+	</div>
+</footer>
+<script>
+	  $(document).foundation();
+</script>
+
+
+
+<script type="text/javascript" src="http://www.haka-security.org/js/track.js"></script>
+
+
+  </body>
+</html>

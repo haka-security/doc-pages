@@ -1,0 +1,307 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>3.8. Modules &mdash; Haka runtime 0.3.0 documentation</title>
+    
+    <link rel="stylesheet" href="../../../_static/haka.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/breathe.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../',
+        VERSION:     '0.3.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../../_static/js/scripts.js"></script>
+    <script type="text/javascript" src="../../../_static/js/vendor/modernizr.js"></script>
+    <script type="text/javascript" src="../../../_static/js/foundation/foundation.js"></script>
+    <script type="text/javascript" src="../../../_static/js/foundation/foundation.topbar.js"></script>
+    <link rel="top" title="Haka runtime 0.3.0 documentation" href="../../../index.html" />
+    <link rel="up" title="3. Developer reference guide" href="../devref.html" />
+    <link rel="next" title="3.9.1. Packet module" href="packet_module.html" />
+    <link rel="prev" title="3.7. Parameters" href="parameters.html" /> 
+  </head>
+  <body>
+
+
+<header id="header" role="banner">
+	<div class="row">
+		<div class="medium-6 columns">
+			<h1 class="title"><a rel="home" title="Haka" href="http://www.haka-security.org">Haka</a></h1>
+			<h2 class="description">Software Defined Security</h2>
+		</div>
+		<div class="medium-6 columns">
+			<div id="version">Version 0.3.0</div>
+		</div>
+	</div>
+</header>
+
+<div class="contain-to-grid sticky">
+	
+
+<nav id="navbar" class="top-bar" data-topbar>
+	<ul class="title-area">
+		<!-- This is required for toggle-topbar to work -->
+		<li class="name"></li>
+		<li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
+	</ul>
+	<section class="top-bar-section">
+		<ul class="left">
+			<li class=" ">
+				<a href="../../user/userindex.html">Users</a>
+			</li>
+			<li class=" ">
+				<a href="../../ref/refindex.html" class="../../ref/refindex.html">References</a>
+			</li>
+			<li class=" active">
+				<a href="../devindex.html" class="">Developers</a>
+			</li>
+			<li class=" ">
+				<a href="../../faq.html" class="">Faq</a>
+			</li>
+			<li class="has-form">
+
+
+	<form class="search" action="../../../search.html" method="get" id="searchbox" style="display: none">
+		<input type="hidden" name="area" value="default" />
+		<input type="hidden" name="check_keywords" value="yes" />
+		<div class="row collapse">
+			<div class="medium-11 columns">
+				<input type="text" name="q" placeholder="Search" />
+			</div>
+			<div class="medium-1 columns" id="clean-search-highlight">
+			</div>
+		</div>
+	</form>
+	<script type="text/javascript">$('#searchbox').show(0);</script>
+</li>
+		</ul>
+		<ul class="right">
+				<li class="right"><a href="packet_module.html" title="3.9.1. Packet module">Next &rarr;</a></li>
+				<li class="right"><a href="parameters.html" title="3.7. Parameters">&larr; Prev</a></li>
+				<li class="right"><a href="../devref.html" title="3. Developer reference guide">Up &uarr;</a></li>
+
+			<li class=" right"><a href="../../../genindex.html">Index</a></li>
+			<li class=" right"><a href="../../../haka-modindex.html">Modules</a></li>
+		</ul>
+	</section>
+</nav>
+</div>
+<div id="content">
+	<div class="row">
+		<ul id="breadcrumb" class="breadcrumbs medium-12 columns">
+			
+			<li><a href="../devindex.html">Welcome to Haka&#8217;s Developer Guide!</a></li>
+			
+			<li><a href="../devref.html">3. Developer reference guide</a></li>
+			
+			<li class="current"><a href="#">3.8. Modules</a></li>
+		</ul>
+	</div>
+	<div class="row">
+		<div class="medium-12 columns">
+			
+  <div class="section" id="modules">
+<h1>3.8. Modules<a class="headerlink" href="#modules" title="Permalink to this headline">¶</a></h1>
+<p></p>
+<p>Generic module. </p>
+<em>Enums</em><blockquote>
+<div><p><span class="target" id="project0module_8h_1af769d92ef386d96bd77a947ee9cb15fd"></span><strong>module_type enum</strong></p>
+<blockquote>
+<div><p></p>
+<p>Module type. </p>
+<p><em>Values:</em></p>
+<ul class="breatheenumvalues">
+<li><tt class="first docutils literal"><span class="pre">MODULE_UNKNOWN</span></tt> - <p>Invalid module type. </p>
+</li>
+<li><tt class="first docutils literal"><span class="pre">MODULE_PACKET</span></tt> - <p>Packet capture module. </p>
+</li>
+<li><tt class="first docutils literal"><span class="pre">MODULE_LOG</span></tt> - <p>Logging module type. </p>
+</li>
+<li><tt class="first docutils literal"><span class="pre">MODULE_ALERT</span></tt> - <p>Alert backend module type. </p>
+</li>
+<li><tt class="first docutils literal"><span class="pre">MODULE_REGEXP</span></tt> - <p>Regular expression module type. </p>
+</li>
+<li><tt class="first docutils literal"><span class="pre">MODULE_EXTENSION</span></tt> - <p>Abstract extension module type. </p>
+</li>
+</ul>
+</div></blockquote>
+</div></blockquote>
+<em>Functions</em><blockquote>
+<div><p><span class="target" id="project0module_8h_1a7ca9c1bdbce988e18a99b81aa6a956a7"></span><div class="line-block">
+<div class="line">struct  <a class="reference internal" href="#project0structmodule"><em>module</em></a>  * <strong>module_load</strong>(const char * module_name, struct parameters * args)</div>
+</div>
+</p>
+<blockquote>
+<div><p></p>
+<p><p>Load a module given its name. It is not needed to call <a class="reference internal" href="#project0module_8h_1a799723cb4da15e506804a03b874979ad"><em>module_addref()</em></a> on the result as this is done before returning.</p>
+<p><dl class="docutils">
+<dt><strong>Return</strong></dt>
+<dd>The loaded module structure or NULL in case of an error. </dd>
+</dl>
+</p>
+</p>
+</div></blockquote>
+<p><span class="target" id="project0module_8h_1a799723cb4da15e506804a03b874979ad"></span><div class="line-block">
+<div class="line">void <strong>module_addref</strong>(struct  <a class="reference internal" href="#project0structmodule"><em>module</em></a>  * module)</div>
+</div>
+</p>
+<blockquote>
+<div><p></p>
+<p>Keep the module. Must match with a call to <a class="reference internal" href="#project0module_8h_1a98dd2a62177ae2238b3ab284ff7fd78f"><em>module_release()</em></a> otherwise the module will not be able to be removed correctly when unused. </p>
+</div></blockquote>
+<p><span class="target" id="project0module_8h_1a98dd2a62177ae2238b3ab284ff7fd78f"></span><div class="line-block">
+<div class="line">void <strong>module_release</strong>(struct  <a class="reference internal" href="#project0structmodule"><em>module</em></a>  * module)</div>
+</div>
+</p>
+<blockquote>
+<div><p></p>
+<p>Decrement the module ref count and unload the module if needed. </p>
+</div></blockquote>
+<p><span class="target" id="project0module_8h_1a9f86cf7f354c06d393865457c9fc4c86"></span><div class="line-block">
+<div class="line">void <strong>module_set_path</strong>(const char * path, <a class="reference internal" href="utils.html#project0types_8h_1a97a80ca1602ebf2303258971a2c938e2"><em>bool</em></a> c)</div>
+</div>
+</p>
+<blockquote>
+<div><p></p>
+<p>Set the path used to load haka modules. This path must be in the form: <tt class="docutils literal"><span class="pre">path/to/modules/*;another/path/*</span></tt> </p>
+</div></blockquote>
+<p><span class="target" id="project0module_8h_1abc00ce9d7fcd759aae019bf658233482"></span><div class="line-block">
+<div class="line"><a class="reference internal" href="utils.html#project0types_8h_1a97a80ca1602ebf2303258971a2c938e2"><em>bool</em></a> <strong>module_set_default_path</strong>()</div>
+</div>
+</p>
+<blockquote>
+<div><p></p>
+<p>Set the module path using the env variable HAKA_PATH. </p>
+</div></blockquote>
+<p><span class="target" id="project0module_8h_1a3cc0e2b6645d4f72690eaae3f4b58994"></span><div class="line-block">
+<div class="line">void <strong>module_add_path</strong>(const char * path, <a class="reference internal" href="utils.html#project0types_8h_1a97a80ca1602ebf2303258971a2c938e2"><em>bool</em></a> c)</div>
+</div>
+</p>
+<blockquote>
+<div><p></p>
+<p>Add a path to the Lua module search path. </p>
+</div></blockquote>
+<p><span class="target" id="project0module_8h_1aed5e22118ee183c1119d2565e2ee5dcf"></span><div class="line-block">
+<div class="line">const char * <strong>module_get_path</strong>(<a class="reference internal" href="utils.html#project0types_8h_1a97a80ca1602ebf2303258971a2c938e2"><em>bool</em></a> c)</div>
+</div>
+</p>
+<blockquote>
+<div><p></p>
+<p>Get the modules search path. </p>
+</div></blockquote>
+</div></blockquote>
+<p><p id="project0structmodule"><em>class</em> <strong>module</strong></p>
+<blockquote>
+<div><p></p>
+<p>Module declaration object. </p>
+<em>Public Members</em><blockquote>
+<div><p><span class="target" id="project0structmodule_1ae2d41929d79e7ffe6853973cc95f45bf"></span>enum  <a class="reference internal" href="#project0module_8h_1af769d92ef386d96bd77a947ee9cb15fd"><em>module_type</em></a> <strong>type</strong></p>
+<blockquote>
+<div><p></p>
+<p>Module type </p>
+</div></blockquote>
+<p><span class="target" id="project0structmodule_1ac68255cdaf29d9a7967fd8571efc5c2e"></span>const char * <strong>name</strong></p>
+<blockquote>
+<div><p></p>
+<p>Module name. </p>
+</div></blockquote>
+<p><span class="target" id="project0structmodule_1a090e6dd3921a2d9f659385ac5377bb46"></span>const char * <strong>description</strong></p>
+<blockquote>
+<div><p></p>
+<p>Module description. </p>
+</div></blockquote>
+<p><span class="target" id="project0structmodule_1a677e16404a903be9c42695f9da51479b"></span>const char * <strong>author</strong></p>
+<blockquote>
+<div><p></p>
+<p>Module author. </p>
+</div></blockquote>
+<p><span class="target" id="project0structmodule_1aa78c87a6eab45bee3f672d929ecd4ac0"></span>int <strong>api_version</strong></p>
+<blockquote>
+<div><p></p>
+<p>API version (use HAKA_API_VERSION). </p>
+</div></blockquote>
+<p><span class="target" id="project0structmodule_1a37d0b9b9bd0e376f2101a30bce65705c"></span>int(* <strong>init</strong>)(struct parameters *args)</p>
+<blockquote>
+<div><p></p>
+<p><p>Initialize the module. This function is called by the application.</p>
+<p><dl class="docutils">
+<dt><strong>Return</strong></dt>
+<dd>Non zero in case of an error. In this case the module will be unloaded but cleanup is not going to be called. </dd>
+</dl>
+</p>
+</p>
+</div></blockquote>
+<p><span class="target" id="project0structmodule_1ae979188940b2bd16dc7d3f7c72d5637e"></span>void(* <strong>cleanup</strong>)()</p>
+<blockquote>
+<div><p></p>
+<p>Cleanup the module. This function is called by the application when the module is unloaded. </p>
+</div></blockquote>
+</div></blockquote>
+<em>Private Members</em><blockquote>
+<div><p><span class="target" id="project0structmodule_1a8e1065b99fc804af735392c519d6b9b9"></span>void * <strong>handle</strong></p>
+<blockquote>
+<div><p></p>
+<p></p>
+</div></blockquote>
+<p><span class="target" id="project0structmodule_1a978ce6fae7eae94674bdcf3517e10680"></span><a class="reference internal" href="thread.html#project0group__Atomic_1ga755ba8d9debb62736845f4b66464e717"><em>atomic_t</em></a> <strong>ref</strong></p>
+<blockquote>
+<div><p></p>
+<p></p>
+</div></blockquote>
+</div></blockquote>
+</div></blockquote>
+</p>
+</div>
+<div class="section" id="module-types">
+<h1>3.9. Module types<a class="headerlink" href="#module-types" title="Permalink to this headline">¶</a></h1>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="packet_module.html">3.9.1. Packet module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="log_module.html">3.9.2. Log module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="alert_module.html">3.9.3. Alert module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="regexp_module.html">3.9.4. Regular expression module</a></li>
+</ul>
+</div>
+</div>
+
+
+		</div>
+	</div>
+</div>
+
+
+
+<footer id="footer">
+	<div class="row" role="complementary">
+		<div class="medium-12 columns">
+			&copy; Copyright 2014, Arkoon Network Security, OpenWide and Telecom ParisTech.
+		</div>
+	</div>
+</footer>
+<script>
+	  $(document).foundation();
+</script>
+
+
+
+<script type="text/javascript" src="http://www.haka-security.org/js/track.js"></script>
+
+
+  </body>
+</html>

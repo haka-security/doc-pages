@@ -1,0 +1,200 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>13. Context &mdash; Haka runtime 0.3.0 documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/haka.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/breathe.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '0.3.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../_static/js/scripts.js"></script>
+    <script type="text/javascript" src="../../_static/js/vendor/modernizr.js"></script>
+    <script type="text/javascript" src="../../_static/js/foundation/foundation.js"></script>
+    <script type="text/javascript" src="../../_static/js/foundation/foundation.topbar.js"></script>
+    <link rel="top" title="Haka runtime 0.3.0 documentation" href="../../index.html" />
+    <link rel="up" title="Welcome to Haka’s User Reference Guide!" href="refindex.html" />
+    <link rel="next" title="14. Dissector" href="dissector.html" />
+    <link rel="prev" title="12. Class" href="class.html" /> 
+  </head>
+  <body>
+
+
+<header id="header" role="banner">
+	<div class="row">
+		<div class="medium-6 columns">
+			<h1 class="title"><a rel="home" title="Haka" href="http://www.haka-security.org">Haka</a></h1>
+			<h2 class="description">Software Defined Security</h2>
+		</div>
+		<div class="medium-6 columns">
+			<div id="version">Version 0.3.0</div>
+		</div>
+	</div>
+</header>
+
+<div class="contain-to-grid sticky">
+	
+
+<nav id="navbar" class="top-bar" data-topbar>
+	<ul class="title-area">
+		<!-- This is required for toggle-topbar to work -->
+		<li class="name"></li>
+		<li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
+	</ul>
+	<section class="top-bar-section">
+		<ul class="left">
+			<li class=" ">
+				<a href="../user/userindex.html">Users</a>
+			</li>
+			<li class=" active">
+				<a href="refindex.html" class="refindex.html">References</a>
+			</li>
+			<li class=" ">
+				<a href="../developer/devindex.html" class="">Developers</a>
+			</li>
+			<li class=" ">
+				<a href="../faq.html" class="">Faq</a>
+			</li>
+			<li class="has-form">
+
+
+	<form class="search" action="../../search.html" method="get" id="searchbox" style="display: none">
+		<input type="hidden" name="area" value="default" />
+		<input type="hidden" name="check_keywords" value="yes" />
+		<div class="row collapse">
+			<div class="medium-11 columns">
+				<input type="text" name="q" placeholder="Search" />
+			</div>
+			<div class="medium-1 columns" id="clean-search-highlight">
+			</div>
+		</div>
+	</form>
+	<script type="text/javascript">$('#searchbox').show(0);</script>
+</li>
+		</ul>
+		<ul class="right">
+				<li class="right"><a href="dissector.html" title="14. Dissector">Next &rarr;</a></li>
+				<li class="right"><a href="class.html" title="12. Class">&larr; Prev</a></li>
+				<li class="right"><a href="refindex.html" title="Welcome to Haka&#8217;s User Reference Guide!">Up &uarr;</a></li>
+
+			<li class=" right"><a href="../../genindex.html">Index</a></li>
+			<li class=" right"><a href="../../haka-modindex.html">Modules</a></li>
+		</ul>
+	</section>
+</nav>
+</div>
+<div id="content">
+	<div class="row">
+		<ul id="breadcrumb" class="breadcrumbs medium-12 columns">
+			
+			<li><a href="refindex.html">Welcome to Haka&#8217;s User Reference Guide!</a></li>
+			
+			<li class="current"><a href="#">13. Context</a></li>
+		</ul>
+	</div>
+	<div class="row">
+		<div class="medium-12 columns">
+			
+  <div class="section" id="context">
+<h1>13. Context<a class="headerlink" href="#context" title="Permalink to this headline">¶</a></h1>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">This section contains advanced feature of Haka.</p>
+</div>
+<span class="target" id="haka-module.context"></span><dl class="class">
+<dt id="haka-object.Context">
+<em class="property">object </em><tt class="descname">Context</tt><a class="headerlink" href="#haka-object.Context" title="Permalink to this definition">¶</a></dt>
+<dd><p>Haka define a global context and local scopes. Both allow user to register
+events and to trigger them.</p>
+<dl class="method">
+<dt id="haka-function.context.signal">
+<em class="property"> </em><tt class="descclassname">context.</tt><tt class="descname">signal</tt><big>(</big><em>emitter</em>, <em>event</em>, <em>...</em><big>)</big><a class="headerlink" href="#haka-function.context.signal" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>emitter</strong> (<em>Object</em>) &#8211; The emitter of the event.</li>
+<li><strong>event</strong> (<em>Event</em>) &#8211; The event to trigger.</li>
+<li><strong>...</strong> &#8211; Optionnal parameters of the event.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p>Trigger an event on the global context and optionnaly on the current
+scope.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="haka-function.context.newscope">
+<em class="property"> </em><tt class="descclassname">context.</tt><tt class="descname">newscope</tt><big>(</big><big>)</big><a class="headerlink" href="#haka-function.context.newscope" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a new scope.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="haka-function.context.exec">
+<em class="property"> </em><tt class="descclassname">context.</tt><tt class="descname">exec</tt><big>(</big><em>scope</em>, <em>func</em><big>)</big><a class="headerlink" href="#haka-function.context.exec" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>scope</strong> (<em>Scope</em>) &#8211; A local scope.</li>
+<li><strong>func</strong> (<em>function</em>) &#8211; The function to execute.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p>Execute <tt class="docutils literal"><span class="pre">func</span></tt> under the given scope.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+		</div>
+	</div>
+</div>
+
+
+
+<footer id="footer">
+	<div class="row" role="complementary">
+		<div class="medium-12 columns">
+			&copy; Copyright 2014, Arkoon Network Security, OpenWide and Telecom ParisTech.
+		</div>
+	</div>
+</footer>
+<script>
+	  $(document).foundation();
+</script>
+
+
+
+<script type="text/javascript" src="http://www.haka-security.org/js/track.js"></script>
+
+
+  </body>
+</html>

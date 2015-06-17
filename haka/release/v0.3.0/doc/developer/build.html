@@ -1,0 +1,330 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>1. Build &mdash; Haka runtime 0.3.0 documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/haka.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/breathe.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '0.3.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../_static/js/scripts.js"></script>
+    <script type="text/javascript" src="../../_static/js/vendor/modernizr.js"></script>
+    <script type="text/javascript" src="../../_static/js/foundation/foundation.js"></script>
+    <script type="text/javascript" src="../../_static/js/foundation/foundation.topbar.js"></script>
+    <link rel="top" title="Haka runtime 0.3.0 documentation" href="../../index.html" />
+    <link rel="up" title="Welcome to Haka’s Developer Guide!" href="devindex.html" />
+    <link rel="next" title="2. Haka architecture" href="arch.html" />
+    <link rel="prev" title="Welcome to Haka’s Developer Guide!" href="devindex.html" /> 
+  </head>
+  <body>
+
+
+<header id="header" role="banner">
+	<div class="row">
+		<div class="medium-6 columns">
+			<h1 class="title"><a rel="home" title="Haka" href="http://www.haka-security.org">Haka</a></h1>
+			<h2 class="description">Software Defined Security</h2>
+		</div>
+		<div class="medium-6 columns">
+			<div id="version">Version 0.3.0</div>
+		</div>
+	</div>
+</header>
+
+<div class="contain-to-grid sticky">
+	
+
+<nav id="navbar" class="top-bar" data-topbar>
+	<ul class="title-area">
+		<!-- This is required for toggle-topbar to work -->
+		<li class="name"></li>
+		<li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
+	</ul>
+	<section class="top-bar-section">
+		<ul class="left">
+			<li class=" ">
+				<a href="../user/userindex.html">Users</a>
+			</li>
+			<li class=" ">
+				<a href="../ref/refindex.html" class="../ref/refindex.html">References</a>
+			</li>
+			<li class=" active">
+				<a href="devindex.html" class="">Developers</a>
+			</li>
+			<li class=" ">
+				<a href="../faq.html" class="">Faq</a>
+			</li>
+			<li class="has-form">
+
+
+	<form class="search" action="../../search.html" method="get" id="searchbox" style="display: none">
+		<input type="hidden" name="area" value="default" />
+		<input type="hidden" name="check_keywords" value="yes" />
+		<div class="row collapse">
+			<div class="medium-11 columns">
+				<input type="text" name="q" placeholder="Search" />
+			</div>
+			<div class="medium-1 columns" id="clean-search-highlight">
+			</div>
+		</div>
+	</form>
+	<script type="text/javascript">$('#searchbox').show(0);</script>
+</li>
+		</ul>
+		<ul class="right">
+				<li class="right"><a href="arch.html" title="2. Haka architecture">Next &rarr;</a></li>
+				<li class="right"><a href="devindex.html" title="Welcome to Haka&#8217;s Developer Guide!">&larr; Prev</a></li>
+				<li class="right"><a href="devindex.html" title="Welcome to Haka&#8217;s Developer Guide!">Up &uarr;</a></li>
+
+			<li class=" right"><a href="../../genindex.html">Index</a></li>
+			<li class=" right"><a href="../../haka-modindex.html">Modules</a></li>
+		</ul>
+	</section>
+</nav>
+</div>
+<div id="content">
+	<div class="row">
+		<ul id="breadcrumb" class="breadcrumbs medium-12 columns">
+			
+			<li><a href="devindex.html">Welcome to Haka&#8217;s Developer Guide!</a></li>
+			
+			<li class="current"><a href="#">1. Build</a></li>
+		</ul>
+	</div>
+	<div class="row">
+		<div class="medium-12 columns">
+			
+  <div class="section" id="build">
+<h1>1. Build<a class="headerlink" href="#build" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="dependencies">
+<h2>1.1. Dependencies<a class="headerlink" href="#dependencies" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="required">
+<h3>1.1.1. Required<a class="headerlink" href="#required" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>Classic build tools (GCC, Make, ...)</li>
+<li>CMake (&gt;= 2.8)</li>
+<li>Swig</li>
+<li>Tshark</li>
+<li>Check</li>
+<li>rsync</li>
+<li>libpcap</li>
+<li>Gawk</li>
+<li>libedit</li>
+<li>libpcre</li>
+</ul>
+</div>
+<div class="section" id="optional">
+<h3>1.1.2. Optional<a class="headerlink" href="#optional" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>Git</li>
+<li>Cppcheck</li>
+<li>Netfilter Queue</li>
+<li>Valgrind</li>
+<li>rpm-build</li>
+<li>Sphinx (&gt;= 2)</li>
+<li>Doxygen</li>
+<li>Inkscape</li>
+<li>python-blockdiag</li>
+<li>python-seqdiag</li>
+</ul>
+</div>
+<div class="section" id="examples">
+<h3>1.1.3. Examples<a class="headerlink" href="#examples" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="debian-and-compatible">
+<h4>Debian (and compatible)<a class="headerlink" href="#debian-and-compatible" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-console"><div class="highlight"><pre><span class="gp">$</span> sudo apt-get install build-essential cmake swig tshark check
+<span class="gp">$</span> sudo apt-get install rsync libpcap-dev gawk libedit-dev libpcre3-dev
+<span class="gp">$</span> sudo apt-get install cppcheck libnetfilter-queue-dev valgrind
+<span class="gp">$</span> sudo apt-get install python-sphinx doxygen python-blockdiag python-seqdiag
+</pre></div>
+</div>
+</div>
+<div class="section" id="fedora">
+<h4>Fedora<a class="headerlink" href="#fedora" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-console"><div class="highlight"><pre><span class="gp">$</span> sudo yum install gcc gcc-c++ make cmake python-sphinx wireshark check doxygen
+<span class="gp">$</span> sudo yum install check-devel rsync libpcap-devel gawk libedit-devel pcre-devel
+<span class="gp">$</span> sudo yum install git cppcheck libnetfilter_queue-devel rpm-build valgrind valgrind-devel
+<span class="gp">$</span> sudo yum install autoconf automake flex bison
+</pre></div>
+</div>
+<p>The <em>swig</em> package in Fedora is broken and will not be usable to compile Haka.
+You will need to get a swig build from upstream.</p>
+<div class="highlight-console"><div class="highlight"><pre><span class="gp">$</span> git clone https://github.com/swig/swig.git
+<span class="gp">$</span> <span class="nb">cd </span>swig
+<span class="gp">$</span> git checkout rel-2.0.11
+<span class="gp">$</span> ./autogen.sh
+<span class="gp">$</span> ./configure
+<span class="gp">$</span> make
+<span class="gp">$</span> sudo make install
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="download">
+<h2>1.2. Download<a class="headerlink" href="#download" title="Permalink to this headline">¶</a></h2>
+<p>You can get the sources of Haka from a tarball or directly by cloning the Git
+repository.</p>
+<div class="section" id="from-sources-tarball">
+<h3>1.2.1. From sources tarball<a class="headerlink" href="#from-sources-tarball" title="Permalink to this headline">¶</a></h3>
+<p>First download the source tarball from the
+<a class="reference external" href="http://www.haka-security.org">Haka website</a>.</p>
+<p>Then type the following commands:</p>
+<div class="highlight-console"><div class="highlight"><pre><span class="gp">$</span> tar -xzf haka.tar.gz
+<span class="gp">$</span> <span class="nb">cd </span>haka
+</pre></div>
+</div>
+</div>
+<div class="section" id="git">
+<h3>1.2.2. Git<a class="headerlink" href="#git" title="Permalink to this headline">¶</a></h3>
+<p>You must first clone the Git repository. Our project is hosted on GitHub:</p>
+<div class="highlight-console"><div class="highlight"><pre><span class="gp">$</span> git clone https://github.com/haka-security/haka.git
+</pre></div>
+</div>
+<div class="section" id="submodules">
+<h4>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h4>
+<p>The repository uses submodules that need to be initialized and updated:</p>
+<div class="highlight-console"><div class="highlight"><pre><span class="gp">$</span> git submodule init
+<span class="gp">$</span> git submodule update
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="id1">
+<h2>1.3. Build<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="configure">
+<h3>1.3.1. Configure<a class="headerlink" href="#configure" title="Permalink to this headline">¶</a></h3>
+<p>It is mandatory to create a separate directory to store
+all the files generated during the build using cmake.</p>
+<div class="highlight-console"><div class="highlight"><pre><span class="gp">$</span> mkdir workspace
+<span class="gp">$</span> <span class="nb">cd </span>workspace
+<span class="gp">$</span> cmake .. &lt;options&gt;
+</pre></div>
+</div>
+<div class="section" id="options">
+<h4>Options<a class="headerlink" href="#options" title="Permalink to this headline">¶</a></h4>
+<p>To add an option to cmake, add <tt class="docutils literal"><span class="pre">-DOPTION=VALUE</span></tt> to the command line option when calling cmake.
+The configuration with cmake supports the following options:</p>
+<dl class="option">
+<dt>
+<tt class="descname">BUILD=[Debug|Memcheck|Release|RelWithDebInfo|MinSizeRel]</tt></dt>
+<dd><p>Select the build type to be compiled (default: <em>Release</em>)</p>
+</dd></dl>
+
+<dl class="option">
+<dt>
+<tt class="descname">LUA=[lua|luajit]</tt></dt>
+<dd><p>Choose the Lua version to use (default: <em>luajit</em>)</p>
+</dd></dl>
+
+<dl class="option">
+<dt>
+<tt class="descname">CMAKE_INSTALL_PREFIX=PATH</tt></dt>
+<dd><p>Installation prefix (default: <em>/</em>)</p>
+</dd></dl>
+
+</div>
+</div>
+<div class="section" id="compile">
+<h3>1.3.2. Compile<a class="headerlink" href="#compile" title="Permalink to this headline">¶</a></h3>
+<p>Use make like usual to compile:</p>
+<div class="highlight-console"><div class="highlight"><pre><span class="gp">$</span> make
+</pre></div>
+</div>
+</div>
+<div class="section" id="install">
+<h3>1.3.3. Install<a class="headerlink" href="#install" title="Permalink to this headline">¶</a></h3>
+<p>To install Haka on your system, type this command:</p>
+<div class="highlight-console"><div class="highlight"><pre><span class="gp">$</span> sudo make install
+</pre></div>
+</div>
+<p>By default, Haka will be installed in <tt class="docutils literal"><span class="pre">/usr/local</span></tt>. You might want to update your <tt class="docutils literal"><span class="pre">PATH</span></tt>
+environment variable to be able to easily launch the various tools from the command line.</p>
+<div class="section" id="local-install">
+<h4>Local install<a class="headerlink" href="#local-install" title="Permalink to this headline">¶</a></h4>
+<p>To install Haka locally, type this command:</p>
+<div class="highlight-console"><div class="highlight"><pre><span class="gp">$</span> make localinstall
+</pre></div>
+</div>
+<p>Using <tt class="docutils literal"><span class="pre">localinstall</span></tt> allow to install haka locally under the folder <tt class="docutils literal"><span class="pre">out</span></tt>. To use
+this version, you will have to set a few environment variables by sourcing the generated
+file <tt class="docutils literal"><span class="pre">env.sh</span></tt>:</p>
+<div class="highlight-console"><div class="highlight"><pre><span class="gp">$</span> <span class="nb">cd </span>out/
+<span class="gp">$</span> . env.sh
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="documentation">
+<h3>1.3.4. Documentation<a class="headerlink" href="#documentation" title="Permalink to this headline">¶</a></h3>
+<p>Run <tt class="docutils literal"><span class="pre">make</span> <span class="pre">doc</span></tt> to generate documentation in <cite>html</cite>. The documentation is then available
+in <cite>doc</cite> inside your build folder.</p>
+<p>In order to build it, you need to have, at least, Sphinx and Doxygen installed. To
+get all images, you also need the tools Inkscape, blockdiag and seqdiag. You might need to
+install the fonts used for those images in your system. The files are located in
+<cite>doc/theme/haka/fonts</cite>.</p>
+</div>
+<div class="section" id="tests">
+<h3>1.3.5. Tests<a class="headerlink" href="#tests" title="Permalink to this headline">¶</a></h3>
+<p>Run <tt class="docutils literal"><span class="pre">make</span> <span class="pre">tests</span></tt> to play all tests.</p>
+<p>You can also pass some arguments to ctest by using the variable <tt class="docutils literal"><span class="pre">CTEST_ARGS</span></tt>.</p>
+<div class="highlight-console"><div class="highlight"><pre><span class="gp">$</span> make tests <span class="nv">CTEST_ARGS</span><span class="o">=</span><span class="s2">&quot;-V&quot;</span>
+</pre></div>
+</div>
+<p>This command will install locally the project and run the tests in the folder. If you need
+to run the tests manually using the command ctest, you can prepare the environment with the
+command <tt class="docutils literal"><span class="pre">make</span> <span class="pre">pretests</span></tt>.</p>
+</div>
+<div class="section" id="packaging">
+<h3>1.3.6. Packaging<a class="headerlink" href="#packaging" title="Permalink to this headline">¶</a></h3>
+<p>Run <tt class="docutils literal"><span class="pre">make</span> <span class="pre">package</span></tt> to build a tgz package.</p>
+</div>
+</div>
+</div>
+
+
+		</div>
+	</div>
+</div>
+
+
+
+<footer id="footer">
+	<div class="row" role="complementary">
+		<div class="medium-12 columns">
+			&copy; Copyright 2014, Arkoon Network Security, OpenWide and Telecom ParisTech.
+		</div>
+	</div>
+</footer>
+<script>
+	  $(document).foundation();
+</script>
+
+
+
+<script type="text/javascript" src="http://www.haka-security.org/js/track.js"></script>
+
+
+  </body>
+</html>

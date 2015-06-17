@@ -1,0 +1,439 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>3.4. Log &mdash; Haka runtime 0.3.0 documentation</title>
+    
+    <link rel="stylesheet" href="../../../_static/haka.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/breathe.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../',
+        VERSION:     '0.3.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../../_static/js/scripts.js"></script>
+    <script type="text/javascript" src="../../../_static/js/vendor/modernizr.js"></script>
+    <script type="text/javascript" src="../../../_static/js/foundation/foundation.js"></script>
+    <script type="text/javascript" src="../../../_static/js/foundation/foundation.topbar.js"></script>
+    <link rel="top" title="Haka runtime 0.3.0 documentation" href="../../../index.html" />
+    <link rel="up" title="3. Developer reference guide" href="../devref.html" />
+    <link rel="next" title="3.5. Alert" href="alert.html" />
+    <link rel="prev" title="3.3. Threads utilities" href="thread.html" /> 
+  </head>
+  <body>
+
+
+<header id="header" role="banner">
+	<div class="row">
+		<div class="medium-6 columns">
+			<h1 class="title"><a rel="home" title="Haka" href="http://www.haka-security.org">Haka</a></h1>
+			<h2 class="description">Software Defined Security</h2>
+		</div>
+		<div class="medium-6 columns">
+			<div id="version">Version 0.3.0</div>
+		</div>
+	</div>
+</header>
+
+<div class="contain-to-grid sticky">
+	
+
+<nav id="navbar" class="top-bar" data-topbar>
+	<ul class="title-area">
+		<!-- This is required for toggle-topbar to work -->
+		<li class="name"></li>
+		<li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
+	</ul>
+	<section class="top-bar-section">
+		<ul class="left">
+			<li class=" ">
+				<a href="../../user/userindex.html">Users</a>
+			</li>
+			<li class=" ">
+				<a href="../../ref/refindex.html" class="../../ref/refindex.html">References</a>
+			</li>
+			<li class=" active">
+				<a href="../devindex.html" class="">Developers</a>
+			</li>
+			<li class=" ">
+				<a href="../../faq.html" class="">Faq</a>
+			</li>
+			<li class="has-form">
+
+
+	<form class="search" action="../../../search.html" method="get" id="searchbox" style="display: none">
+		<input type="hidden" name="area" value="default" />
+		<input type="hidden" name="check_keywords" value="yes" />
+		<div class="row collapse">
+			<div class="medium-11 columns">
+				<input type="text" name="q" placeholder="Search" />
+			</div>
+			<div class="medium-1 columns" id="clean-search-highlight">
+			</div>
+		</div>
+	</form>
+	<script type="text/javascript">$('#searchbox').show(0);</script>
+</li>
+		</ul>
+		<ul class="right">
+				<li class="right"><a href="alert.html" title="3.5. Alert">Next &rarr;</a></li>
+				<li class="right"><a href="thread.html" title="3.3. Threads utilities">&larr; Prev</a></li>
+				<li class="right"><a href="../devref.html" title="3. Developer reference guide">Up &uarr;</a></li>
+
+			<li class=" right"><a href="../../../genindex.html">Index</a></li>
+			<li class=" right"><a href="../../../haka-modindex.html">Modules</a></li>
+		</ul>
+	</section>
+</nav>
+</div>
+<div id="content">
+	<div class="row">
+		<ul id="breadcrumb" class="breadcrumbs medium-12 columns">
+			
+			<li><a href="../devindex.html">Welcome to Haka&#8217;s Developer Guide!</a></li>
+			
+			<li><a href="../devref.html">3. Developer reference guide</a></li>
+			
+			<li class="current"><a href="#">3.4. Log</a></li>
+		</ul>
+	</div>
+	<div class="row">
+		<div class="medium-12 columns">
+			
+  <div class="section" id="log">
+<h1>3.4. Log<a class="headerlink" href="#log" title="Permalink to this headline">¶</a></h1>
+<p></p>
+<p>Logging API. </p>
+<em>Defines</em><blockquote>
+<div><p><span class="target" id="project0log_8h_1a74b8254e47be8e7c15339b4d07da1e5f"></span><strong>HAKA_LOG_LEVEL_MAX</strong></p>
+<blockquote>
+<div><p></p>
+<p></p>
+</div></blockquote>
+<p><span class="target" id="project0log_8h_1ae91cf2e5a93582e839a83200dce28d7f"></span><strong>INVALID_SECTION_ID</strong></p>
+<blockquote>
+<div><p></p>
+<p>Invalid section id. </p>
+</div></blockquote>
+<p><span class="target" id="project0log_8h_1a28fff6904a59341c680e91b8a99231f2"></span><strong>DECLARE_LOG_SECTION</strong>(name)</p>
+<blockquote>
+<div><p></p>
+<p></p>
+</div></blockquote>
+<p><span class="target" id="project0log_8h_1ad2fcf4ad1c4dc8c91664d634b0e011ca"></span><strong>REGISTER_LOG_SECTION</strong>(name)</p>
+<blockquote>
+<div><p></p>
+<p></p>
+</div></blockquote>
+<p><span class="target" id="project0log_8h_1a99324cff39d30934dbd3fadf3dc7272f"></span><strong>LOG_SECTION</strong>(name)</p>
+<blockquote>
+<div><p></p>
+<p></p>
+</div></blockquote>
+<p><span class="target" id="project0log_8h_1a24b02c6bcf78deb57a81dd7b2dc311bb"></span><strong>SHOULD_LOG</strong>(level, section)</p>
+<blockquote>
+<div><p></p>
+<p></p>
+</div></blockquote>
+<p><span class="target" id="project0log_8h_1a88f4d4f0e2c5b47e6fb1b1ab6d3155a1"></span><strong>LOG</strong>(level, section, fmt, ...)</p>
+<blockquote>
+<div><p></p>
+<p></p>
+</div></blockquote>
+<p><span class="target" id="project0log_8h_1a4fe3218e34c19d1bab3816a37d2c876d"></span><strong>LOG_FATAL</strong>(section, fmt, ...)</p>
+<blockquote>
+<div><p></p>
+<p>Log a message with string formating in various level. </p>
+</div></blockquote>
+<p><span class="target" id="project0log_8h_1a929734119a22814405c6b069e4f05a6c"></span><strong>LOG_ERROR</strong>(section, fmt, ...)</p>
+<blockquote>
+<div><p></p>
+<p></p>
+</div></blockquote>
+<p><span class="target" id="project0log_8h_1a214507b73e41986e22f69a817413d325"></span><strong>LOG_WARNING</strong>(section, fmt, ...)</p>
+<blockquote>
+<div><p></p>
+<p></p>
+</div></blockquote>
+<p><span class="target" id="project0log_8h_1a5f2953ccaac4014411a54e4200217ee6"></span><strong>LOG_INFO</strong>(section, fmt, ...)</p>
+<blockquote>
+<div><p></p>
+<p></p>
+</div></blockquote>
+<p><span class="target" id="project0log_8h_1ae839d1e207c53c9d626dccbb3b54bc58"></span><strong>LOG_DEBUG</strong>(section, fmt, ...)</p>
+<blockquote>
+<div><p></p>
+<p></p>
+</div></blockquote>
+<p><span class="target" id="project0log_8h_1a11bc9e1ca4d58842856d3aa7455f820f"></span><strong>SHOULD_LOG_FATAL</strong>(section)</p>
+<blockquote>
+<div><p></p>
+<p></p>
+</div></blockquote>
+<p><span class="target" id="project0log_8h_1ab4e8731438e8225884575bf98cc379ab"></span><strong>SHOULD_LOG_ERROR</strong>(section)</p>
+<blockquote>
+<div><p></p>
+<p></p>
+</div></blockquote>
+<p><span class="target" id="project0log_8h_1aabbba943f4d8504ceb755027fef2007e"></span><strong>SHOULD_LOG_WARNING</strong>(section)</p>
+<blockquote>
+<div><p></p>
+<p></p>
+</div></blockquote>
+<p><span class="target" id="project0log_8h_1a093b7c3f37d24966b974aacd472bcb32"></span><strong>SHOULD_LOG_INFO</strong>(section)</p>
+<blockquote>
+<div><p></p>
+<p></p>
+</div></blockquote>
+<p><span class="target" id="project0log_8h_1ae981249b0097ca1c8aa790f24c6d09a4"></span><strong>SHOULD_LOG_DEBUG</strong>(section)</p>
+<blockquote>
+<div><p></p>
+<p></p>
+</div></blockquote>
+<p><span class="target" id="project0log_8h_1ad9d6810990211cfd132c0042e2917828"></span><strong>LOG_TRACE</strong>(section, fmt, ...)</p>
+<blockquote>
+<div><p></p>
+<p></p>
+</div></blockquote>
+<p><span class="target" id="project0log_8h_1a49abf1d1d017751314edde5d9158b7f3"></span><strong>SHOULD_LOG_TRACE</strong>(section)</p>
+<blockquote>
+<div><p></p>
+<p></p>
+</div></blockquote>
+</div></blockquote>
+<em>Typedefs</em><blockquote>
+<div><p><span class="target" id="project0log_8h_1afb31cacd462119874614c88807d3a10f"></span>typedef int <strong>section_id</strong></p>
+<blockquote>
+<div><p></p>
+<p>Log section identifier. </p>
+</div></blockquote>
+</div></blockquote>
+<em>Enums</em><blockquote>
+<div><p><span class="target" id="project0log_8h_1ac91d55174d383848b976a34de843748e"></span><strong>log_level enum</strong></p>
+<blockquote>
+<div><p></p>
+<p>Log level. </p>
+<p><em>Values:</em></p>
+<ul class="breatheenumvalues">
+<li><tt class="first docutils literal"><span class="pre">HAKA_LOG_FATAL</span></tt> - <p>Fatal errors. </p>
+</li>
+<li><tt class="first docutils literal"><span class="pre">HAKA_LOG_ERROR</span></tt> - <p>Errors. </p>
+</li>
+<li><tt class="first docutils literal"><span class="pre">HAKA_LOG_WARNING</span></tt> - <p>Warning. </p>
+</li>
+<li><tt class="first docutils literal"><span class="pre">HAKA_LOG_INFO</span></tt> - <p>Informations. </p>
+</li>
+<li><tt class="first docutils literal"><span class="pre">HAKA_LOG_DEBUG</span></tt> - <p>Debugging informations. </p>
+</li>
+<li><tt class="first docutils literal"><span class="pre">HAKA_LOG_TRACE</span></tt> - <p>Trace debugging (only available in debug build). </p>
+</li>
+<li><tt class="first docutils literal"><span class="pre">HAKA_LOG_DEFAULT</span></tt> - <p>Reset module log level to global one. </p>
+</li>
+<li><tt class="first docutils literal"><span class="pre">HAKA_LOG_LEVEL_LAST</span></tt> - <p>Last log level. For internal use only. </p>
+</li>
+</ul>
+</div></blockquote>
+<p><span class="target" id="project0log_8h_1a06fc87d81c62e9abb8790b6e5713c55b"></span><strong>Anonymous enum</strong></p>
+<blockquote>
+<div><p></p>
+<p>Global section id. </p>
+<p><em>Values:</em></p>
+<ul class="breatheenumvalues">
+<li><tt class="first docutils literal"><span class="pre">LOG_SECTION</span></tt><tt class="docutils literal"> <span class="pre">=</span> <span class="pre">(core)</span></tt> - </li>
+<li><tt class="first docutils literal"><span class="pre">LOG_SECTION</span></tt><tt class="docutils literal"> <span class="pre">=</span> <span class="pre">(core)</span></tt> - </li>
+<li><tt class="first docutils literal"><span class="pre">LOG_SECTION</span></tt><tt class="docutils literal"> <span class="pre">=</span> <span class="pre">(core)</span></tt> - </li>
+<li><tt class="first docutils literal"><span class="pre">LOG_SECTION</span></tt><tt class="docutils literal"> <span class="pre">=</span> <span class="pre">(core)</span></tt> - </li>
+<li><tt class="first docutils literal"><span class="pre">LOG_SECTION</span></tt><tt class="docutils literal"> <span class="pre">=</span> <span class="pre">(core)</span></tt> - </li>
+<li><tt class="first docutils literal"><span class="pre">LOG_SECTION</span></tt><tt class="docutils literal"> <span class="pre">=</span> <span class="pre">(core)</span></tt> - </li>
+</ul>
+</div></blockquote>
+</div></blockquote>
+<em>Functions</em><blockquote>
+<div><p><span class="target" id="project0log_8h_1a4d71dd88ea0b9c9784f0657c3e0824fd"></span><div class="line-block">
+<div class="line">const char * <strong>level_to_str</strong>(<a class="reference internal" href="#project0log_8h_1ac91d55174d383848b976a34de843748e"><em>log_level</em></a> level)</div>
+</div>
+</p>
+<blockquote>
+<div><p></p>
+<p><p>Convert a logging level to a human readable string.</p>
+<p><dl class="docutils">
+<dt><strong>Return</strong></dt>
+<dd>A string representing the logging level. This string is constant and should not be freed. </dd>
+</dl>
+</p>
+</p>
+</div></blockquote>
+<p><span class="target" id="project0log_8h_1a21fa7a41c668056d0176d39c2157c03a"></span><div class="line-block">
+<div class="line"><a class="reference internal" href="#project0log_8h_1ac91d55174d383848b976a34de843748e"><em>log_level</em></a> <strong>str_to_level</strong>(const char * str)</div>
+</div>
+</p>
+<blockquote>
+<div><p></p>
+<p>Convert a logging level represented by a string to the matching enum value. </p>
+</div></blockquote>
+<p><span class="target" id="project0log_8h_1a29c5587ba3f79167d70ddfdc69e0368e"></span><div class="line-block">
+<div class="line"><a class="reference internal" href="#project0log_8h_1afb31cacd462119874614c88807d3a10f"><em>section_id</em></a> <strong>register_log_section</strong>(const char * name)</div>
+</div>
+</p>
+<blockquote>
+<div><p></p>
+<p>Register a log section. </p>
+</div></blockquote>
+<p><span class="target" id="project0log_8h_1af3e768d4f163cc4ed7e903865761758d"></span><div class="line-block">
+<div class="line"><a class="reference internal" href="#project0log_8h_1afb31cacd462119874614c88807d3a10f"><em>section_id</em></a> <strong>search_log_section</strong>(const char * name)</div>
+</div>
+</p>
+<blockquote>
+<div><p></p>
+<p>Search for a log section by name. <dl class="docutils">
+<dt><strong>Return</strong></dt>
+<dd>The section id or INVALID_SECTION_ID if not found. </dd>
+</dl>
+</p>
+</div></blockquote>
+<p><span class="target" id="project0log_8h_1ad65027091ca0127a10be883747f9fd5c"></span><div class="line-block">
+<div class="line"><a class="reference internal" href="utils.html#project0types_8h_1a97a80ca1602ebf2303258971a2c938e2"><em>bool</em></a> <strong>check_section_log_level</strong>(<a class="reference internal" href="#project0log_8h_1afb31cacd462119874614c88807d3a10f"><em>section_id</em></a> section, <a class="reference internal" href="#project0log_8h_1ac91d55174d383848b976a34de843748e"><em>log_level</em></a> level)</div>
+</div>
+</p>
+<blockquote>
+<div><p></p>
+<p>Check if section should be logged. </p>
+</div></blockquote>
+<p><span class="target" id="project0log_8h_1a8646f693b5603a289f22b9b1d91b7b94"></span><div class="line-block">
+<div class="line">void <strong>_messagef</strong>(<a class="reference internal" href="#project0log_8h_1ac91d55174d383848b976a34de843748e"><em>log_level</em></a> level, <a class="reference internal" href="#project0log_8h_1afb31cacd462119874614c88807d3a10f"><em>section_id</em></a> section, const char * fmt, ...)</div>
+</div>
+</p>
+<blockquote>
+<div><p></p>
+<p></p>
+</div></blockquote>
+<p><span class="target" id="project0log_8h_1a7d7cac7816a21cf68c4f977297102295"></span><div class="line-block">
+<div class="line"><a class="reference internal" href="utils.html#project0types_8h_1a97a80ca1602ebf2303258971a2c938e2"><em>bool</em></a> <strong>setlevel</strong>(<a class="reference internal" href="#project0log_8h_1ac91d55174d383848b976a34de843748e"><em>log_level</em></a> level, const char * name)</div>
+</div>
+</p>
+<blockquote>
+<div><p></p>
+<p>Set the logging level to display for a given section name. The <tt class="docutils literal"><span class="pre">name</span></tt> parameter can be <tt class="docutils literal"><span class="pre">NULL</span></tt> in which case it will set the default level. </p>
+</div></blockquote>
+<p><span class="target" id="project0log_8h_1a35e8645c9bcef7a8f494c7977175999f"></span><div class="line-block">
+<div class="line"><a class="reference internal" href="#project0log_8h_1ac91d55174d383848b976a34de843748e"><em>log_level</em></a> <strong>getlevel</strong>(const char * name)</div>
+</div>
+</p>
+<blockquote>
+<div><p></p>
+<p>Get the logging level for a given section name. </p>
+</div></blockquote>
+<p><span class="target" id="project0log_8h_1a369b9bbec2d3bc339f089507c534d907"></span><div class="line-block">
+<div class="line">void <strong>enable_stdout_logging</strong>(<a class="reference internal" href="utils.html#project0types_8h_1a97a80ca1602ebf2303258971a2c938e2"><em>bool</em></a> enable)</div>
+</div>
+</p>
+<blockquote>
+<div><p></p>
+<p>Change the display of log message on stdout. </p>
+</div></blockquote>
+<p><span class="target" id="project0log_8h_1a5afc80d053bdf88ee4e7194f8f9c3287"></span><div class="line-block">
+<div class="line"><a class="reference internal" href="utils.html#project0types_8h_1a97a80ca1602ebf2303258971a2c938e2"><em>bool</em></a> <strong>stdout_message</strong>(<a class="reference internal" href="#project0log_8h_1ac91d55174d383848b976a34de843748e"><em>log_level</em></a> lvl, const char * module, const char * message)</div>
+</div>
+</p>
+<blockquote>
+<div><p></p>
+<p>Show a log line on the stdout. </p>
+</div></blockquote>
+<p><span class="target" id="project0log_8h_1a85f053efe86fa0636406d921d9e6b3db"></span><div class="line-block">
+<div class="line"><a class="reference internal" href="utils.html#project0types_8h_1a97a80ca1602ebf2303258971a2c938e2"><em>bool</em></a> <strong>add_logger</strong>(struct  <a class="reference internal" href="#project0structlogger"><em>logger</em></a>  * logger)</div>
+</div>
+</p>
+<blockquote>
+<div><p></p>
+<p>Add a new logger instance in the logger list. Each logger will receive all logging messages that are emitted by the code. </p>
+</div></blockquote>
+<p><span class="target" id="project0log_8h_1ab31ebdaedf97b43f016fdc84bcefd742"></span><div class="line-block">
+<div class="line"><a class="reference internal" href="utils.html#project0types_8h_1a97a80ca1602ebf2303258971a2c938e2"><em>bool</em></a> <strong>remove_logger</strong>(struct  <a class="reference internal" href="#project0structlogger"><em>logger</em></a>  * logger)</div>
+</div>
+</p>
+<blockquote>
+<div><p></p>
+<p>Remove a logger. </p>
+</div></blockquote>
+<p><span class="target" id="project0log_8h_1a95c5e4b9aac23ebca7a23ae5bf255966"></span><div class="line-block">
+<div class="line">void <strong>remove_all_logger</strong>()</div>
+</div>
+</p>
+<blockquote>
+<div><p></p>
+<p>Remove all loggers. </p>
+</div></blockquote>
+</div></blockquote>
+<p><p id="project0structlogger"><em>class</em> <strong>logger</strong></p>
+<blockquote>
+<div><p></p>
+<p>Logger instance structure. </p>
+<em>Public Members</em><blockquote>
+<div><p><span class="target" id="project0structlogger_1a79cb2ae4e8ac60fca7cb4ca5c1ef464a"></span>struct list <strong>list</strong></p>
+<blockquote>
+<div><p></p>
+<p></p>
+</div></blockquote>
+<p><span class="target" id="project0structlogger_1a51b5adaf41ce19b9a94a31b255d660e3"></span>void(* <strong>destroy</strong>)(struct logger *state)</p>
+<blockquote>
+<div><p></p>
+<p></p>
+</div></blockquote>
+<p><span class="target" id="project0structlogger_1a8650a73989be723930821df6185427d4"></span>int(* <strong>message</strong>)(struct logger *state, log_level level, const char *module, const char *message)</p>
+<blockquote>
+<div><p></p>
+<p></p>
+</div></blockquote>
+</div></blockquote>
+<em>Private Members</em><blockquote>
+<div><p><span class="target" id="project0structlogger_1a46560cbc197941a1e435b10791168175"></span><a class="reference internal" href="utils.html#project0types_8h_1a97a80ca1602ebf2303258971a2c938e2"><em>bool</em></a> <strong>mark_for_remove</strong></p>
+<blockquote>
+<div><p></p>
+<p></p>
+</div></blockquote>
+</div></blockquote>
+</div></blockquote>
+</p>
+</div>
+
+
+		</div>
+	</div>
+</div>
+
+
+
+<footer id="footer">
+	<div class="row" role="complementary">
+		<div class="medium-12 columns">
+			&copy; Copyright 2014, Arkoon Network Security, OpenWide and Telecom ParisTech.
+		</div>
+	</div>
+</footer>
+<script>
+	  $(document).foundation();
+</script>
+
+
+
+<script type="text/javascript" src="http://www.haka-security.org/js/track.js"></script>
+
+
+  </body>
+</html>

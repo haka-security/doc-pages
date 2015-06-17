@@ -1,0 +1,325 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>3.9.4. Regular expression module &mdash; Haka runtime 0.3.0 documentation</title>
+    
+    <link rel="stylesheet" href="../../../_static/haka.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/breathe.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../',
+        VERSION:     '0.3.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../../_static/js/scripts.js"></script>
+    <script type="text/javascript" src="../../../_static/js/vendor/modernizr.js"></script>
+    <script type="text/javascript" src="../../../_static/js/foundation/foundation.js"></script>
+    <script type="text/javascript" src="../../../_static/js/foundation/foundation.topbar.js"></script>
+    <link rel="top" title="Haka runtime 0.3.0 documentation" href="../../../index.html" />
+    <link rel="up" title="3.8. Modules" href="module.html" />
+    <link rel="next" title="3.10. Time" href="time.html" />
+    <link rel="prev" title="3.9.3. Alert module" href="alert_module.html" /> 
+  </head>
+  <body>
+
+
+<header id="header" role="banner">
+	<div class="row">
+		<div class="medium-6 columns">
+			<h1 class="title"><a rel="home" title="Haka" href="http://www.haka-security.org">Haka</a></h1>
+			<h2 class="description">Software Defined Security</h2>
+		</div>
+		<div class="medium-6 columns">
+			<div id="version">Version 0.3.0</div>
+		</div>
+	</div>
+</header>
+
+<div class="contain-to-grid sticky">
+	
+
+<nav id="navbar" class="top-bar" data-topbar>
+	<ul class="title-area">
+		<!-- This is required for toggle-topbar to work -->
+		<li class="name"></li>
+		<li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
+	</ul>
+	<section class="top-bar-section">
+		<ul class="left">
+			<li class=" ">
+				<a href="../../user/userindex.html">Users</a>
+			</li>
+			<li class=" ">
+				<a href="../../ref/refindex.html" class="../../ref/refindex.html">References</a>
+			</li>
+			<li class=" active">
+				<a href="../devindex.html" class="">Developers</a>
+			</li>
+			<li class=" ">
+				<a href="../../faq.html" class="">Faq</a>
+			</li>
+			<li class="has-form">
+
+
+	<form class="search" action="../../../search.html" method="get" id="searchbox" style="display: none">
+		<input type="hidden" name="area" value="default" />
+		<input type="hidden" name="check_keywords" value="yes" />
+		<div class="row collapse">
+			<div class="medium-11 columns">
+				<input type="text" name="q" placeholder="Search" />
+			</div>
+			<div class="medium-1 columns" id="clean-search-highlight">
+			</div>
+		</div>
+	</form>
+	<script type="text/javascript">$('#searchbox').show(0);</script>
+</li>
+		</ul>
+		<ul class="right">
+				<li class="right"><a href="time.html" title="3.10. Time">Next &rarr;</a></li>
+				<li class="right"><a href="alert_module.html" title="3.9.3. Alert module">&larr; Prev</a></li>
+				<li class="right"><a href="module.html" title="3.8. Modules">Up &uarr;</a></li>
+
+			<li class=" right"><a href="../../../genindex.html">Index</a></li>
+			<li class=" right"><a href="../../../haka-modindex.html">Modules</a></li>
+		</ul>
+	</section>
+</nav>
+</div>
+<div id="content">
+	<div class="row">
+		<ul id="breadcrumb" class="breadcrumbs medium-12 columns">
+			
+			<li><a href="../devindex.html">Welcome to Haka&#8217;s Developer Guide!</a></li>
+			
+			<li><a href="../devref.html">3. Developer reference guide</a></li>
+			
+			<li><a href="module.html">3.8. Modules</a></li>
+			
+			<li class="current"><a href="#">3.9.4. Regular expression module</a></li>
+		</ul>
+	</div>
+	<div class="row">
+		<div class="medium-12 columns">
+			
+  <div class="section" id="regular-expression-module">
+<h1>3.9.4. Regular expression module<a class="headerlink" href="#regular-expression-module" title="Permalink to this headline">¶</a></h1>
+<p></p>
+<p>Regular expression module </p>
+<em>Defines</em><blockquote>
+<div><p><span class="target" id="project0regexp__module_8h_1a5e341712016022ebf9976e4564dd9b58"></span><strong>REGEXP_MATCH</strong></p>
+<blockquote>
+<div><p></p>
+<p></p>
+</div></blockquote>
+<p><span class="target" id="project0regexp__module_8h_1a15a1b0b05d80697b07b52821f95f18d8"></span><strong>REGEXP_NOMATCH</strong></p>
+<blockquote>
+<div><p></p>
+<p></p>
+</div></blockquote>
+<p><span class="target" id="project0regexp__module_8h_1a4b0f08091177881f25f747bbe4c39681"></span><strong>REGEXP_ERROR</strong></p>
+<blockquote>
+<div><p></p>
+<p></p>
+</div></blockquote>
+<p><span class="target" id="project0regexp__module_8h_1abb52e82e9a6a52431730cd2a346c5def"></span><strong>REGEXP_PARTIAL</strong></p>
+<blockquote>
+<div><p></p>
+<p></p>
+</div></blockquote>
+<p><span class="target" id="project0regexp__module_8h_1a814c4a53467313aa9d35c1f6a8ed9712"></span><strong>REGEXP_CASE_INSENSITIVE</strong></p>
+<blockquote>
+<div><p></p>
+<p></p>
+</div></blockquote>
+<p><span class="target" id="project0regexp__module_8h_1a9f2f6a0d48530b50687499963cddb2a9"></span><strong>REGEXP_EXTENDED</strong></p>
+<blockquote>
+<div><p></p>
+<p></p>
+</div></blockquote>
+</div></blockquote>
+<em>Functions</em><blockquote>
+<div><p><span class="target" id="project0regexp__module_8h_1a6f36648f57cd67240173365082f714d6"></span><div class="line-block">
+<div class="line">struct regexp_module * <strong>regexp_module_load</strong>(const char * module_name, struct parameters * args)</div>
+</div>
+</p>
+<blockquote>
+<div><p></p>
+<p></p>
+</div></blockquote>
+<p><span class="target" id="project0regexp__module_8h_1ad970dfd7fd303847bde09d050b0d0cab"></span><div class="line-block">
+<div class="line">void <strong>regexp_module_release</strong>(struct regexp_module * module)</div>
+</div>
+</p>
+<blockquote>
+<div><p></p>
+<p></p>
+</div></blockquote>
+</div></blockquote>
+<em>Variables</em><blockquote>
+<div><p><span class="target" id="project0regexp__module_8h_1a880122826db2f288cbd993ba6aa7d9bb"></span>struct regexp_result <strong>regexp_result_init</strong></p>
+<blockquote>
+<div><p></p>
+<p></p>
+</div></blockquote>
+</div></blockquote>
+<p><p id="project0structregexp__result"><em>class</em> <strong>regexp_result</strong></p>
+<blockquote>
+<div><p></p>
+<p></p>
+<em>Public Members</em><blockquote>
+<div><p><span class="target" id="project0structregexp__result_1a02b8ad5e0f6cfc5ae37b918590c96e7a"></span>size_t <strong>first</strong></p>
+<blockquote>
+<div><p></p>
+<p></p>
+</div></blockquote>
+<p><span class="target" id="project0structregexp__result_1abe0ebf41e69c4484a6a4cd9995b89678"></span>size_t <strong>last</strong></p>
+<blockquote>
+<div><p></p>
+<p></p>
+</div></blockquote>
+</div></blockquote>
+</div></blockquote>
+</p>
+<p><p id="project0structregexp__module"><em>class</em> <strong>regexp_module</strong></p>
+<blockquote>
+<div><p></p>
+<p></p>
+<em>Public Members</em><blockquote>
+<div><p><span class="target" id="project0structregexp__module_1ab50b6556f6851574db227f97045f642f"></span>struct  <a class="reference internal" href="module.html#project0structmodule"><em>module</em></a> <strong>module</strong></p>
+<blockquote>
+<div><p></p>
+<p></p>
+</div></blockquote>
+<p><span class="target" id="project0structregexp__module_1a6658bf9f4ee824fdbdca2d40a6c08b04"></span>int(* <strong>match</strong>)(const char *pattern, int options, const char *buffer, int len, struct regexp_result *result)</p>
+<blockquote>
+<div><p></p>
+<p></p>
+</div></blockquote>
+<p><span class="target" id="project0structregexp__module_1ad9ae7287f0dc4e845c34ba40355cf3a9"></span>int(* <strong>vbmatch</strong>)(const char *pattern, int options, struct vbuffer_sub *vbuf, struct vbuffer_sub *result)</p>
+<blockquote>
+<div><p></p>
+<p></p>
+</div></blockquote>
+<p><span class="target" id="project0structregexp__module_1a65b0c73cb06cba58e71ce4aa8af7ba0f"></span>struct regexp *(* <strong>compile</strong>)(const char *pattern, int options)</p>
+<blockquote>
+<div><p></p>
+<p></p>
+</div></blockquote>
+<p><span class="target" id="project0structregexp__module_1ad5874e302557a697e42e17299cf9e231"></span>void(* <strong>release_regexp</strong>)(struct regexp *regexp)</p>
+<blockquote>
+<div><p></p>
+<p></p>
+</div></blockquote>
+<p><span class="target" id="project0structregexp__module_1a7358422f43f9aa55330eab042bf35e00"></span>int(* <strong>exec</strong>)(struct regexp *regexp, const char *buffer, int len, struct regexp_result *result)</p>
+<blockquote>
+<div><p></p>
+<p></p>
+</div></blockquote>
+<p><span class="target" id="project0structregexp__module_1af061da54ab1a58abe0f4b4e8e5ba2407"></span>int(* <strong>vbexec</strong>)(struct regexp *regexp, struct vbuffer_sub *vbuf, struct vbuffer_sub *result)</p>
+<blockquote>
+<div><p></p>
+<p></p>
+</div></blockquote>
+<p><span class="target" id="project0structregexp__module_1a5ce2075bea8fcc9707dea2e94c409254"></span>struct regexp_sink *(* <strong>create_sink</strong>)(struct regexp *regexp)</p>
+<blockquote>
+<div><p></p>
+<p></p>
+</div></blockquote>
+<p><span class="target" id="project0structregexp__module_1aa0dfacae027573e645da930df26baab3"></span>void(* <strong>free_regexp_sink</strong>)(struct regexp_sink *re_sink)</p>
+<blockquote>
+<div><p></p>
+<p></p>
+</div></blockquote>
+<p><span class="target" id="project0structregexp__module_1a9c483d3f8824bcff0c3502e78c477f45"></span>int(* <strong>feed</strong>)(struct regexp_sink *re_sink, const char *buffer, int len, bool eof, struct regexp_result *result)</p>
+<blockquote>
+<div><p></p>
+<p></p>
+</div></blockquote>
+<p><span class="target" id="project0structregexp__module_1a20597a5ef83432439977dccdecd8e195"></span>int(* <strong>vbfeed</strong>)(struct regexp_sink *re_sink, struct vbuffer_sub *vbuf, bool eof, struct vbuffer_iterator *begin, struct vbuffer_iterator *end)</p>
+<blockquote>
+<div><p></p>
+<p></p>
+</div></blockquote>
+</div></blockquote>
+</div></blockquote>
+</p>
+<p><p id="project0structregexp"><em>class</em> <strong>regexp</strong></p>
+<blockquote>
+<div><p></p>
+<p></p>
+<em>Public Members</em><blockquote>
+<div><p><span class="target" id="project0structregexp_1a3086c60cac6f35aed2e3da3484dd43e6"></span>struct regexp_module * <strong>module</strong></p>
+<blockquote>
+<div><p></p>
+<p></p>
+</div></blockquote>
+<p><span class="target" id="project0structregexp_1a266b14f16849022c81709001895cc5eb"></span><a class="reference internal" href="thread.html#project0group__Atomic_1ga755ba8d9debb62736845f4b66464e717"><em>atomic_t</em></a> <strong>ref_count</strong></p>
+<blockquote>
+<div><p></p>
+<p></p>
+</div></blockquote>
+</div></blockquote>
+</div></blockquote>
+</p>
+<p><p id="project0structregexp__sink"><em>class</em> <strong>regexp_sink</strong></p>
+<blockquote>
+<div><p></p>
+<p></p>
+<em>Public Members</em><blockquote>
+<div><p><span class="target" id="project0structregexp__sink_1ac8a9111e9a6bdf015983aa48fbbaa956"></span>struct regexp * <strong>regexp</strong></p>
+<blockquote>
+<div><p></p>
+<p></p>
+</div></blockquote>
+<p><span class="target" id="project0structregexp__sink_1af6d8fb85f8113a20ffcf95d6a709aae3"></span>int <strong>match</strong></p>
+<blockquote>
+<div><p></p>
+<p></p>
+</div></blockquote>
+</div></blockquote>
+</div></blockquote>
+</p>
+</div>
+
+
+		</div>
+	</div>
+</div>
+
+
+
+<footer id="footer">
+	<div class="row" role="complementary">
+		<div class="medium-12 columns">
+			&copy; Copyright 2014, Arkoon Network Security, OpenWide and Telecom ParisTech.
+		</div>
+	</div>
+</footer>
+<script>
+	  $(document).foundation();
+</script>
+
+
+
+<script type="text/javascript" src="http://www.haka-security.org/js/track.js"></script>
+
+
+  </body>
+</html>

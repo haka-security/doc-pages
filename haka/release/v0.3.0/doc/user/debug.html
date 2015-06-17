@@ -1,0 +1,178 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>9. Debugging &mdash; Haka runtime 0.3.0 documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/haka.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/breathe.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '0.3.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../_static/js/scripts.js"></script>
+    <script type="text/javascript" src="../../_static/js/vendor/modernizr.js"></script>
+    <script type="text/javascript" src="../../_static/js/foundation/foundation.js"></script>
+    <script type="text/javascript" src="../../_static/js/foundation/foundation.topbar.js"></script>
+    <link rel="top" title="Haka runtime 0.3.0 documentation" href="../../index.html" />
+    <link rel="up" title="Welcome to Haka’s User Guide!" href="userindex.html" />
+    <link rel="next" title="Welcome to Haka’s User Reference Guide!" href="../ref/refindex.html" />
+    <link rel="prev" title="8. Console" href="console.html" /> 
+  </head>
+  <body>
+
+
+<header id="header" role="banner">
+	<div class="row">
+		<div class="medium-6 columns">
+			<h1 class="title"><a rel="home" title="Haka" href="http://www.haka-security.org">Haka</a></h1>
+			<h2 class="description">Software Defined Security</h2>
+		</div>
+		<div class="medium-6 columns">
+			<div id="version">Version 0.3.0</div>
+		</div>
+	</div>
+</header>
+
+<div class="contain-to-grid sticky">
+	
+
+<nav id="navbar" class="top-bar" data-topbar>
+	<ul class="title-area">
+		<!-- This is required for toggle-topbar to work -->
+		<li class="name"></li>
+		<li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
+	</ul>
+	<section class="top-bar-section">
+		<ul class="left">
+			<li class=" active">
+				<a href="userindex.html">Users</a>
+			</li>
+			<li class=" ">
+				<a href="../ref/refindex.html" class="../ref/refindex.html">References</a>
+			</li>
+			<li class=" ">
+				<a href="../developer/devindex.html" class="">Developers</a>
+			</li>
+			<li class=" ">
+				<a href="../faq.html" class="">Faq</a>
+			</li>
+			<li class="has-form">
+
+
+	<form class="search" action="../../search.html" method="get" id="searchbox" style="display: none">
+		<input type="hidden" name="area" value="default" />
+		<input type="hidden" name="check_keywords" value="yes" />
+		<div class="row collapse">
+			<div class="medium-11 columns">
+				<input type="text" name="q" placeholder="Search" />
+			</div>
+			<div class="medium-1 columns" id="clean-search-highlight">
+			</div>
+		</div>
+	</form>
+	<script type="text/javascript">$('#searchbox').show(0);</script>
+</li>
+		</ul>
+		<ul class="right">
+				<li class="right"><a href="../ref/refindex.html" title="Welcome to Haka&#8217;s User Reference Guide!">Next &rarr;</a></li>
+				<li class="right"><a href="console.html" title="8. Console">&larr; Prev</a></li>
+				<li class="right"><a href="userindex.html" title="Welcome to Haka&#8217;s User Guide!">Up &uarr;</a></li>
+
+			<li class=" right"><a href="../../genindex.html">Index</a></li>
+			<li class=" right"><a href="../../haka-modindex.html">Modules</a></li>
+		</ul>
+	</section>
+</nav>
+</div>
+<div id="content">
+	<div class="row">
+		<ul id="breadcrumb" class="breadcrumbs medium-12 columns">
+			
+			<li><a href="userindex.html">Welcome to Haka&#8217;s User Guide!</a></li>
+			
+			<li class="current"><a href="#">9. Debugging</a></li>
+		</ul>
+	</div>
+	<div class="row">
+		<div class="medium-12 columns">
+			
+  <div class="section" id="debugging">
+<h1>9. Debugging<a class="headerlink" href="#debugging" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="interactive-rule">
+<h2>9.1. Interactive rule<a class="headerlink" href="#interactive-rule" title="Permalink to this headline">¶</a></h2>
+<p>Haka provides a way to filter packet interactively. To do this, you can use a
+predefined function <tt class="docutils literal"><span class="pre">haka.interactive_rule</span></tt>.</p>
+<p>For instance:</p>
+<div class="highlight-lua"><div class="highlight"><pre><span class="n">haka</span><span class="p">.</span><span class="n">rule</span><span class="p">{</span>
+    <span class="n">hook</span> <span class="o">=</span> <span class="n">ipv4</span><span class="p">.</span><span class="n">events</span><span class="p">.</span><span class="n">receive_packet</span><span class="p">,</span>
+    <span class="n">eval</span> <span class="o">=</span> <span class="n">haka</span><span class="p">.</span><span class="n">interactive_rule</span><span class="p">(</span><span class="s2">&quot;</span><span class="s">interactive&quot;</span><span class="p">)</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>As a result, every time this rule will be evaluated, a prompt will allow to enter commands. The
+current dissector data are available in a table named <tt class="docutils literal"><span class="pre">inputs</span></tt>. Following the above example, typing <cite>inputs[1]</cite> on the prompt will dump ip packet content along with available functions.</p>
+<p>Note that you can use the <cite>TAB</cite> key to get completion. This can be very useful to discover the available functions and fields.</p>
+<p>When you are done, you can let Haka continue its execution by hitting CTRL-D.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">As the edition will add a lot of delay, it is best to use the interactive rule on pcap files.
+Otherwise, you can run into problems with tcp for instance.</p>
+</div>
+</div>
+<div class="section" id="debugger">
+<h2>9.2. Debugger<a class="headerlink" href="#debugger" title="Permalink to this headline">¶</a></h2>
+<p>If you need to inspect an existing configuration, you can use the debugger. You need to activate
+the debugger first. This can be done by starting Haka with the option <tt class="docutils literal"><span class="pre">--debug-lua</span></tt>.</p>
+<p>If an error occurs haka will stop and a prompt will allow you to inspect variables,
+up-values, expressions... To get the list of all available commands, simply type <tt class="docutils literal"><span class="pre">help</span></tt>.</p>
+<p>You can also set breakpoints and execute your code line by line by using the
+following code:</p>
+<div class="highlight-lua"><div class="highlight"><pre><span class="n">debug</span><span class="p">.</span><span class="n">breakpoint</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+		</div>
+	</div>
+</div>
+
+
+
+<footer id="footer">
+	<div class="row" role="complementary">
+		<div class="medium-12 columns">
+			&copy; Copyright 2014, Arkoon Network Security, OpenWide and Telecom ParisTech.
+		</div>
+	</div>
+</footer>
+<script>
+	  $(document).foundation();
+</script>
+
+
+
+<script type="text/javascript" src="http://www.haka-security.org/js/track.js"></script>
+
+
+  </body>
+</html>

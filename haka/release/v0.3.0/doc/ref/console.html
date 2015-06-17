@@ -1,0 +1,404 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>16. Console &mdash; Haka runtime 0.3.0 documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/haka.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/breathe.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '0.3.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../_static/js/scripts.js"></script>
+    <script type="text/javascript" src="../../_static/js/vendor/modernizr.js"></script>
+    <script type="text/javascript" src="../../_static/js/foundation/foundation.js"></script>
+    <script type="text/javascript" src="../../_static/js/foundation/foundation.topbar.js"></script>
+    <link rel="top" title="Haka runtime 0.3.0 documentation" href="../../index.html" />
+    <link rel="up" title="Welcome to Haka’s User Reference Guide!" href="refindex.html" />
+    <link rel="next" title="Welcome to Haka’s Developer Guide!" href="../developer/devindex.html" />
+    <link rel="prev" title="15. Misc" href="misc.html" /> 
+  </head>
+  <body>
+
+
+<header id="header" role="banner">
+	<div class="row">
+		<div class="medium-6 columns">
+			<h1 class="title"><a rel="home" title="Haka" href="http://www.haka-security.org">Haka</a></h1>
+			<h2 class="description">Software Defined Security</h2>
+		</div>
+		<div class="medium-6 columns">
+			<div id="version">Version 0.3.0</div>
+		</div>
+	</div>
+</header>
+
+<div class="contain-to-grid sticky">
+	
+
+<nav id="navbar" class="top-bar" data-topbar>
+	<ul class="title-area">
+		<!-- This is required for toggle-topbar to work -->
+		<li class="name"></li>
+		<li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
+	</ul>
+	<section class="top-bar-section">
+		<ul class="left">
+			<li class=" ">
+				<a href="../user/userindex.html">Users</a>
+			</li>
+			<li class=" active">
+				<a href="refindex.html" class="refindex.html">References</a>
+			</li>
+			<li class=" ">
+				<a href="../developer/devindex.html" class="">Developers</a>
+			</li>
+			<li class=" ">
+				<a href="../faq.html" class="">Faq</a>
+			</li>
+			<li class="has-form">
+
+
+	<form class="search" action="../../search.html" method="get" id="searchbox" style="display: none">
+		<input type="hidden" name="area" value="default" />
+		<input type="hidden" name="check_keywords" value="yes" />
+		<div class="row collapse">
+			<div class="medium-11 columns">
+				<input type="text" name="q" placeholder="Search" />
+			</div>
+			<div class="medium-1 columns" id="clean-search-highlight">
+			</div>
+		</div>
+	</form>
+	<script type="text/javascript">$('#searchbox').show(0);</script>
+</li>
+		</ul>
+		<ul class="right">
+				<li class="right"><a href="../developer/devindex.html" title="Welcome to Haka&#8217;s Developer Guide!">Next &rarr;</a></li>
+				<li class="right"><a href="misc.html" title="15. Misc">&larr; Prev</a></li>
+				<li class="right"><a href="refindex.html" title="Welcome to Haka&#8217;s User Reference Guide!">Up &uarr;</a></li>
+
+			<li class=" right"><a href="../../genindex.html">Index</a></li>
+			<li class=" right"><a href="../../haka-modindex.html">Modules</a></li>
+		</ul>
+	</section>
+</nav>
+</div>
+<div id="content">
+	<div class="row">
+		<ul id="breadcrumb" class="breadcrumbs medium-12 columns">
+			
+			<li><a href="refindex.html">Welcome to Haka&#8217;s User Reference Guide!</a></li>
+			
+			<li class="current"><a href="#">16. Console</a></li>
+		</ul>
+	</div>
+	<div class="row">
+		<div class="medium-12 columns">
+			
+  <div class="section" id="console">
+<h1>16. Console<a class="headerlink" href="#console" title="Permalink to this headline">¶</a></h1>
+<p>This section describe the API to add new console utilities available through
+<em>hakactl</em>.</p>
+<p>The console utilities need to be installed in the folder <tt class="docutils literal"><span class="pre">&lt;install</span> <span class="pre">path&gt;/share/haka/console</span></tt>.
+Those files will automatically be loaded when <tt class="docutils literal"><span class="pre">hakactl</span> <span class="pre">console</span></tt> is started.</p>
+<div class="section" id="haka-module.list">
+<span id="list"></span><h2>16.1. List<a class="headerlink" href="#haka-module.list" title="Permalink to this headline">¶</a></h2>
+<p>The <a class="reference internal" href="../user/console.html#haka-object.List" title="List"><tt class="xref haka haka-class docutils literal"><span class="pre">List</span></tt></a> is the main object that is used to return data to the console.</p>
+<div class="admonition-see-also admonition seealso">
+<p class="first admonition-title">See also</p>
+<p class="last"><a class="reference internal" href="../user/console.html"><em>Console User Guide</em></a></p>
+</div>
+<dl class="function">
+<dt id="haka-function.list.new">
+<em class="property"> </em><tt class="descclassname">list.</tt><tt class="descname">new</tt><big>(</big><em>name</em><big>)</big> &rarr; List<a class="headerlink" href="#haka-function.list.new" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"><ul class="first last simple">
+<li><strong>List</strong> (<a class="reference internal" href="../user/console.html#haka-object.List" title="List"><tt class="xref haka haka-class docutils literal"><span class="pre">List</span></tt></a>) &#8211; List class.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p>Create a new type of list. The returned object can be specialized with fields, formatters...</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="haka-object.List">
+<em class="property">object </em><tt class="descname">List</tt><a class="headerlink" href="#haka-object.List" title="Permalink to this definition">¶</a></dt>
+<dd><p>The return object describe this new list and can be extended with new methods like
+a basic class.</p>
+<p>This class also need some class values:</p>
+<dl class="data">
+<dt id="haka-data.List.field">
+<em class="property"> </em><tt class="descclassname">List.</tt><tt class="descname">field</tt><a class="headerlink" href="#haka-data.List.field" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">table of strings</td>
+</tr>
+</tbody>
+</table>
+<p>List of all fields displayed to the user.</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="haka-data.List.key">
+<em class="property"> </em><tt class="descclassname">List.</tt><tt class="descname">key</tt><a class="headerlink" href="#haka-data.List.key" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">string</td>
+</tr>
+</tbody>
+</table>
+<p>Unique key for this list. This key is used when a user call <em>get()</em>.
+This key must be one known field.</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="haka-data.List.field_format">
+<em class="property"> </em><tt class="descclassname">List.</tt><tt class="descname">field_format</tt><a class="headerlink" href="#haka-data.List.field_format" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">table of formatter</td>
+</tr>
+</tbody>
+</table>
+<p>Define which formatter to use when printing the value of the fields. This table
+associates name with a corresponding formatter.</p>
+<div class="admonition-see-also admonition seealso">
+<p class="first admonition-title">See also</p>
+<p class="last"><a class="reference internal" href="#formatter"><em>Formatter</em></a></p>
+</div>
+</dd></dl>
+
+<dl class="data">
+<dt id="haka-data.List.field_aggregate">
+<em class="property"> </em><tt class="descclassname">List.</tt><tt class="descname">field_aggregate</tt><a class="headerlink" href="#haka-data.List.field_aggregate" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">table of aggregator</td>
+</tr>
+</tbody>
+</table>
+<p>Define aggregate utilities to use to add a summary line for all instance of this
+list. It allows for example to add statistics values to compute a global view.
+This table associates name with a corresponding aggregator.</p>
+<div class="admonition-see-also admonition seealso">
+<p class="first admonition-title">See also</p>
+<p class="last"><a class="reference internal" href="#aggregator"><em>Aggregator</em></a></p>
+</div>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="haka-attribute.&lt;List&gt;._data">
+<em class="property"> </em><tt class="descclassname">&lt;List&gt;.</tt><tt class="descname">_data</tt><a class="headerlink" href="#haka-attribute.<List>._data" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">table of table</td>
+</tr>
+</tbody>
+</table>
+<p>Table of table containing each element of this list. It can be used to write custom
+functions.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="haka-function.&lt;List&gt;.add">
+<em class="property"> </em><tt class="descclassname">&lt;List&gt;:</tt><tt class="descname">add</tt><big>(</big><em>data</em><big>)</big><a class="headerlink" href="#haka-function.<List>.add" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type :</th><td class="field-body">table</td>
+</tr>
+</tbody>
+</table>
+<p>Add one entry into this list.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="haka-function.&lt;List&gt;.addall">
+<em class="property"> </em><tt class="descclassname">&lt;List&gt;:</tt><tt class="descname">addall</tt><big>(</big><em>data</em><big>)</big><a class="headerlink" href="#haka-function.<List>.addall" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type :</th><td class="field-body">table of table</td>
+</tr>
+</tbody>
+</table>
+<p>Add all entries in the data into this list.</p>
+</dd></dl>
+
+</dd></dl>
+
+<div class="section" id="formatter">
+<span id="id1"></span><h3>16.1.1. Formatter<a class="headerlink" href="#formatter" title="Permalink to this headline">¶</a></h3>
+<span class="target" id="haka-module.list.formatter"></span><p>Formatters are functions that convert the value given as argument into a string
+that will be printed.</p>
+<dl class="data">
+<dt id="haka-data.list.formatter.unit">
+<em class="property"> </em><tt class="descclassname">list.formatter.</tt><tt class="descname">unit</tt><a class="headerlink" href="#haka-data.list.formatter.unit" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert a numeric value into human readable string adding units if needed (k, M, G...).</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="haka-function.list.formatter.optional">
+<em class="property"> </em><tt class="descclassname">list.formatter.</tt><tt class="descname">optional</tt><big>(</big><em>default</em><big>)</big><a class="headerlink" href="#haka-function.list.formatter.optional" title="Permalink to this definition">¶</a></dt>
+<dd><p>If the value is <tt class="docutils literal"><span class="pre">nil</span></tt>, replace it by a default value.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="aggregator">
+<span id="id2"></span><h3>16.1.2. Aggregator<a class="headerlink" href="#aggregator" title="Permalink to this headline">¶</a></h3>
+<span class="target" id="haka-module.list.aggregator"></span><p>Aggregators are functions that compute a value from a list of values.</p>
+<dl class="data">
+<dt id="haka-data.list.aggregator.add">
+<em class="property"> </em><tt class="descclassname">list.aggregator.</tt><tt class="descname">add</tt><a class="headerlink" href="#haka-data.list.aggregator.add" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sum all values.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="haka-function.list.aggregator.replace">
+<em class="property"> </em><tt class="descclassname">list.aggregator.</tt><tt class="descname">replace</tt><big>(</big><em>override</em><big>)</big><a class="headerlink" href="#haka-function.list.aggregator.replace" title="Permalink to this definition">¶</a></dt>
+<dd><p>Always replace the value by the given <em>override</em>.</p>
+</dd></dl>
+
+</div>
+</div>
+<div class="section" id="new-function">
+<h2>16.2. New function<a class="headerlink" href="#new-function" title="Permalink to this headline">¶</a></h2>
+<p>Adding a new function can be done by adding functions to the table <tt class="docutils literal"><span class="pre">haka.console</span></tt>. This table
+is the environment provided within the console.</p>
+<div class="section" id="haka-module.hakactl">
+<span id="remote-execution"></span><h3>16.2.1. Remote execution<a class="headerlink" href="#haka-module.hakactl" title="Permalink to this headline">¶</a></h3>
+<p>The console code is executed by the <em>hakactl</em> process. It does not have direct access to <em>haka</em>.
+To be able to interact with it, it is possible to remotely execute some Lua code and get the
+result.</p>
+<dl class="function">
+<dt id="haka-function.hakactl.remote">
+<em class="property"> </em><tt class="descclassname">hakactl.</tt><tt class="descname">remote</tt><big>(</big><em>thread</em>, <em>f</em><big>)</big> &rarr; ret<a class="headerlink" href="#haka-function.hakactl.remote" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>thread</strong> (<em>string or number</em>) &#8211; Thread number, <tt class="docutils literal"><span class="pre">'any'</span></tt> or <tt class="docutils literal"><span class="pre">'all'</span></tt>.</li>
+<li><strong>f</strong> (<em>function</em>) &#8211; Function to execute remotely.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><ul class="first last simple">
+<li><strong>ret</strong> (<em>table</em>) &#8211; Return values.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p>Execute a Lua function on some haka thread&#8217;s remotely. The thread number can be:</p>
+<ul class="simple">
+<li>The thread id.</li>
+<li><tt class="docutils literal"><span class="pre">'all'</span></tt> if the code should be executed on each thread.</li>
+<li><tt class="docutils literal"><span class="pre">'any'</span></tt> if the code should be executed on one thread but the id is not important.</li>
+</ul>
+<p>The return value is a table containing the result for each called thread. It will have
+one element if executed on 1 thread or more.</p>
+<p>The data send and received are marshaled, some care need to be taken to transmit minimal
+data.</p>
+</dd></dl>
+
+</div>
+</div>
+<div class="section" id="example">
+<h2>16.3. Example<a class="headerlink" href="#example" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-lua"><div class="highlight"><pre><span class="c1">-- This Source Code Form is subject to the terms of the Mozilla Public</span>
+<span class="c1">-- License, v. 2.0. If a copy of the MPL was not distributed with this</span>
+<span class="c1">-- file, You can obtain one at http://mozilla.org/MPL/2.0/.</span>
+
+<span class="kd">local</span> <span class="n">list</span> <span class="o">=</span> <span class="nb">require</span><span class="p">(</span><span class="s1">&#39;</span><span class="s">list&#39;</span><span class="p">)</span>
+<span class="kd">local</span> <span class="n">class</span> <span class="o">=</span> <span class="nb">require</span><span class="p">(</span><span class="s1">&#39;</span><span class="s">class&#39;</span><span class="p">)</span>
+
+<span class="kd">local</span> <span class="n">EventInfo</span> <span class="o">=</span> <span class="n">list</span><span class="p">.</span><span class="n">new</span><span class="p">(</span><span class="s1">&#39;</span><span class="s">thread_info&#39;</span><span class="p">)</span>
+
+<span class="n">EventInfo</span><span class="p">.</span><span class="n">field</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;</span><span class="s">event&#39;</span><span class="p">,</span> <span class="s1">&#39;</span><span class="s">listener&#39;</span>
+<span class="p">}</span>
+
+<span class="n">EventInfo</span><span class="p">.</span><span class="n">field_format</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="p">[</span><span class="s1">&#39;</span><span class="s">listener&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">list</span><span class="p">.</span><span class="n">formatter</span><span class="p">.</span><span class="n">unit</span><span class="p">,</span>
+<span class="p">}</span>
+
+<span class="n">EventInfo</span><span class="p">.</span><span class="n">field_aggregate</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="p">[</span><span class="s1">&#39;</span><span class="s">listener&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">list</span><span class="p">.</span><span class="n">aggregator</span><span class="p">.</span><span class="n">add</span>
+<span class="p">}</span>
+
+<span class="k">function</span> <span class="nc">console</span><span class="p">.</span><span class="nf">events</span><span class="p">()</span>
+    <span class="kd">local</span> <span class="n">data</span> <span class="o">=</span> <span class="n">hakactl</span><span class="p">.</span><span class="n">remote</span><span class="p">(</span><span class="s1">&#39;</span><span class="s">any&#39;</span><span class="p">,</span> <span class="k">function</span> <span class="p">()</span>
+        <span class="k">return</span> <span class="n">haka</span><span class="p">.</span><span class="n">console</span><span class="p">.</span><span class="n">events</span><span class="p">()</span>
+    <span class="k">end</span><span class="p">)</span>
+
+    <span class="kd">local</span> <span class="n">info</span> <span class="o">=</span> <span class="n">EventInfo</span><span class="p">:</span><span class="n">new</span><span class="p">()</span>
+    <span class="n">info</span><span class="p">:</span><span class="n">add</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+    <span class="k">return</span> <span class="n">info</span>
+<span class="k">end</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+		</div>
+	</div>
+</div>
+
+
+
+<footer id="footer">
+	<div class="row" role="complementary">
+		<div class="medium-12 columns">
+			&copy; Copyright 2014, Arkoon Network Security, OpenWide and Telecom ParisTech.
+		</div>
+	</div>
+</footer>
+<script>
+	  $(document).foundation();
+</script>
+
+
+
+<script type="text/javascript" src="http://www.haka-security.org/js/track.js"></script>
+
+
+  </body>
+</html>

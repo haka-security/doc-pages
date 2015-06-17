@@ -1,0 +1,521 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>7.4. Tcp &mdash; Haka runtime 0.3.0 documentation</title>
+    
+    <link rel="stylesheet" href="../../../../_static/haka.css" type="text/css" />
+    <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../../../_static/breathe.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../../',
+        VERSION:     '0.3.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../../../_static/js/scripts.js"></script>
+    <script type="text/javascript" src="../../../../_static/js/vendor/modernizr.js"></script>
+    <script type="text/javascript" src="../../../../_static/js/foundation/foundation.js"></script>
+    <script type="text/javascript" src="../../../../_static/js/foundation/foundation.topbar.js"></script>
+    <link rel="top" title="Haka runtime 0.3.0 documentation" href="../../../../index.html" />
+    <link rel="up" title="7. Haka dissectors" href="../../../../doc/ref/hakadissector.html" />
+    <link rel="next" title="7.5. Tcp Connection" href="tcp_connection.html" />
+    <link rel="prev" title="7.3. Icmp" href="../../icmp/doc/icmp.html" /> 
+  </head>
+  <body>
+
+
+<header id="header" role="banner">
+	<div class="row">
+		<div class="medium-6 columns">
+			<h1 class="title"><a rel="home" title="Haka" href="http://www.haka-security.org">Haka</a></h1>
+			<h2 class="description">Software Defined Security</h2>
+		</div>
+		<div class="medium-6 columns">
+			<div id="version">Version 0.3.0</div>
+		</div>
+	</div>
+</header>
+
+<div class="contain-to-grid sticky">
+	
+
+<nav id="navbar" class="top-bar" data-topbar>
+	<ul class="title-area">
+		<!-- This is required for toggle-topbar to work -->
+		<li class="name"></li>
+		<li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
+	</ul>
+	<section class="top-bar-section">
+		<ul class="left">
+			<li class=" ">
+				<a href="../../../../doc/user/userindex.html">Users</a>
+			</li>
+			<li class=" active">
+				<a href="../../../../doc/ref/refindex.html" class="../../../../doc/ref/refindex.html">References</a>
+			</li>
+			<li class=" ">
+				<a href="../../../../doc/developer/devindex.html" class="">Developers</a>
+			</li>
+			<li class=" ">
+				<a href="../../../../doc/faq.html" class="">Faq</a>
+			</li>
+			<li class="has-form">
+
+
+	<form class="search" action="../../../../search.html" method="get" id="searchbox" style="display: none">
+		<input type="hidden" name="area" value="default" />
+		<input type="hidden" name="check_keywords" value="yes" />
+		<div class="row collapse">
+			<div class="medium-11 columns">
+				<input type="text" name="q" placeholder="Search" />
+			</div>
+			<div class="medium-1 columns" id="clean-search-highlight">
+			</div>
+		</div>
+	</form>
+	<script type="text/javascript">$('#searchbox').show(0);</script>
+</li>
+		</ul>
+		<ul class="right">
+				<li class="right"><a href="tcp_connection.html" title="7.5. Tcp Connection">Next &rarr;</a></li>
+				<li class="right"><a href="../../icmp/doc/icmp.html" title="7.3. Icmp">&larr; Prev</a></li>
+				<li class="right"><a href="../../../../doc/ref/hakadissector.html" title="7. Haka dissectors">Up &uarr;</a></li>
+
+			<li class=" right"><a href="../../../../genindex.html">Index</a></li>
+			<li class=" right"><a href="../../../../haka-modindex.html">Modules</a></li>
+		</ul>
+	</section>
+</nav>
+</div>
+<div id="content">
+	<div class="row">
+		<ul id="breadcrumb" class="breadcrumbs medium-12 columns">
+			
+			<li><a href="../../../../doc/ref/refindex.html">Welcome to Haka&#8217;s User Reference Guide!</a></li>
+			
+			<li><a href="../../../../doc/ref/hakadissector.html">7. Haka dissectors</a></li>
+			
+			<li class="current"><a href="#">7.4. Tcp</a></li>
+		</ul>
+	</div>
+	<div class="row">
+		<div class="medium-12 columns">
+			
+  <div class="section" id="haka-module.tcp">
+<span id="tcp"></span><h1>7.4. Tcp<a class="headerlink" href="#haka-module.tcp" title="Permalink to this headline">¶</a></h1>
+<p>Tcp state-less dissector module.</p>
+<p><strong>Usage:</strong></p>
+<div class="highlight-lua"><div class="highlight"><pre><span class="kd">local</span> <span class="n">tcp</span> <span class="o">=</span> <span class="nb">require</span><span class="p">(</span><span class="s1">&#39;</span><span class="s">protocol/tcp&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="section" id="dissector">
+<h2>7.4.1. Dissector<a class="headerlink" href="#dissector" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="haka-object.TcpDissector">
+<em class="property">dissector </em><tt class="descname">TcpDissector</tt><a class="headerlink" href="#haka-object.TcpDissector" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Name :</th><td class="field-body"><tt class="docutils literal"><span class="pre">'tcp'</span></tt></td>
+</tr>
+<tr class="field-even field"><th class="field-name">Extend :</th><td class="field-body"><a class="reference internal" href="../../../../doc/ref/dissector.html#haka-object.haka.helper.PacketDissector" title="haka.helper.PacketDissector"><tt class="xref haka haka-class docutils literal"><span class="pre">haka.helper.PacketDissector</span></tt></a>&nbsp;</td>
+</tr>
+</tbody>
+</table>
+<p>Dissector data for a TCP packet. This dissector is state-less. It will only parse the
+packet headers.</p>
+<dl class="function">
+<dt id="haka-function.tcp.create">
+<em class="property"> </em><tt class="descclassname">tcp.</tt><tt class="descname">create</tt><big>(</big><em>ip</em><big>)</big> &rarr; tcp<a class="headerlink" href="#haka-function.tcp.create" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>ip</strong> (<a class="reference internal" href="../../ipv4/doc/ipv4.html#haka-object.Ipv4Dissector" title="Ipv4Dissector"><tt class="xref haka haka-class docutils literal"><span class="pre">Ipv4Dissector</span></tt></a>) &#8211; IPv4 packet.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><ul class="first last simple">
+<li><strong>tcp</strong> (<a class="reference internal" href="#haka-object.TcpDissector" title="TcpDissector"><tt class="xref haka haka-class docutils literal"><span class="pre">TcpDissector</span></tt></a>) &#8211; Created packet.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p>Create a new TCP packet on top of the given IP packet.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="haka-attribute.&lt;TcpDissector&gt;.srcport">
+<em class="property"> </em><tt class="descclassname">&lt;TcpDissector&gt;.</tt><tt class="descname">srcport</tt><a class="headerlink" href="#haka-attribute.<TcpDissector>.srcport" title="Permalink to this definition">¶</a></dt>
+<dt id="haka-attribute.&lt;TcpDissector&gt;.dstport">
+<em class="property"> </em><tt class="descclassname">&lt;TcpDissector&gt;.</tt><tt class="descname">dstport</tt><a class="headerlink" href="#haka-attribute.<TcpDissector>.dstport" title="Permalink to this definition">¶</a></dt>
+<dt id="haka-attribute.&lt;TcpDissector&gt;.seq">
+<em class="property"> </em><tt class="descclassname">&lt;TcpDissector&gt;.</tt><tt class="descname">seq</tt><a class="headerlink" href="#haka-attribute.<TcpDissector>.seq" title="Permalink to this definition">¶</a></dt>
+<dt id="haka-attribute.&lt;TcpDissector&gt;.ack_seq">
+<em class="property"> </em><tt class="descclassname">&lt;TcpDissector&gt;.</tt><tt class="descname">ack_seq</tt><a class="headerlink" href="#haka-attribute.<TcpDissector>.ack_seq" title="Permalink to this definition">¶</a></dt>
+<dt id="haka-attribute.&lt;TcpDissector&gt;.res">
+<em class="property"> </em><tt class="descclassname">&lt;TcpDissector&gt;.</tt><tt class="descname">res</tt><a class="headerlink" href="#haka-attribute.<TcpDissector>.res" title="Permalink to this definition">¶</a></dt>
+<dt id="haka-attribute.&lt;TcpDissector&gt;.hdr_len">
+<em class="property"> </em><tt class="descclassname">&lt;TcpDissector&gt;.</tt><tt class="descname">hdr_len</tt><a class="headerlink" href="#haka-attribute.<TcpDissector>.hdr_len" title="Permalink to this definition">¶</a></dt>
+<dt id="haka-attribute.&lt;TcpDissector&gt;.window_size">
+<em class="property"> </em><tt class="descclassname">&lt;TcpDissector&gt;.</tt><tt class="descname">window_size</tt><a class="headerlink" href="#haka-attribute.<TcpDissector>.window_size" title="Permalink to this definition">¶</a></dt>
+<dt id="haka-attribute.&lt;TcpDissector&gt;.checksum">
+<em class="property"> </em><tt class="descclassname">&lt;TcpDissector&gt;.</tt><tt class="descname">checksum</tt><a class="headerlink" href="#haka-attribute.<TcpDissector>.checksum" title="Permalink to this definition">¶</a></dt>
+<dt id="haka-attribute.&lt;TcpDissector&gt;.urgent_pointer">
+<em class="property"> </em><tt class="descclassname">&lt;TcpDissector&gt;.</tt><tt class="descname">urgent_pointer</tt><a class="headerlink" href="#haka-attribute.<TcpDissector>.urgent_pointer" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">number</td>
+</tr>
+</tbody>
+</table>
+<p>TCP fields.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="haka-attribute.&lt;TcpDissector&gt;.flags.fin">
+<em class="property"> </em><tt class="descclassname">&lt;TcpDissector&gt;.flags.</tt><tt class="descname">fin</tt><a class="headerlink" href="#haka-attribute.<TcpDissector>.flags.fin" title="Permalink to this definition">¶</a></dt>
+<dt id="haka-attribute.&lt;TcpDissector&gt;.flags.syn">
+<em class="property"> </em><tt class="descclassname">&lt;TcpDissector&gt;.flags.</tt><tt class="descname">syn</tt><a class="headerlink" href="#haka-attribute.<TcpDissector>.flags.syn" title="Permalink to this definition">¶</a></dt>
+<dt id="haka-attribute.&lt;TcpDissector&gt;.flags.rst">
+<em class="property"> </em><tt class="descclassname">&lt;TcpDissector&gt;.flags.</tt><tt class="descname">rst</tt><a class="headerlink" href="#haka-attribute.<TcpDissector>.flags.rst" title="Permalink to this definition">¶</a></dt>
+<dt id="haka-attribute.&lt;TcpDissector&gt;.flags.psh">
+<em class="property"> </em><tt class="descclassname">&lt;TcpDissector&gt;.flags.</tt><tt class="descname">psh</tt><a class="headerlink" href="#haka-attribute.<TcpDissector>.flags.psh" title="Permalink to this definition">¶</a></dt>
+<dt id="haka-attribute.&lt;TcpDissector&gt;.flags.ack">
+<em class="property"> </em><tt class="descclassname">&lt;TcpDissector&gt;.flags.</tt><tt class="descname">ack</tt><a class="headerlink" href="#haka-attribute.<TcpDissector>.flags.ack" title="Permalink to this definition">¶</a></dt>
+<dt id="haka-attribute.&lt;TcpDissector&gt;.flags.urg">
+<em class="property"> </em><tt class="descclassname">&lt;TcpDissector&gt;.flags.</tt><tt class="descname">urg</tt><a class="headerlink" href="#haka-attribute.<TcpDissector>.flags.urg" title="Permalink to this definition">¶</a></dt>
+<dt id="haka-attribute.&lt;TcpDissector&gt;.flags.ecn">
+<em class="property"> </em><tt class="descclassname">&lt;TcpDissector&gt;.flags.</tt><tt class="descname">ecn</tt><a class="headerlink" href="#haka-attribute.<TcpDissector>.flags.ecn" title="Permalink to this definition">¶</a></dt>
+<dt id="haka-attribute.&lt;TcpDissector&gt;.flags.cwr">
+<em class="property"> </em><tt class="descclassname">&lt;TcpDissector&gt;.flags.</tt><tt class="descname">cwr</tt><a class="headerlink" href="#haka-attribute.<TcpDissector>.flags.cwr" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">boolean</td>
+</tr>
+</tbody>
+</table>
+<p>TCP flags.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="haka-attribute.&lt;TcpDissector&gt;.flags.all">
+<em class="property"> </em><tt class="descclassname">&lt;TcpDissector&gt;.flags.</tt><tt class="descname">all</tt><a class="headerlink" href="#haka-attribute.<TcpDissector>.flags.all" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">number</td>
+</tr>
+</tbody>
+</table>
+<p>All flags raw value.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="haka-attribute.&lt;TcpDissector&gt;.payload">
+<em class="property"> </em><tt class="descclassname">&lt;TcpDissector&gt;.</tt><tt class="descname">payload</tt><a class="headerlink" href="#haka-attribute.<TcpDissector>.payload" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body"><a class="reference internal" href="../../../../doc/ref/vbuffer.html#haka-object.vbuffer" title="vbuffer"><tt class="xref haka haka-class docutils literal"><span class="pre">vbuffer</span></tt></a>&nbsp;</td>
+</tr>
+</tbody>
+</table>
+<p>Payload of the packet.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="haka-attribute.&lt;TcpDissector&gt;.ip">
+<em class="property">const  </em><tt class="descclassname">&lt;TcpDissector&gt;.</tt><tt class="descname">ip</tt><a class="headerlink" href="#haka-attribute.<TcpDissector>.ip" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body"><a class="reference internal" href="../../ipv4/doc/ipv4.html#haka-object.Ipv4Dissector" title="Ipv4Dissector"><tt class="xref haka haka-class docutils literal"><span class="pre">Ipv4Dissector</span></tt></a>&nbsp;</td>
+</tr>
+</tbody>
+</table>
+<p>IPv4 packet.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="haka-function.&lt;TcpDissector&gt;.verify_checksum">
+<em class="property"> </em><tt class="descclassname">&lt;TcpDissector&gt;:</tt><tt class="descname">verify_checksum</tt><big>(</big><big>)</big> &rarr; correct<a class="headerlink" href="#haka-function.<TcpDissector>.verify_checksum" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"><ul class="first last simple">
+<li><strong>correct</strong> (<em>boolean</em>) &#8211; <tt class="docutils literal"><span class="pre">true</span></tt> if the checksum is correct.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p>Verify if the checksum is correct.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="haka-function.&lt;TcpDissector&gt;.compute_checksum">
+<em class="property"> </em><tt class="descclassname">&lt;TcpDissector&gt;:</tt><tt class="descname">compute_checksum</tt><big>(</big><big>)</big><a class="headerlink" href="#haka-function.<TcpDissector>.compute_checksum" title="Permalink to this definition">¶</a></dt>
+<dd><p>Recompute the checksum and set the resulting value in the packet.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="haka-function.&lt;TcpDissector&gt;.drop">
+<em class="property"> </em><tt class="descclassname">&lt;TcpDissector&gt;:</tt><tt class="descname">drop</tt><big>(</big><big>)</big><a class="headerlink" href="#haka-function.<TcpDissector>.drop" title="Permalink to this definition">¶</a></dt>
+<dd><p>Drop the TCP packet.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="haka-function.&lt;TcpDissector&gt;.send">
+<em class="property"> </em><tt class="descclassname">&lt;TcpDissector&gt;:</tt><tt class="descname">send</tt><big>(</big><big>)</big><a class="headerlink" href="#haka-function.<TcpDissector>.send" title="Permalink to this definition">¶</a></dt>
+<dd><p>Send the packet.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="haka-function.&lt;TcpDissector&gt;.inject">
+<em class="property"> </em><tt class="descclassname">&lt;TcpDissector&gt;:</tt><tt class="descname">inject</tt><big>(</big><big>)</big><a class="headerlink" href="#haka-function.<TcpDissector>.inject" title="Permalink to this definition">¶</a></dt>
+<dd><p>Inject the packet.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="events">
+<h2>7.4.2. Events<a class="headerlink" href="#events" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="haka-function.tcp.events.receive_packet">
+<em class="property">event </em><tt class="descclassname">tcp.events.</tt><tt class="descname">receive_packet</tt><big>(</big><em>pkt</em><big>)</big><a class="headerlink" href="#haka-function.tcp.events.receive_packet" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>pkt</strong> (<a class="reference internal" href="#haka-object.TcpDissector" title="TcpDissector"><tt class="xref haka haka-class docutils literal"><span class="pre">TcpDissector</span></tt></a>) &#8211; TCP packet.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p>Event that is triggered whenever a new packet is received.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="haka-function.tcp.events.send_packet">
+<em class="property">event </em><tt class="descclassname">tcp.events.</tt><tt class="descname">send_packet</tt><big>(</big><em>pkt</em><big>)</big><a class="headerlink" href="#haka-function.tcp.events.send_packet" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>pkt</strong> (<a class="reference internal" href="#haka-object.TcpDissector" title="TcpDissector"><tt class="xref haka haka-class docutils literal"><span class="pre">TcpDissector</span></tt></a>) &#8211; TCP packet.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p>Event that is triggered just before sending a packet on the network.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="utilities">
+<h2>7.4.3. Utilities<a class="headerlink" href="#utilities" title="Permalink to this headline">¶</a></h2>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">This section introduces advanced feature of Haka.</p>
+</div>
+<dl class="class">
+<dt id="haka-object.tcp_stream">
+<em class="property">object </em><tt class="descname">tcp_stream</tt><a class="headerlink" href="#haka-object.tcp_stream" title="Permalink to this definition">¶</a></dt>
+<dd><p>TCP stream helper object.</p>
+<dl class="function">
+<dt id="haka-function.tcp.tcp_stream">
+<em class="property"> </em><tt class="descclassname">tcp.</tt><tt class="descname">tcp_stream</tt><big>(</big><big>)</big> &rarr; stream<a class="headerlink" href="#haka-function.tcp.tcp_stream" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"><ul class="first last simple">
+<li><strong>stream</strong> (<a class="reference internal" href="#haka-object.tcp_stream" title="tcp_stream"><tt class="xref haka haka-class docutils literal"><span class="pre">tcp_stream</span></tt></a>) &#8211; New TCP stream.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p>Create a new TCP stream.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="haka-function.&lt;tcp_stream&gt;.init">
+<em class="property"> </em><tt class="descclassname">&lt;tcp_stream&gt;:</tt><tt class="descname">init</tt><big>(</big><em>seq</em><big>)</big><a class="headerlink" href="#haka-function.<tcp_stream>.init" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>seq</strong> (<a class="reference internal" href="../../../../doc/ref/grammar.html#haka-function.number" title="number"><em>number</em></a>) &#8211; Initial sequence number for this stream.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p>Initialize the initial sequence number of the stream.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="haka-function.&lt;tcp_stream&gt;.push">
+<em class="property"> </em><tt class="descclassname">&lt;tcp_stream&gt;:</tt><tt class="descname">push</tt><big>(</big><em>tcp</em><big>)</big><a class="headerlink" href="#haka-function.<tcp_stream>.push" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>tcp</strong> (<a class="reference internal" href="#haka-object.TcpDissector" title="TcpDissector"><tt class="xref haka haka-class docutils literal"><span class="pre">TcpDissector</span></tt></a>) &#8211; TCP packet.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p>Push a tcp packet into the stream.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="haka-function.&lt;tcp_stream&gt;.pop">
+<em class="property"> </em><tt class="descclassname">&lt;tcp_stream&gt;:</tt><tt class="descname">pop</tt><big>(</big><big>)</big> &rarr; tcp<a class="headerlink" href="#haka-function.<tcp_stream>.pop" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"><ul class="first last simple">
+<li><strong>tcp</strong> (<a class="reference internal" href="#haka-object.TcpDissector" title="TcpDissector"><tt class="xref haka haka-class docutils literal"><span class="pre">TcpDissector</span></tt></a>) &#8211; TCP packet.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p>Pop a tcp packet out of the stream.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="haka-function.&lt;tcp_stream&gt;.seq">
+<em class="property"> </em><tt class="descclassname">&lt;tcp_stream&gt;:</tt><tt class="descname">seq</tt><big>(</big><em>tcp</em><big>)</big><a class="headerlink" href="#haka-function.<tcp_stream>.seq" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>tcp</strong> (<a class="reference internal" href="#haka-object.TcpDissector" title="TcpDissector"><tt class="xref haka haka-class docutils literal"><span class="pre">TcpDissector</span></tt></a>) &#8211; TCP packet.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p>Update the sequence number of a tcp packet.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="haka-function.&lt;tcp_stream&gt;.ack">
+<em class="property"> </em><tt class="descclassname">&lt;tcp_stream&gt;:</tt><tt class="descname">ack</tt><big>(</big><em>tcp</em><big>)</big><a class="headerlink" href="#haka-function.<tcp_stream>.ack" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>tcp</strong> (<a class="reference internal" href="#haka-object.TcpDissector" title="TcpDissector"><tt class="xref haka haka-class docutils literal"><span class="pre">TcpDissector</span></tt></a>) &#8211; TCP packet.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p>Update the ack number of a packet.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="haka-function.&lt;tcp_stream&gt;.clear">
+<em class="property"> </em><tt class="descclassname">&lt;tcp_stream&gt;:</tt><tt class="descname">clear</tt><big>(</big><big>)</big><a class="headerlink" href="#haka-function.<tcp_stream>.clear" title="Permalink to this definition">¶</a></dt>
+<dd><p>Clear the stream and drop all remaining packets.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="haka-attribute.&lt;tcp_stream&gt;.stream">
+<em class="property"> </em><tt class="descclassname">&lt;tcp_stream&gt;.</tt><tt class="descname">stream</tt><a class="headerlink" href="#haka-attribute.<tcp_stream>.stream" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body"><a class="reference internal" href="../../../../doc/ref/vbuffer.html#haka-object.vbuffer_stream" title="vbuffer_stream"><tt class="xref haka haka-class docutils literal"><span class="pre">vbuffer_stream</span></tt></a></td>
+</tr>
+</tbody>
+</table>
+<p>Associated raw stream.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="haka-attribute.&lt;tcp_stream&gt;.lastseq">
+<em class="property">const  </em><tt class="descclassname">&lt;tcp_stream&gt;.</tt><tt class="descname">lastseq</tt><a class="headerlink" href="#haka-attribute.<tcp_stream>.lastseq" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">number</td>
+</tr>
+</tbody>
+</table>
+<p>Last received sequence number.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+
+
+		</div>
+	</div>
+</div>
+
+
+
+<footer id="footer">
+	<div class="row" role="complementary">
+		<div class="medium-12 columns">
+			&copy; Copyright 2014, Arkoon Network Security, OpenWide and Telecom ParisTech.
+		</div>
+	</div>
+</footer>
+<script>
+	  $(document).foundation();
+</script>
+
+
+
+<script type="text/javascript" src="http://www.haka-security.org/js/track.js"></script>
+
+
+  </body>
+</html>

@@ -1,0 +1,280 @@
+/* This Source Code Form is subject to the terms of the Mozilla Public
+ * License, v. 2.0. If a copy of the MPL was not distributed with this
+ * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
+
+@import url("default.css");
+@import url("css/breathe.css");
+@import url("css/foundation.css");
+@import url("css/haka.css");
+
+/**
+ * Override haka.css
+ */
+h1 {
+	font-size: 32px;
+}
+
+h2 {
+	font-size: 25.6px;
+}
+
+header#header #version {
+	font: italic 300 24px "Source Sans Pro",Helvetica,sans-serif;
+	margin: 0;
+	text-align: right;
+	color: #fff;
+}
+
+a:visited {
+	color: #99cc66;
+}
+
+pre {
+	background: none repeat scroll 0 0 #f0f0f0;
+	border: 1px solid #aaaaaa;
+	font-weight: 100;
+}
+
+#content {
+	padding: 0;
+}
+
+/* Don't ask me why... */
+dl {
+	font-size: 100%;
+}
+
+dd {
+	margin-left: 30px;
+}
+
+ul {
+	list-style-type: disc;
+}
+
+dd table tbody tr th, dd table tbody tr td {
+	font-size: 100%;
+	line-height: 130%;
+}
+
+dd table tbody tr:nth-of-type(n) { /* Add nth-of-type to force override */
+	background: none;
+}
+
+ul, ol, dl {
+	line-height: 1.4;
+}
+
+/**
+ * Doc
+ */
+a.headerlink {
+	color: #99CC66;
+}
+
+a.headerlink:hover {
+	color: #ffffff;
+	background-color: #FFCC33;
+}
+a.headerlink {
+	color: #99CC66;
+}
+
+a.headerlink:hover {
+	color: #ffffff;
+	background-color: #FFCC33;
+}
+
+.toctree-wrapper a,
+.indextable a {
+	color: #34373F;
+}
+
+.toctree-wrapper a:visited,
+.indextable a:visited {
+	color: #34373F;
+}
+
+#navbar li a.disabled {
+	color: #888888;
+}
+
+th {
+	background-color: #FFFFFF;
+}
+
+.breadcrumbs {
+    background: none;
+    border-style: none;
+	margin-bottom: 0;
+}
+
+.breadcrumbs > * {
+    text-transform: none;
+}
+
+div.seealso, div.note {
+	background: #f0f0f0;
+	border: 1px solid #aaaaaa;
+	border-radius: 5px;
+}
+
+dt:target, .highlighted {
+	background-color: #FFCC33;
+}
+
+.highlight-link {
+	background: transparent url(img/cross.png) no-repeat center center;
+	width: 30px;
+	height: 45px;
+	display: block;
+}
+
+.highlight-link:hover {
+	background: transparent url(img/cross-highlight.png) no-repeat center center !important;
+}
+
+table.field-list td, table.field-list th {
+	padding-left: 0;
+}
+
+table.field-list {
+	border-collapse: separate;
+	border-spacing: 0 0.5em;
+}
+
+em.modproperty {
+	font-size: 75%;
+}
+
+.field-list .field-body p {
+	display: inline;
+}
+
+dl {
+	line-height: 1;
+}
+
+dl.class dt:target, dl.function dt:target, dl.operator dt:target, dl.method
+dt:target, dl.data dt:target, dl.attribute dt:target, .highlighted {
+	background-color: #FFCC33;
+	border-color: #515151;
+}
+
+dl.class dt, dl.function dt, dl.operator dt, dl.method dt, dl.data dt,
+dl.attribute dt {
+	background-color: #FAFAFA;
+	border-color: #99CC66;
+	border-style: solid;
+	border-width: 3px 1px 1px;
+	padding: 0.5em;
+	font-weight: normal;
+}
+
+dl dt tt {
+	font-family: monospace;
+}
+
+dl.class dt + dt, dl.function dt + dt, dl.operator dt + dt,
+dl.method dt + dt, dl.data dt + dt, dl.attribute dt + dt {
+	border-top: 0px;
+	margin-top: -1em;
+}
+
+/* Special toctree formating for the top-level page: we want to hide the
+ * first level of the toctree in this page
+ */
+
+#welcome-to-haka-s-documentation li.toctree-l1 {
+	list-style: none;
+}
+
+#welcome-to-haka-s-documentation li.toctree-l1 > a {
+	display: none;
+}
+
+#welcome-to-haka-s-documentation li.toctree-l1 > ul {
+	padding-left: 0;
+}
+
+/* For the SMTP tutorial, we still want the bullet to appear. */
+
+#smtp-protocol-dissection li.toctree-l1 {
+	list-style: disc;
+}
+
+#smtp-protocol-dissection .toctree-wrapper > ul {
+	padding-left: 40px;
+}
+
+/* Toctree already are numbered so we can remove ticks */
+li.toctree-l1 {
+	list-style: none;
+}
+
+li.toctree-l2 {
+	list-style: none;
+}
+
+.toctree-wrapper > ul {
+	padding-left: 20px;
+}
+
+/* Admonition */
+div.admonition {
+	border-radius: 5px;
+}
+
+/* Exercise */
+div.admonition-exercise {
+	background: none repeat scroll 0 0 #f2f8ec;
+    border: 1px solid #99CC66;
+    border-radius: 5px;
+}
+
+div.admonition-exercise > p,
+div.admonition-exercise > div,
+div.admonition-exercise > p.admonition-title + p {
+	margin-left: 1em;
+	margin-right: 1em;
+	display: block;
+}
+
+div.admonition-exercise > p.admonition-title {
+	position: relative;
+	margin-left: 0px;
+	margin-bottom: 0px;
+}
+
+div.admonition-exercise > p.admonition-title:before {
+    content: "\0270E\0a0";
+	font-size: 150%;
+	position: relative;
+	top: 5px;
+}
+
+div.admonition-exercise > p.admonition-title:after {
+    content: "";
+}
+
+div#going-further > img {
+    float: left;
+}
+
+div#going-further > img + p {
+    line-height: 64px;
+    margin-left: 80px;
+}
+
+blockquote {
+	margin: 0;
+	padding: 0;
+	padding-left: 1em;
+	margin-top: 1em;
+}
+
+blockquote, blockquote p {
+	border: none;
+	line-height: 1;
+	color: #515151;
+}

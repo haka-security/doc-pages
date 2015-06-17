@@ -1,0 +1,289 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>15. Misc &mdash; Haka runtime 0.3.0 documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/haka.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/breathe.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '0.3.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../_static/js/scripts.js"></script>
+    <script type="text/javascript" src="../../_static/js/vendor/modernizr.js"></script>
+    <script type="text/javascript" src="../../_static/js/foundation/foundation.js"></script>
+    <script type="text/javascript" src="../../_static/js/foundation/foundation.topbar.js"></script>
+    <link rel="top" title="Haka runtime 0.3.0 documentation" href="../../index.html" />
+    <link rel="up" title="Welcome to Haka’s User Reference Guide!" href="refindex.html" />
+    <link rel="next" title="16. Console" href="console.html" />
+    <link rel="prev" title="14. Dissector" href="dissector.html" /> 
+  </head>
+  <body>
+
+
+<header id="header" role="banner">
+	<div class="row">
+		<div class="medium-6 columns">
+			<h1 class="title"><a rel="home" title="Haka" href="http://www.haka-security.org">Haka</a></h1>
+			<h2 class="description">Software Defined Security</h2>
+		</div>
+		<div class="medium-6 columns">
+			<div id="version">Version 0.3.0</div>
+		</div>
+	</div>
+</header>
+
+<div class="contain-to-grid sticky">
+	
+
+<nav id="navbar" class="top-bar" data-topbar>
+	<ul class="title-area">
+		<!-- This is required for toggle-topbar to work -->
+		<li class="name"></li>
+		<li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
+	</ul>
+	<section class="top-bar-section">
+		<ul class="left">
+			<li class=" ">
+				<a href="../user/userindex.html">Users</a>
+			</li>
+			<li class=" active">
+				<a href="refindex.html" class="refindex.html">References</a>
+			</li>
+			<li class=" ">
+				<a href="../developer/devindex.html" class="">Developers</a>
+			</li>
+			<li class=" ">
+				<a href="../faq.html" class="">Faq</a>
+			</li>
+			<li class="has-form">
+
+
+	<form class="search" action="../../search.html" method="get" id="searchbox" style="display: none">
+		<input type="hidden" name="area" value="default" />
+		<input type="hidden" name="check_keywords" value="yes" />
+		<div class="row collapse">
+			<div class="medium-11 columns">
+				<input type="text" name="q" placeholder="Search" />
+			</div>
+			<div class="medium-1 columns" id="clean-search-highlight">
+			</div>
+		</div>
+	</form>
+	<script type="text/javascript">$('#searchbox').show(0);</script>
+</li>
+		</ul>
+		<ul class="right">
+				<li class="right"><a href="console.html" title="16. Console">Next &rarr;</a></li>
+				<li class="right"><a href="dissector.html" title="14. Dissector">&larr; Prev</a></li>
+				<li class="right"><a href="refindex.html" title="Welcome to Haka&#8217;s User Reference Guide!">Up &uarr;</a></li>
+
+			<li class=" right"><a href="../../genindex.html">Index</a></li>
+			<li class=" right"><a href="../../haka-modindex.html">Modules</a></li>
+		</ul>
+	</section>
+</nav>
+</div>
+<div id="content">
+	<div class="row">
+		<ul id="breadcrumb" class="breadcrumbs medium-12 columns">
+			
+			<li><a href="refindex.html">Welcome to Haka&#8217;s User Reference Guide!</a></li>
+			
+			<li class="current"><a href="#">15. Misc</a></li>
+		</ul>
+	</div>
+	<div class="row">
+		<div class="medium-12 columns">
+			
+  <div class="section" id="misc">
+<h1>15. Misc<a class="headerlink" href="#misc" title="Permalink to this headline">¶</a></h1>
+<p>This section documents various functions that do not fit in any other sections.</p>
+<div class="section" id="haka-module.haka">
+<span id="threads"></span><h2>15.1. Threads<a class="headerlink" href="#haka-module.haka" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="haka-function.haka.current_thread">
+<em class="property"> </em><tt class="descclassname">haka.</tt><tt class="descname">current_thread</tt><big>(</big><big>)</big> &rarr; id<a class="headerlink" href="#haka-function.haka.current_thread" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"><ul class="first last simple">
+<li><strong>id</strong> (<a class="reference internal" href="grammar.html#haka-function.number" title="number"><em>number</em></a>) &#8211; The current thread&#8217;s index.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p>Allows to check what thread is currently running.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="haka-function.haka.abort">
+<em class="property"> </em><tt class="descclassname">haka.</tt><tt class="descname">abort</tt><big>(</big><big>)</big><a class="headerlink" href="#haka-function.haka.abort" title="Permalink to this definition">¶</a></dt>
+<dd><p>Abort current execution. This function will throw an error that will
+unwind the stack up to the topmost protected call.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="exit">
+<h2>15.2. Exit<a class="headerlink" href="#exit" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="haka-function.haka.on_exit">
+<em class="property"> </em><tt class="descclassname">haka.</tt><tt class="descname">on_exit</tt><big>(</big><em>exit_func</em><big>)</big><a class="headerlink" href="#haka-function.haka.on_exit" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>exit_func</strong> (<em>function</em>) &#8211; Function to run at exit time.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p>Registers a callback that will be called when Haka exits.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="time">
+<h2>15.3. Time<a class="headerlink" href="#time" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="haka-object.time">
+<em class="property">object </em><tt class="descname">time</tt><a class="headerlink" href="#haka-object.time" title="Permalink to this definition">¶</a></dt>
+<dd><p>Time object.</p>
+<dl class="function">
+<dt id="haka-function.haka.time">
+<em class="property"> </em><tt class="descclassname">haka.</tt><tt class="descname">time</tt><big>(</big><em>secs</em><big>)</big> &rarr; t<a class="headerlink" href="#haka-function.haka.time" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>secs</strong> (<a class="reference internal" href="grammar.html#haka-function.number" title="number"><em>number</em></a>) &#8211; Number of seconds since the epoch (1970-01-01T00:00:00Z ISO 8601).</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><ul class="first last simple">
+<li><strong>t</strong> (<a class="reference internal" href="#haka-object.time" title="time"><tt class="xref haka haka-class docutils literal"><span class="pre">time</span></tt></a>) &#8211; New time representation.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p>Build a new time object.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="haka-attribute.&lt;time&gt;.secs">
+<em class="property"> </em><tt class="descclassname">&lt;time&gt;.</tt><tt class="descname">secs</tt><a class="headerlink" href="#haka-attribute.<time>.secs" title="Permalink to this definition">¶</a></dt>
+<dt id="haka-attribute.&lt;time&gt;.nsecs">
+<em class="property"> </em><tt class="descclassname">&lt;time&gt;.</tt><tt class="descname">nsecs</tt><a class="headerlink" href="#haka-attribute.<time>.nsecs" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">number</td>
+</tr>
+</tbody>
+</table>
+<p>Seconds and nano-seconds as integer value.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="haka-attribute.&lt;time&gt;.seconds">
+<em class="property">const  </em><tt class="descclassname">&lt;time&gt;.</tt><tt class="descname">seconds</tt><a class="headerlink" href="#haka-attribute.<time>.seconds" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">number</td>
+</tr>
+</tbody>
+</table>
+<p>Seconds as floating point value.</p>
+</dd></dl>
+
+<dl class="operator">
+<dt id="haka-operator.&lt;time&gt;.tostring">
+<em class="property"> </em><tt class="descname">tostring</tt><big>(</big><tt class="descclassname">&lt;time&gt;</tt><big>)</big> &rarr; str<a class="headerlink" href="#haka-operator.<time>.tostring" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"><ul class="first last simple">
+<li><strong>str</strong> (<em>string</em>) &#8211; Human readable representation of the time.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p>Convert the time to human readable form.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="general-events">
+<h2>15.4. General Events<a class="headerlink" href="#general-events" title="Permalink to this headline">¶</a></h2>
+<p>Haka also uses global events to notify for interesting messages. Those events
+can be used by a regular rule as usual.</p>
+<dl class="function">
+<dt id="haka-function.haka.events.started">
+<em class="property">event </em><tt class="descclassname">haka.events.</tt><tt class="descname">started</tt><big>(</big><big>)</big><a class="headerlink" href="#haka-function.haka.events.started" title="Permalink to this definition">¶</a></dt>
+<dd><p>Event triggered when the Haka configuration is loaded and Haka is ready
+to process packets.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="haka-function.haka.events.exiting">
+<em class="property">event </em><tt class="descclassname">haka.events.</tt><tt class="descname">exiting</tt><big>(</big><big>)</big><a class="headerlink" href="#haka-function.haka.events.exiting" title="Permalink to this definition">¶</a></dt>
+<dd><p>Event triggered when Haka is exiting.</p>
+</dd></dl>
+
+</div>
+</div>
+
+
+		</div>
+	</div>
+</div>
+
+
+
+<footer id="footer">
+	<div class="row" role="complementary">
+		<div class="medium-12 columns">
+			&copy; Copyright 2014, Arkoon Network Security, OpenWide and Telecom ParisTech.
+		</div>
+	</div>
+</footer>
+<script>
+	  $(document).foundation();
+</script>
+
+
+
+<script type="text/javascript" src="http://www.haka-security.org/js/track.js"></script>
+
+
+  </body>
+</html>

@@ -1,0 +1,392 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>7.9. Dns &mdash; Haka runtime 0.3.0 documentation</title>
+    
+    <link rel="stylesheet" href="../../../../_static/haka.css" type="text/css" />
+    <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../../../_static/breathe.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../../',
+        VERSION:     '0.3.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../../../_static/js/scripts.js"></script>
+    <script type="text/javascript" src="../../../../_static/js/vendor/modernizr.js"></script>
+    <script type="text/javascript" src="../../../../_static/js/foundation/foundation.js"></script>
+    <script type="text/javascript" src="../../../../_static/js/foundation/foundation.topbar.js"></script>
+    <link rel="top" title="Haka runtime 0.3.0 documentation" href="../../../../index.html" />
+    <link rel="up" title="7. Haka dissectors" href="../../../../doc/ref/hakadissector.html" />
+    <link rel="next" title="8. Haka modules" href="../../../../doc/ref/hakamodule.html" />
+    <link rel="prev" title="7.8. Http" href="../../http/doc/http.html" /> 
+  </head>
+  <body>
+
+
+<header id="header" role="banner">
+	<div class="row">
+		<div class="medium-6 columns">
+			<h1 class="title"><a rel="home" title="Haka" href="http://www.haka-security.org">Haka</a></h1>
+			<h2 class="description">Software Defined Security</h2>
+		</div>
+		<div class="medium-6 columns">
+			<div id="version">Version 0.3.0</div>
+		</div>
+	</div>
+</header>
+
+<div class="contain-to-grid sticky">
+	
+
+<nav id="navbar" class="top-bar" data-topbar>
+	<ul class="title-area">
+		<!-- This is required for toggle-topbar to work -->
+		<li class="name"></li>
+		<li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
+	</ul>
+	<section class="top-bar-section">
+		<ul class="left">
+			<li class=" ">
+				<a href="../../../../doc/user/userindex.html">Users</a>
+			</li>
+			<li class=" active">
+				<a href="../../../../doc/ref/refindex.html" class="../../../../doc/ref/refindex.html">References</a>
+			</li>
+			<li class=" ">
+				<a href="../../../../doc/developer/devindex.html" class="">Developers</a>
+			</li>
+			<li class=" ">
+				<a href="../../../../doc/faq.html" class="">Faq</a>
+			</li>
+			<li class="has-form">
+
+
+	<form class="search" action="../../../../search.html" method="get" id="searchbox" style="display: none">
+		<input type="hidden" name="area" value="default" />
+		<input type="hidden" name="check_keywords" value="yes" />
+		<div class="row collapse">
+			<div class="medium-11 columns">
+				<input type="text" name="q" placeholder="Search" />
+			</div>
+			<div class="medium-1 columns" id="clean-search-highlight">
+			</div>
+		</div>
+	</form>
+	<script type="text/javascript">$('#searchbox').show(0);</script>
+</li>
+		</ul>
+		<ul class="right">
+				<li class="right"><a href="../../../../doc/ref/hakamodule.html" title="8. Haka modules">Next &rarr;</a></li>
+				<li class="right"><a href="../../http/doc/http.html" title="7.8. Http">&larr; Prev</a></li>
+				<li class="right"><a href="../../../../doc/ref/hakadissector.html" title="7. Haka dissectors">Up &uarr;</a></li>
+
+			<li class=" right"><a href="../../../../genindex.html">Index</a></li>
+			<li class=" right"><a href="../../../../haka-modindex.html">Modules</a></li>
+		</ul>
+	</section>
+</nav>
+</div>
+<div id="content">
+	<div class="row">
+		<ul id="breadcrumb" class="breadcrumbs medium-12 columns">
+			
+			<li><a href="../../../../doc/ref/refindex.html">Welcome to Haka&#8217;s User Reference Guide!</a></li>
+			
+			<li><a href="../../../../doc/ref/hakadissector.html">7. Haka dissectors</a></li>
+			
+			<li class="current"><a href="#">7.9. Dns</a></li>
+		</ul>
+	</div>
+	<div class="row">
+		<div class="medium-12 columns">
+			
+  <div class="section" id="haka-module.dns">
+<span id="dns"></span><h1>7.9. Dns<a class="headerlink" href="#haka-module.dns" title="Permalink to this headline">¶</a></h1>
+<p>Dns dissector module.</p>
+<p><strong>Usage:</strong></p>
+<div class="highlight-lua"><div class="highlight"><pre><span class="kd">local</span> <span class="n">dns</span> <span class="o">=</span> <span class="nb">require</span><span class="p">(</span><span class="s1">&#39;</span><span class="s">protocol/dns&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="section" id="dissector">
+<h2>7.9.1. Dissector<a class="headerlink" href="#dissector" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="haka-object.DnsDissector">
+<em class="property">dissector </em><tt class="descname">DnsDissector</tt><a class="headerlink" href="#haka-object.DnsDissector" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Name :</th><td class="field-body"><tt class="docutils literal"><span class="pre">'dns'</span></tt></td>
+</tr>
+<tr class="field-even field"><th class="field-name">Extend :</th><td class="field-body"><a class="reference internal" href="../../../../doc/ref/dissector.html#haka-object.haka.helper.FlowDissector" title="haka.helper.FlowDissector"><tt class="xref haka haka-class docutils literal"><span class="pre">haka.helper.FlowDissector</span></tt></a>&nbsp;</td>
+</tr>
+</tbody>
+</table>
+<p>Dissector for the DNS protocol.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="protocol-elements">
+<h2>7.9.2. Protocol elements<a class="headerlink" href="#protocol-elements" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="haka-object.dns.DnsResult">
+<em class="property">object </em><tt class="descclassname">dns.</tt><tt class="descname">DnsResult</tt><a class="headerlink" href="#haka-object.dns.DnsResult" title="Permalink to this definition">¶</a></dt>
+<dd><p>DNS message.</p>
+<dl class="attribute">
+<dt id="haka-attribute.&lt;DnsDissector&gt;.id">
+<em class="property"> </em><tt class="descclassname">&lt;DnsDissector&gt;.</tt><tt class="descname">id</tt><a class="headerlink" href="#haka-attribute.<DnsDissector>.id" title="Permalink to this definition">¶</a></dt>
+<dt id="haka-attribute.&lt;DnsDissector&gt;.qr">
+<em class="property"> </em><tt class="descclassname">&lt;DnsDissector&gt;.</tt><tt class="descname">qr</tt><a class="headerlink" href="#haka-attribute.<DnsDissector>.qr" title="Permalink to this definition">¶</a></dt>
+<dt id="haka-attribute.&lt;DnsDissector&gt;.opcode">
+<em class="property"> </em><tt class="descclassname">&lt;DnsDissector&gt;.</tt><tt class="descname">opcode</tt><a class="headerlink" href="#haka-attribute.<DnsDissector>.opcode" title="Permalink to this definition">¶</a></dt>
+<dt id="haka-attribute.&lt;DnsDissector&gt;.aa">
+<em class="property"> </em><tt class="descclassname">&lt;DnsDissector&gt;.</tt><tt class="descname">aa</tt><a class="headerlink" href="#haka-attribute.<DnsDissector>.aa" title="Permalink to this definition">¶</a></dt>
+<dt id="haka-attribute.&lt;DnsDissector&gt;.tc">
+<em class="property"> </em><tt class="descclassname">&lt;DnsDissector&gt;.</tt><tt class="descname">tc</tt><a class="headerlink" href="#haka-attribute.<DnsDissector>.tc" title="Permalink to this definition">¶</a></dt>
+<dt id="haka-attribute.&lt;DnsDissector&gt;.rd">
+<em class="property"> </em><tt class="descclassname">&lt;DnsDissector&gt;.</tt><tt class="descname">rd</tt><a class="headerlink" href="#haka-attribute.<DnsDissector>.rd" title="Permalink to this definition">¶</a></dt>
+<dt id="haka-attribute.&lt;DnsDissector&gt;.ra">
+<em class="property"> </em><tt class="descclassname">&lt;DnsDissector&gt;.</tt><tt class="descname">ra</tt><a class="headerlink" href="#haka-attribute.<DnsDissector>.ra" title="Permalink to this definition">¶</a></dt>
+<dt id="haka-attribute.&lt;DnsDissector&gt;.rcode">
+<em class="property"> </em><tt class="descclassname">&lt;DnsDissector&gt;.</tt><tt class="descname">rcode</tt><a class="headerlink" href="#haka-attribute.<DnsDissector>.rcode" title="Permalink to this definition">¶</a></dt>
+<dt id="haka-attribute.&lt;DnsDissector&gt;.qdcount">
+<em class="property"> </em><tt class="descclassname">&lt;DnsDissector&gt;.</tt><tt class="descname">qdcount</tt><a class="headerlink" href="#haka-attribute.<DnsDissector>.qdcount" title="Permalink to this definition">¶</a></dt>
+<dt id="haka-attribute.&lt;DnsDissector&gt;.ancount">
+<em class="property"> </em><tt class="descclassname">&lt;DnsDissector&gt;.</tt><tt class="descname">ancount</tt><a class="headerlink" href="#haka-attribute.<DnsDissector>.ancount" title="Permalink to this definition">¶</a></dt>
+<dt id="haka-attribute.&lt;DnsDissector&gt;.nscount">
+<em class="property"> </em><tt class="descclassname">&lt;DnsDissector&gt;.</tt><tt class="descname">nscount</tt><a class="headerlink" href="#haka-attribute.<DnsDissector>.nscount" title="Permalink to this definition">¶</a></dt>
+<dt id="haka-attribute.&lt;DnsDissector&gt;.arcount">
+<em class="property"> </em><tt class="descclassname">&lt;DnsDissector&gt;.</tt><tt class="descname">arcount</tt><a class="headerlink" href="#haka-attribute.<DnsDissector>.arcount" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">number</td>
+</tr>
+</tbody>
+</table>
+<p>DNS fields as defined by RFC 1035.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="haka-attribute.&lt;DnsDissector&gt;.question">
+<em class="property"> </em><tt class="descclassname">&lt;DnsDissector&gt;.</tt><tt class="descname">question</tt><a class="headerlink" href="#haka-attribute.<DnsDissector>.question" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body"><a class="reference internal" href="#haka-object.DnsQuestionRecord" title="DnsQuestionRecord"><tt class="xref haka haka-class docutils literal"><span class="pre">DnsQuestionRecord</span></tt></a> array</td>
+</tr>
+</tbody>
+</table>
+<p>DNS Question.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="haka-attribute.&lt;DnsDissector&gt;.answer">
+<em class="property"> </em><tt class="descclassname">&lt;DnsDissector&gt;.</tt><tt class="descname">answer</tt><a class="headerlink" href="#haka-attribute.<DnsDissector>.answer" title="Permalink to this definition">¶</a></dt>
+<dt id="haka-attribute.&lt;DnsDissector&gt;.authority">
+<em class="property"> </em><tt class="descclassname">&lt;DnsDissector&gt;.</tt><tt class="descname">authority</tt><a class="headerlink" href="#haka-attribute.<DnsDissector>.authority" title="Permalink to this definition">¶</a></dt>
+<dt id="haka-attribute.&lt;DnsDissector&gt;.additional">
+<em class="property"> </em><tt class="descclassname">&lt;DnsDissector&gt;.</tt><tt class="descname">additional</tt><a class="headerlink" href="#haka-attribute.<DnsDissector>.additional" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body"><a class="reference internal" href="#haka-object.DnsResourceRecord" title="DnsResourceRecord"><tt class="xref haka haka-class docutils literal"><span class="pre">DnsResourceRecord</span></tt></a> array</td>
+</tr>
+</tbody>
+</table>
+<p>DNS answer, authority and additional informations.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="haka-function.&lt;DnsDissector&gt;.drop">
+<em class="property"> </em><tt class="descclassname">&lt;DnsDissector&gt;:</tt><tt class="descname">drop</tt><big>(</big><big>)</big><a class="headerlink" href="#haka-function.<DnsDissector>.drop" title="Permalink to this definition">¶</a></dt>
+<dd><p>Drop the DNS message.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="haka-object.DnsQuestionRecord">
+<em class="property">object </em><tt class="descname">DnsQuestionRecord</tt><a class="headerlink" href="#haka-object.DnsQuestionRecord" title="Permalink to this definition">¶</a></dt>
+<dd><p>Question record as defined by RFC 1035.</p>
+<dl class="attribute">
+<dt id="haka-attribute.&lt;DnsQuestionRecord&gt;.name">
+<em class="property"> </em><tt class="descclassname">&lt;DnsQuestionRecord&gt;.</tt><tt class="descname">name</tt><a class="headerlink" href="#haka-attribute.<DnsQuestionRecord>.name" title="Permalink to this definition">¶</a></dt>
+<dt id="haka-attribute.&lt;DnsQuestionRecord&gt;.type">
+<em class="property"> </em><tt class="descclassname">&lt;DnsQuestionRecord&gt;.</tt><tt class="descname">type</tt><a class="headerlink" href="#haka-attribute.<DnsQuestionRecord>.type" title="Permalink to this definition">¶</a></dt>
+<dt id="haka-attribute.&lt;DnsQuestionRecord&gt;.class">
+<em class="property"> </em><tt class="descclassname">&lt;DnsQuestionRecord&gt;.</tt><tt class="descname">class</tt><a class="headerlink" href="#haka-attribute.<DnsQuestionRecord>.class" title="Permalink to this definition">¶</a></dt>
+<dd><p>DNS question record fields as defined by RFC 1035.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="haka-object.DnsResourceRecord">
+<em class="property">object </em><tt class="descname">DnsResourceRecord</tt><a class="headerlink" href="#haka-object.DnsResourceRecord" title="Permalink to this definition">¶</a></dt>
+<dd><p>Resource record as defined by RFC 1035.</p>
+<dl class="attribute">
+<dt id="haka-attribute.&lt;DnsResourceRecord&gt;.name">
+<em class="property"> </em><tt class="descclassname">&lt;DnsResourceRecord&gt;.</tt><tt class="descname">name</tt><a class="headerlink" href="#haka-attribute.<DnsResourceRecord>.name" title="Permalink to this definition">¶</a></dt>
+<dt id="haka-attribute.&lt;DnsResourceRecord&gt;.type">
+<em class="property"> </em><tt class="descclassname">&lt;DnsResourceRecord&gt;.</tt><tt class="descname">type</tt><a class="headerlink" href="#haka-attribute.<DnsResourceRecord>.type" title="Permalink to this definition">¶</a></dt>
+<dt id="haka-attribute.&lt;DnsResourceRecord&gt;.class">
+<em class="property"> </em><tt class="descclassname">&lt;DnsResourceRecord&gt;.</tt><tt class="descname">class</tt><a class="headerlink" href="#haka-attribute.<DnsResourceRecord>.class" title="Permalink to this definition">¶</a></dt>
+<dt id="haka-attribute.&lt;DnsResourceRecord&gt;.ttl">
+<em class="property"> </em><tt class="descclassname">&lt;DnsResourceRecord&gt;.</tt><tt class="descname">ttl</tt><a class="headerlink" href="#haka-attribute.<DnsResourceRecord>.ttl" title="Permalink to this definition">¶</a></dt>
+<dt id="haka-attribute.&lt;DnsResourceRecord&gt;.length">
+<em class="property"> </em><tt class="descclassname">&lt;DnsResourceRecord&gt;.</tt><tt class="descname">length</tt><a class="headerlink" href="#haka-attribute.<DnsResourceRecord>.length" title="Permalink to this definition">¶</a></dt>
+<dd><p>DNS resource record fields as defined by RFC 1035.</p>
+</dd></dl>
+
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The following fields may be present depending on <a class="reference internal" href="#haka-attribute.&lt;DnsResourceRecord&gt;.type" title="&amp;lt;DnsResourceRecord&amp;gt;.type"><tt class="xref haka haka-data docutils literal"><span class="pre">&lt;DnsResourceRecord&gt;.type</span></tt></a>.</p>
+</div>
+<dl class="attribute">
+<dt id="haka-attribute.&lt;DnsResourceRecord&gt;.ip">
+<em class="property"> </em><tt class="descclassname">&lt;DnsResourceRecord&gt;.</tt><tt class="descname">ip</tt><a class="headerlink" href="#haka-attribute.<DnsResourceRecord>.ip" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body"><a class="reference internal" href="../../ipv4/doc/ipv4.html#haka-object.addr" title="addr"><tt class="xref haka haka-class docutils literal"><span class="pre">addr</span></tt></a>&nbsp;</td>
+</tr>
+</tbody>
+</table>
+<p>IPv4 object.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt>
+<em class="property"> </em><tt class="descclassname">&lt;DnsResourceRecord&gt;.</tt><tt class="descname">name</tt></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">string</td>
+</tr>
+</tbody>
+</table>
+<p>Domain name as a string.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="events">
+<h2>7.9.3. Events<a class="headerlink" href="#events" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="haka-function.dns.events.query">
+<em class="property">event </em><tt class="descclassname">dns.events.</tt><tt class="descname">query</tt><big>(</big><em>dns</em>, <em>query</em><big>)</big><a class="headerlink" href="#haka-function.dns.events.query" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>dns</strong> (<a class="reference internal" href="#haka-object.DnsDissector" title="DnsDissector"><tt class="xref haka haka-class docutils literal"><span class="pre">DnsDissector</span></tt></a>) &#8211; DNS dissector.</li>
+<li><strong>query</strong> (<a class="reference internal" href="#haka-object.dns.DnsResult" title="dns.DnsResult"><tt class="xref haka haka-class docutils literal"><span class="pre">DnsResult</span></tt></a>) &#8211; Dns query message.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p>Event triggered whenever a new HTTP request is received.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="haka-function.dns.events.response">
+<em class="property">event </em><tt class="descclassname">dns.events.</tt><tt class="descname">response</tt><big>(</big><em>dns</em>, <em>response</em>, <em>query</em><big>)</big><a class="headerlink" href="#haka-function.dns.events.response" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>dns</strong> (<a class="reference internal" href="#haka-object.DnsDissector" title="DnsDissector"><tt class="xref haka haka-class docutils literal"><span class="pre">DnsDissector</span></tt></a>) &#8211; DNS dissector.</li>
+<li><strong>response</strong> (<a class="reference internal" href="#haka-object.dns.DnsResult" title="dns.DnsResult"><tt class="xref haka haka-class docutils literal"><span class="pre">DnsResult</span></tt></a>) &#8211; Dns response message.</li>
+<li><strong>query</strong> (<a class="reference internal" href="#haka-object.dns.DnsResult" title="dns.DnsResult"><tt class="xref haka haka-class docutils literal"><span class="pre">DnsResult</span></tt></a>) &#8211; Dns query message associated with the response.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p>Event triggered whenever a new HTTP response is received.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="example">
+<h2>7.9.4. Example<a class="headerlink" href="#example" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-lua"><div class="highlight"><pre><span class="c1">-- This Source Code Form is subject to the terms of the Mozilla Public</span>
+<span class="c1">-- License, v. 2.0. If a copy of the MPL was not distributed with this</span>
+<span class="c1">-- file, You can obtain one at http://mozilla.org/MPL/2.0/.</span>
+
+<span class="kd">local</span> <span class="n">dns</span> <span class="o">=</span> <span class="nb">require</span><span class="p">(</span><span class="s2">&quot;</span><span class="s">protocol/dns&quot;</span><span class="p">)</span>
+
+<span class="n">dns</span><span class="p">.</span><span class="n">install_udp_rule</span><span class="p">(</span><span class="mi">53</span><span class="p">)</span>
+
+<span class="kd">local</span> <span class="k">function</span> <span class="nf">alert_pdns</span><span class="p">(</span><span class="n">array</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">a</span> <span class="k">in</span> <span class="nb">ipairs</span><span class="p">(</span><span class="n">array</span><span class="p">)</span> <span class="k">do</span>
+        <span class="k">if</span> <span class="n">a</span><span class="p">.</span><span class="n">type</span> <span class="o">==</span> <span class="s2">&quot;</span><span class="s">A&quot;</span> <span class="k">then</span>
+            <span class="n">haka</span><span class="p">.</span><span class="n">alert</span><span class="p">{</span>
+                <span class="n">description</span> <span class="o">=</span> <span class="nb">string.format</span><span class="p">(</span><span class="s2">&quot;</span><span class="s">PDNS: %s -&gt; %s&quot;</span><span class="p">,</span> <span class="n">a</span><span class="p">.</span><span class="n">name</span><span class="p">,</span> <span class="n">a</span><span class="p">.</span><span class="n">ip</span><span class="p">),</span>
+            <span class="p">}</span>
+        <span class="k">end</span>
+    <span class="k">end</span>
+<span class="k">end</span>
+
+<span class="n">haka</span><span class="p">.</span><span class="n">rule</span> <span class="p">{</span>
+    <span class="n">hook</span> <span class="o">=</span> <span class="n">dns</span><span class="p">.</span><span class="n">events</span><span class="p">.</span><span class="n">response</span><span class="p">,</span>
+    <span class="n">eval</span> <span class="o">=</span> <span class="k">function</span> <span class="p">(</span><span class="n">dns</span><span class="p">,</span> <span class="n">response</span><span class="p">)</span>
+        <span class="n">alert_pdns</span><span class="p">(</span><span class="n">response</span><span class="p">.</span><span class="n">answer</span><span class="p">)</span>
+        <span class="n">alert_pdns</span><span class="p">(</span><span class="n">response</span><span class="p">.</span><span class="n">additional</span><span class="p">)</span>
+    <span class="k">end</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+		</div>
+	</div>
+</div>
+
+
+
+<footer id="footer">
+	<div class="row" role="complementary">
+		<div class="medium-12 columns">
+			&copy; Copyright 2014, Arkoon Network Security, OpenWide and Telecom ParisTech.
+		</div>
+	</div>
+</footer>
+<script>
+	  $(document).foundation();
+</script>
+
+
+
+<script type="text/javascript" src="http://www.haka-security.org/js/track.js"></script>
+
+
+  </body>
+</html>

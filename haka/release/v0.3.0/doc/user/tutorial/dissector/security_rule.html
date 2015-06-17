@@ -1,0 +1,232 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Filtering spam &mdash; Haka runtime 0.3.0 documentation</title>
+    
+    <link rel="stylesheet" href="../../../../_static/haka.css" type="text/css" />
+    <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../../../_static/breathe.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../../',
+        VERSION:     '0.3.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../../../_static/js/scripts.js"></script>
+    <script type="text/javascript" src="../../../../_static/js/vendor/modernizr.js"></script>
+    <script type="text/javascript" src="../../../../_static/js/foundation/foundation.js"></script>
+    <script type="text/javascript" src="../../../../_static/js/foundation/foundation.topbar.js"></script>
+    <link rel="top" title="Haka runtime 0.3.0 documentation" href="../../../../index.html" />
+    <link rel="up" title="6.6. SMTP Protocol dissection" href="../smtp_dissector.html" />
+    <link rel="next" title="7. Workshop" href="../../workshop.html" />
+    <link rel="prev" title="Creating the state machine" href="state_machine.html" /> 
+  </head>
+  <body>
+
+
+<header id="header" role="banner">
+	<div class="row">
+		<div class="medium-6 columns">
+			<h1 class="title"><a rel="home" title="Haka" href="http://www.haka-security.org">Haka</a></h1>
+			<h2 class="description">Software Defined Security</h2>
+		</div>
+		<div class="medium-6 columns">
+			<div id="version">Version 0.3.0</div>
+		</div>
+	</div>
+</header>
+
+<div class="contain-to-grid sticky">
+	
+
+<nav id="navbar" class="top-bar" data-topbar>
+	<ul class="title-area">
+		<!-- This is required for toggle-topbar to work -->
+		<li class="name"></li>
+		<li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
+	</ul>
+	<section class="top-bar-section">
+		<ul class="left">
+			<li class=" active">
+				<a href="../../userindex.html">Users</a>
+			</li>
+			<li class=" ">
+				<a href="../../../ref/refindex.html" class="../../../ref/refindex.html">References</a>
+			</li>
+			<li class=" ">
+				<a href="../../../developer/devindex.html" class="">Developers</a>
+			</li>
+			<li class=" ">
+				<a href="../../../faq.html" class="">Faq</a>
+			</li>
+			<li class="has-form">
+
+
+	<form class="search" action="../../../../search.html" method="get" id="searchbox" style="display: none">
+		<input type="hidden" name="area" value="default" />
+		<input type="hidden" name="check_keywords" value="yes" />
+		<div class="row collapse">
+			<div class="medium-11 columns">
+				<input type="text" name="q" placeholder="Search" />
+			</div>
+			<div class="medium-1 columns" id="clean-search-highlight">
+			</div>
+		</div>
+	</form>
+	<script type="text/javascript">$('#searchbox').show(0);</script>
+</li>
+		</ul>
+		<ul class="right">
+				<li class="right"><a href="../../workshop.html" title="7. Workshop">Next &rarr;</a></li>
+				<li class="right"><a href="state_machine.html" title="Creating the state machine">&larr; Prev</a></li>
+				<li class="right"><a href="../smtp_dissector.html" title="6.6. SMTP Protocol dissection">Up &uarr;</a></li>
+
+			<li class=" right"><a href="../../../../genindex.html">Index</a></li>
+			<li class=" right"><a href="../../../../haka-modindex.html">Modules</a></li>
+		</ul>
+	</section>
+</nav>
+</div>
+<div id="content">
+	<div class="row">
+		<ul id="breadcrumb" class="breadcrumbs medium-12 columns">
+			
+			<li><a href="../../userindex.html">Welcome to Haka&#8217;s User Guide!</a></li>
+			
+			<li><a href="../../tutorial.html">6. Tutorials</a></li>
+			
+			<li><a href="../smtp_dissector.html">6.6. SMTP Protocol dissection</a></li>
+			
+			<li class="current"><a href="#">Filtering spam</a></li>
+		</ul>
+	</div>
+	<div class="row">
+		<div class="medium-12 columns">
+			
+  <div class="section" id="filtering-spam">
+<h1>Filtering spam<a class="headerlink" href="#filtering-spam" title="Permalink to this headline">¶</a></h1>
+<p>As usual, we load first the smtp module disector. Then, we install our newly
+created dissector on flow addressed to port 25.</p>
+<p>Next, we hook our security rule on event <cite>command</cite> which will pass to the
+evaluaton function the parsed command message. The rest of the rule is basic: we
+get the parmeter of MAIL command and check if the dommain name is banned.</p>
+<div class="highlight-lua"><div class="highlight"><pre><span class="c1">-- This Source Code Form is subject to the terms of the Mozilla Public</span>
+<span class="c1">-- License, v. 2.0. If a copy of the MPL was not distributed with this</span>
+<span class="c1">-- file, You can obtain one at http://mozilla.org/MPL/2.0/.</span>
+
+<span class="kd">local</span> <span class="n">smtp</span> <span class="o">=</span> <span class="nb">require</span><span class="p">(</span><span class="s1">&#39;</span><span class="s">smtp&#39;</span><span class="p">)</span>
+
+<span class="kd">local</span> <span class="n">rem</span> <span class="o">=</span> <span class="nb">require</span><span class="p">(</span><span class="s1">&#39;</span><span class="s">regexp/pcre&#39;</span><span class="p">)</span>
+<span class="kd">local</span> <span class="n">email_pattern</span> <span class="o">=</span> <span class="n">rem</span><span class="p">.</span><span class="n">re</span><span class="p">:</span><span class="n">compile</span><span class="p">(</span><span class="s2">&quot;</span><span class="s">@.*&quot;</span><span class="p">)</span>
+
+<span class="kd">local</span> <span class="n">forbidden_domain</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="s">packet-level.com&#39;</span>
+
+<span class="n">smtp</span><span class="p">.</span><span class="n">install_tcp_rule</span><span class="p">(</span><span class="mi">25</span><span class="p">)</span>
+
+<span class="n">haka</span><span class="p">.</span><span class="n">rule</span><span class="p">{</span>
+    <span class="n">hook</span> <span class="o">=</span> <span class="n">smtp</span><span class="p">.</span><span class="n">events</span><span class="p">.</span><span class="n">command</span><span class="p">,</span>
+    <span class="n">eval</span> <span class="o">=</span> <span class="k">function</span> <span class="p">(</span><span class="n">flow</span><span class="p">,</span> <span class="n">message</span><span class="p">)</span>
+        <span class="kd">local</span> <span class="n">command</span> <span class="o">=</span> <span class="n">message</span><span class="p">.</span><span class="n">command</span><span class="p">:</span><span class="n">lower</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">command</span> <span class="o">==</span> <span class="s1">&#39;</span><span class="s">mail&#39;</span> <span class="k">then</span>
+            <span class="kd">local</span> <span class="n">param</span> <span class="o">=</span> <span class="n">message</span><span class="p">.</span><span class="n">parameter</span>
+            <span class="kd">local</span> <span class="n">res</span><span class="p">,</span> <span class="n">startpos</span><span class="p">,</span> <span class="n">endpos</span> <span class="o">=</span> <span class="n">email_pattern</span><span class="p">:</span><span class="n">match</span><span class="p">(</span><span class="n">param</span><span class="p">)</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">res</span> <span class="k">then</span>
+                <span class="n">haka</span><span class="p">.</span><span class="n">alert</span> <span class="p">{</span>
+                    <span class="n">description</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="s">malformed email address&quot;</span><span class="p">,</span>
+                    <span class="n">severity</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="s">low&#39;</span>
+                <span class="p">}</span>
+                <span class="n">flow</span><span class="p">:</span><span class="n">drop</span><span class="p">()</span>
+            <span class="k">else</span>
+
+                <span class="kd">local</span> <span class="n">mailfrom</span> <span class="o">=</span> <span class="n">param</span><span class="p">:</span><span class="n">sub</span><span class="p">(</span><span class="n">startpos</span><span class="o">+</span><span class="mi">2</span><span class="p">,</span> <span class="n">endpos</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">mailfrom</span> <span class="o">==</span> <span class="s2">&quot;</span><span class="s">suspicious.org&quot;</span> <span class="k">then</span>
+                    <span class="n">haka</span><span class="p">.</span><span class="n">alert</span> <span class="p">{</span>
+                        <span class="n">description</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="s">forbidden mail domain&quot;</span><span class="p">,</span>
+                        <span class="n">severity</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="s">low&#39;</span>
+                    <span class="p">}</span>
+                <span class="k">end</span>
+                <span class="n">flow</span><span class="p">:</span><span class="n">drop</span><span class="p">()</span>
+            <span class="k">end</span>
+        <span class="k">end</span>
+    <span class="k">end</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="dumping-mail-content">
+<h1>Dumping mail content<a class="headerlink" href="#dumping-mail-content" title="Permalink to this headline">¶</a></h1>
+<p>The second security rule hooks on <cite>mail</cite> event and allows us to get the content
+of a mail in a streamed mode.</p>
+<div class="highlight-lua"><div class="highlight"><pre><span class="c1">-- This Source Code Form is subject to the terms of the Mozilla Public</span>
+<span class="c1">-- License, v. 2.0. If a copy of the MPL was not distributed with this</span>
+<span class="c1">-- file, You can obtain one at http://mozilla.org/MPL/2.0/.</span>
+
+<span class="kd">local</span> <span class="n">smtp</span> <span class="o">=</span> <span class="nb">require</span><span class="p">(</span><span class="s1">&#39;</span><span class="s">smtp&#39;</span><span class="p">)</span>
+
+<span class="n">smtp</span><span class="p">.</span><span class="n">install_tcp_rule</span><span class="p">(</span><span class="mi">25</span><span class="p">)</span>
+
+<span class="n">haka</span><span class="p">.</span><span class="n">rule</span><span class="p">{</span>
+    <span class="n">hook</span> <span class="o">=</span> <span class="n">smtp</span><span class="p">.</span><span class="n">events</span><span class="p">.</span><span class="n">mail_content</span><span class="p">,</span>
+    <span class="n">options</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="n">streamed</span> <span class="o">=</span> <span class="kc">true</span><span class="p">,</span>
+    <span class="p">},</span>
+    <span class="n">eval</span> <span class="o">=</span> <span class="k">function</span> <span class="p">(</span><span class="n">flow</span><span class="p">,</span> <span class="n">iter</span><span class="p">)</span>
+        <span class="kd">local</span> <span class="n">mail_content</span> <span class="o">=</span> <span class="p">{}</span>
+
+        <span class="k">for</span> <span class="n">sub</span> <span class="k">in</span> <span class="n">iter</span><span class="p">:</span><span class="n">foreach_available</span><span class="p">()</span> <span class="k">do</span>
+            <span class="nb">table.insert</span><span class="p">(</span><span class="n">mail_content</span><span class="p">,</span> <span class="n">sub</span><span class="p">:</span><span class="n">asstring</span><span class="p">())</span>
+        <span class="k">end</span>
+
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="s">== Mail Content ==&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="nb">table.concat</span><span class="p">(</span><span class="n">mail_content</span><span class="p">))</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="s">== End Mail Content ==&quot;</span><span class="p">)</span>
+    <span class="k">end</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">These security rules are available in &lt;haka_install_path&gt;/share/haka/sample/smtp_dissetor. A smtp capture sample <tt class="docutils literal"><span class="pre">smtp.pcap</span></tt> is also provided in order to replay the above rules.</p>
+</div>
+</div>
+
+
+		</div>
+	</div>
+</div>
+
+
+
+<footer id="footer">
+	<div class="row" role="complementary">
+		<div class="medium-12 columns">
+			&copy; Copyright 2014, Arkoon Network Security, OpenWide and Telecom ParisTech.
+		</div>
+	</div>
+</footer>
+<script>
+	  $(document).foundation();
+</script>
+
+
+
+<script type="text/javascript" src="http://www.haka-security.org/js/track.js"></script>
+
+
+  </body>
+</html>

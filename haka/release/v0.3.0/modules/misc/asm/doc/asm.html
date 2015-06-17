@@ -1,0 +1,423 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>8.3. Disassembler &mdash; Haka runtime 0.3.0 documentation</title>
+    
+    <link rel="stylesheet" href="../../../../_static/haka.css" type="text/css" />
+    <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../../../_static/breathe.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../../',
+        VERSION:     '0.3.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../../../_static/js/scripts.js"></script>
+    <script type="text/javascript" src="../../../../_static/js/vendor/modernizr.js"></script>
+    <script type="text/javascript" src="../../../../_static/js/foundation/foundation.js"></script>
+    <script type="text/javascript" src="../../../../_static/js/foundation/foundation.topbar.js"></script>
+    <link rel="top" title="Haka runtime 0.3.0 documentation" href="../../../../index.html" />
+    <link rel="up" title="8. Haka modules" href="../../../../doc/ref/hakamodule.html" />
+    <link rel="next" title="9. Rules" href="../../../../doc/ref/rule.html" />
+    <link rel="prev" title="8.2. ElasticSearch" href="../../elasticsearch/doc/elasticsearch.html" /> 
+  </head>
+  <body>
+
+
+<header id="header" role="banner">
+	<div class="row">
+		<div class="medium-6 columns">
+			<h1 class="title"><a rel="home" title="Haka" href="http://www.haka-security.org">Haka</a></h1>
+			<h2 class="description">Software Defined Security</h2>
+		</div>
+		<div class="medium-6 columns">
+			<div id="version">Version 0.3.0</div>
+		</div>
+	</div>
+</header>
+
+<div class="contain-to-grid sticky">
+	
+
+<nav id="navbar" class="top-bar" data-topbar>
+	<ul class="title-area">
+		<!-- This is required for toggle-topbar to work -->
+		<li class="name"></li>
+		<li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
+	</ul>
+	<section class="top-bar-section">
+		<ul class="left">
+			<li class=" ">
+				<a href="../../../../doc/user/userindex.html">Users</a>
+			</li>
+			<li class=" active">
+				<a href="../../../../doc/ref/refindex.html" class="../../../../doc/ref/refindex.html">References</a>
+			</li>
+			<li class=" ">
+				<a href="../../../../doc/developer/devindex.html" class="">Developers</a>
+			</li>
+			<li class=" ">
+				<a href="../../../../doc/faq.html" class="">Faq</a>
+			</li>
+			<li class="has-form">
+
+
+	<form class="search" action="../../../../search.html" method="get" id="searchbox" style="display: none">
+		<input type="hidden" name="area" value="default" />
+		<input type="hidden" name="check_keywords" value="yes" />
+		<div class="row collapse">
+			<div class="medium-11 columns">
+				<input type="text" name="q" placeholder="Search" />
+			</div>
+			<div class="medium-1 columns" id="clean-search-highlight">
+			</div>
+		</div>
+	</form>
+	<script type="text/javascript">$('#searchbox').show(0);</script>
+</li>
+		</ul>
+		<ul class="right">
+				<li class="right"><a href="../../../../doc/ref/rule.html" title="9. Rules">Next &rarr;</a></li>
+				<li class="right"><a href="../../elasticsearch/doc/elasticsearch.html" title="8.2. ElasticSearch">&larr; Prev</a></li>
+				<li class="right"><a href="../../../../doc/ref/hakamodule.html" title="8. Haka modules">Up &uarr;</a></li>
+
+			<li class=" right"><a href="../../../../genindex.html">Index</a></li>
+			<li class=" right"><a href="../../../../haka-modindex.html">Modules</a></li>
+		</ul>
+	</section>
+</nav>
+</div>
+<div id="content">
+	<div class="row">
+		<ul id="breadcrumb" class="breadcrumbs medium-12 columns">
+			
+			<li><a href="../../../../doc/ref/refindex.html">Welcome to Haka&#8217;s User Reference Guide!</a></li>
+			
+			<li><a href="../../../../doc/ref/hakamodule.html">8. Haka modules</a></li>
+			
+			<li class="current"><a href="#">8.3. Disassembler</a></li>
+		</ul>
+	</div>
+	<div class="row">
+		<div class="medium-12 columns">
+			
+  <div class="section" id="haka-module.asm">
+<span id="disassembler"></span><h1>8.3. Disassembler<a class="headerlink" href="#haka-module.asm" title="Permalink to this headline">¶</a></h1>
+<p>Stream disassembler module.</p>
+<p><strong>Usage:</strong></p>
+<div class="highlight-lua"><div class="highlight"><pre><span class="kd">local</span> <span class="n">asm</span> <span class="o">=</span> <span class="nb">require</span><span class="p">(</span><span class="s1">&#39;</span><span class="s">misc/asm&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="section" id="api">
+<h2>8.3.1. API<a class="headerlink" href="#api" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="disassembler-syntax">
+<h2>8.3.2. Disassembler syntax<a class="headerlink" href="#disassembler-syntax" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="haka-function.asm.new_disassembler">
+<em class="property"> </em><tt class="descclassname">asm.</tt><tt class="descname">new_disassembler</tt><big>(</big><em>architecture</em>, <em>mode</em><big>)</big> &rarr; asm_handle<a class="headerlink" href="#haka-function.asm.new_disassembler" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>architecture</strong> (<em>string</em>) &#8211; Hardware architecture.</li>
+<li><strong>mode</strong> (<em>string</em>) &#8211; Hardware mode.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><ul class="first last simple">
+<li><strong>asm_handle</strong> (<em>AsmHandle</em>) &#8211; Disassembler handler.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p>Initialize the disassembler module with selected architecture and mode.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="haka-function.asm.new_instruction">
+<em class="property"> </em><tt class="descclassname">asm.</tt><tt class="descname">new_instruction</tt><big>(</big><em>address = 0</em><big>)</big> &rarr; asm_inst<a class="headerlink" href="#haka-function.asm.new_instruction" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>address</strong> (<em>int</em>) &#8211; Instruction address.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><ul class="first last simple">
+<li><strong>asm_inst</strong> (<em>AsmInstruction</em>) &#8211; Instruction.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p>Create a new instruction.</p>
+</dd></dl>
+
+<div class="section" id="supported-architecture">
+<h3>Supported architecture<a class="headerlink" href="#supported-architecture" title="Permalink to this headline">¶</a></h3>
+<blockquote>
+<div><ul class="simple">
+<li>arm</li>
+<li>arm64</li>
+<li>mips</li>
+<li>x86</li>
+<li>ppc</li>
+</ul>
+</div></blockquote>
+</div>
+<div class="section" id="supported-mode">
+<h3>Supported mode<a class="headerlink" href="#supported-mode" title="Permalink to this headline">¶</a></h3>
+<blockquote>
+<div><ul class="simple">
+<li>arm</li>
+<li>16</li>
+<li>32</li>
+<li>64</li>
+<li>thumb</li>
+</ul>
+</div></blockquote>
+<dl class="class">
+<dt id="haka-object.asm.AsmHandle">
+<em class="property">object </em><tt class="descclassname">asm.</tt><tt class="descname">AsmHandle</tt><a class="headerlink" href="#haka-object.asm.AsmHandle" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="function">
+<dt id="haka-function.AsmHandle.setsyntax">
+<em class="property"> </em><tt class="descclassname">AsmHandle:</tt><tt class="descname">setsyntax</tt><big>(</big><em>syntax</em><big>)</big><a class="headerlink" href="#haka-function.AsmHandle.setsyntax" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>syntax</strong> (<em>string</em>) &#8211; Syntax flavor.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p>Set the assembly syntax (&#8216;att&#8217; or &#8216;intel&#8217;).</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="haka-function.AsmHandle.disassemble">
+<em class="property"> </em><tt class="descclassname">AsmHandle:</tt><tt class="descname">disassemble</tt><big>(</big><em>code</em>, <em>inst</em><big>)</big> &rarr; ret<a class="headerlink" href="#haka-function.AsmHandle.disassemble" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>code</strong> (<a class="reference internal" href="../../../../doc/ref/vbuffer.html#haka-object.vbuffer_iterator" title="vbuffer_iterator"><tt class="xref haka haka-class docutils literal"><span class="pre">vbuffer_iterator</span></tt></a>) &#8211; Code to disassemble.</li>
+<li><strong>inst</strong> (<em>AsmInstruction.</em>) &#8211; Instruction.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><ul class="first last simple">
+<li><strong>ret</strong> (<em>bool</em>) &#8211; true in case of succesfful dissassembly; false otherwise (e.g. broken instruction).</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p>Disassemble code into instructions.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Disassembly skips bad instructions. Whenever a bad instruction is encountered, the mnemonic instruction field is set to <tt class="docutils literal"><span class="pre">(bad)</span></tt>. Disasembly stops when it reaches the end of the stream or when it encounters a broken instruction.</p>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="haka-function.AsmHandle.dump_instructions">
+<em class="property"> </em><tt class="descclassname">AsmHandle:</tt><tt class="descname">dump_instructions</tt><big>(</big><em>code</em><span class="optional">[</span>, <em>nb</em><span class="optional">]</span><big>)</big><a class="headerlink" href="#haka-function.AsmHandle.dump_instructions" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>code</strong> (<a class="reference internal" href="../../../../doc/ref/vbuffer.html#haka-object.vbuffer_iterator" title="vbuffer_iterator"><tt class="xref haka haka-class docutils literal"><span class="pre">vbuffer_iterator</span></tt></a>) &#8211; Code to disassemble.</li>
+<li><strong>nb</strong> (<a class="reference internal" href="../../../../doc/ref/grammar.html#haka-function.number" title="number"><em>number</em></a>) &#8211; Number of instructions to dump.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p>Disassemble and dump instructions.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="haka-object.asm.AsmInstruction">
+<em class="property">object </em><tt class="descclassname">asm.</tt><tt class="descname">AsmInstruction</tt><a class="headerlink" href="#haka-object.asm.AsmInstruction" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="attribute">
+<dt id="haka-attribute.&lt;AsmInstruction&gt;.id">
+<em class="property"> </em><tt class="descclassname">&lt;AsmInstruction&gt;.</tt><tt class="descname">id</tt><a class="headerlink" href="#haka-attribute.<AsmInstruction>.id" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">number</td>
+</tr>
+</tbody>
+</table>
+<p>Instruction id.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="haka-attribute.&lt;AsmInstruction&gt;.address">
+<em class="property"> </em><tt class="descclassname">&lt;AsmInstruction&gt;.</tt><tt class="descname">address</tt><a class="headerlink" href="#haka-attribute.<AsmInstruction>.address" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">number</td>
+</tr>
+</tbody>
+</table>
+<p>Instruction address.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="haka-function.AsmInstruction.mnemonic">
+<em class="property"> </em><tt class="descclassname">AsmInstruction:</tt><tt class="descname">mnemonic</tt><big>(</big><big>)</big> &rarr; mnemonic<a class="headerlink" href="#haka-function.AsmInstruction.mnemonic" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"><ul class="first last simple">
+<li><strong>mnemonic</strong> (<em>string</em>) &#8211; Instruction mnemonic.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The mnemonic is set to <tt class="docutils literal"><span class="pre">(bad)</span></tt> when the disassembler encounters an invalid opcode.</p>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="haka-function.AsmInstruction.op_str">
+<em class="property"> </em><tt class="descclassname">AsmInstruction:</tt><tt class="descname">op_str</tt><big>(</big><big>)</big> &rarr; operands<a class="headerlink" href="#haka-function.AsmInstruction.op_str" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"><ul class="first last simple">
+<li><strong>operands</strong> (<em>string</em>) &#8211; Instruction operands.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="haka-attribute.&lt;AsmInstruction&gt;.size">
+<em class="property"> </em><tt class="descclassname">&lt;AsmInstruction&gt;.</tt><tt class="descname">size</tt><a class="headerlink" href="#haka-attribute.<AsmInstruction>.size" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">number</td>
+</tr>
+</tbody>
+</table>
+<p>Instruction size.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="haka-function.AsmInstruction.bytes">
+<em class="property"> </em><tt class="descclassname">AsmInstruction:</tt><tt class="descname">bytes</tt><big>(</big><big>)</big> &rarr; bytes<a class="headerlink" href="#haka-function.AsmInstruction.bytes" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"><ul class="first last simple">
+<li><strong>bytes</strong> (<em>string</em>) &#8211; Instruction byte sequence.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="haka-function.AsmInstruction.pprint">
+<em class="property"> </em><tt class="descclassname">AsmInstruction:</tt><tt class="descname">pprint</tt><big>(</big><big>)</big><a class="headerlink" href="#haka-function.AsmInstruction.pprint" title="Permalink to this definition">¶</a></dt>
+<dd><p>Dump instruction.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+<div class="section" id="example">
+<h2>8.3.3. Example<a class="headerlink" href="#example" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-lua"><div class="highlight"><pre><span class="kd">local</span> <span class="n">asm_module</span> <span class="o">=</span> <span class="nb">require</span><span class="p">(</span><span class="s1">&#39;</span><span class="s">misc/asm&#39;</span><span class="p">)</span>
+
+<span class="n">inst</span> <span class="o">=</span> <span class="n">asm_module</span><span class="p">.</span><span class="n">new_instruction</span><span class="p">()</span>
+<span class="n">asm</span> <span class="o">=</span> <span class="n">asm_module</span><span class="p">.</span><span class="n">new_disassembler</span><span class="p">(</span><span class="s1">&#39;</span><span class="s">x86&#39;</span><span class="p">,</span> <span class="s1">&#39;</span><span class="s">32&#39;</span><span class="p">)</span>
+<span class="n">asm</span><span class="p">:</span><span class="n">setsyntax</span><span class="p">(</span><span class="s1">&#39;</span><span class="s">att&#39;</span><span class="p">)</span>
+
+<span class="kd">local</span> <span class="n">code</span> <span class="o">=</span> <span class="n">haka</span><span class="p">.</span><span class="n">vbuffer_from</span><span class="p">(</span><span class="s2">&quot;</span><span class="s">\x41\x42\x48\x8b\x05\xb8\x13\x60\x60&quot;</span><span class="p">)</span>
+<span class="kd">local</span> <span class="n">start</span> <span class="o">=</span> <span class="n">code</span><span class="p">:</span><span class="n">pos</span><span class="p">(</span><span class="s1">&#39;</span><span class="s">begin&#39;</span><span class="p">)</span>
+
+<span class="kd">local</span> <span class="n">size</span><span class="p">,</span> <span class="n">bytes</span>
+<span class="k">while</span> <span class="n">asm</span><span class="p">:</span><span class="n">disassemble</span><span class="p">(</span><span class="n">start</span><span class="p">,</span> <span class="n">inst</span><span class="p">)</span> <span class="k">do</span>
+    <span class="nb">io.write</span><span class="p">(</span><span class="nb">string.format</span><span class="p">(</span><span class="s2">&quot;</span><span class="s">0x%08x %-8s %-16s &quot;</span><span class="p">,</span> <span class="n">inst</span><span class="p">.</span><span class="n">address</span><span class="p">,</span> <span class="n">inst</span><span class="p">:</span><span class="n">mnemonic</span><span class="p">(),</span> <span class="n">inst</span><span class="p">:</span><span class="n">op_str</span><span class="p">()))</span>
+    <span class="n">size</span> <span class="o">=</span> <span class="n">inst</span><span class="p">.</span><span class="n">size</span>
+    <span class="n">bytes</span> <span class="o">=</span> <span class="n">inst</span><span class="p">:</span><span class="n">bytes</span><span class="p">()</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span><span class="n">inst</span><span class="p">.</span><span class="n">size</span> <span class="k">do</span>
+        <span class="nb">io.write</span><span class="p">(</span><span class="nb">string.format</span><span class="p">(</span><span class="s1">&#39;</span><span class="s">%02X &#39;</span><span class="p">,</span> <span class="n">bytes</span><span class="p">:</span><span class="n">byte</span><span class="p">(</span><span class="n">i</span><span class="p">)))</span>
+    <span class="k">end</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="s">&quot;</span><span class="p">)</span>
+<span class="k">end</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+		</div>
+	</div>
+</div>
+
+
+
+<footer id="footer">
+	<div class="row" role="complementary">
+		<div class="medium-12 columns">
+			&copy; Copyright 2014, Arkoon Network Security, OpenWide and Telecom ParisTech.
+		</div>
+	</div>
+</footer>
+<script>
+	  $(document).foundation();
+</script>
+
+
+
+<script type="text/javascript" src="http://www.haka-security.org/js/track.js"></script>
+
+
+  </body>
+</html>

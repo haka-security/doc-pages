@@ -1,0 +1,735 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>11. State Machine &mdash; Haka runtime 0.3.0 documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/haka.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/breathe.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '0.3.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../_static/js/scripts.js"></script>
+    <script type="text/javascript" src="../../_static/js/vendor/modernizr.js"></script>
+    <script type="text/javascript" src="../../_static/js/foundation/foundation.js"></script>
+    <script type="text/javascript" src="../../_static/js/foundation/foundation.topbar.js"></script>
+    <link rel="top" title="Haka runtime 0.3.0 documentation" href="../../index.html" />
+    <link rel="up" title="Welcome to Haka’s User Reference Guide!" href="refindex.html" />
+    <link rel="next" title="12. Class" href="class.html" />
+    <link rel="prev" title="10. Grammar" href="grammar.html" /> 
+  </head>
+  <body>
+
+
+<header id="header" role="banner">
+	<div class="row">
+		<div class="medium-6 columns">
+			<h1 class="title"><a rel="home" title="Haka" href="http://www.haka-security.org">Haka</a></h1>
+			<h2 class="description">Software Defined Security</h2>
+		</div>
+		<div class="medium-6 columns">
+			<div id="version">Version 0.3.0</div>
+		</div>
+	</div>
+</header>
+
+<div class="contain-to-grid sticky">
+	
+
+<nav id="navbar" class="top-bar" data-topbar>
+	<ul class="title-area">
+		<!-- This is required for toggle-topbar to work -->
+		<li class="name"></li>
+		<li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
+	</ul>
+	<section class="top-bar-section">
+		<ul class="left">
+			<li class=" ">
+				<a href="../user/userindex.html">Users</a>
+			</li>
+			<li class=" active">
+				<a href="refindex.html" class="refindex.html">References</a>
+			</li>
+			<li class=" ">
+				<a href="../developer/devindex.html" class="">Developers</a>
+			</li>
+			<li class=" ">
+				<a href="../faq.html" class="">Faq</a>
+			</li>
+			<li class="has-form">
+
+
+	<form class="search" action="../../search.html" method="get" id="searchbox" style="display: none">
+		<input type="hidden" name="area" value="default" />
+		<input type="hidden" name="check_keywords" value="yes" />
+		<div class="row collapse">
+			<div class="medium-11 columns">
+				<input type="text" name="q" placeholder="Search" />
+			</div>
+			<div class="medium-1 columns" id="clean-search-highlight">
+			</div>
+		</div>
+	</form>
+	<script type="text/javascript">$('#searchbox').show(0);</script>
+</li>
+		</ul>
+		<ul class="right">
+				<li class="right"><a href="class.html" title="12. Class">Next &rarr;</a></li>
+				<li class="right"><a href="grammar.html" title="10. Grammar">&larr; Prev</a></li>
+				<li class="right"><a href="refindex.html" title="Welcome to Haka&#8217;s User Reference Guide!">Up &uarr;</a></li>
+
+			<li class=" right"><a href="../../genindex.html">Index</a></li>
+			<li class=" right"><a href="../../haka-modindex.html">Modules</a></li>
+		</ul>
+	</section>
+</nav>
+</div>
+<div id="content">
+	<div class="row">
+		<ul id="breadcrumb" class="breadcrumbs medium-12 columns">
+			
+			<li><a href="refindex.html">Welcome to Haka&#8217;s User Reference Guide!</a></li>
+			
+			<li class="current"><a href="#">11. State Machine</a></li>
+		</ul>
+	</div>
+	<div class="row">
+		<div class="medium-12 columns">
+			
+  <div class="section" id="state-machine">
+<h1>11. State Machine<a class="headerlink" href="#state-machine" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="haka-module.haka.state_machine">
+<span id="description"></span><h2>11.1. Description<a class="headerlink" href="#haka-module.haka.state_machine" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="haka-function.haka.state_machine.new">
+<em class="property"> </em><tt class="descclassname">haka.state_machine.</tt><tt class="descname">new</tt><big>(</big><em>name</em>, <em>descr</em><big>)</big> &rarr; state_machine<a class="headerlink" href="#haka-function.haka.state_machine.new" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>name</strong> (<em>string</em>) &#8211; State machine name.</li>
+<li><strong>descr</strong> (<em>function</em>) &#8211; Description function.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><ul class="first last simple">
+<li><strong>state_machine</strong> (<a class="reference internal" href="#haka-object.StateMachine" title="StateMachine"><tt class="xref haka haka-class docutils literal"><span class="pre">StateMachine</span></tt></a>&nbsp;) &#8211; Compiled state machine.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p>A dissector that need to use a state machine need to describe it first.
+This function allows to do it.</p>
+<p>The <em>descr</em> function is executed to define the states and the actions that
+are going to be part of the state machine. Its environment allows to access
+all state machine primitives listed in this pages. The functions and
+variables available in this scope are shown prefixed with <cite>state_machine</cite>.</p>
+</dd></dl>
+
+<p>A state machine can only have one kind of state. The first thing to do is to
+choose this type :</p>
+<dl class="function">
+<dt id="haka-function.state_type">
+<em class="property">state_machine </em><tt class="descname">state_type</tt><big>(</big><em>state_type</em><big>)</big><a class="headerlink" href="#haka-function.state_type" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>state_type</strong> (<a class="reference internal" href="class.html#haka-module.class" title="class"><tt class="xref haka haka-class docutils literal"><span class="pre">class</span></tt></a> extending <a class="reference internal" href="#haka-object.haka.state_machine.State" title="haka.state_machine.State"><tt class="xref haka haka-class docutils literal"><span class="pre">State</span></tt></a> or a
+lua table.) &#8211; State type.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p>Define the type of state that this state machine will work with. It will determine :</p>
+<blockquote>
+<div><ul class="simple">
+<li>the events availables.</li>
+<li>the parameters passed to actions.</li>
+<li>the parameters passed to state machine update function (see <a class="reference internal" href="#haka-object.state_machine_instance" title="state_machine_instance"><tt class="xref haka haka-class docutils literal"><span class="pre">state_machine_instance</span></tt></a>).</li>
+</ul>
+</div></blockquote>
+<p>State type can be one of the provided state or one locally defined (see
+<a class="reference internal" href="#haka-object.StateMachine" title="StateMachine"><tt class="xref haka haka-class docutils literal"><span class="pre">StateMachine</span></tt></a>)</p>
+<p><strong>Usage:</strong></p>
+<div class="highlight-lua"><div class="highlight"><pre><span class="n">state_type</span><span class="p">(</span><span class="n">BidirectionnalState</span><span class="p">)</span>
+
+<span class="n">state_type</span><span class="p">{</span>
+    <span class="n">events</span> <span class="o">=</span> <span class="p">{</span> <span class="s1">&#39;</span><span class="s">receive&#39;</span><span class="p">,</span> <span class="s1">&#39;</span><span class="s">drop&#39;</span> <span class="p">},</span>
+    <span class="n">update</span> <span class="o">=</span> <span class="k">function</span> <span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">state_machine</span><span class="p">,</span> <span class="n">direction</span><span class="p">,</span> <span class="n">pkt</span><span class="p">)</span>
+        <span class="n">state_machine</span><span class="p">:</span><span class="n">trigger</span><span class="p">(</span><span class="s1">&#39;</span><span class="s">receive&#39;</span><span class="p">,</span> <span class="n">pkt</span><span class="p">,</span> <span class="n">direction</span><span class="p">)</span>
+    <span class="k">end</span><span class="p">,</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<p>Then it is required to declare all the states :</p>
+<dl class="operator">
+<dt>
+<tt class="descname">&lt;name&gt; = state(...)</tt></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>name</strong> (<em>string</em>) &#8211; State name.</li>
+<li><strong>...</strong> &#8211; Some parameters depending of state machine state type.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><ul class="first last simple">
+<li><strong>entity</strong> (<a class="reference internal" href="#haka-object.haka.state_machine.State" title="haka.state_machine.State"><tt class="xref haka haka-class docutils literal"><span class="pre">State</span></tt></a>) &#8211; a new state.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p>Declares a named state that will be avaible in all the state machine.</p>
+</dd></dl>
+
+<p>Finally it is required to define the initial state:</p>
+<dl class="function">
+<dt id="haka-function.initial">
+<em class="property">state_machine </em><tt class="descname">initial</tt><big>(</big><em>state</em><big>)</big><a class="headerlink" href="#haka-function.initial" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>state</strong> (<a class="reference internal" href="#haka-object.haka.state_machine.State" title="haka.state_machine.State"><tt class="xref haka haka-class docutils literal"><span class="pre">State</span></tt></a>) &#8211; Initial state.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p>Define the initial state where the state machine should start.</p>
+</dd></dl>
+
+<div class="section" id="state">
+<h3>11.1.1. State<a class="headerlink" href="#state" title="Permalink to this headline">¶</a></h3>
+<p>Haka provides two kind of states type :</p>
+<dl class="class">
+<dt id="haka-object.haka.state_machine.State">
+<em class="property">object </em><tt class="descclassname">haka.state_machine.</tt><tt class="descname">State</tt><a class="headerlink" href="#haka-object.haka.state_machine.State" title="Permalink to this definition">¶</a></dt>
+<dd><p>Simplest state. It won&#8217;t do anything except defining some default events that
+will be available from every another state types.</p>
+<dl class="data">
+<dt id="haka-data.State._events">
+<em class="property"> </em><tt class="descclassname">State.</tt><tt class="descname">_events</tt><a class="headerlink" href="#haka-data.State._events" title="Permalink to this definition">¶</a></dt>
+<dd><p>This table contains a list of the events added by this type of state.
+If you create a class inheriting from <a class="reference internal" href="#haka-object.haka.state_machine.State" title="haka.state_machine.State"><tt class="xref haka haka-class docutils literal"><span class="pre">State</span></tt></a> you can set
+this table to add some events.</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="haka-data.init">
+<em class="property">events </em><tt class="descname">init</tt><a class="headerlink" href="#haka-data.init" title="Permalink to this definition">¶</a></dt>
+<dd><p>event triggered on state machine initialization.</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="haka-data.enter">
+<em class="property">events </em><tt class="descname">enter</tt><a class="headerlink" href="#haka-data.enter" title="Permalink to this definition">¶</a></dt>
+<dd><p>event triggered right after state machine enter the state.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="haka-function.timeout">
+<em class="property">events </em><tt class="descname">timeout</tt><big>(</big><em>seconds</em><big>)</big><a class="headerlink" href="#haka-function.timeout" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>seconds</strong> (<a class="reference internal" href="grammar.html#haka-function.number" title="number"><em>number</em></a>) &#8211; Time in seconds to wait before triggering this event</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p>event triggered after a given elapsed time. The timeout are reset each
+time the state machine change its internal state.</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="haka-data.fail">
+<em class="property">events </em><tt class="descname">fail</tt><a class="headerlink" href="#haka-data.fail" title="Permalink to this definition">¶</a></dt>
+<dd><p>event triggered right before state machine enter the fail state.</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="haka-data.finish">
+<em class="property">events </em><tt class="descname">finish</tt><a class="headerlink" href="#haka-data.finish" title="Permalink to this definition">¶</a></dt>
+<dd><p>event triggered right before state machine enter the finish state.</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="haka-data.leave">
+<em class="property">events </em><tt class="descname">leave</tt><a class="headerlink" href="#haka-data.leave" title="Permalink to this definition">¶</a></dt>
+<dd><p>event triggered right before state machine leave the state.</p>
+</dd></dl>
+
+<p>State declaration in state machine of this type doesn&#8217;t
+requires any parameters.</p>
+<dl class="function">
+<dt id="haka-function.state">
+<em class="property">state_machine </em><tt class="descname">state</tt><big>(</big><big>)</big> &rarr; state<a class="headerlink" href="#haka-function.state" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"><ul class="first last simple">
+<li><strong>state</strong> (<a class="reference internal" href="#haka-object.haka.state_machine.State" title="haka.state_machine.State"><tt class="xref haka haka-class docutils literal"><span class="pre">State</span></tt></a>) &#8211; A state.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<p>State actions will be passed state machine context.</p>
+<dl class="function">
+<dt id="haka-function.&lt;state&gt;.execute">
+<em class="property"> </em><tt class="descclassname">&lt;state&gt;.</tt><tt class="descname">execute</tt><big>(</big><em>self</em><big>)</big><a class="headerlink" href="#haka-function.<state>.execute" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>self</strong> (<em>object</em>) &#8211; state machine context.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<p>State machine defined with this type will have the following update function.</p>
+<dl class="function">
+<dt id="haka-function.update">
+<em class="property">state_machine_instance </em><tt class="descname">update</tt><big>(</big><em>event</em><big>)</big><a class="headerlink" href="#haka-function.update" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>event</strong> (<em>String</em>) &#8211; Event to be triggered on the state machine.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="haka-object.haka.state_machine.BidirectionnalState">
+<em class="property">object </em><tt class="descclassname">haka.state_machine.</tt><tt class="descname">BidirectionnalState</tt><a class="headerlink" href="#haka-object.haka.state_machine.BidirectionnalState" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bidirectionnal state is a more advanced state. It can handle bidirectionnal
+connection and will handle data parsing. For this purpose it defines some more events :</p>
+<dl class="data">
+<dt id="haka-data.up">
+<em class="property">events </em><tt class="descname">up</tt><a class="headerlink" href="#haka-data.up" title="Permalink to this definition">¶</a></dt>
+<dd><p>event triggered when up coming data is received.</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="haka-data.down">
+<em class="property">events </em><tt class="descname">down</tt><a class="headerlink" href="#haka-data.down" title="Permalink to this definition">¶</a></dt>
+<dd><p>event triggered when down coming data is received.</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="haka-data.parse_error">
+<em class="property">events </em><tt class="descname">parse_error</tt><a class="headerlink" href="#haka-data.parse_error" title="Permalink to this definition">¶</a></dt>
+<dd><p>event triggered on data parsing error. See <a class="reference internal" href="grammar.html"><em>Grammar</em></a>.</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="haka-data.missing_grammar">
+<em class="property">events </em><tt class="descname">missing_grammar</tt><a class="headerlink" href="#haka-data.missing_grammar" title="Permalink to this definition">¶</a></dt>
+<dd><p>event triggered when no grammar is defined to handle data.</p>
+</dd></dl>
+
+<p>In order to be able to parse incoming data it is required to pass
+exported grammar entity (see <a class="reference internal" href="grammar.html"><em>Grammar</em></a>) to state declaration :</p>
+<dl class="function">
+<dt>
+<em class="property">state_machine </em><tt class="descname">state</tt><big>(</big><em>gup</em>, <em>gdown</em><big>)</big></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>gup</strong> (<a class="reference internal" href="grammar.html#haka-object.CompiledGrammarEntity" title="CompiledGrammarEntity"><tt class="xref haka haka-class docutils literal"><span class="pre">CompiledGrammarEntity</span></tt></a>) &#8211; Up coming data grammar.</li>
+<li><strong>gdown</strong> (<a class="reference internal" href="grammar.html#haka-object.CompiledGrammarEntity" title="CompiledGrammarEntity"><tt class="xref haka haka-class docutils literal"><span class="pre">CompiledGrammarEntity</span></tt></a>) &#8211; Down coming data grammar.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><ul class="first last simple">
+<li><strong>state</strong> (<a class="reference internal" href="#haka-object.haka.state_machine.State" title="haka.state_machine.State"><tt class="xref haka haka-class docutils literal"><span class="pre">State</span></tt></a>) &#8211; A state.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<p>State actions attached to <tt class="docutils literal"><span class="pre">events.up</span></tt> or <tt class="docutils literal"><span class="pre">events.down</span></tt> events will be passed
+the following parameters :</p>
+<dl class="function">
+<dt>
+<em class="property"> </em><tt class="descclassname">&lt;state&gt;.</tt><tt class="descname">execute</tt><big>(</big><em>self</em>, <em>res</em>, <em>...</em><big>)</big></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>self</strong> (<em>object</em>) &#8211; state machine context.</li>
+<li><strong>res</strong> (<em>abstract table</em>) &#8211; Parse result.</li>
+<li><strong>...</strong> &#8211; Any another parameters as passed to update function.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<p>State machine defined with this type will have the following update function.</p>
+<dl class="function">
+<dt>
+<em class="property">state_machine_instance </em><tt class="descname">update</tt><big>(</big><em>payload</em>, <em>direction</em>, <em>...</em><big>)</big></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>payload</strong> (<a class="reference internal" href="vbuffer.html#haka-object.vbuffer_iterator" title="vbuffer_iterator"><tt class="xref haka haka-class docutils literal"><span class="pre">vbuffer_iterator</span></tt></a>) &#8211; Payload of the incoming data.</li>
+<li><strong>direction</strong> (String <tt class="docutils literal"><span class="pre">'up'</span></tt> or <tt class="docutils literal"><span class="pre">'down'</span></tt>) &#8211; Direction of the event.</li>
+<li><strong>...</strong> &#8211; Any another parameters that will be passed to actions.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+<p>Haka also declares two special states that are available in all state machines :</p>
+<dl class="data">
+<dt>
+<em class="property"> </em><tt class="descname">fail</tt></dt>
+<dd><p>state reached in case of failure. It will raise an error.</p>
+</dd></dl>
+
+<dl class="data">
+<dt>
+<em class="property"> </em><tt class="descname">finish</tt></dt>
+<dd><p>final state which will terminate the state machine instance.</p>
+</dd></dl>
+
+<p>Naturally it is possible to define specific state types by extending
+<a class="reference internal" href="#haka-object.haka.state_machine.State" title="haka.state_machine.State"><tt class="xref haka haka-class docutils literal"><span class="pre">State</span></tt></a>. It will allow to redefine update function and available
+events.</p>
+<dl class="function">
+<dt id="haka-function.haka.state_machine.new_state_type">
+<em class="property"> </em><tt class="descclassname">haka.state_machine.</tt><tt class="descname">new_state_type</tt><big>{</big><em>events</em>, <em>name</em>, <em>parent</em>, <em>update</em><big>}</big> &rarr; state_class<a class="headerlink" href="#haka-function.haka.state_machine.new_state_type" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>events</strong> (<em>table</em>) &#8211; State machine events.</li>
+<li><strong>name</strong> (<em>string</em>) &#8211; State type name.</li>
+<li><strong>parent</strong> (<a class="reference internal" href="class.html#haka-module.class" title="class"><tt class="xref haka haka-class docutils literal"><span class="pre">class</span></tt></a> extending <a class="reference internal" href="#haka-object.haka.state_machine.State" title="haka.state_machine.State"><tt class="xref haka haka-class docutils literal"><span class="pre">State</span></tt></a>) &#8211; State type parent.</li>
+<li><strong>update</strong> (<em>function</em>) &#8211; State type update function.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><ul class="first last simple">
+<li><strong>state_class</strong> (<a class="reference internal" href="class.html#haka-module.class" title="class"><tt class="xref haka haka-class docutils literal"><span class="pre">class</span></tt></a> extending <a class="reference internal" href="#haka-object.haka.state_machine.State" title="haka.state_machine.State"><tt class="xref haka haka-class docutils literal"><span class="pre">State</span></tt></a>) &#8211; New state type class</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p>Create a new state type.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">None of the paramaters are required.</p>
+</div>
+</dd></dl>
+
+<p><strong>Usage:</strong></p>
+<div class="highlight-lua"><div class="highlight"><pre><span class="kd">local</span> <span class="n">MyState</span> <span class="o">=</span> <span class="n">haka</span><span class="p">.</span><span class="n">state_machine</span><span class="p">.</span><span class="n">new_state_type</span><span class="p">{</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="s">MyState&quot;</span><span class="p">,</span>
+    <span class="n">parent</span> <span class="o">=</span> <span class="n">haka</span><span class="p">.</span><span class="n">state_machine</span><span class="p">.</span><span class="n">State</span><span class="p">,</span>
+    <span class="n">events</span> <span class="o">=</span> <span class="p">{</span> <span class="s1">&#39;</span><span class="s">myevent&#39;</span> <span class="p">},</span>
+    <span class="n">update</span> <span class="o">=</span> <span class="k">function</span> <span class="p">(</span><span class="n">state_machine</span><span class="p">,</span> <span class="n">myarg</span><span class="p">)</span>
+        <span class="n">state_machine</span><span class="p">:</span><span class="n">trigger</span><span class="p">(</span><span class="s1">&#39;</span><span class="s">myevent&#39;</span><span class="p">,</span> <span class="n">myarg</span><span class="p">)</span>
+    <span class="k">end</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="actions">
+<h3>11.1.2. Actions<a class="headerlink" href="#actions" title="Permalink to this headline">¶</a></h3>
+<p>An action is composed of the following :</p>
+<ul class="simple">
+<li>a state to be defined on</li>
+<li>an event to attach to</li>
+<li>a check function</li>
+<li>an action to perform</li>
+<li>a state to jump to</li>
+</ul>
+<p>A action is defined with :</p>
+<dl class="method">
+<dt>
+<tt class="descname">&lt;state&gt;:on{event, events, when, execute, jump}</tt></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>event</strong> &#8211; One of the event defined by state machine state type.</li>
+<li><strong>events</strong> (<em>table</em>) &#8211; A list of event to attach to.</li>
+<li><strong>when</strong> (<em>function</em>) &#8211; An optional function to decide whether this action should be taken or not.</li>
+<li><strong>execute</strong> (<em>function</em>) &#8211; An optional function to make some specific actions.</li>
+<li><strong>jump</strong> (<a class="reference internal" href="#haka-object.haka.state_machine.State" title="haka.state_machine.State"><tt class="xref haka haka-class docutils literal"><span class="pre">State</span></tt></a>) &#8211; An optional state to go to after executing the action.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p>Define a new action. The parameters passed to action and when function
+depends on state machine state type.</p>
+<p>Only event or events is a required parameter. But an action must have one of action
+or jump otherwise it is useless.</p>
+<p>Both action and when function are always passed the same parameters.</p>
+</dd></dl>
+
+<p>Haka allow to define default actions :</p>
+<dl class="function">
+<dt id="haka-function.any.on">
+<em class="property"> </em><tt class="descclassname">any:</tt><tt class="descname">on</tt><big>{</big><em>event</em>, <em>when</em>, <em>execute</em>, <em>jump</em><big>}</big><a class="headerlink" href="#haka-function.any.on" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>event</strong> &#8211; One of the event defined by state machine state type.</li>
+<li><strong>events</strong> (<em>table</em>) &#8211; A list of event to attach to.</li>
+<li><strong>when</strong> (<em>function</em>) &#8211; An optional function to decide whether this action should be taken or not.</li>
+<li><strong>execute</strong> (<em>function</em>) &#8211; An optional function to make some specific actions.</li>
+<li><strong>jump</strong> (<a class="reference internal" href="#haka-object.haka.state_machine.State" title="haka.state_machine.State"><tt class="xref haka haka-class docutils literal"><span class="pre">State</span></tt></a>) &#8211; An optional state to go to after executing the action.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p>Sets default actions for the state machine. The parameter should be a
+table containing the exact same argument as a classic action. All those
+actions will exists on any state of this state machine.</p>
+</dd></dl>
+
+<p><strong>Usage:</strong></p>
+<div class="highlight-lua"><div class="highlight"><pre><span class="n">any</span><span class="p">:</span><span class="n">on</span><span class="p">{</span>
+    <span class="n">event</span> <span class="o">=</span> <span class="n">events</span><span class="p">.</span><span class="n">fail</span><span class="p">,</span>
+    <span class="n">execute</span> <span class="o">=</span> <span class="k">function</span><span class="p">()</span>
+        <span class="n">haka</span><span class="p">.</span><span class="n">alert</span><span class="p">{</span>
+            <span class="n">description</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="s">fail on my state machine&quot;</span><span class="p">,</span>
+            <span class="n">severity</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="s">low&#39;</span><span class="p">,</span>
+        <span class="p">}</span>
+    <span class="k">end</span><span class="p">,</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="instance">
+<h2>11.2. Instance<a class="headerlink" href="#instance" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="haka-object.StateMachine">
+<em class="property">object </em><tt class="descname">StateMachine</tt><a class="headerlink" href="#haka-object.StateMachine" title="Permalink to this definition">¶</a></dt>
+<dd><p>This object contains the state machine compiled description.</p>
+<dl class="method">
+<dt id="haka-function.&lt;state_machine&gt;.instanciate">
+<em class="property"> </em><tt class="descclassname">&lt;state_machine&gt;:</tt><tt class="descname">instanciate</tt><big>(</big><em>context</em><big>)</big> &rarr; instance<a class="headerlink" href="#haka-function.<state_machine>.instanciate" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>context</strong> &#8211; User data that are passed to every actions.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><ul class="first last simple">
+<li><strong>instance</strong> (<a class="reference internal" href="#haka-object.state_machine_instance" title="state_machine_instance"><tt class="xref haka haka-class docutils literal"><span class="pre">state_machine_instance</span></tt></a>) &#8211; State machine instance.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p>Instanciate the state machine. The <em>context</em> object will be given as
+the first parameter for every actions called.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="haka-object.state_machine_instance">
+<em class="property">object </em><tt class="descname">state_machine_instance</tt><a class="headerlink" href="#haka-object.state_machine_instance" title="Permalink to this definition">¶</a></dt>
+<dd><p>Instance of a state machine.</p>
+<dl class="method">
+<dt id="haka-function.&lt;state_machine_instance&gt;.finish">
+<em class="property"> </em><tt class="descclassname">&lt;state_machine_instance&gt;:</tt><tt class="descname">finish</tt><big>(</big><big>)</big><a class="headerlink" href="#haka-function.<state_machine_instance>.finish" title="Permalink to this definition">¶</a></dt>
+<dd><p>Terminate the state machine. This will also call the action
+<strong>finish</strong> on the current state.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="haka-attribute.&lt;state_machine_instance&gt;.current">
+<em class="property">const  </em><tt class="descclassname">&lt;state_machine_instance&gt;.</tt><tt class="descname">current</tt><a class="headerlink" href="#haka-attribute.<state_machine_instance>.current" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">string</td>
+</tr>
+</tbody>
+</table>
+<p>Current state name.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="haka-function.&lt;state_machine_instance&gt;.trigger">
+<em class="property"> </em><tt class="descclassname">&lt;state_machine_instance&gt;:</tt><tt class="descname">trigger</tt><big>(</big><em>name</em>, <em>...</em><big>)</big><a class="headerlink" href="#haka-function.<state_machine_instance>.trigger" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>name</strong> (<em>string</em>) &#8211; Transition name.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p>Trigger an event on the current state.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="haka-function.haka.state_machine.update">
+<em class="property"> </em><tt class="descclassname">haka.state_machine.</tt><tt class="descname">update</tt><big>(</big><em>...</em><big>)</big><a class="headerlink" href="#haka-function.haka.state_machine.update" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>...</strong> &#8211; Variable parameters depending on state machine type.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p>Update the internal state of the state machine.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="example">
+<h2>11.3. Example<a class="headerlink" href="#example" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-lua"><div class="highlight"><pre><span class="c1">-- This Source Code Form is subject to the terms of the Mozilla Public</span>
+<span class="c1">-- License, v. 2.0. If a copy of the MPL was not distributed with this</span>
+<span class="c1">-- file, You can obtain one at http://mozilla.org/MPL/2.0/.</span>
+
+<span class="kd">local</span> <span class="n">my_state_machine</span> <span class="o">=</span> <span class="n">haka</span><span class="p">.</span><span class="n">state_machine</span><span class="p">(</span><span class="s2">&quot;</span><span class="s">test&quot;</span><span class="p">,</span> <span class="k">function</span> <span class="p">()</span>
+    <span class="n">state_type</span><span class="p">{</span>
+        <span class="n">events</span> <span class="o">=</span> <span class="p">{</span> <span class="s1">&#39;</span><span class="s">test&#39;</span> <span class="p">},</span>
+        <span class="n">update</span> <span class="o">=</span> <span class="k">function</span> <span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">state_machine</span><span class="p">)</span>
+            <span class="n">state_machine</span><span class="p">:</span><span class="n">trigger</span><span class="p">(</span><span class="s1">&#39;</span><span class="s">test&#39;</span><span class="p">)</span>
+        <span class="k">end</span>
+    <span class="p">}</span>
+
+    <span class="n">foo</span> <span class="o">=</span> <span class="n">state</span><span class="p">()</span>
+    <span class="n">bar</span> <span class="o">=</span> <span class="n">state</span><span class="p">()</span>
+
+    <span class="n">foo</span><span class="p">:</span><span class="n">on</span><span class="p">{</span>
+        <span class="n">event</span> <span class="o">=</span> <span class="n">events</span><span class="p">.</span><span class="n">test</span><span class="p">,</span>
+        <span class="n">execute</span>  <span class="o">=</span> <span class="k">function</span> <span class="p">(</span><span class="n">self</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="s">update&quot;</span><span class="p">)</span>
+        <span class="k">end</span><span class="p">,</span>
+        <span class="n">jump</span> <span class="o">=</span> <span class="n">bar</span> <span class="c1">-- jump to the state bar</span>
+    <span class="p">}</span>
+
+    <span class="n">bar</span><span class="p">:</span><span class="n">on</span><span class="p">{</span>
+        <span class="n">event</span> <span class="o">=</span> <span class="n">events</span><span class="p">.</span><span class="n">enter</span><span class="p">,</span>
+        <span class="n">execute</span>  <span class="o">=</span> <span class="k">function</span> <span class="p">(</span><span class="n">self</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="s">finish&quot;</span><span class="p">)</span>
+        <span class="k">end</span>
+    <span class="p">}</span>
+
+    <span class="n">initial</span><span class="p">(</span><span class="n">foo</span><span class="p">)</span> <span class="c1">-- start on state foo</span>
+<span class="k">end</span><span class="p">)</span>
+
+<span class="kd">local</span> <span class="n">context</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="kd">local</span> <span class="n">instance</span> <span class="o">=</span> <span class="n">my_state_machine</span><span class="p">:</span><span class="n">instanciate</span><span class="p">(</span><span class="n">context</span><span class="p">)</span>
+
+<span class="n">instance</span><span class="p">:</span><span class="n">update</span><span class="p">()</span> <span class="c1">-- trigger the event test</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+		</div>
+	</div>
+</div>
+
+
+
+<footer id="footer">
+	<div class="row" role="complementary">
+		<div class="medium-12 columns">
+			&copy; Copyright 2014, Arkoon Network Security, OpenWide and Telecom ParisTech.
+		</div>
+	</div>
+</footer>
+<script>
+	  $(document).foundation();
+</script>
+
+
+
+<script type="text/javascript" src="http://www.haka-security.org/js/track.js"></script>
+
+
+  </body>
+</html>
